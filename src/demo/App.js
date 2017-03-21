@@ -55,8 +55,6 @@ class App extends Component {
           
         </footer>
         <Tour 
-          onAfterOpen={() => console.log('8698670')}
-          onBeforeClose={() => console.log('-----')}
           onRequestClose={this.closeTutorial}
           steps={[
             { 

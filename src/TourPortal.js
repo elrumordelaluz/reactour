@@ -5,13 +5,11 @@ import * as h from './helpers'
 const CN = {
   mask: {
     base: 'reactour__mask',
-    afterOpen: 'reactour__mask--after-open',
-    beforeClose: 'reactour__mask--before-close',
+    isOpen: 'reactour__mask--is-open',
   },
   helper: {
     base: 'reactour__helper',
-    afterOpen: 'reactour__helper--after-open',
-    beforeClose: 'reactour__helper--before-close',
+    isOpen: 'reactour__helper--is-open',
   }
 }
 
@@ -35,19 +33,18 @@ class TourPortal extends Component {
     })),
   }
   
-  static defaultProps = {}
+  static defaultProps = {
+    onAfterOpen: () => { document.body.style.overflowY = 'hidden' },
+    onBeforeClose: () => { document.body.style.overflowY = 'auto' },
+  }
   
   constructor () {
     super()
-    
     this.state = {
       isOpen: false,
-      afterOpen: false,
-      beforeClose: false,
       steps: [],
+      current: 1,
     }
-    
-    this.shouldClose = null
   }
   
   componentDidMount () {
@@ -66,33 +63,23 @@ class TourPortal extends Component {
   }
   
   open () {
-    const { afterOpen, beforeClose } = this.state
     const { isOpen, onAfterOpen, steps } = this.props
     
-    if (afterOpen && beforeClose) {
-      this.setState({ beforeClose: false })
-    } else {
-      this.setState({ isOpen: true }, () => {
-        this.setState({ 
-          afterOpen: true,
-          steps: steps.map(step => ({
-            ...h.getNodeRect(document.querySelector(step.selector)),
-            content: step.content,
-          }))
-        })
-        
-        if (onAfterOpen) {
-          onAfterOpen()
-        }
+    this.setState({ isOpen: true }, () => {
+      this.setState({ 
+        steps: steps.map(step => ({
+          ...h.getNodeRect(document.querySelector(step.selector)),
+          content: step.content,
+        }))
       })
-    }
+      
+      if (onAfterOpen) onAfterOpen()
+    })
   }
   
   close () {
     this.setState({
-      beforeClose: false,
       isOpen: false,
-      afterOpen: false,
       steps: [],
     }, this.onBeforeClose)
   }
@@ -104,50 +91,102 @@ class TourPortal extends Component {
     }
   }
   
-  shouldBeClosed () {
-    const { isOpen, beforeClose } = this.state
-    return !isOpen && !beforeClose
-  }
-  
   maskClickHandler = (e) => {
     const { shouldCloseOnMaskClick, onRequestClose } = this.props
-    if (this.shouldClose === null) {
-      this.shouldClose = true
-    }
-    if (this.shouldClose && shouldCloseOnMaskClick) {
+    if (shouldCloseOnMaskClick) {
       onRequestClose(e)
     }
-    this.shouldClose = null;
   }
   
+  getStepPosition (number) {
+    const { steps } = this.state
+    if (steps.length) {
+      const { top, right, bottom, left, width, height } = steps[number]
+      return { top, right, bottom, left, width, height }
+    }
+    
+    return {
+      top: 0, right: 0, bottom: 0, left: 0, 
+      width: 0, height: 0,
+    }
+  }
+  
+  maskPosition ({ top, right, bottom, left, width, height }) {
+    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    const padding = 10
+    const helperDistance = 10
+    
+    return {
+      masksPositions: {
+        top: {
+          ...maskStyle,
+          height: top - padding,
+        },
+        right: {
+          ...maskStyle,
+          top: top - padding,
+          left: left + width + padding,
+          width: w - width - left - padding,
+          height: height + (padding * 2),
+        },
+        bottom: {
+          ...maskStyle,
+          top: height + top + padding,
+          height: h + height - top - padding,
+        },
+        left: {
+          ...maskStyle,
+          top: top - padding,
+          width: left - padding,
+          height: height + (padding * 2),
+        },
+      },
+      helperPosition: {
+        top: top + height / 2,
+        left: left + width + padding + helperDistance,
+      }
+    }
+  }
+  
+  elementPosition () {
+    const { steps, current } = this.state
+    const { top, right, bottom, left, width, height } = steps[current]
+    return { top, right, bottom, left, width, height }
+  }
   
   render () {
-    const { afterOpen, beforeClose } = this.state
-    return this.shouldBeClosed() 
-      ? <div/> 
-      : (
+    const { isOpen, steps } = this.state
+    if (isOpen && steps.length) {
+      const { top, right, bottom, left, width, height } = this.elementPosition()
+      const { masksPositions, helperPosition } = this.maskPosition(this.elementPosition())
+      return (
         <div>
           <div 
             ref={c => this.mask = c}
             onClick={this.maskClickHandler}
             className={cn(CN.mask.base, {
-              [CN.mask.afterOpen]: afterOpen,
-              [CN.mask.beforeClose]: beforeClose,
+              [CN.mask.isOpen]: isOpen,
             })}>
-            <span style={maskStyle} />
-            <span></span>
-            <span></span>
-            <span></span>
+            <span style={masksPositions.top} />
+            <span style={masksPositions.right} />
+            <span style={masksPositions.bottom} />
+            <span style={masksPositions.left} />
           </div>
           <div 
             ref={c => this.helper = c}
+            style={{
+              ...helperStyle,
+              ...helperPosition,
+            }}
             className={cn(CN.helper.base, {
-              [CN.helper.afterOpen]: afterOpen,
-              [CN.helper.beforeClose]: beforeClose,
-            })}>
-          </div>
+              [CN.helper.isOpen]: isOpen,
+          })}>hola</div>
         </div>
       )
+    }
+    
+    return <div/>
   }
 }
 
@@ -158,6 +197,17 @@ const maskStyle = {
   top: 0,
   height: '100%',
   position: 'fixed',
+}
+
+const helperStyle = {
+  position: 'fixed',
+  backgroundColor: '#fff',
+  transition: '.3s',
+  padding: '.6em',
+  boxShadow: '0 .5em 3em rgba(0,0,0,.3)',
+  transform: 'translateY(-50%)',
+  width: '200px',
+  height: '200px',
 }
 
 export default TourPortal
