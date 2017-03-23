@@ -253,14 +253,16 @@ const Mask = styled.div`
   z-index: 999;
 `;
 
+const calc = sum => sum < 0 ? 0 : sum
+
 const TopMask = styled(Mask)`
-  height: ${props => props.targetTop - props.padding}px
+  height: ${props => calc(props.targetTop - props.padding)}px
 `;
 
 const RightMask = styled(Mask)`
   top: ${props => props.targetTop - props.padding}px;
   left: ${props => props.targetLeft + props.targetWidth + props.padding}px;
-  width: ${props => props.w - props.targetWidth - props.targetLeft - props.padding}px;
+  width: ${props => calc(props.windowWidth - props.targetWidth - props.targetLeft - props.padding)}px;
   height: ${props => props.targetHeight + (props.padding * 2)}px;
 `;
 
@@ -271,7 +273,7 @@ const BottomMask = styled(Mask)`
 
 const LeftMask = styled(Mask)`
   top: ${props => props.targetTop - props.padding}px;
-  width: ${props => props.targetLeft - props.padding}px;
+  width: ${props => calc(props.targetLeft - props.padding)}px;
   height: ${props => props.targetHeight + (props.padding * 2)}px;
 `;
 
@@ -340,12 +342,26 @@ const Helper = styled.div`
       return coords.center
     }
     
+    const isOutsideX = val => val > windowWidth
+    const isOutsideY = val => val > windowHeight
+    
     const pos = helperPosition => {
+      const outsideY = (targetTop + helperHeight) > windowHeight
+      const hX = isOutsideX(targetLeft + helperWidth) 
+        ? isOutsideX(targetRight + padding) 
+          ? targetRight - helperWidth
+          : targetRight - helperWidth + padding
+        : targetLeft - padding
+      const hY = isOutsideY(targetTop + helperHeight) 
+        ? isOutsideY(targetBottom + padding) 
+          ? targetBottom - helperHeight
+          : targetBottom - helperHeight + padding
+        : targetTop - padding
       const coords = {
-        top: [ targetLeft, targetTop - helperHeight - padding * 2 ],
-        right: [ targetRight + padding * 2, targetTop ],
-        bottom: [ targetLeft, targetBottom + padding * 2 ],
-        left: [ targetLeft - helperWidth - padding * 2, targetTop ],
+        top: [ hX, targetTop - helperHeight - padding * 2 ],
+        right: [ targetRight + padding * 2, hY ],
+        bottom: [ hX, targetBottom + padding * 2 ],
+        left: [ targetLeft - helperWidth - padding * 2, hY ],
         center: [
           windowWidth / 2 - helperWidth / 2,
           windowHeight / 2 - helperHeight / 2,

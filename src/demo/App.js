@@ -40,12 +40,13 @@ class App extends Component {
         </Main>
         <Sidebar>
           <Section>
-            <Button data-tut="1">Button</Button>
-          </Section>
-          <Section>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, ad!
           </Section>
+          <Section>
+            <Button>Button</Button>
+          </Section>
         </Sidebar>
+        <Tester data-tut="1" />
         <footer>
         </footer>
         <Tour 
@@ -60,7 +61,7 @@ class App extends Component {
 const tutConfig = [
   { 
     selector: '[data-tut="1"]', 
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti.',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti.',
     position: 'left',
   },
   { 
@@ -69,6 +70,15 @@ const tutConfig = [
     position: 'left',
   },
 ]
+
+const Tester = styled.div`
+  position: fixed;
+  bottom: 250px;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -107,6 +117,7 @@ const Sidebar = styled.aside`
   height: 100%;
   background-color: #fafafa;
   top: 0;
+  right: 0;
   padding-top: 40px;
   overflow-y: scroll;
 `;
