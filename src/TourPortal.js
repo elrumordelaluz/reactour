@@ -166,7 +166,18 @@ class TourPortal extends Component {
     }, this.showStep)
   }
   
+  gotoStep = n => {
+    const { steps } = this.props
+    this.setState(prevState => {
+      const nextStep = steps[n] ? n : prevState.current 
+      return {
+        current: nextStep,
+      }
+    }, this.showStep)
+  }
+  
   render () {
+    const { steps } = this.props
     const { 
       // state
       isOpen, 
@@ -184,6 +195,7 @@ class TourPortal extends Component {
       helperHeight,
       helperPosition,
     } = this.state
+    
     if (isOpen) {
       return (
         <div>
@@ -230,9 +242,22 @@ class TourPortal extends Component {
             padding={10}>
             { this.props.steps[current].content }
             <HelperControls>
-              <button onClick={this.prevStep}>Prev</button>
-              <span>...</span>
-              <button onClick={this.nextStep}>Next</button>
+              <button 
+                onClick={this.prevStep}
+                disabled={current === 0}>Prev</button>
+              <Navigation>
+              { steps.map((s,i) => (
+                <Dot 
+                  key={s.selector}
+                  onClick={() => this.gotoStep(i)}
+                  current={current}
+                  index={i}
+                  disabled={current === i} />
+              ))}
+              </Navigation>
+              <button 
+                onClick={this.nextStep}
+                disabled={current === steps.length - 1}>Next</button>
             </HelperControls>
           </Helper>
         </div>
@@ -288,6 +313,7 @@ const Helper = styled.div`
   color: inherit;
   z-index: 99999;
   max-width: 300px;
+  min-width: 150px;
   
   transform: ${props => {
     const { 
@@ -383,5 +409,32 @@ const HelperControls = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const Navigation = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Dot = styled.button`
+  width: 5px;
+  height: 5px;
+  border: 0;
+  border-radius: 100%;
+  padding: 0;
+  display: block;
+  margin: 2px;
+  outline: 0;
+  transition: .3s;
+  cursor: ${props => props.current === props.index ? 'default' : 'pointer'};
+  opacity: ${props => props.current === props.index ? 1 : .5};
+  transform: scale(${props => props.current === props.index ? 1.1 : 1});
+  background-color: ${props => props.current === props.index ? 'red' : 'currentColor'};
+  
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1)
+  }
+`
 
 export default TourPortal
