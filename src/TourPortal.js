@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import cn from 'classnames'
-import * as h from './helpers'
+import styled from 'styled-components'
+import scrollSmooth from 'scroll-smooth'
+import Scrollparent from 'scrollparent'
+import * as hx from './helpers'
 
 const CN = {
   mask: {
@@ -42,8 +45,15 @@ class TourPortal extends Component {
     super()
     this.state = {
       isOpen: false,
-      steps: [],
-      current: 1,
+      current: 0,
+      top: 0, 
+      right: 0, 
+      bottom: 0, 
+      left: 0, 
+      width: 0,
+      height: 0, 
+      w: 0, 
+      h: 0,
     }
   }
   
@@ -63,25 +73,59 @@ class TourPortal extends Component {
   }
   
   open () {
-    const { isOpen, onAfterOpen, steps } = this.props
-    
+    const { isOpen, onAfterOpen } = this.props
     this.setState({ isOpen: true }, () => {
-      this.setState({ 
-        steps: steps.map(step => ({
-          ...h.getNodeRect(document.querySelector(step.selector)),
-          content: step.content,
-        }))
-      })
-      
+      this.showStep()
       if (onAfterOpen) onAfterOpen()
     })
+    // TODO: debounce it.
+    window.addEventListener('resize', this.showStep);
+  }
+  
+  showStep = () => {
+    const { steps } = this.props
+    const { current } = this.state
+    const step = steps[current]
+    const node = document.querySelector(step.selector)
+    const attrs = hx.getNodeRect(node)
+    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    const { width: helperWidth, height: helperHeight } = hx.getNodeRect(this.helper)
+    
+    if (!hx.inView({...attrs, w, h })) {
+      const parentScroll = Scrollparent(node)
+      scrollSmooth.to(node, {
+        context: hx.isBody(parentScroll) ? window : parentScroll,
+        duration: 1,
+        offset: -(h/2),
+        callback: e => {
+          this.setState({
+            ...hx.getNodeRect(e), 
+            w, 
+            h,
+            helperWidth,
+            helperHeight,
+            helperPosition: step.position,
+          })
+        }
+      })
+    } else {
+      this.setState({
+        ...attrs,
+        w, 
+        h,
+        helperWidth,
+        helperHeight,
+        helperPosition: step.position,
+      })
+    }
   }
   
   close () {
     this.setState({
       isOpen: false,
-      steps: [],
     }, this.onBeforeClose)
+    window.removeEventListener('resize', this.showStep);
   }
   
   onBeforeClose () {
@@ -91,75 +135,56 @@ class TourPortal extends Component {
     }
   }
   
-  maskClickHandler = (e) => {
+  maskClickHandler = e => {
     const { shouldCloseOnMaskClick, onRequestClose } = this.props
     if (shouldCloseOnMaskClick) {
       onRequestClose(e)
     }
   }
   
-  getStepPosition (number) {
-    const { steps } = this.state
-    if (steps.length) {
-      const { top, right, bottom, left, width, height } = steps[number]
-      return { top, right, bottom, left, width, height }
-    }
-    
-    return {
-      top: 0, right: 0, bottom: 0, left: 0, 
-      width: 0, height: 0,
-    }
-  }
-  
-  maskPosition ({ top, right, bottom, left, width, height }) {
-    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-    const padding = 10
-    const helperDistance = 10
-    
-    return {
-      masksPositions: {
-        top: {
-          ...maskStyle,
-          height: top - padding,
-        },
-        right: {
-          ...maskStyle,
-          top: top - padding,
-          left: left + width + padding,
-          width: w - width - left - padding,
-          height: height + (padding * 2),
-        },
-        bottom: {
-          ...maskStyle,
-          top: height + top + padding,
-          height: h + height - top - padding,
-        },
-        left: {
-          ...maskStyle,
-          top: top - padding,
-          width: left - padding,
-          height: height + (padding * 2),
-        },
-      },
-      helperPosition: {
-        top: top + height / 2,
-        left: left + width + padding + helperDistance,
+  nextStep = () => {
+    const { steps } = this.props
+    this.setState(prevState => {
+      const nextStep = prevState.current < steps.length - 1 
+        ? prevState.current + 1
+        : prevState.current 
+      return {
+        current: nextStep,
       }
-    }
+    }, this.showStep)
   }
   
-  elementPosition () {
-    const { steps, current } = this.state
-    const { top, right, bottom, left, width, height } = steps[current]
-    return { top, right, bottom, left, width, height }
+  prevStep = () => {
+    const { steps } = this.props
+    this.setState(prevState => {
+      const nextStep = prevState.current > 0
+        ? prevState.current - 1
+        : prevState.current 
+      return {
+        current: nextStep,
+      }
+    }, this.showStep)
   }
   
   render () {
-    const { isOpen, steps } = this.state
-    if (isOpen && steps.length) {
-      const { top, right, bottom, left, width, height } = this.elementPosition()
-      const { masksPositions, helperPosition } = this.maskPosition(this.elementPosition())
+    const { 
+      // state
+      isOpen, 
+      current,
+      // positions
+      top: targetTop, 
+      right: targetRight, 
+      bottom: targetBottom, 
+      left: targetLeft, 
+      width: targetWidth, 
+      height: targetHeight, 
+      w: windowWidth, 
+      h: windowHeight,
+      helperWidth, 
+      helperHeight,
+      helperPosition,
+    } = this.state
+    if (isOpen) {
       return (
         <div>
           <div 
@@ -168,20 +193,48 @@ class TourPortal extends Component {
             className={cn(CN.mask.base, {
               [CN.mask.isOpen]: isOpen,
             })}>
-            <span style={masksPositions.top} />
-            <span style={masksPositions.right} />
-            <span style={masksPositions.bottom} />
-            <span style={masksPositions.left} />
+            <TopMask 
+              targetTop={targetTop} 
+              padding={10} />
+            <RightMask 
+              targetTop={targetTop} 
+              targetLeft={targetLeft}
+              targetWidth={targetWidth}
+              targetHeight={targetHeight}
+              windowWidth={windowWidth}
+              padding={10} />
+            <BottomMask
+              targetHeight={targetHeight}
+              targetTop={targetTop} 
+              windowHeight={windowHeight}
+              padding={10} />
+            <LeftMask
+              targetHeight={targetHeight}
+              targetTop={targetTop} 
+              targetLeft={targetLeft}
+              padding={10} />
           </div>
-          <div 
-            ref={c => this.helper = c}
-            style={{
-              ...helperStyle,
-              ...helperPosition,
-            }}
-            className={cn(CN.helper.base, {
-              [CN.helper.isOpen]: isOpen,
-          })}>hola</div>
+          <Helper 
+            innerRef={c => this.helper = c}
+            targetHeight={targetHeight}
+            targetWidth={targetWidth}
+            targetTop={targetTop} 
+            targetRight={targetRight}
+            targetBottom={targetBottom}
+            targetLeft={targetLeft}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
+            helperWidth={helperWidth}
+            helperHeight={helperHeight}
+            helperPosition={helperPosition}
+            padding={10}>
+            { this.props.steps[current].content }
+            <HelperControls>
+              <button onClick={this.prevStep}>Prev</button>
+              <span>...</span>
+              <button onClick={this.nextStep}>Next</button>
+            </HelperControls>
+          </Helper>
         </div>
       )
     }
@@ -190,24 +243,129 @@ class TourPortal extends Component {
   }
 }
 
-const maskStyle = {
-  backgroundColor: 'rgba(0,0,0,.85)',
-  width: '100%',
-  left: 0,
-  top: 0,
-  height: '100%',
-  position: 'fixed',
-}
+const Mask = styled.div`
+  background-color: rgba(0,0,0,.85);
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+`;
 
-const helperStyle = {
-  position: 'fixed',
-  backgroundColor: '#fff',
-  transition: '.3s',
-  padding: '.6em',
-  boxShadow: '0 .5em 3em rgba(0,0,0,.3)',
-  transform: 'translateY(-50%)',
-  width: '200px',
-  height: '200px',
-}
+const TopMask = styled(Mask)`
+  height: ${props => props.targetTop - props.padding}px
+`;
+
+const RightMask = styled(Mask)`
+  top: ${props => props.targetTop - props.padding}px;
+  left: ${props => props.targetLeft + props.targetWidth + props.padding}px;
+  width: ${props => props.w - props.targetWidth - props.targetLeft - props.padding}px;
+  height: ${props => props.targetHeight + (props.padding * 2)}px;
+`;
+
+const BottomMask = styled(Mask)`
+  top: ${props => props.targetHeight + props.targetTop + props.padding}px;
+  height: ${props => props.windowHeight + props.targetHeight - props.targetTop - props.padding}px;
+`;
+
+const LeftMask = styled(Mask)`
+  top: ${props => props.targetTop - props.padding}px;
+  width: ${props => props.targetLeft - props.padding}px;
+  height: ${props => props.targetHeight + (props.padding * 2)}px;
+`;
+
+const Helper = styled.div`
+  position: fixed;
+  background-color: #fff;
+  transition: transform .3s;
+  padding: .6em;
+  box-shadow: 0 .5em 3em rgba(0,0,0,.3);
+  top: 0;
+  left: 0;
+  color: inherit;
+  z-index: 99999;
+  max-width: 300px;
+  
+  transform: ${props => {
+    const { 
+      targetTop, 
+      targetRight, 
+      targetBottom, 
+      targetLeft, 
+      targetWidth,
+      targetHeight,
+      windowWidth,
+      windowHeight, 
+      helperWidth, 
+      helperHeight, 
+      helperPosition,
+      padding,
+    } = props
+    
+    const available = {
+      left: targetLeft,
+      right: windowWidth - targetRight,
+      top: targetTop,
+      bottom: windowHeight - targetBottom,
+    }
+    
+    const isHoriz = pos => /(left|right)/.test(pos)
+    
+    const couldPositionAt = helperPosition => {
+      return available[helperPosition] > (
+        isHoriz(helperPosition) 
+        ? helperWidth + padding * 2 
+        : helperHeight + padding * 2
+      )
+    }
+    
+    const bestPositionOf = positions => {
+      return Object.keys(positions)
+        .map(p => ({ 
+          position: p,
+          value: positions[p],
+        }))
+        .sort((a,b) => b.value - a.value)
+        .map(p => p.position)
+    }
+    
+    const autoPosition = coords => {
+      const positionsOrder = bestPositionOf(available)
+      for( let j = 0; j < positionsOrder.length; j++ ) {
+        if (couldPositionAt(positionsOrder[j])) {
+          return coords[positionsOrder[j]]
+        }
+      }
+      return coords.center
+    }
+    
+    const pos = helperPosition => {
+      const coords = {
+        top: [ targetLeft, targetTop - helperHeight - padding * 2 ],
+        right: [ targetRight + padding * 2, targetTop ],
+        bottom: [ targetLeft, targetBottom + padding * 2 ],
+        left: [ targetLeft - helperWidth - padding * 2, targetTop ],
+        center: [
+          windowWidth / 2 - helperWidth / 2,
+          windowHeight / 2 - helperHeight / 2,
+        ]
+      }
+      if (couldPositionAt(helperPosition)) {
+        return coords[helperPosition]
+      } 
+      return autoPosition(coords)
+    }
+    
+    const p = pos(helperPosition)
+    
+    return `translate(${p[0]}px, ${p[1]}px)`
+  }}
+`;
+
+const HelperControls = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export default TourPortal

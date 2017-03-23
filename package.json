@@ -56,6 +56,9 @@
     "classnames": "2.2.5",
     "element-class": "0.2.2",
     "exenv": "1.2.1",
-    "lodash.pick": "4.4.0"
+    "lodash.pick": "4.4.0",
+    "scroll-smooth": "1.0.1",
+    "scrollparent": "1.0.2",
+    "styled-components": "1.4.4"
   }
 }
