@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <Wrapper>
         <Header>
-          <button data-tut="5" onClick={this.openTutorial}>Open Tutorial</button>
+          <button onClick={this.openTutorial}>Open Tutorial</button>
         </Header>
         <Main>
           <Section>

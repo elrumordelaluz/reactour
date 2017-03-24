@@ -87,37 +87,56 @@ class TourPortal extends Component {
     const { current } = this.state
     const step = steps[current]
     const node = document.querySelector(step.selector)
-    const attrs = hx.getNodeRect(node)
     const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
     const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
     const { width: helperWidth, height: helperHeight } = hx.getNodeRect(this.helper)
     
-    if (!hx.inView({...attrs, w, h })) {
-      const parentScroll = Scrollparent(node)
-      scrollSmooth.to(node, {
-        context: hx.isBody(parentScroll) ? window : parentScroll,
-        duration: 1,
-        offset: -(h/2),
-        callback: e => {
-          this.setState({
-            ...hx.getNodeRect(e), 
-            w, 
-            h,
-            helperWidth,
-            helperHeight,
-            helperPosition: step.position,
-          })
-        }
-      })
+    if (node) {
+      const attrs = hx.getNodeRect(node)
+      
+      if (!hx.inView({...attrs, w, h })) {
+        const parentScroll = Scrollparent(node)
+        scrollSmooth.to(node, {
+          context: hx.isBody(parentScroll) ? window : parentScroll,
+          duration: 1,
+          offset: -(h/2),
+          callback: e => {
+            this.setState({
+              ...hx.getNodeRect(e), 
+              w, 
+              h,
+              helperWidth,
+              helperHeight,
+              helperPosition: step.position,
+            })
+          }
+        })
+      } else {
+        this.setState({
+          ...attrs,
+          w, 
+          h,
+          helperWidth,
+          helperHeight,
+          helperPosition: step.position,
+        })
+      }
     } else {
       this.setState({
-        ...attrs,
+        top: h + 10, 
+        right: w/2 + 9,  
+        bottom: h/2 + 9, 
+        left: w/2 - helperWidth/2, 
+        width: 0,
+        height: 0, 
         w, 
         h,
         helperWidth,
         helperHeight,
-        helperPosition: step.position,
+        helperPosition: 'center',
       })
+      console.error(`Doesn't found a DOM node \`${step.selector}\`.
+Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     }
   }
   
