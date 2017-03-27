@@ -53,7 +53,9 @@ class App extends Component {
           onRequestClose={this.closeTutorial}
           steps={tutConfig}
           isOpen={showTutorial}
-          shouldCloseOnMaskClick={false} />
+          shouldCloseOnMaskClick={false}
+          maskClassName="hola ciao"
+          className="helper" />
       </Wrapper>
     )
   }

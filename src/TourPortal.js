@@ -204,7 +204,6 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
   
   keyDownHandler = e => {
-    console.log('changing!');
     e.preventDefault()
     e.stopPropagation()
     const { onRequestClose } = this.props
@@ -221,7 +220,12 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
   
   render () {
-    const { steps, showNavigation } = this.props
+    const { 
+      steps, 
+      showNavigation,
+      maskClassName,
+      className,
+    } = this.props
     const { 
       // state
       isOpen, 
@@ -251,24 +255,28 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             })}>
             <TopMask 
               targetTop={targetTop} 
-              padding={10} />
+              padding={10}
+              className={maskClassName} />
             <RightMask 
               targetTop={targetTop} 
               targetLeft={targetLeft}
               targetWidth={targetWidth}
               targetHeight={targetHeight}
               windowWidth={windowWidth}
-              padding={10} />
+              padding={10}
+              className={maskClassName} />
             <BottomMask
               targetHeight={targetHeight}
               targetTop={targetTop} 
               windowHeight={windowHeight}
-              padding={10} />
+              padding={10}
+              className={maskClassName} />
             <LeftMask
               targetHeight={targetHeight}
               targetTop={targetTop} 
               targetLeft={targetLeft}
-              padding={10} />
+              padding={10}
+              className={maskClassName} />
           </div>
           <Helper 
             innerRef={c => this.helper = c}
@@ -284,7 +292,10 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             helperHeight={helperHeight}
             helperPosition={helperPosition}
             padding={10}
-            tabIndex={-1}>
+            tabIndex={-1}v
+            className={cn(CN.helper.base, className, {
+              [CN.helper.isOpen]: isOpen,
+            })}>
             { steps[current].content }
             <HelperControls>
               <button 
@@ -316,7 +327,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
 }
 
 const Mask = styled.div`
-  background-color: rgba(0,0,0,.85);
+  background-color: rgba(0,0,0,.7);
   width: 100%;
   left: 0;
   top: 0;
@@ -361,6 +372,7 @@ const Helper = styled.div`
   z-index: 99999;
   max-width: 300px;
   min-width: 150px;
+  outline: 0;
   
   transform: ${props => {
     const { 
