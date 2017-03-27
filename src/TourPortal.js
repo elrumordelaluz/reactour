@@ -27,6 +27,7 @@ class TourPortal extends Component {
     onBeforeClose: PropTypes.func,
     onRequestClose: PropTypes.func,
     shouldCloseOnMaskClick: PropTypes.bool,
+    showNavigation: PropTypes.bool,
     steps: PropTypes.arrayOf(PropTypes.shape({
       'selector': PropTypes.string.isRequired,
       'content': PropTypes.oneOfType([
@@ -39,6 +40,7 @@ class TourPortal extends Component {
   static defaultProps = {
     onAfterOpen: () => { document.body.style.overflowY = 'hidden' },
     onBeforeClose: () => { document.body.style.overflowY = 'auto' },
+    showNavigation: true,
   }
   
   constructor () {
@@ -74,7 +76,6 @@ class TourPortal extends Component {
   
   open () {
     const { isOpen, onAfterOpen, startAt } = this.props
-    console.log(startAt);
     this.setState(prevState => ({ 
       isOpen: true,
       current: startAt !== undefined ? startAt : prevState.current,
@@ -84,7 +85,8 @@ class TourPortal extends Component {
       if (onAfterOpen) onAfterOpen()
     })
     // TODO: debounce it.
-    window.addEventListener('resize', this.showStep);
+    window.addEventListener('resize', this.showStep, false)
+    window.addEventListener('keydown', this.keyDownHandler, false)
   }
   
   showStep = () => {
@@ -149,7 +151,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     this.setState({
       isOpen: false,
     }, this.onBeforeClose)
-    window.removeEventListener('resize', this.showStep);
+    window.removeEventListener('resize', this.showStep)
+    window.removeEventListener('keydown', this.keyDownHandler)
   }
   
   onBeforeClose () {
@@ -201,6 +204,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
   
   keyDownHandler = e => {
+    console.log('changing!');
     e.preventDefault()
     e.stopPropagation()
     const { onRequestClose } = this.props
@@ -217,7 +221,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
   
   render () {
-    const { steps } = this.props
+    const { steps, showNavigation } = this.props
     const { 
       // state
       isOpen, 
@@ -280,25 +284,25 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             helperHeight={helperHeight}
             helperPosition={helperPosition}
             padding={10}
-            tabIndex={-1}
-            onKeyDown={this.keyDownHandler}>
-            { this.props.steps[current].content }
+            tabIndex={-1}>
+            { steps[current].content }
             <HelperControls>
               <button 
                 onClick={this.prevStep}
                 disabled={current === 0}>Prev</button>
-              <Navigation>
-              { steps.map((s,i) => (
-                <Dot 
-                  key={s.selector}
-                  onClick={() => this.gotoStep(i)}
-                  current={current}
-                  index={i}
-                  disabled={current === i} />
-              ))}
-              </Navigation>
+              { showNavigation && (
+                <Navigation>
+                  { steps.map((s,i) => (
+                    <Dot 
+                      key={s.selector}
+                      onClick={() => this.gotoStep(i)}
+                      current={current}
+                      index={i}
+                      disabled={current === i} />
+                  ))}
+                </Navigation>
+              )}
               <button 
-                onKeyDown={this.keyDownHandler}
                 onClick={this.nextStep}
                 disabled={current === steps.length - 1}>Next</button>
             </HelperControls>

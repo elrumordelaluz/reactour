@@ -52,7 +52,8 @@ class App extends Component {
         <Tour 
           onRequestClose={this.closeTutorial}
           steps={tutConfig}
-          isOpen={showTutorial} />
+          isOpen={showTutorial}
+          shouldCloseOnMaskClick={false} />
       </Wrapper>
     )
   }
