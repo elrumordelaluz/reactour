@@ -19,7 +19,7 @@ const CN = {
 class TourPortal extends Component {
   static propTypes = {
     className: PropTypes.string,
-    current: PropTypes.number,
+    startAt: PropTypes.number,
     delay: PropTypes.number,
     isOpen: PropTypes.bool.isRequired,
     maskClassName: PropTypes.string,
@@ -73,8 +73,12 @@ class TourPortal extends Component {
   }
   
   open () {
-    const { isOpen, onAfterOpen } = this.props
-    this.setState({ isOpen: true }, () => {
+    const { isOpen, onAfterOpen, startAt } = this.props
+    console.log(startAt);
+    this.setState(prevState => ({ 
+      isOpen: true,
+      current: startAt !== undefined ? startAt : prevState.current,
+    }), () => {
       this.showStep()
       this.helper.focus()
       if (onAfterOpen) onAfterOpen()
