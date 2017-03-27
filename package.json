@@ -36,9 +36,11 @@
     "babel-preset-stage-2": "6.22.0",
     "babel-register": "6.24.0",
     "cross-env": "3.2.4",
+    "css-loader": "0.27.3",
     "react": "15.4.2",
     "react-dom": "15.4.2",
     "rimraf": "2.6.1",
+    "style-loader": "0.16.0",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"
   },

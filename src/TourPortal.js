@@ -16,24 +16,53 @@ const CN = {
   }
 }
 
+const setNodeSate = (node, helper, position) => {
+  const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+  const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  const { width: helperWidth, height: helperHeight } = hx.getNodeRect(helper)
+  const attrs = node ? hx.getNodeRect(node) : {
+    top: h + 10, 
+    right: w/2 + 9,  
+    bottom: h/2 + 9, 
+    left: w/2 - helperWidth/2, 
+    width: 0, height: 0, w, h,
+    helperPosition: 'center',
+  }
+  return function update(state) {
+    return {
+      w,
+      h,
+      helperWidth,
+      helperHeight,
+      helperPosition: position,
+      ...attrs,
+    }
+  }
+}
+
 class TourPortal extends Component {
   static propTypes = {
     className: PropTypes.string,
-    startAt: PropTypes.number,
     delay: PropTypes.number,
     isOpen: PropTypes.bool.isRequired,
     maskClassName: PropTypes.string,
     onAfterOpen: PropTypes.func,
     onBeforeClose: PropTypes.func,
     onRequestClose: PropTypes.func,
-    shouldCloseOnMaskClick: PropTypes.bool,
+    closeWithMask: PropTypes.bool,
+    scrollDuration: PropTypes.number,
+    showButtons: PropTypes.bool,
     showNavigation: PropTypes.bool,
+    showNumber: PropTypes.bool,
+    startAt: PropTypes.number,
     steps: PropTypes.arrayOf(PropTypes.shape({
       'selector': PropTypes.string.isRequired,
       'content': PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.element,
       ]).isRequired,
+      'position': PropTypes.string,
+      'action': PropTypes.func,
     })),
   }
   
@@ -41,6 +70,9 @@ class TourPortal extends Component {
     onAfterOpen: () => { document.body.style.overflowY = 'hidden' },
     onBeforeClose: () => { document.body.style.overflowY = 'auto' },
     showNavigation: true,
+    showButtons: true,
+    showNumber: true,
+    scrollDuration: 1,
   }
   
   constructor () {
@@ -90,58 +122,37 @@ class TourPortal extends Component {
   }
   
   showStep = () => {
-    const { steps } = this.props
+    const { steps, scrollDuration } = this.props
     const { current } = this.state
     const step = steps[current]
     const node = document.querySelector(step.selector)
     const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
     const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
     const { width: helperWidth, height: helperHeight } = hx.getNodeRect(this.helper)
-    
+    const stepCallback = o => {
+      if (steps[current].action && typeof steps[current].action === 'function') {
+        steps[current].action(o)
+      }
+    }
     if (node) {
       const attrs = hx.getNodeRect(node)
-      
+      const cb = () => stepCallback(node)
       if (!hx.inView({...attrs, w, h })) {
         const parentScroll = Scrollparent(node)
         scrollSmooth.to(node, {
           context: hx.isBody(parentScroll) ? window : parentScroll,
-          duration: 1,
-          offset: -(h/2),
-          callback: e => {
-            this.setState({
-              ...hx.getNodeRect(e), 
-              w, 
-              h,
-              helperWidth,
-              helperHeight,
-              helperPosition: step.position,
-            })
+          duration: scrollDuration,
+          // offset: -(h/2),
+          offset: -100,
+          callback: nd => {
+            this.setState(setNodeSate(nd, this.helper, step.position), cb)
           }
         })
       } else {
-        this.setState({
-          ...attrs,
-          w, 
-          h,
-          helperWidth,
-          helperHeight,
-          helperPosition: step.position,
-        })
+        this.setState(setNodeSate(node, this.helper, step.position), cb)
       }
     } else {
-      this.setState({
-        top: h + 10, 
-        right: w/2 + 9,  
-        bottom: h/2 + 9, 
-        left: w/2 - helperWidth/2, 
-        width: 0,
-        height: 0, 
-        w, 
-        h,
-        helperWidth,
-        helperHeight,
-        helperPosition: 'center',
-      })
+      this.setState(setNodeSate(null, this.helper, step.position), stepCallback)
       console.error(`Doesn't found a DOM node \`${step.selector}\`.
 Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     }
@@ -163,8 +174,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
   
   maskClickHandler = e => {
-    const { shouldCloseOnMaskClick, onRequestClose } = this.props
-    if (shouldCloseOnMaskClick) {
+    const { closeWithMask, onRequestClose } = this.props
+    if (closeWithMask) {
       onRequestClose(e)
     }
   }
@@ -204,27 +215,31 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
   
   keyDownHandler = e => {
-    e.preventDefault()
-    e.stopPropagation()
     const { onRequestClose } = this.props
-
+    e.stopPropagation()
     if (e.keyCode === 27) { // esc
+      e.preventDefault()
       onRequestClose()
     }
     if (e.keyCode === 39) { // rioght
+      e.preventDefault()
       this.nextStep()
     }
     if (e.keyCode === 37) { // left
+      e.preventDefault()
       this.prevStep()
     }
   }
   
   render () {
     const { 
-      steps, 
-      showNavigation,
-      maskClassName,
       className,
+      steps, 
+      maskClassName,
+      showButtons,
+      showNavigation,
+      showNumber,
+      onRequestClose,
     } = this.props
     const { 
       // state
@@ -292,15 +307,19 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             helperHeight={helperHeight}
             helperPosition={helperPosition}
             padding={10}
-            tabIndex={-1}v
+            tabIndex={-1}
+            current={current}
+            showNumber={showNumber}
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}>
             { steps[current].content }
             <HelperControls>
-              <button 
-                onClick={this.prevStep}
-                disabled={current === 0}>Prev</button>
+              { showButtons && (
+                <Button 
+                  onClick={this.prevStep}
+                  disabled={current === 0}>Prev</Button>
+              )}
               { showNavigation && (
                 <Navigation>
                   { steps.map((s,i) => (
@@ -313,10 +332,13 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                   ))}
                 </Navigation>
               )}
-              <button 
-                onClick={this.nextStep}
-                disabled={current === steps.length - 1}>Next</button>
+              { showButtons && ( 
+                <Button 
+                  onClick={this.nextStep}
+                  disabled={current === steps.length - 1}>Next</Button>
+              )}
             </HelperControls>
+            <CloseButton onClick={onRequestClose}>✕</CloseButton>
           </Helper>
         </div>
       )
@@ -333,7 +355,7 @@ const Mask = styled.div`
   top: 0;
   height: 100%;
   position: fixed;
-  z-index: 999;
+  z-index: 99999;
 `;
 
 const calc = sum => sum < 0 ? 0 : sum
@@ -361,6 +383,7 @@ const LeftMask = styled(Mask)`
 `;
 
 const Helper = styled.div`
+  --reactour-accent: #007aff;
   position: fixed;
   background-color: #fff;
   transition: transform .3s;
@@ -369,10 +392,29 @@ const Helper = styled.div`
   top: 0;
   left: 0;
   color: inherit;
-  z-index: 99999;
+  z-index: 1000000;
   max-width: 300px;
   min-width: 150px;
   outline: 0;
+  
+  &:after {
+    content: '${props => props.current + 1}';
+    position: absolute;
+    font-family: monospace;
+    background-color: var(--reactour-accent);
+    height: 1.875em;
+    line-height: 2;
+    padding-left: .8125em;
+    padding-right: .8125em;
+    font-size: 1em;
+    border-radius: 1.625em;
+    color: white;
+    text-align: center;
+    box-shadow: 0 .25em .5em rgba(0,0,0,.3);
+    top: -.8125em;
+    left: -.8125em;
+    display: ${props => props.showNumber ? 'block' : 'none'};
+  }
   
   transform: ${props => {
     const { 
@@ -466,13 +508,14 @@ const Helper = styled.div`
 
 const HelperControls = styled.div`
   display: flex;
-  justify-content: space-between;
+  margin-top: 1em;
 `;
 
 const Navigation = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
 `;
 
 const Dot = styled.button`
@@ -484,16 +527,51 @@ const Dot = styled.button`
   display: block;
   margin: 2px;
   outline: 0;
-  transition: .3s;
+  transition: opacity .3s, transform .3s;
   cursor: ${props => props.current === props.index ? 'default' : 'pointer'};
   opacity: ${props => props.current === props.index ? 1 : .5};
   transform: scale(${props => props.current === props.index ? 1.1 : 1});
-  background-color: ${props => props.current === props.index ? 'red' : 'currentColor'};
+  background-color: ${props => props.current === props.index ? 'var(--reactour-accent)' : 'currentColor'};
   
   &:hover {
     opacity: 1;
     transform: scale(1.1)
   }
-`
+`;
+
+const Button = styled.button`
+  border: 0;
+  background: none;
+  outline: 0;
+  opacity: .5;
+  transition: opacity .3s;
+  
+  &:disabled {
+    text-decoration: line-through;
+  }
+  
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  
+  &:not(:disabled):hover {
+    opacity: 1;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  border: 0;
+  background: none;
+  outline: 0;
+  top: 2px;
+  right: 2px;
+  opacity: .5;
+  cursor: pointer;
+  transition: opacity .3s;
+  &:hover {
+    opacity: 1;
+  }
+`;
 
 export default TourPortal

@@ -18,14 +18,14 @@ class Tour extends Component {
     appElement: PropTypes.instanceOf(SafeHTMLElement),
     onAfterOpen: PropTypes.func,
     onRequestClose: PropTypes.func,
-    shouldCloseOnMaskClick: PropTypes.bool,
+    closeWithMask: PropTypes.bool,
     parentSelector: PropTypes.func
   }
   
   static defaultProps = {
     isOpen: false,
     portalClassName: 'reactour-portal',
-    shouldCloseOnMaskClick: true,
+    closeWithMask: true,
     parentSelector () { return document.body }
   }
   

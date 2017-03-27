@@ -11,6 +11,10 @@ export default {
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', include },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
     ],
   },
   devServer: {

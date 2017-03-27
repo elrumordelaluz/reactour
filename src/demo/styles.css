@@ -1,0 +1,10 @@
+.mask {
+  background-color: #131313;
+  opacity: .9;
+}
+
+.helper {
+  color: #313131;
+  border-radius: 4px;
+  --reactour-accent: #bada55;
+}

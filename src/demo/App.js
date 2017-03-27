@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Tour from '../index'
 import styled from 'styled-components'
+import css from './styles.css'
 
 class App extends Component {
   constructor () {
@@ -53,13 +54,19 @@ class App extends Component {
           onRequestClose={this.closeTutorial}
           steps={tutConfig}
           isOpen={showTutorial}
-          shouldCloseOnMaskClick={false}
-          maskClassName="hola ciao"
+          maskClassName="mask"
           className="helper" />
       </Wrapper>
     )
   }
 }
+
+const Compo = () => (
+  <div>
+    <h1>Hola</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, modi.</p>
+  </div>
+)
 
 const tutConfig = [
   { 
@@ -69,8 +76,7 @@ const tutConfig = [
   },
   { 
     selector: '[data-tut="2"]', 
-    content: 'step 2',
-    position: 'right',
+    content: <Compo />,
   },
   { 
     selector: '[data-tut="3"]', 
@@ -81,11 +87,13 @@ const tutConfig = [
     selector: '[data-tut="4"]', 
     content: 'step 4',
     position: 'top',
+    action: (node) => console.log('In setp 4', node),
   },
   { 
     selector: '[data-tut="5"]', 
     content: 'step 5',
     position: 'left',
+    action: () => console.log('In setp 5!!!'),
   },
   { 
     selector: '[data-tut="6"]', 
@@ -109,7 +117,7 @@ const tutConfig = [
   },
   { 
     selector: '[data-tut="10"]', 
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo possimus ducimus nihil ex tempora natus dignissimos expedita molestias rem inventore provident eveniet fuga, harum sint perferendis sunt distinctio iure ab saepe quaerat. Quas explicabo iusto laborum sequi similique reiciendis autem neque obcaecati totam expedita repudiandae quibusdam, ea nobis magni ipsam. Consequuntur odit reprehenderit cum similique a enim non nisi ex, quasi nam! Eum eos commodi ea nihil tenetur nisi magnam error perferendis eligendi amet necessitatibus iusto magni repellendus quod ab, nobis fugit perspiciatis cum voluptatem quam aspernatur hic totam voluptatum, cumque molestias? Doloremque impedit, distinctio unde tenetur. Sapiente maiores repellat illo beatae, architecto id cupiditate quo molestias iure laudantium maxime ipsum mollitia ducimus recusandae deleniti cumque, corporis commodi eligendi vitae sed nihil. Animi mollitia corrupti accusamus doloremque rerum voluptatibus sapiente non amet magni repudiandae consequuntur est asperiores sit ea provident ipsum consequatur neque, laboriosam consectetur officiis sequi dolores hic. Sit voluptas provident ad cupiditate debitis, labore mollitia soluta ut modi consequatur nemo molestias culpa itaque nisi quisquam recusandae ipsam laudantium. Excepturi similique ducimus numquam facere dolorem, dolores laudantium quod ratione est veritatis suscipit molestiae rem, fugiat nisi voluptatem voluptates, quaerat ipsa reprehenderit modi delectus! Pariatur quis illo esse itaque voluptatum!',
+    content: 'Lorem ipsum! Pariatur quis illo esse itaque voluptatum!',
     position: 'left',
   },
 ]
