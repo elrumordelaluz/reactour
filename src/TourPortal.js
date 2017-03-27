@@ -76,6 +76,7 @@ class TourPortal extends Component {
     const { isOpen, onAfterOpen } = this.props
     this.setState({ isOpen: true }, () => {
       this.showStep()
+      this.helper.focus()
       if (onAfterOpen) onAfterOpen()
     })
     // TODO: debounce it.
@@ -195,6 +196,22 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     }, this.showStep)
   }
   
+  keyDownHandler = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    const { onRequestClose } = this.props
+
+    if (e.keyCode === 27) { // esc
+      onRequestClose()
+    }
+    if (e.keyCode === 39) { // rioght
+      this.nextStep()
+    }
+    if (e.keyCode === 37) { // left
+      this.prevStep()
+    }
+  }
+  
   render () {
     const { steps } = this.props
     const { 
@@ -258,7 +275,9 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             helperWidth={helperWidth}
             helperHeight={helperHeight}
             helperPosition={helperPosition}
-            padding={10}>
+            padding={10}
+            tabIndex={-1}
+            onKeyDown={this.keyDownHandler}>
             { this.props.steps[current].content }
             <HelperControls>
               <button 
@@ -275,6 +294,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               ))}
               </Navigation>
               <button 
+                onKeyDown={this.keyDownHandler}
                 onClick={this.nextStep}
                 disabled={current === steps.length - 1}>Next</button>
             </HelperControls>
