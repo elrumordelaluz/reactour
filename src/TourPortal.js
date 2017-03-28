@@ -21,11 +21,13 @@ class TourPortal extends Component {
     showNavigation: PropTypes.bool,
     showNumber: PropTypes.bool,
     startAt: PropTypes.number,
+    update: PropTypes.string,
     steps: PropTypes.arrayOf(PropTypes.shape({
       'selector': PropTypes.string.isRequired,
       'content': PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.element,
+        PropTypes.func,
       ]).isRequired,
       'position': PropTypes.string,
       'action': PropTypes.func,
@@ -54,6 +56,7 @@ class TourPortal extends Component {
       height: 0, 
       w: 0, 
       h: 0,
+      inDOM: false,
     }
   }
   
@@ -69,6 +72,14 @@ class TourPortal extends Component {
       this.open()
     } else if (this.props.isOpen && !nextProps.isOpen){
       this.close()
+    }
+    
+    if (this.props.isOpen && (this.props.update !== nextProps.update)) {
+      if (nextProps.steps[this.state.current]) {
+        this.showStep()
+      } else {
+        this.close()
+      }
     }
   }
   
@@ -210,6 +221,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     const { 
       isOpen, 
       current,
+      inDOM,
       top: targetTop, 
       right: targetRight, 
       bottom: targetBottom, 
@@ -277,7 +289,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}>
-            { steps[current].content }
+            { 
+              typeof steps[current].content === 'function' 
+                ? steps[current].content({ 
+                  goTo: this.gotoStep,
+                  inDOM,
+                }) 
+                : steps[current].content
+            }
             <C.HelperControls>
               { showButtons && (
                 <C.Button 
@@ -343,6 +362,7 @@ const setNodeSate = (node, helper, position) => {
       helperHeight,
       helperPosition: position,
       ...attrs,
+      inDOM: node ? true : false,
     }
   }
 }

@@ -1,30 +1,46 @@
 import React, { Component } from 'react'
 import Tour from '../index'
 import styled from 'styled-components'
+import scrollSmooth from 'scroll-smooth'
+import Scrollparent from 'scrollparent'
 import css from './styles.css'
 
 class App extends Component {
   constructor () {
     super()
-    this.state = { showTutorial: false }
-    this.openTutorial = this.openTutorial.bind(this)
-    this.closeTutorial = this.closeTutorial.bind(this)
+    this.state = { 
+      showTutorial: false,
+      path: null,
+    }
   }
   
-  openTutorial () {
+  openTutorial = () => {
     this.setState({
       showTutorial: true
     })
   }
   
-  closeTutorial () {
+  closeTutorial = () => {
     this.setState({
       showTutorial: false
     })
   }
   
+  updateInfo = () => {
+    this.setState({
+      path: '/hola'
+    })
+  }
+  
+  moveButton = (e) => {
+    scrollSmooth.to(200, {
+      context: Scrollparent(e.target),
+      callback: this.updateInfo,
+    })
+  }
+  
   render () {
-    const { showTutorial } = this.state
+    const { showTutorial, path } = this.state
     
     return (
       <Wrapper>
@@ -44,9 +60,11 @@ class App extends Component {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, ad!
           </Section>
           <Section>
-            <Button>Button</Button>
+            <Button 
+              onClick={this.moveButton}>Button</Button>
           </Section>
         </Sidebar>
+        <input type="text" data-tut="1" />
         <Tester data-tut="1" />
         <footer>
         </footer>
@@ -55,7 +73,8 @@ class App extends Component {
           steps={tutConfig}
           isOpen={showTutorial}
           maskClassName="mask"
-          className="helper" />
+          className="helper"
+          update={path} />
       </Wrapper>
     )
   }
@@ -71,8 +90,16 @@ const Compo = () => (
 const tutConfig = [
   { 
     selector: '[data-tut="1"]', 
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti.',
+    content: ({ goTo }) => {
+      return (
+        <div>
+          Lorem ipsum dolor sit amet, 
+          <Button 
+            onClick={() => goTo(3) }>Go to step 4</Button> adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, deleniti.</div>
+      )
+    },
     position: 'left',
+    action: (node) => node.focus()
   },
   { 
     selector: '[data-tut="2"]', 
