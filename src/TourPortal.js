@@ -78,7 +78,7 @@ class TourPortal extends Component {
       if (nextProps.steps[this.state.current]) {
         this.showStep()
       } else {
-        this.close()
+        this.props.onRequestClose()
       }
     }
   }
@@ -290,12 +290,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               [CN.helper.isOpen]: isOpen,
             })}>
             { 
-              typeof steps[current].content === 'function' 
-                ? steps[current].content({ 
-                  goTo: this.gotoStep,
-                  inDOM,
-                }) 
-                : steps[current].content
+              steps[current] && (
+                typeof steps[current].content === 'function' 
+                  ? steps[current].content({ 
+                    goTo: this.gotoStep,
+                    inDOM,
+                  }) 
+                  : steps[current].content
+                )
             }
             <C.HelperControls>
               { showButtons && (
