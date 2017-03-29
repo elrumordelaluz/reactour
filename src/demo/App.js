@@ -11,7 +11,21 @@ class App extends Component {
     this.state = { 
       showTutorial: false,
       path: null,
+      isShowingBox: false,
+      isShowingSection: false
     }
+  }
+  
+  toggleBox = () => {
+    this.setState(prevState => ({
+      isShowingBox: !prevState.isShowingBox,
+    }))
+  }
+  
+  toggleSection = () => {
+    this.setState(prevState => ({
+      isShowingSection: !prevState.isShowingSection,
+    }))
   }
   
   openTutorial = () => {
@@ -40,32 +54,45 @@ class App extends Component {
   }
   
   render () {
-    const { showTutorial, path } = this.state
+    const { showTutorial, path, isShowingBox, isShowingSection } = this.state
     
     return (
       <Wrapper>
         <Header>
           <button onClick={this.openTutorial}>Open Tutorial</button>
         </Header>
-        <Main>
+        <Main data-tut-observe="2">
           <Section>
             <p>Lorem ipsum <span data-tut="9">autem</span> dolor sit amet, consectetur adipisicing elit. Quaerat assumenda quod est, itaque cupiditate ipsa quidem molestiae, quasi mollitia omnis doloremque ex saepe dolor aliquam nemo. Impedit at exercitationem, culpa voluptatum quisquam omnis repudiandae ad unde sint maiores! Eligendi facere, distinctio autem dolorum quo sunt cupiditate in, quas commodi porro consectetur dolorem temporibus quasi labore doloremque ipsam perferendis id modi voluptatibus rem ad laudantium officiis cum a molestiae. Odio necessitatibus non facilis culpa deserunt nulla adipisci fuga dolorum ratione a, libero maxime similique, officia? Veritatis, inventore harum. Sint ex fuga placeat optio eligendi quam doloribus, dolorum quia maiores obcaecati atque eaque veritatis adipisci sequi non voluptas ducimus tempore quo laudantium temporibus distinctio. Autem iste quos sit. Consequuntur expedita dolorem itaque enim corporis veritatis repudiandae nisi tempore molestias rem quaerat facere voluptatibus <span data-tut="8">autem</span> autem quis ducimus earum maiores reprehenderit ad, quo accusantium? Accusantium consectetur alias placeat odio, dignissimos tenetur, iure aliquam modi quod debitis obcaecati molestiae vero magni aspernatur! Quo minima, nam at numquam ab fugit ullam voluptatibus veritatis temporibus aut repudiandae accusamus suscipit vel veniam accusantium eligendi omnis sed. Nihil explicabo eligendi, pariatur numquam eum tempora cum quibusdam, tempore, quasi voluptatum corporis fugiat atque saepe aperiam sit voluptas <span data-tut="7">autem</span> commodi nemo magnam.</p>
           </Section>
-          <Section>
-            <p data-tut="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat assumenda quod est, itaque cupiditate ipsa quidem molestiae, quasi mollitia omnis doloremque ex saepe dolor aliquam nemo. Impedit at exercitationem, culpa voluptatum quisquam omnis repudiandae ad unde sint maiores! Eligendi facere, distinctio autem dolorum quo sunt cupiditate in, quas commodi porro consectetur dolorem temporibus quasi labore doloremque ipsam perferendis id modi voluptatibus rem ad laudantium officiis cum a molestiae. Odio necessitatibus non facilis culpa deserunt nulla adipisci <span data-tut="10">autem</span> fuga dolorum ratione a, libero maxime similique, officia? Veritatis, inventore harum. Sint ex fuga placeat optio eligendi quam doloribus, dolorum quia maiores obcaecati atque eaque veritatis adipisci sequi non voluptas ducimus tempore quo laudantium temporibus distinctio. Autem iste quos sit. Consequuntur expedita dolorem itaque enim corporis veritatis repudiandae nisi tempore molestias rem quaerat facere voluptatibus <span data-tut="2">autem</span> quis ducimus earum maiores reprehenderit ad, quo accusantium? Accusantium consectetur alias placeat odio, dignissimos tenetur, iure aliquam modi quod debitis obcaecati molestiae vero magni aspernatur! Quo minima, nam at numquam ab fugit ullam voluptatibus veritatis temporibus aut repudiandae accusamus suscipit vel veniam accusantium eligendi omnis sed. Nihil explicabo eligendi, pariatur numquam eum tempora cum quibusdam, tempore, quasi voluptatum <span data-tut="6">autem</span> corporis fugiat atque saepe aperiam sit voluptas commodi nemo magnam.</p>
-          </Section>
+          <Button 
+            data-tut="11"
+            onClick={this.toggleSection}>Toggle Section</Button>
+          { isShowingSection && (
+            <Section>
+              <p data-tut="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat assumenda quod est, itaque cupiditate ipsa quidem molestiae, quasi mollitia omnis doloremque ex saepe dolor aliquam nemo. Impedit at exercitationem, culpa voluptatum quisquam omnis repudiandae ad unde sint maiores! Eligendi facere, distinctio autem dolorum quo sunt cupiditate in, quas commodi porro consectetur dolorem temporibus quasi labore doloremque ipsam perferendis id modi voluptatibus rem ad laudantium officiis cum a molestiae. Odio necessitatibus non facilis culpa deserunt nulla adipisci <span data-tut="10">autem</span> fuga dolorum ratione a, libero maxime similique, officia? Veritatis, inventore harum. Sint ex fuga placeat optio eligendi quam doloribus, dolorum quia maiores obcaecati atque eaque veritatis adipisci sequi non voluptas ducimus tempore quo laudantium temporibus distinctio. Autem iste quos sit. Consequuntur expedita dolorem itaque enim corporis veritatis repudiandae nisi tempore molestias rem quaerat facere voluptatibus <span data-tut="2">autem</span> quis ducimus earum maiores reprehenderit ad, quo accusantium? Accusantium consectetur alias placeat odio, dignissimos tenetur, iure aliquam modi quod debitis obcaecati molestiae vero magni aspernatur! Quo minima, nam at numquam ab fugit ullam voluptatibus veritatis temporibus aut repudiandae accusamus suscipit vel veniam accusantium eligendi omnis sed. Nihil explicabo eligendi, pariatur numquam eum tempora cum quibusdam, tempore, quasi voluptatum <span data-tut="6">autem</span> corporis fugiat atque saepe aperiam sit voluptas commodi nemo magnam.</p>
+            </Section>
+          )}
         </Main>
         <Sidebar>
           <Section data-tut="3">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, ad!
           </Section>
-          <Section>
+          <Section data-tut-observe="1">
             <Button 
               onClick={this.moveButton}>Button</Button>
+            <Button 
+              data-tut="5"
+              onClick={this.toggleBox}>Toggle Box</Button>
+            { isShowingBox && (
+              <div className="box" id="box">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae iure illo perspiciatis dolor accusantium eveniet sint hic aliquam ratione voluptates, repellendus aut nemo, nostrum in numquam odio consequatur. Omnis, voluptatum!
+              </div>
+            )}
           </Section>
         </Sidebar>
         <input type="text" data-tut="1" />
-        <Tester data-tut="1" />
+        { /* <Tester data-tut="1" /> */}
         <footer>
         </footer>
         <Tour 
@@ -74,7 +101,9 @@ class App extends Component {
           isOpen={showTutorial}
           maskClassName="mask"
           className="helper"
-          update={path} />
+          update={path}
+          inViewThreshold={400}
+          scrollOffset={-200} />
       </Wrapper>
     )
   }
@@ -120,7 +149,8 @@ const tutConfig = [
     selector: '[data-tut="5"]', 
     content: 'step 5',
     position: 'left',
-    action: () => console.log('In setp 5!!!'),
+    observe: '[data-tut-observe="1"]',
+    action: (node) => console.log('In an observed step', node),
   },
   { 
     selector: '[data-tut="6"]', 
@@ -146,6 +176,12 @@ const tutConfig = [
     selector: '[data-tut="10"]', 
     content: 'Lorem ipsum! Pariatur quis illo esse itaque voluptatum!',
     position: 'left',
+  },
+  { 
+    selector: '[data-tut="11"]', 
+    content: 'Let\'s look if it works...',
+    position: 'left',
+    observe: '[data-tut-observe="2"]', 
   },
 ]
 

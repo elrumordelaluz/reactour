@@ -147,6 +147,7 @@ export const HelperControls = styled.div`
 `
 
 export const Navigation = styled.nav`
+  counter-reset: dot;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,6 +155,7 @@ export const Navigation = styled.nav`
 `
 
 export const Dot = styled.button`
+  counter-increment: dot;
   width: 5px;
   height: 5px;
   border: 0;
@@ -166,11 +168,27 @@ export const Dot = styled.button`
   cursor: ${props => props.current === props.index ? 'default' : 'pointer'};
   opacity: ${props => props.current === props.index ? 1 : .5};
   transform: scale(${props => props.current === props.index ? 1.1 : 1});
-  background-color: ${props => props.current === props.index ? 'var(--reactour-accent)' : 'currentColor'};
+  color: ${props => props.current === props.index ? 'var(--reactour-accent)' : 'currentColor'};
+  background-color: currentColor;
+  
+  &:before {
+    content: counter(dot);
+    position: absolute;
+    bottom: calc(100% + .25em);
+    left: 50%;
+    transform: translate(-50%, 1em);
+    opacity: 0;
+    transition: .3s;
+  }
   
   &:hover {
     opacity: 1;
-    transform: scale(1.1)
+    transform: scale(1.1);
+    
+    &:before {
+      opacity: .3;
+      transform: translate(-50%, 0);
+    }
   }
 `
 

@@ -9,19 +9,20 @@ import * as hx from './helpers'
 class TourPortal extends Component {
   static propTypes = {
     className: PropTypes.string,
-    delay: PropTypes.number,
+    closeWithMask: PropTypes.bool,
+    inViewThreshold: PropTypes.number,
     isOpen: PropTypes.bool.isRequired,
     maskClassName: PropTypes.string,
+    maskSpace: PropTypes.number,
     onAfterOpen: PropTypes.func,
     onBeforeClose: PropTypes.func,
     onRequestClose: PropTypes.func,
-    closeWithMask: PropTypes.bool,
     scrollDuration: PropTypes.number,
+    scrollOffset: PropTypes.number,
     showButtons: PropTypes.bool,
     showNavigation: PropTypes.bool,
     showNumber: PropTypes.bool,
     startAt: PropTypes.number,
-    update: PropTypes.string,
     steps: PropTypes.arrayOf(PropTypes.shape({
       'selector': PropTypes.string.isRequired,
       'content': PropTypes.oneOfType([
@@ -32,6 +33,7 @@ class TourPortal extends Component {
       'position': PropTypes.string,
       'action': PropTypes.func,
     })),
+    update: PropTypes.string,
   }
   
   static defaultProps = {
@@ -41,6 +43,7 @@ class TourPortal extends Component {
     showButtons: true,
     showNumber: true,
     scrollDuration: 1,
+    maskSpace: 10,
   }
   
   constructor () {
@@ -57,6 +60,7 @@ class TourPortal extends Component {
       w: 0, 
       h: 0,
       inDOM: false,
+      observer: null,
     }
   }
   
@@ -99,45 +103,81 @@ class TourPortal extends Component {
   }
   
   showStep = () => {
-    const { steps, scrollDuration } = this.props
+    const { steps } = this.props
     const { current } = this.state
     const step = steps[current]
-    const node = document.querySelector(step.selector)
-    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-    const { width: helperWidth, height: helperHeight } = hx.getNodeRect(this.helper)
+    const node = document.querySelector(step.selector) 
+    
     const stepCallback = o => {
-      if (steps[current].action && typeof steps[current].action === 'function') {
-        steps[current].action(o)
+      if (step.action && typeof step.action === 'function') {
+        step.action(o)
       }
     }
-    if (node) {
-      const attrs = hx.getNodeRect(node)
-      const cb = () => stepCallback(node)
-      if (!hx.inView({...attrs, w, h })) {
-        const parentScroll = Scrollparent(node)
-        scrollSmooth.to(node, {
-          context: hx.isBody(parentScroll) ? window : parentScroll,
-          duration: scrollDuration,
-          // offset: -(h/2),
-          offset: -100,
-          callback: nd => {
-            this.setState(setNodeSate(nd, this.helper, step.position), cb)
-          }
+    
+    if (step.observe) {
+      const target = document.querySelector(step.observe)
+      const config = { attributes: true, childList: true, characterData: true };
+      this.setState({
+        observer: new MutationObserver(mutations => {
+          mutations.forEach(mutation => {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+              const cb = () => stepCallback(mutation.addedNodes[0])
+              this.calculateNode(mutation.addedNodes[0], step.position, cb)
+            } else if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
+              const cb = () => stepCallback(node)
+              this.calculateNode(node, step.position, cb)
+            }
+          })    
         })
-      } else {
-        this.setState(setNodeSate(node, this.helper, step.position), cb)
+      }, () => this.state.observer.observe(target, config))
+    } else {
+      if (this.state.observer) {
+        this.state.observer.disconnect()
+        this.setState({
+          observer: null,
+        })
       }
+    }
+    
+    if (node) {
+      const cb = () => stepCallback(node)
+      this.calculateNode(node, step.position, cb)
     } else {
       this.setState(setNodeSate(null, this.helper, step.position), stepCallback)
-      console.error(`Doesn't found a DOM node \`${step.selector}\`.
+      console.warn(`Doesn't found a DOM node \`${step.selector}\`.
 Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     }
   }
   
+  calculateNode = (node, stepPosition, cb) => {
+    const { scrollDuration, inViewThreshold, scrollOffset } = this.props
+    const attrs = hx.getNodeRect(node)
+    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    if (!hx.inView({...attrs, w, h, threshold: inViewThreshold })) {
+      const parentScroll = Scrollparent(node)
+      scrollSmooth.to(node, {
+        context: hx.isBody(parentScroll) ? window : parentScroll,
+        duration: scrollDuration,
+        offset: scrollOffset || -(h/2),
+        callback: nd => {
+          this.setState(setNodeSate(nd, this.helper, stepPosition), cb)
+        }
+      })
+    } else {
+      this.setState(setNodeSate(node, this.helper, stepPosition), cb)
+    }
+  }
+  
   close () {
-    this.setState({
-      isOpen: false,
+    this.setState(prevState => {
+      if (prevState.observer) {
+        prevState.observer.disconnect()
+      }
+      return {
+        isOpen: false,
+        observer: null,
+      }
     }, this.onBeforeClose)
     window.removeEventListener('resize', this.showStep)
     window.removeEventListener('keydown', this.keyDownHandler)
@@ -217,6 +257,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       showNavigation,
       showNumber,
       onRequestClose,
+      maskSpace,
     } = this.props
     const { 
       isOpen, 
@@ -246,7 +287,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             })}>
             <C.TopMask 
               targetTop={targetTop} 
-              padding={10}
+              padding={maskSpace}
               className={maskClassName} />
             <C.RightMask 
               targetTop={targetTop} 
@@ -254,19 +295,19 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               targetWidth={targetWidth}
               targetHeight={targetHeight}
               windowWidth={windowWidth}
-              padding={10}
+              padding={maskSpace}
               className={maskClassName} />
             <C.BottomMask
               targetHeight={targetHeight}
               targetTop={targetTop} 
               windowHeight={windowHeight}
-              padding={10}
+              padding={maskSpace}
               className={maskClassName} />
             <C.LeftMask
               targetHeight={targetHeight}
               targetTop={targetTop} 
               targetLeft={targetLeft}
-              padding={10}
+              padding={maskSpace}
               className={maskClassName} />
           </div>
           <C.Helper 
@@ -282,7 +323,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             helperWidth={helperWidth}
             helperHeight={helperHeight}
             helperPosition={helperPosition}
-            padding={10}
+            padding={maskSpace}
             tabIndex={-1}
             current={current}
             showNumber={showNumber}
