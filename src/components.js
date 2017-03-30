@@ -15,6 +15,7 @@ export const Helper = styled.div`
   max-width: 300px;
   min-width: 150px;
   outline: 0;
+  padding-right: 1.2em;
   
   &:after {
     content: '${props => props.current + 1}';
@@ -198,6 +199,7 @@ export const Button = styled.button`
   outline: 0;
   opacity: .5;
   transition: opacity .3s;
+  color: inherit;
   
   &:disabled {
     text-decoration: line-through;

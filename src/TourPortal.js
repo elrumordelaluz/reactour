@@ -32,6 +32,7 @@ class TourPortal extends Component {
       ]).isRequired,
       'position': PropTypes.string,
       'action': PropTypes.func,
+      'style': PropTypes.object,
     })),
     update: PropTypes.string,
   }
@@ -327,6 +328,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             tabIndex={-1}
             current={current}
             showNumber={showNumber}
+            style={steps[current].style ? steps[current].style : {}}
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}>
@@ -350,7 +352,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                 <C.Navigation>
                   { steps.map((s,i) => (
                     <C.Dot 
-                      key={s.selector}
+                      key={`${s.selector}_${i}`}
                       onClick={() => this.gotoStep(i)}
                       current={current}
                       index={i}

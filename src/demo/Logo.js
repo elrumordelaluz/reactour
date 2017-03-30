@@ -5,6 +5,7 @@ const Logo = styled.div`
   width: 70vw;
   display: inline-block;
   max-width: 430px;
+  margin-top: 2em;
   @media (min-width: 40em) {
     width: 43vw;
   }
