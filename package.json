@@ -1,12 +1,14 @@
 {
   "name": "reactour",
   "version": "1.0.0",
-  "description": "Intro Tour for React Applications",
+  "description": "Tourist Guide into your React Components",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npm run lib",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.config.babel.js",
-    "prebuild": "rimraf dist",
-    "build": "babel --out-dir dist --ignore *.test.js,src/demo src"
+    "prelib": "rimraf dist",
+    "lib": "babel --out-dir dist --ignore *.test.js,src/demo src",
+    "build": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",

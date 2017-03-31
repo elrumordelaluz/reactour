@@ -123,7 +123,7 @@ class TourPortal extends Component {
           mutations.forEach(mutation => {
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
               const cb = () => stepCallback(mutation.addedNodes[0])
-              this.calculateNode(mutation.addedNodes[0], step.position, cb)
+              setTimeout(() => this.calculateNode(mutation.addedNodes[0], step.position, cb), 100)
             } else if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
               const cb = () => stepCallback(node)
               this.calculateNode(node, step.position, cb)

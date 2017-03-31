@@ -10,5 +10,6 @@ export default styled.div`
       ? props.align : 'left' };
   @media (min-width: 40em) {
     flex: ${props => props.width ? `0 0 ${props.width}` : 1};
+    width: ${props => props.width ? props.width : '100%'};
   }
 `

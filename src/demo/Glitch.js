@@ -2,14 +2,6 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { fontFamily, themeColors } from './settings'
 
-export const text = styled.p`
-  color: white;
-  font-family: ${fontFamily};
-`
-export const span = styled.span`
-  color: ${themeColors.dark}
-`
-
 // from http://codepen.io/lbebber/pen/ypgql?editors=0100
 const steps = 20
 const rnd = () => Math.floor(Math.random() * 100)
@@ -28,9 +20,10 @@ ${next.perc} {
 const anim = keyframes`${doKeyframes()}`
 const anim2 = keyframes`${doKeyframes()}`
 
-export const glitch = styled.div`
+export default styled.div`
   font-size: 3em;
   position: relative;
+  font-family: ${fontFamily}
   
   &:after {
     content: attr(data-glitch);
