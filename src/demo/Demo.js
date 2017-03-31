@@ -197,7 +197,7 @@ const Demo = ({
           href="https://twitter.com/elrumordelaluz" 
           color="white"
           nospaces>@elrumordelaluz</Link> · <Link 
-            href="https://twitter.com/elrumordelaluz" 
+            href="https://github.com/elrumordelaluz/reactour" 
             nospaces>Github</Link>
       </Text>
     </Footer>
