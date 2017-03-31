@@ -1,7 +1,8 @@
-# reactour
+<img src="logo.svg" width="50%" style="margin: 0 auto; display: block;"/>
+
+## Reactour
 
 Tourist Guide into your React Components
-
 
 ### Install
 
