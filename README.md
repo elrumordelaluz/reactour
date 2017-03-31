@@ -1,4 +1,4 @@
-<img src="logo.svg" width="50%" style="margin: 0 auto; display: block;"/>
+<img src="https://cdn.rawgit.com/elrumordelaluz/reactour/96793b17/logo.svg" width="50%" style="margin: 0 auto; display: block;"/>
 
 ## Reactour
 
