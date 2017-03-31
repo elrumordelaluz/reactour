@@ -91,7 +91,7 @@ const tourConfig = [
     selector: '[data-tut="reactour__goTo"]', 
     content: ({ goTo }) => (
       <div>
-        If you wanna go anywehre, skipping places, it is absolutely possible. 
+        If you wanna go anywhere, skipping places, it is absolutely possible. 
         <br /> "Oh, I forgot something inside the bus…" <button 
           style={{
             border: '1px solid #f7f7f7',
