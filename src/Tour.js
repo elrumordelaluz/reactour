@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import ExecutionEnvironment from 'exenv'
-import elementClass from 'element-class'
+// import elementClass from 'element-class'
 import TourPortal from './TourPortal'
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer
@@ -55,9 +55,9 @@ class Tour extends Component {
   
   renderPortal (props) {
     if (props.isOpen) {
-      elementClass(document.body).add('reactour__body--open')
+      document.body.classList.add('reactour__body')
     } else {
-      elementClass(document.body).remove('reactour__body--open')
+      document.body.classList.remove('reactour__body')
     }
     
     this.portal = renderSubtreeIntoContainer(
@@ -71,7 +71,7 @@ class Tour extends Component {
     ReactDOM.unmountComponentAtNode(this.node)
     const parent = getParentElement(this.props.parentSelector)
     parent.removeChild(this.node)
-    elementClass(document.body).remove('reactour__body--open')
+    document.body.classList.remove('reactour__body')
   }
   
   render () {

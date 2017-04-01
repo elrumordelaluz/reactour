@@ -59,7 +59,6 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
-    "element-class": "0.2.2",
     "exenv": "1.2.1",
     "lodash.pick": "4.4.0",
     "scroll-smooth": "1.0.1",
