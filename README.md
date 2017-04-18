@@ -48,6 +48,7 @@ const steps = [
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
 | `isOpen` | you know… | `bool` |  | ✅ |
+| `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `string` |  |  |
 | `maskClassName` | Custom class to add to the **mask** | `string` |  |  |
 | `maskSpace` | padding between elemente showed and **mask** | `number` | `10`  |  |
 | `onAfterOpen` | function triggered after open | `func` | `() => { document.body.style.overflowY = 'hidden' }`  |  |
