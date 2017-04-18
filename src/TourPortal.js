@@ -12,6 +12,7 @@ class TourPortal extends Component {
     closeWithMask: PropTypes.bool,
     inViewThreshold: PropTypes.number,
     isOpen: PropTypes.bool.isRequired,
+    lastStepNextButton: PropTypes.string,
     maskClassName: PropTypes.string,
     maskSpace: PropTypes.number,
     onAfterOpen: PropTypes.func,
@@ -259,6 +260,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       showNumber,
       onRequestClose,
       maskSpace,
+      lastStepNextButton,
     } = this.props
     const { 
       isOpen, 
@@ -362,8 +364,10 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               )}
               { showButtons && ( 
                 <C.Button 
-                  onClick={this.nextStep}
-                  disabled={current === steps.length - 1}>Next</C.Button>
+                  onClick={lastStepNextButton && current === steps.length - 1 ? onRequestClose : this.nextStep}
+                  disabled={!lastStepNextButton && current === steps.length - 1}>
+                    {lastStepNextButton && current === steps.length - 1 ? lastStepNextButton : 'Next'}
+                  </C.Button>
               )}
             </C.HelperControls>
             <C.CloseButton onClick={onRequestClose}>✕</C.CloseButton>
