@@ -265,6 +265,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       onRequestClose,
       maskSpace,
       lastStepNextButton,
+      nextButton,
+      prevButton,
     } = this.props
     const { 
       isOpen, 
