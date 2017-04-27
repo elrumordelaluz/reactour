@@ -15,9 +15,11 @@ class TourPortal extends Component {
     lastStepNextButton: PropTypes.string,
     maskClassName: PropTypes.string,
     maskSpace: PropTypes.number,
+    nextButton: PropTypes.string,
     onAfterOpen: PropTypes.func,
     onBeforeClose: PropTypes.func,
     onRequestClose: PropTypes.func,
+    prevButton: PropTypes.string,
     scrollDuration: PropTypes.number,
     scrollOffset: PropTypes.number,
     showButtons: PropTypes.bool,
@@ -46,6 +48,8 @@ class TourPortal extends Component {
     showNumber: true,
     scrollDuration: 1,
     maskSpace: 10,
+    nextButton: 'Next',
+    prevButton: 'Prev',
   }
   
   constructor () {
@@ -261,6 +265,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       onRequestClose,
       maskSpace,
       lastStepNextButton,
+      nextButton,
+      prevButton,
     } = this.props
     const { 
       isOpen, 
@@ -348,7 +354,9 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               { showButtons && (
                 <C.Button 
                   onClick={this.prevStep}
-                  disabled={current === 0}>Prev</C.Button>
+                  disabled={current === 0}>
+                    {prevButton}
+                  </C.Button>
               )}
               { showNavigation && (
                 <C.Navigation>
@@ -366,7 +374,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                 <C.Button 
                   onClick={lastStepNextButton && current === steps.length - 1 ? onRequestClose : this.nextStep}
                   disabled={!lastStepNextButton && current === steps.length - 1}>
-                    {lastStepNextButton && current === steps.length - 1 ? lastStepNextButton : 'Next'}
+                    {lastStepNextButton && current === steps.length - 1 ? lastStepNextButton : nextButton}
                   </C.Button>
               )}
             </C.HelperControls>
