@@ -51,9 +51,11 @@ const steps = [
 | `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `string` |  |  |
 | `maskClassName` | Custom class to add to the **mask** | `string` |  |  |
 | `maskSpace` | padding between elemente showed and **mask** | `number` | `10`  |  |
+| `nextButton` | next navigation button text | `string` | `Next`  |  |
 | `onAfterOpen` | function triggered after open | `func` | `() => { document.body.style.overflowY = 'hidden' }`  |  |
 | `onBeforeClose` | function triggered before close | `func` | `() => { document.body.style.overflowY = 'auto' }`  |  |
 | `onRequestClose` | function triggered to close | `func` |  |  |
+| `prevButton` | prev navigation button text | `string` | `Prev`  |  |
 | `scrollDuration` | Smooth scroll duration when positioning the target element | `number` | `1` |  |
 | `scrollOffset` | Offset when positioning the target element | `number` | calculates the vertical center of the page |  |
 | `showButtons` | Show **helper** navigation butons | `bool` | `true` |  |
