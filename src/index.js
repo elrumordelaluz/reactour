@@ -1,2 +1,2 @@
-import Tour from './Tour'
+import Tour from 'components/Tour'
 export default Tour

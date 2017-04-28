@@ -1,10 +1,23 @@
-import React, { Component, PropTypes } from 'react'
-import cn from 'classnames'
-import styled from 'styled-components'
-import scrollSmooth from 'scroll-smooth'
-import Scrollparent from 'scrollparent'
-import * as C from './components'
-import * as hx from './helpers'
+import React, { Component, PropTypes } from 'react';
+import cn from 'classnames';
+import styled from 'styled-components';
+import scrollSmooth from 'scroll-smooth';
+import Scrollparent from 'scrollparent';
+
+import BottomMask from 'components/BottomMask';
+import Button from 'components/Button';
+import CloseButton from 'components/CloseButton';
+import Dot from 'components/Dot';
+import Helper from 'components/Helper';
+import HelperControls from 'components/HelperControls';
+import LeftMask from 'components/LeftMask';
+import Navigation from 'components/Navigation';
+import RightMask from 'components/RightMask';
+import TopMask from 'components/TopMask';
+
+import getNodeRect from 'utils/getNodeRect';
+import inView from 'utils/inView';
+import isBody from 'utils/isBody';
 
 class TourPortal extends Component {
   static propTypes = {
@@ -39,7 +52,7 @@ class TourPortal extends Component {
     })),
     update: PropTypes.string,
   }
-  
+
   static defaultProps = {
     onAfterOpen: () => { document.body.style.overflowY = 'hidden' },
     onBeforeClose: () => { document.body.style.overflowY = 'auto' },
@@ -51,39 +64,39 @@ class TourPortal extends Component {
     nextButton: 'Next',
     prevButton: 'Prev',
   }
-  
+
   constructor () {
     super()
     this.state = {
       isOpen: false,
       current: 0,
-      top: 0, 
-      right: 0, 
-      bottom: 0, 
-      left: 0, 
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
       width: 0,
-      height: 0, 
-      w: 0, 
+      height: 0,
+      w: 0,
       h: 0,
       inDOM: false,
       observer: null,
     }
   }
-  
+
   componentDidMount () {
     const { isOpen } = this.props
     if (isOpen) {
       this.open()
     }
   }
-  
+
   componentWillReceiveProps (nextProps) {
     if (!this.props.isOpen && nextProps.isOpen) {
       this.open()
     } else if (this.props.isOpen && !nextProps.isOpen){
       this.close()
     }
-    
+
     if (this.props.isOpen && (this.props.update !== nextProps.update)) {
       if (nextProps.steps[this.state.current]) {
         this.showStep()
@@ -92,10 +105,10 @@ class TourPortal extends Component {
       }
     }
   }
-  
+
   open () {
     const { isOpen, onAfterOpen, startAt } = this.props
-    this.setState(prevState => ({ 
+    this.setState(prevState => ({
       isOpen: true,
       current: startAt !== undefined ? startAt : prevState.current,
     }), () => {
@@ -107,19 +120,19 @@ class TourPortal extends Component {
     window.addEventListener('resize', this.showStep, false)
     window.addEventListener('keydown', this.keyDownHandler, false)
   }
-  
+
   showStep = () => {
     const { steps } = this.props
     const { current } = this.state
     const step = steps[current]
-    const node = document.querySelector(step.selector) 
-    
+    const node = document.querySelector(step.selector)
+
     const stepCallback = o => {
       if (step.action && typeof step.action === 'function') {
         step.action(o)
       }
     }
-    
+
     if (step.observe) {
       const target = document.querySelector(step.observe)
       const config = { attributes: true, childList: true, characterData: true };
@@ -133,7 +146,7 @@ class TourPortal extends Component {
               const cb = () => stepCallback(node)
               this.calculateNode(node, step.position, cb)
             }
-          })    
+          })
         })
       }, () => this.state.observer.observe(target, config))
     } else {
@@ -144,7 +157,7 @@ class TourPortal extends Component {
         })
       }
     }
-    
+
     if (node) {
       const cb = () => stepCallback(node)
       this.calculateNode(node, step.position, cb)
@@ -154,16 +167,16 @@ class TourPortal extends Component {
 Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     }
   }
-  
+
   calculateNode = (node, stepPosition, cb) => {
     const { scrollDuration, inViewThreshold, scrollOffset } = this.props
-    const attrs = hx.getNodeRect(node)
+    const attrs = getNodeRect(node)
     const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
     const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-    if (!hx.inView({...attrs, w, h, threshold: inViewThreshold })) {
+    if (!inView({...attrs, w, h, threshold: inViewThreshold })) {
       const parentScroll = Scrollparent(node)
       scrollSmooth.to(node, {
-        context: hx.isBody(parentScroll) ? window : parentScroll,
+        context: isBody(parentScroll) ? window : parentScroll,
         duration: scrollDuration,
         offset: scrollOffset || -(h/2),
         callback: nd => {
@@ -174,7 +187,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       this.setState(setNodeSate(node, this.helper, stepPosition), cb)
     }
   }
-  
+
   close () {
     this.setState(prevState => {
       if (prevState.observer) {
@@ -188,55 +201,55 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     window.removeEventListener('resize', this.showStep)
     window.removeEventListener('keydown', this.keyDownHandler)
   }
-  
+
   onBeforeClose () {
     const { onBeforeClose } = this.props
     if (onBeforeClose) {
       onBeforeClose()
     }
   }
-  
+
   maskClickHandler = e => {
     const { closeWithMask, onRequestClose } = this.props
     if (closeWithMask) {
       onRequestClose(e)
     }
   }
-  
+
   nextStep = () => {
     const { steps } = this.props
     this.setState(prevState => {
-      const nextStep = prevState.current < steps.length - 1 
+      const nextStep = prevState.current < steps.length - 1
         ? prevState.current + 1
-        : prevState.current 
+        : prevState.current
       return {
         current: nextStep,
       }
     }, this.showStep)
   }
-  
+
   prevStep = () => {
     const { steps } = this.props
     this.setState(prevState => {
       const nextStep = prevState.current > 0
         ? prevState.current - 1
-        : prevState.current 
+        : prevState.current
       return {
         current: nextStep,
       }
     }, this.showStep)
   }
-  
+
   gotoStep = n => {
     const { steps } = this.props
     this.setState(prevState => {
-      const nextStep = steps[n] ? n : prevState.current 
+      const nextStep = steps[n] ? n : prevState.current
       return {
         current: nextStep,
       }
     }, this.showStep)
   }
-  
+
   keyDownHandler = e => {
     const { onRequestClose } = this.props
     e.stopPropagation()
@@ -253,11 +266,11 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       this.prevStep()
     }
   }
-  
+
   render () {
-    const { 
+    const {
       className,
-      steps, 
+      steps,
       maskClassName,
       showButtons,
       showNavigation,
@@ -268,62 +281,62 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       nextButton,
       prevButton,
     } = this.props
-    const { 
-      isOpen, 
+    const {
+      isOpen,
       current,
       inDOM,
-      top: targetTop, 
-      right: targetRight, 
-      bottom: targetBottom, 
-      left: targetLeft, 
-      width: targetWidth, 
-      height: targetHeight, 
-      w: windowWidth, 
+      top: targetTop,
+      right: targetRight,
+      bottom: targetBottom,
+      left: targetLeft,
+      width: targetWidth,
+      height: targetHeight,
+      w: windowWidth,
       h: windowHeight,
-      helperWidth, 
+      helperWidth,
       helperHeight,
       helperPosition,
     } = this.state
-    
+
     if (isOpen) {
       return (
         <div>
-          <div 
+          <div
             ref={c => this.mask = c}
             onClick={this.maskClickHandler}
             className={cn(CN.mask.base, {
               [CN.mask.isOpen]: isOpen,
             })}>
-            <C.TopMask 
-              targetTop={targetTop} 
+            <TopMask
+              targetTop={targetTop}
               padding={maskSpace}
               className={maskClassName} />
-            <C.RightMask 
-              targetTop={targetTop} 
+            <RightMask
+              targetTop={targetTop}
               targetLeft={targetLeft}
               targetWidth={targetWidth}
               targetHeight={targetHeight}
               windowWidth={windowWidth}
               padding={maskSpace}
               className={maskClassName} />
-            <C.BottomMask
+            <BottomMask
               targetHeight={targetHeight}
-              targetTop={targetTop} 
+              targetTop={targetTop}
               windowHeight={windowHeight}
               padding={maskSpace}
               className={maskClassName} />
-            <C.LeftMask
+            <LeftMask
               targetHeight={targetHeight}
-              targetTop={targetTop} 
+              targetTop={targetTop}
               targetLeft={targetLeft}
               padding={maskSpace}
               className={maskClassName} />
           </div>
-          <C.Helper 
+          <Helper
             innerRef={c => this.helper = c}
             targetHeight={targetHeight}
             targetWidth={targetWidth}
-            targetTop={targetTop} 
+            targetTop={targetTop}
             targetRight={targetRight}
             targetBottom={targetBottom}
             targetLeft={targetLeft}
@@ -340,50 +353,50 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}>
-            { 
+            {
               steps[current] && (
-                typeof steps[current].content === 'function' 
-                  ? steps[current].content({ 
+                typeof steps[current].content === 'function'
+                  ? steps[current].content({
                     goTo: this.gotoStep,
                     inDOM,
-                  }) 
+                  })
                   : steps[current].content
                 )
             }
-            <C.HelperControls>
+            <HelperControls>
               { showButtons && (
-                <C.Button 
+                <Button
                   onClick={this.prevStep}
                   disabled={current === 0}>
                     {prevButton}
-                  </C.Button>
+                </Button>
               )}
               { showNavigation && (
-                <C.Navigation>
+                <Navigation>
                   { steps.map((s,i) => (
-                    <C.Dot 
+                    <Dot
                       key={`${s.selector}_${i}`}
                       onClick={() => this.gotoStep(i)}
                       current={current}
                       index={i}
                       disabled={current === i} />
                   ))}
-                </C.Navigation>
+                </Navigation>
               )}
-              { showButtons && ( 
-                <C.Button 
+              { showButtons && (
+                <Button
                   onClick={lastStepNextButton && current === steps.length - 1 ? onRequestClose : this.nextStep}
                   disabled={!lastStepNextButton && current === steps.length - 1}>
                     {lastStepNextButton && current === steps.length - 1 ? lastStepNextButton : nextButton}
-                  </C.Button>
+                  </Button>
               )}
-            </C.HelperControls>
-            <C.CloseButton onClick={onRequestClose}>✕</C.CloseButton>
-          </C.Helper>
+            </HelperControls>
+            <CloseButton onClick={onRequestClose}>✕</CloseButton>
+          </Helper>
         </div>
       )
     }
-    
+
     return <div/>
   }
 }
@@ -402,12 +415,12 @@ const CN = {
 const setNodeSate = (node, helper, position) => {
   const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
   const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-  const { width: helperWidth, height: helperHeight } = hx.getNodeRect(helper)
-  const attrs = node ? hx.getNodeRect(node) : {
-    top: h + 10, 
-    right: w/2 + 9,  
-    bottom: h/2 + 9, 
-    left: w/2 - helperWidth/2, 
+  const { width: helperWidth, height: helperHeight } = getNodeRect(helper)
+  const attrs = node ? getNodeRect(node) : {
+    top: h + 10,
+    right: w/2 + 9,
+    bottom: h/2 + 9,
+    left: w/2 - helperWidth/2,
     width: 0, height: 0, w, h,
     helperPosition: 'center',
   }
