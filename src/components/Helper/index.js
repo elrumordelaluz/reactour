@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 import isHoriz from 'utils/isHoriz';
-import isOutsideX from 'utils/isOutsideX';
-import isOutsideY from 'utils/isOutsideY';
+import isOutside from 'utils/isOutside';
 import bestPositionOf from 'utils/bestPositionOf';
 
 const Helper = styled.div`
@@ -83,13 +82,13 @@ const Helper = styled.div`
 
     const pos = helperPosition => {
       const outsideY = (targetTop + helperHeight) > windowHeight
-      const hX = isOutsideX(targetLeft + helperWidth, windowWidth)
-        ? isOutsideX(targetRight + padding, windowWidth)
+      const hX = isOutside(targetLeft + helperWidth, windowWidth)
+        ? isOutside(targetRight + padding, windowWidth)
           ? targetRight - helperWidth
           : targetRight - helperWidth + padding
         : targetLeft - padding
-      const hY = isOutsideY(targetTop + helperHeight, windowHeight)
-        ? isOutsideY(targetBottom + padding, windowHeight)
+      const hY = isOutside(targetTop + helperHeight, windowHeight)
+        ? isOutside(targetBottom + padding, windowHeight)
           ? targetBottom - helperHeight
           : targetBottom - helperHeight + padding
         : targetTop - padding
