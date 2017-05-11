@@ -4,20 +4,18 @@ import styled from 'styled-components';
 import scrollSmooth from 'scroll-smooth';
 import Scrollparent from 'scrollparent';
 
-import BottomMask from 'components/BottomMask';
+import ComponentSpotLight from 'components/ComponentSpotLight';
 import Button from 'components/Button';
 import CloseButton from 'components/CloseButton';
 import Dot from 'components/Dot';
 import Helper from 'components/Helper';
 import HelperControls from 'components/HelperControls';
-import LeftMask from 'components/LeftMask';
 import Navigation from 'components/Navigation';
-import RightMask from 'components/RightMask';
-import TopMask from 'components/TopMask';
 
 import getNodeRect from 'utils/getNodeRect';
 import inView from 'utils/inView';
 import isBody from 'utils/isBody';
+import setNodeSate from 'utils/setNodeSate';
 
 class TourPortal extends Component {
   static propTypes = {
@@ -301,37 +299,19 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     if (isOpen) {
       return (
         <div>
-          <div
-            ref={c => this.mask = c}
+          <ComponentSpotLight
+            refFromParent={c => this.mask = c}
             onClick={this.maskClickHandler}
-            className={cn(CN.mask.base, {
-              [CN.mask.isOpen]: isOpen,
-            })}>
-            <TopMask
-              targetTop={targetTop}
-              padding={maskSpace}
-              className={maskClassName} />
-            <RightMask
-              targetTop={targetTop}
-              targetLeft={targetLeft}
-              targetWidth={targetWidth}
-              targetHeight={targetHeight}
-              windowWidth={windowWidth}
-              padding={maskSpace}
-              className={maskClassName} />
-            <BottomMask
-              targetHeight={targetHeight}
-              targetTop={targetTop}
-              windowHeight={windowHeight}
-              padding={maskSpace}
-              className={maskClassName} />
-            <LeftMask
-              targetHeight={targetHeight}
-              targetTop={targetTop}
-              targetLeft={targetLeft}
-              padding={maskSpace}
-              className={maskClassName} />
-          </div>
+            isOpen={isOpen}
+            targetTop={targetTop}
+            targetLeft={targetLeft}
+            targetWidth={targetWidth}
+            targetHeight={targetHeight}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
+            maskSpace={maskSpace}
+            maskClassName={maskClassName}
+          />
           <Helper
             innerRef={c => this.helper = c}
             targetHeight={targetHeight}
@@ -388,7 +368,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                   onClick={lastStepNextButton && current === steps.length - 1 ? onRequestClose : this.nextStep}
                   disabled={!lastStepNextButton && current === steps.length - 1}>
                     {lastStepNextButton && current === steps.length - 1 ? lastStepNextButton : nextButton}
-                  </Button>
+                </Button>
               )}
             </HelperControls>
             <CloseButton onClick={onRequestClose}>✕</CloseButton>
@@ -402,38 +382,9 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
 }
 
 const CN = {
-  mask: {
-    base: 'reactour__mask',
-    isOpen: 'reactour__mask--is-open',
-  },
   helper: {
     base: 'reactour__helper',
     isOpen: 'reactour__helper--is-open',
-  }
-}
-
-const setNodeSate = (node, helper, position) => {
-  const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-  const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-  const { width: helperWidth, height: helperHeight } = getNodeRect(helper)
-  const attrs = node ? getNodeRect(node) : {
-    top: h + 10,
-    right: w/2 + 9,
-    bottom: h/2 + 9,
-    left: w/2 - helperWidth/2,
-    width: 0, height: 0, w, h,
-    helperPosition: 'center',
-  }
-  return function update(state) {
-    return {
-      w,
-      h,
-      helperWidth,
-      helperHeight,
-      helperPosition: position,
-      ...attrs,
-      inDOM: node ? true : false,
-    }
   }
 }
 
