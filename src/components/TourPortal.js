@@ -11,6 +11,8 @@ import Dot from 'components/Dot';
 import Helper from 'components/Helper';
 import HelperControls from 'components/HelperControls';
 import Navigation from 'components/Navigation';
+import NextButton from 'components/NextButton';
+import PrevButton from 'components/PrevButton';
 
 import getNodeRect from 'utils/getNodeRect';
 import inView from 'utils/inView';
@@ -345,11 +347,11 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             }
             <HelperControls>
               { showButtons && (
-                <Button
-                  onClick={this.prevStep}
-                  disabled={current === 0}>
-                    {prevButton}
-                </Button>
+                <PrevButton
+                  current={current}
+                  prevButton={prevButton}
+                  prevStep={this.prevStep}
+                />
               )}
               { showNavigation && (
                 <Navigation>
@@ -364,11 +366,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                 </Navigation>
               )}
               { showButtons && (
-                <Button
-                  onClick={lastStepNextButton && current === steps.length - 1 ? onRequestClose : this.nextStep}
-                  disabled={!lastStepNextButton && current === steps.length - 1}>
-                    {lastStepNextButton && current === steps.length - 1 ? lastStepNextButton : nextButton}
-                </Button>
+                <NextButton
+                  lastStepNextButton={lastStepNextButton}
+                  current={current}
+                  stepsLength={steps.length}
+                  onRequestClose={onRequestClose}
+                  nextStep={this.nextStep}
+                  nextButton={nextButton}
+                />
               )}
             </HelperControls>
             <CloseButton onClick={onRequestClose}>✕</CloseButton>
