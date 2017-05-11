@@ -7,7 +7,6 @@ import Scrollparent from 'scrollparent';
 import ComponentSpotLight from 'components/ComponentSpotLight';
 import Button from 'components/Button';
 import CloseButton from 'components/CloseButton';
-import Dot from 'components/Dot';
 import Helper from 'components/Helper';
 import HelperControls from 'components/HelperControls';
 import Navigation from 'components/Navigation';
@@ -354,16 +353,11 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                 />
               )}
               { showNavigation && (
-                <Navigation>
-                  { steps.map((s,i) => (
-                    <Dot
-                      key={`${s.selector}_${i}`}
-                      onClick={() => this.gotoStep(i)}
-                      current={current}
-                      index={i}
-                      disabled={current === i} />
-                  ))}
-                </Navigation>
+                <Navigation
+                  current={current}
+                  gotoStep={this.gotoStep}
+                  steps={steps}
+                />
               )}
               { showButtons && (
                 <NextButton
