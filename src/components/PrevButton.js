@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Button from 'components/Button';
 
@@ -16,5 +16,16 @@ function PrevButton({
     </Button>
   )
 }
+
+PrevButton.propTypes = {
+  current: PropTypes.number,
+  prevButton: PropTypes.string,
+  prevStep: PropTypes.func.isRequired,
+};
+
+PrevButton.defaultProps = {
+  current: 0,
+  prevButton: 'Prev',
+};
 
 export default PrevButton;
