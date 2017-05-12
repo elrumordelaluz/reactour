@@ -30,7 +30,7 @@ NextButton.propTypes = {
   stepsLength: PropTypes.number,
 };
 
-NextButton.propTypes = {
+NextButton.defaultProps = {
   current: 0,
   lastStepNextButton: false,
   nextButton: 'Next',
