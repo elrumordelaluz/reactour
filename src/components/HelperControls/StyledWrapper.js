@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const HelperControls = styled.div`
+const StyledWrapper = styled.div`
   display: flex;
   margin-top: 1em;
 `
 
-export default HelperControls;
+export default StyledWrapper;

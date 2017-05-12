@@ -344,32 +344,19 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                   : steps[current].content
                 )
             }
-            <HelperControls>
-              { showButtons && (
-                <PrevButton
-                  current={current}
-                  prevButton={prevButton}
-                  prevStep={this.prevStep}
-                />
-              )}
-              { showNavigation && (
-                <Navigation
-                  current={current}
-                  gotoStep={this.gotoStep}
-                  steps={steps}
-                />
-              )}
-              { showButtons && (
-                <NextButton
-                  lastStepNextButton={lastStepNextButton}
-                  current={current}
-                  stepsLength={steps.length}
-                  onRequestClose={onRequestClose}
-                  nextStep={this.nextStep}
-                  nextButton={nextButton}
-                />
-              )}
-            </HelperControls>
+            <HelperControls
+              current={current}
+              prevButton={prevButton}
+              prevStep={this.prevStep}
+              gotoStep={this.gotoStep}
+              steps={steps}
+              lastStepNextButton={lastStepNextButton}
+              onRequestClose={onRequestClose}
+              nextStep={this.nextStep}
+              nextButton={nextButton}
+              showButtons={showButtons}
+              showNavigation={showNavigation}
+            />
             <CloseButton onClick={onRequestClose}>✕</CloseButton>
           </Helper>
         </div>
