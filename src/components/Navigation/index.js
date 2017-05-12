@@ -25,7 +25,7 @@ function Navigation({
 
 Navigation.propTypes = {
   current: PropTypes.number,
-  gotoStep: PropTypes.func,
+  gotoStep: PropTypes.func.isRequired,
   steps: PropTypes.arrayOf(PropTypes.shape({
     'selector': PropTypes.string.isRequired,
     'content': PropTypes.oneOfType([
@@ -37,6 +37,11 @@ Navigation.propTypes = {
     'action': PropTypes.func,
     'style': PropTypes.object,
   })),
+}
+
+Navigation.defaultProps = {
+  current: 0,
+  steps: [],
 }
 
 export default Navigation;
