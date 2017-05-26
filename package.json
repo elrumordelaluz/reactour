@@ -63,6 +63,6 @@
     "lodash.pick": "4.4.0",
     "scroll-smooth": "1.0.1",
     "scrollparent": "1.0.2",
-    "styled-components": "2.0.0-10"
+    "styled-components": "2.0.0"
   }
 }
