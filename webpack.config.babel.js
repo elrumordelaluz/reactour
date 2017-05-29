@@ -17,6 +17,10 @@ export default {
       },
     ],
   },
+  resolve: {
+    modules: ['node_modules', 'src'],
+    extensions: ['.js', '.jsx'],
+  },
   devServer: {
     contentBase: 'docs/'
   },
