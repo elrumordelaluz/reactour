@@ -13,10 +13,7 @@ import Navigation from 'components/Navigation';
 import NextButton from 'components/NextButton';
 import PrevButton from 'components/PrevButton';
 
-import getNodeRect from 'utils/getNodeRect';
-import inView from 'utils/inView';
-import isBody from 'utils/isBody';
-import setNodeSate from 'utils/setNodeSate';
+import { getNodeRect, inView, isBody, setNodeSate } from 'utils';
 
 class TourPortal extends Component {
   static propTypes = {

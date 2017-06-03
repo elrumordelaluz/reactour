@@ -1,4 +1,4 @@
-import getNodeRect from 'utils/getNodeRect';
+import { getNodeRect } from 'utils';
 
 const setNodeState = (node, helper, position) => {
   const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)

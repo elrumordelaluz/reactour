@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Mask from 'components/Mask';
-import safe from 'utils/safe';
+import { safe } from 'utils';
 
 const RightMask = styled(Mask)`
   top: ${props => props.targetTop - props.padding}px;

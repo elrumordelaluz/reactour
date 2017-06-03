@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import isHoriz from 'utils/isHoriz';
-import isOutside from 'utils/isOutside';
-import bestPositionOf from 'utils/bestPositionOf';
+import { isHoriz, isOutside, bestPositionOf } from 'utils';
 
 const Helper = styled.div`
   --reactour-accent: #007aff;
