@@ -93,7 +93,7 @@ class TourPortal extends Component {
 
     if (this.props.isOpen && this.props.update !== nextProps.update) {
       if (nextProps.steps[this.state.current]) {
-        this.showStep()
+        setTimeout(this.showStep, 1)
       } else {
         this.props.onRequestClose()
       }
