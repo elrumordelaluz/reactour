@@ -41,6 +41,7 @@ class TourPortal extends Component {
       })
     ),
     update: PropTypes.string,
+    updateDelay: PropTypes.number,
   }
 
   static defaultProps = {
@@ -57,6 +58,7 @@ class TourPortal extends Component {
     maskSpace: 10,
     nextButton: 'Next',
     prevButton: 'Prev',
+    updateDelay: 1,
   }
 
   constructor() {
@@ -85,15 +87,17 @@ class TourPortal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.isOpen && nextProps.isOpen) {
+    const { isOpen, update, updateDelay } = this.props
+
+    if (!isOpen && nextProps.isOpen) {
       this.open()
-    } else if (this.props.isOpen && !nextProps.isOpen) {
+    } else if (isOpen && !nextProps.isOpen) {
       this.close()
     }
 
-    if (this.props.isOpen && this.props.update !== nextProps.update) {
+    if (isOpen && update !== nextProps.update) {
       if (nextProps.steps[this.state.current]) {
-        setTimeout(this.showStep, 1)
+        setTimeout(this.showStep, updateDelay)
       } else {
         this.props.onRequestClose()
       }
@@ -304,7 +308,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       nextButton,
       prevButton,
     } = this.props
-    
+
     const {
       isOpen,
       current,

@@ -64,6 +64,7 @@ const steps = [
 | `startAt` | Starting step each time the Tour is open | `number` |  |  |
 | `steps` | Array of steps with info and `props` | [view bellow] |  | ✅ |
 | `update` | Value to listen if a forced update is needed | `string` |  |  |
+| `updateDelay` | Delay time when forcing update. Useful when there are known animation/transitions | `number` | 1 |  |
 
 ```js
 steps: PropTypes.arrayOf(PropTypes.shape({
