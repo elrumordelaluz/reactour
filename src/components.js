@@ -33,80 +33,81 @@ export const Helper = styled.div`
     box-shadow: 0 .25em .5em rgba(0,0,0,.3);
     top: -.8125em;
     left: -.8125em;
-    display: ${props => props.showNumber ? 'block' : 'none'};
+    display: ${props => (props.showNumber ? 'block' : 'none')};
   }
   
   transform: ${props => {
-    const { 
-      targetTop, 
-      targetRight, 
-      targetBottom, 
-      targetLeft, 
+    const {
+      targetTop,
+      targetRight,
+      targetBottom,
+      targetLeft,
       targetWidth,
       targetHeight,
       windowWidth,
-      windowHeight, 
-      helperWidth, 
-      helperHeight, 
+      windowHeight,
+      helperWidth,
+      helperHeight,
       helperPosition,
       padding,
     } = props
-    
+
     const available = {
       left: targetLeft,
       right: windowWidth - targetRight,
       top: targetTop,
       bottom: windowHeight - targetBottom,
     }
-    
+
     const couldPositionAt = position => {
-      return available[position] > (
-        hx.isHoriz(position) 
-        ? helperWidth + padding * 2 
-        : helperHeight + padding * 2
+      return (
+        available[position] >
+        (hx.isHoriz(position)
+          ? helperWidth + padding * 2
+          : helperHeight + padding * 2)
       )
     }
-    
+
     const autoPosition = coords => {
       const positionsOrder = hx.bestPositionOf(available)
-      for( let j = 0; j < positionsOrder.length; j++ ) {
+      for (let j = 0; j < positionsOrder.length; j++) {
         if (couldPositionAt(positionsOrder[j])) {
           return coords[positionsOrder[j]]
         }
       }
       return coords.center
     }
-    
+
     const pos = helperPosition => {
-      const outsideY = (targetTop + helperHeight) > windowHeight
-      const hX = hx.isOutsideX(targetLeft + helperWidth, windowWidth) 
-        ? hx.isOutsideX(targetRight + padding, windowWidth) 
+      const outsideY = targetTop + helperHeight > windowHeight
+      const hX = hx.isOutsideX(targetLeft + helperWidth, windowWidth)
+        ? hx.isOutsideX(targetRight + padding, windowWidth)
           ? targetRight - helperWidth
           : targetRight - helperWidth + padding
         : targetLeft - padding
-      const hY = hx.isOutsideY(targetTop + helperHeight, windowHeight) 
-        ? hx.isOutsideY(targetBottom + padding, windowHeight) 
+      const hY = hx.isOutsideY(targetTop + helperHeight, windowHeight)
+        ? hx.isOutsideY(targetBottom + padding, windowHeight)
           ? targetBottom - helperHeight
           : targetBottom - helperHeight + padding
         : targetTop - padding
       const coords = {
-        top: [ hX, targetTop - helperHeight - padding * 2 ],
-        right: [ targetRight + padding * 2, hY ],
-        bottom: [ hX, targetBottom + padding * 2 ],
-        left: [ targetLeft - helperWidth - padding * 2, hY ],
+        top: [hX, targetTop - helperHeight - padding * 2],
+        right: [targetRight + padding * 2, hY],
+        bottom: [hX, targetBottom + padding * 2],
+        left: [targetLeft - helperWidth - padding * 2, hY],
         center: [
           windowWidth / 2 - helperWidth / 2,
           windowHeight / 2 - helperHeight / 2,
-        ]
+        ],
       }
       if (couldPositionAt(helperPosition)) {
         return coords[helperPosition]
-      } 
+      }
       return autoPosition(coords)
     }
-    
+
     const p = pos(helperPosition)
-    
+
     return `translate(${p[0]}px, ${p[1]}px)`
   }}
 `
@@ -128,19 +129,26 @@ export const TopMask = styled(Mask)`
 export const RightMask = styled(Mask)`
   top: ${props => props.targetTop - props.padding}px;
   left: ${props => props.targetLeft + props.targetWidth + props.padding}px;
-  width: ${props => hx.safe(props.windowWidth - props.targetWidth - props.targetLeft - props.padding)}px;
-  height: ${props => props.targetHeight + (props.padding * 2)}px;
+  width: ${props =>
+    hx.safe(
+      props.windowWidth - props.targetWidth - props.targetLeft - props.padding
+    )}px;
+  height: ${props => props.targetHeight + props.padding * 2}px;
 `
 
 export const BottomMask = styled(Mask)`
   top: ${props => props.targetHeight + props.targetTop + props.padding}px;
-  height: ${props => props.windowHeight + props.targetHeight - props.targetTop - props.padding}px;
+  height: ${props =>
+    props.windowHeight +
+    props.targetHeight -
+    props.targetTop -
+    props.padding}px;
 `
 
 export const LeftMask = styled(Mask)`
   top: ${props => props.targetTop - props.padding}px;
   width: ${props => hx.safe(props.targetLeft - props.padding)}px;
-  height: ${props => props.targetHeight + (props.padding * 2)}px;
+  height: ${props => props.targetHeight + props.padding * 2}px;
 `
 export const HelperControls = styled.div`
   display: flex;
@@ -166,10 +174,11 @@ export const Dot = styled.button`
   margin: 2px;
   outline: 0;
   transition: opacity .3s, transform .3s;
-  cursor: ${props => props.current === props.index ? 'default' : 'pointer'};
-  opacity: ${props => props.current === props.index ? 1 : .5};
-  transform: scale(${props => props.current === props.index ? 1.1 : 1});
-  color: ${props => props.current === props.index ? 'var(--reactour-accent)' : 'currentColor'};
+  cursor: ${props => (props.current === props.index ? 'default' : 'pointer')};
+  opacity: ${props => (props.current === props.index ? 1 : 0.5)};
+  transform: scale(${props => (props.current === props.index ? 1.1 : 1)});
+  color: ${props =>
+    props.current === props.index ? 'var(--reactour-accent)' : 'currentColor'};
   background-color: currentColor;
   
   &:before {

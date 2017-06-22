@@ -6,8 +6,6 @@ export default styled.section`
   max-width: 1024px;
   margin: auto;
   padding: 1em;
-  text-align: ${props => props.center 
-    ? 'center' 
-    : props.align 
-      ? props.align : 'left' }
+  text-align: ${props =>
+    props.center ? 'center' : props.align ? props.align : 'left'}
 `

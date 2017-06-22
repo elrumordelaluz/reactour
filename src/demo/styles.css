@@ -9,9 +9,17 @@ body {
   margin: 0;
   padding: 0;
   color: #2d2323;
-  font-family: -apple-system, BlinkMacSystemFont,
-      'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetical Neue', sans-serif;
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetical Neue',
+    sans-serif;
 }
 
 .helper {
