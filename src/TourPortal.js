@@ -4,6 +4,8 @@ import cn from 'classnames'
 import styled from 'styled-components'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
+import Arrow from './components/Arrow'
+import Close from './components/Close'
 import * as C from './components'
 import * as hx from './helpers'
 
@@ -56,8 +58,6 @@ class TourPortal extends Component {
     showNumber: true,
     scrollDuration: 1,
     maskSpace: 10,
-    nextButton: 'Next',
-    prevButton: 'Prev',
     updateDelay: 1,
   }
 
@@ -243,9 +243,10 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   nextStep = () => {
     const { steps } = this.props
     this.setState(prevState => {
-      const nextStep = prevState.current < steps.length - 1
-        ? prevState.current + 1
-        : prevState.current
+      const nextStep =
+        prevState.current < steps.length - 1
+          ? prevState.current + 1
+          : prevState.current
       return {
         current: nextStep,
       }
@@ -255,9 +256,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   prevStep = () => {
     const { steps } = this.props
     this.setState(prevState => {
-      const nextStep = prevState.current > 0
-        ? prevState.current - 1
-        : prevState.current
+      const nextStep =
+        prevState.current > 0 ? prevState.current - 1 : prevState.current
       return {
         current: nextStep,
       }
@@ -390,13 +390,17 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                 ? steps[current].content({
                     goTo: this.gotoStep,
                     inDOM,
+                    step: current + 1,
                   })
                 : steps[current].content)}
             <C.HelperControls>
               {showButtons &&
-                <C.Button onClick={this.prevStep} disabled={current === 0}>
-                  {prevButton}
-                </C.Button>}
+                <Arrow
+                  onClick={this.prevStep}
+                  disabled={current === 0}
+                  label={prevButton ? prevButton : null}
+                />}
+
               {showNavigation &&
                 <C.Navigation>
                   {steps.map((s, i) =>
@@ -409,22 +413,25 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                     />
                   )}
                 </C.Navigation>}
+
               {showButtons &&
-                <C.Button
+                <Arrow
                   onClick={
-                    lastStepNextButton && current === steps.length - 1
-                      ? onRequestClose
+                    current === steps.length - 1
+                      ? lastStepNextButton ? onRequestClose : () => {}
                       : this.nextStep
                   }
-                  disabled={
-                    !lastStepNextButton && current === steps.length - 1
-                  }>
-                  {lastStepNextButton && current === steps.length - 1
-                    ? lastStepNextButton
-                    : nextButton}
-                </C.Button>}
+                  disabled={!lastStepNextButton && current === steps.length - 1}
+                  inverted
+                  label={
+                    lastStepNextButton && current === steps.length - 1
+                      ? lastStepNextButton
+                      : nextButton ? nextButton : null
+                  }
+                />}
             </C.HelperControls>
-            <C.CloseButton onClick={onRequestClose}>✕</C.CloseButton>
+
+            <Close onClick={onRequestClose} />
           </C.Helper>
         </div>
       )

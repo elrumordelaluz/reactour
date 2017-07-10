@@ -6,16 +6,16 @@ export const Helper = styled.div`
   position: fixed;
   background-color: #fff;
   transition: transform .3s;
-  padding: .6em;
+  padding: 24px 30px;
   box-shadow: 0 .5em 3em rgba(0,0,0,.3);
   top: 0;
   left: 0;
   color: inherit;
   z-index: 1000000;
-  max-width: 300px;
+  max-width: 331px;
   min-width: 150px;
   outline: 0;
-  padding-right: 1.2em;
+  padding-right: 40px;
   
   &:after {
     content: '${props => props.current + 1}';
@@ -152,7 +152,8 @@ export const LeftMask = styled(Mask)`
 `
 export const HelperControls = styled.div`
   display: flex;
-  margin-top: 1em;
+  margin-top: 24px;
+  align-items: center;
 `
 
 export const Navigation = styled.nav`
@@ -160,44 +161,42 @@ export const Navigation = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
 `
 
 export const Dot = styled.button`
   counter-increment: dot;
-  width: 5px;
-  height: 5px;
-  border: 0;
+  width: 8px;
+  height: 8px;
+  border: 1px solid;
   border-radius: 100%;
   padding: 0;
   display: block;
-  margin: 2px;
+  margin: 4px;
   outline: 0;
   transition: opacity .3s, transform .3s;
   cursor: ${props => (props.current === props.index ? 'default' : 'pointer')};
-  opacity: ${props => (props.current === props.index ? 1 : 0.5)};
-  transform: scale(${props => (props.current === props.index ? 1.1 : 1)});
+  transform: scale(${props => (props.current === props.index ? 1.25 : 1)});
   color: ${props =>
-    props.current === props.index ? 'var(--reactour-accent)' : 'currentColor'};
-  background-color: currentColor;
+    props.current === props.index ? 'var(--reactour-accent)' : '#caccce'};
+  background-color: ${props =>
+    props.current === props.index ? 'var(--reactour-accent)' : 'transparent'};
   
   &:before {
     content: counter(dot);
     position: absolute;
     bottom: calc(100% + .25em);
     left: 50%;
-    transform: translate(-50%, 1em);
     opacity: 0;
+    transform: translate(-50%, 1em);
     transition: .3s;
   }
   
   &:hover {
-    opacity: 1;
-    transform: scale(1.1);
+    background-color: currentColor;
     
     &:before {
-      opacity: .3;
-      transform: translate(-50%, 0);
+      opacity: .5;
+      transform: translate(-50%, -2px);
     }
   }
 `
