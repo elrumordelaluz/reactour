@@ -60,6 +60,7 @@ const steps = [
 | `scrollOffset` | Offset when positioning the target element | `number` | calculates the vertical center of the page |  |
 | `showButtons` | Show **helper** navigation butons | `bool` | `true` |  |
 | `showNavigation` | Show **helper** navigation dots | `bool` | `true` |  |
+| `showNavigationNumber` | Show number when hovers on each navigation dots | `bool` | `true` |  |
 | `showNumber` | Show **helper** number badge | `bool` | `true` |  |
 | `startAt` | Starting step each time the Tour is open | `number` |  |  |
 | `steps` | Array of steps with info and `props` | [view bellow] |  | ✅ |
