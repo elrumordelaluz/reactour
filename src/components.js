@@ -189,6 +189,8 @@ export const Dot = styled.button`
     opacity: 0;
     transform: translate(-50%, 1em);
     transition: .3s;
+    display: ${props =>
+      props.showNumber ? 'block' : 'none'};
   }
   
   &:hover {

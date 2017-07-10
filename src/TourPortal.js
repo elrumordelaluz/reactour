@@ -27,6 +27,7 @@ class TourPortal extends Component {
     scrollOffset: PropTypes.number,
     showButtons: PropTypes.bool,
     showNavigation: PropTypes.bool,
+    showNavigationNumber: PropTypes.bool,
     showNumber: PropTypes.bool,
     startAt: PropTypes.number,
     steps: PropTypes.arrayOf(
@@ -54,6 +55,7 @@ class TourPortal extends Component {
       document.body.style.overflowY = 'auto'
     },
     showNavigation: true,
+    showNavigationNumber: true,
     showButtons: true,
     showNumber: true,
     scrollDuration: 1,
@@ -301,6 +303,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       maskClassName,
       showButtons,
       showNavigation,
+      showNavigationNumber,
       showNumber,
       onRequestClose,
       maskSpace,
@@ -410,6 +413,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                       current={current}
                       index={i}
                       disabled={current === i}
+                      showNumber={showNavigationNumber}
                     />
                   )}
                 </C.Navigation>}
