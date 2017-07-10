@@ -41,6 +41,7 @@ const StyledArrow = styled(Arrow)`
     `
     width: 16px;
     height: 12px;
+    flex: 0 0 16px;
   `};
   
   &:hover {
