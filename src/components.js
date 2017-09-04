@@ -18,7 +18,7 @@ export const Helper = styled.div`
   padding-right: 40px;
   
   &:after {
-    content: '${props => props.current + 1}';
+    content: "${props => props.current + 1}${props => props.showTotalSteps ? props => {return '/' + props.totalSteps} : null}";
     position: absolute;
     font-family: monospace;
     background-color: var(--reactour-accent);
