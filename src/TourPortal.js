@@ -58,6 +58,7 @@ class TourPortal extends Component {
     showNavigationNumber: true,
     showButtons: true,
     showNumber: true,
+    showTotalSteps: false,
     scrollDuration: 1,
     maskSpace: 10,
     updateDelay: 1,
@@ -310,6 +311,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       lastStepNextButton,
       nextButton,
       prevButton,
+      showTotalSteps
     } = this.props
 
     const {
@@ -384,6 +386,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             tabIndex={-1}
             current={current}
             showNumber={showNumber}
+            showTotalSteps={showTotalSteps}
+            totalSteps={steps.length}
             style={steps[current].style ? steps[current].style : {}}
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
