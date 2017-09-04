@@ -11,6 +11,7 @@ import * as hx from './helpers'
 
 class TourPortal extends Component {
   static propTypes = {
+    badgeContent: PropTypes.func,
     className: PropTypes.string,
     closeWithMask: PropTypes.bool,
     inViewThreshold: PropTypes.number,
@@ -310,6 +311,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       lastStepNextButton,
       nextButton,
       prevButton,
+      badgeContent,
     } = this.props
 
     const {
@@ -383,7 +385,6 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             padding={maskSpace}
             tabIndex={-1}
             current={current}
-            showNumber={showNumber}
             style={steps[current].style ? steps[current].style : {}}
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
@@ -396,6 +397,12 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                     step: current + 1,
                   })
                 : steps[current].content)}
+            {showNumber &&
+              <C.Badge>
+                {typeof badgeContent === 'function'
+                  ? badgeContent(current + 1, steps.length)
+                  : current + 1}
+              </C.Badge>}
             <C.HelperControls>
               {showButtons &&
                 <Arrow

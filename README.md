@@ -44,6 +44,7 @@ const steps = [
 
 | Prop  | Desc          | Type  | Default | Is Required |
 | ----- | ------------- | ----- | ------- | ------ |
+| `badgeContent` | Function to customize Badge content `(current, total) => {} ` | `func` |  |  |
 | `className` | Custom class to add to the **helper** | `string` |  |  |
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
