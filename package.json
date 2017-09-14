@@ -19,7 +19,15 @@
     "react",
     "tour",
     "intro",
-    "guide"
+    "guide",
+    "introduction",
+    "step-by-step",
+    "guide",
+    "walkthrough",
+    "joyride",
+    "tourist-guide",
+    "product-intro",
+    "presentation"
   ],
   "files": [
     "dist",
