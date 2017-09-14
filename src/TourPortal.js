@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import styled from 'styled-components'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
-import Arrow from './components/Arrow'
-import Close from './components/Close'
-import * as C from './components'
+import {
+  Arrow,
+  Close,
+  Guide,
+  Badge,
+  TopMask,
+  RightMask,
+  BottomMask,
+  LeftMask,
+  Controls,
+  Navigation,
+  Dot,
+} from './components/index'
 import * as hx from './helpers'
 
 class TourPortal extends Component {
@@ -340,12 +349,12 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             className={cn(CN.mask.base, {
               [CN.mask.isOpen]: isOpen,
             })}>
-            <C.TopMask
+            <TopMask
               targetTop={targetTop}
               padding={maskSpace}
               className={maskClassName}
             />
-            <C.RightMask
+            <RightMask
               targetTop={targetTop}
               targetLeft={targetLeft}
               targetWidth={targetWidth}
@@ -354,14 +363,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               padding={maskSpace}
               className={maskClassName}
             />
-            <C.BottomMask
+            <BottomMask
               targetHeight={targetHeight}
               targetTop={targetTop}
               windowHeight={windowHeight}
               padding={maskSpace}
               className={maskClassName}
             />
-            <C.LeftMask
+            <LeftMask
               targetHeight={targetHeight}
               targetTop={targetTop}
               targetLeft={targetLeft}
@@ -369,7 +378,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               className={maskClassName}
             />
           </div>
-          <C.Helper
+          <Guide
             innerRef={c => (this.helper = c)}
             targetHeight={targetHeight}
             targetWidth={targetWidth}
@@ -397,24 +406,28 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                     step: current + 1,
                   })
                 : steps[current].content)}
-            {showNumber &&
-              <C.Badge>
-                {typeof badgeContent === 'function'
-                  ? badgeContent(current + 1, steps.length)
-                  : current + 1}
-              </C.Badge>}
-            <C.HelperControls>
-              {showButtons &&
+            {showNumber && (
+              <Badge>
+                {typeof badgeContent === 'function' ? (
+                  badgeContent(current + 1, steps.length)
+                ) : (
+                  current + 1
+                )}
+              </Badge>
+            )}
+            <Controls>
+              {showButtons && (
                 <Arrow
                   onClick={this.prevStep}
                   disabled={current === 0}
                   label={prevButton ? prevButton : null}
-                />}
+                />
+              )}
 
-              {showNavigation &&
-                <C.Navigation>
-                  {steps.map((s, i) =>
-                    <C.Dot
+              {showNavigation && (
+                <Navigation>
+                  {steps.map((s, i) => (
+                    <Dot
                       key={`${s.selector}_${i}`}
                       onClick={() => this.gotoStep(i)}
                       current={current}
@@ -422,28 +435,36 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                       disabled={current === i}
                       showNumber={showNavigationNumber}
                     />
-                  )}
-                </C.Navigation>}
+                  ))}
+                </Navigation>
+              )}
 
-              {showButtons &&
+              {showButtons && (
                 <Arrow
                   onClick={
-                    current === steps.length - 1
-                      ? lastStepNextButton ? onRequestClose : () => {}
-                      : this.nextStep
+                    current === steps.length - 1 ? lastStepNextButton ? (
+                      onRequestClose
+                    ) : (
+                      () => {}
+                    ) : (
+                      this.nextStep
+                    )
                   }
                   disabled={!lastStepNextButton && current === steps.length - 1}
                   inverted
                   label={
-                    lastStepNextButton && current === steps.length - 1
-                      ? lastStepNextButton
-                      : nextButton ? nextButton : null
+                    lastStepNextButton && current === steps.length - 1 ? (
+                      lastStepNextButton
+                    ) : nextButton ? (
+                      nextButton
+                    ) : null
                   }
-                />}
-            </C.HelperControls>
+                />
+              )}
+            </Controls>
 
             <Close onClick={onRequestClose} />
-          </C.Helper>
+          </Guide>
         </div>
       )
     }
