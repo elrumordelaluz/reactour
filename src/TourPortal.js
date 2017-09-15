@@ -57,6 +57,7 @@ class TourPortal extends Component {
     ),
     update: PropTypes.string,
     updateDelay: PropTypes.number,
+    disableInteraction: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -73,6 +74,7 @@ class TourPortal extends Component {
     scrollDuration: 1,
     maskSpace: 10,
     updateDelay: 1,
+    disableInteraction: false,
   }
 
   constructor() {
@@ -324,6 +326,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       prevButton,
       badgeContent,
       elementClassName,
+      disableInteraction,
     } = this.props
 
     const {
@@ -380,14 +383,16 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               padding={maskSpace}
               className={maskClassName}
             />
-            <ElementMask
-              targetTop={targetTop}
-              targetLeft={targetLeft}
-              targetWidth={targetWidth}
-              targetHeight={targetHeight}
-              padding={maskSpace}
-              className={elementClassName}
-            />
+            {disableInteraction && (
+                <ElementMask
+                  targetTop={targetTop}
+                  targetLeft={targetLeft}
+                  targetWidth={targetWidth}
+                  targetHeight={targetHeight}
+                  padding={maskSpace}
+                  className={elementClassName}
+                />
+            )}
           </div>
           <Guide
             innerRef={c => (this.helper = c)}

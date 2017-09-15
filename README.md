@@ -47,6 +47,7 @@ const steps = [
 | `badgeContent` | Function to customize Badge content `(current, total) => {} ` | `func` |  |  |
 | `className` | Custom class to add to the **helper** | `string` |  |  |
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
+| `disableInteraction` | Isn't possible to interact with highlighted elements | `bool` |  |  |
 | `elementClassName` | Custom class name for element which is overlaid target element | `string` |  |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
 | `isOpen` | you know… | `bool` |  | ✅ |
