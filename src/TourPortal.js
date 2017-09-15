@@ -12,6 +12,7 @@ import {
   RightMask,
   BottomMask,
   LeftMask,
+  ElementMask,
   Controls,
   Navigation,
   Dot,
@@ -21,6 +22,7 @@ import * as hx from './helpers'
 class TourPortal extends Component {
   static propTypes = {
     badgeContent: PropTypes.func,
+    elementClassName: PropTypes.string,
     className: PropTypes.string,
     closeWithMask: PropTypes.bool,
     inViewThreshold: PropTypes.number,
@@ -321,6 +323,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       nextButton,
       prevButton,
       badgeContent,
+      elementClassName,
     } = this.props
 
     const {
@@ -376,6 +379,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               targetLeft={targetLeft}
               padding={maskSpace}
               className={maskClassName}
+            />
+            <ElementMask
+              targetTop={targetTop}
+              targetLeft={targetLeft}
+              targetWidth={targetWidth}
+              targetHeight={targetHeight}
+              padding={maskSpace}
+              className={elementClassName}
             />
           </div>
           <Guide
