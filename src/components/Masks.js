@@ -13,7 +13,7 @@ const Mask = styled.div`
 
 const ElementMaskStyles = styled.div`
     position:fixed;
-    z-idnex: 99999;
+    z-index: 99999;
 `
 
 export const TopMask = styled(Mask)`

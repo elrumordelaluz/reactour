@@ -48,7 +48,7 @@ const steps = [
 | `className` | Custom class to add to the **helper** | `string` |  |  |
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
 | `disableInteraction` | Isn't possible to interact with highlighted elements | `bool` |  |  |
-| `elementClassName` | Custom class name for element which is overlaid target element | `string` |  |  |
+| `highlightedMaskClassName` | Custom class name for element which is overlaid target element | `string` |  |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
 | `isOpen` | you know… | `bool` |  | ✅ |
 | `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `string` |  |  |
