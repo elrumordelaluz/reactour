@@ -11,6 +11,11 @@ const Mask = styled.div`
   z-index: 99999;
 `
 
+const ElementMaskStyles = styled.div`
+    position:fixed;
+    z-index: 99999;
+`
+
 export const TopMask = styled(Mask)`
   height: ${props => hx.safe(props.targetTop - props.padding)}px;
 `
@@ -37,5 +42,15 @@ export const BottomMask = styled(Mask)`
 export const LeftMask = styled(Mask)`
   top: ${props => props.targetTop - props.padding}px;
   width: ${props => hx.safe(props.targetLeft - props.padding)}px;
+  height: ${props => props.targetHeight + props.padding * 2}px;
+`
+
+export const ElementMask = styled(ElementMaskStyles)`
+  top: ${props => props.targetTop - props.padding}px;
+  left: ${props => props.targetLeft - props.padding}px;
+  width: ${props =>
+    hx.safe(
+        props.targetWidth + props.padding * 2
+    )}px;
   height: ${props => props.targetHeight + props.padding * 2}px;
 `

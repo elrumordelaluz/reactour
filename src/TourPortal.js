@@ -12,6 +12,7 @@ import {
   RightMask,
   BottomMask,
   LeftMask,
+  ElementMask,
   Controls,
   Navigation,
   Dot,
@@ -21,6 +22,7 @@ import * as hx from './helpers'
 class TourPortal extends Component {
   static propTypes = {
     badgeContent: PropTypes.func,
+    highlightedMaskClassName: PropTypes.string,
     className: PropTypes.string,
     closeWithMask: PropTypes.bool,
     inViewThreshold: PropTypes.number,
@@ -55,6 +57,7 @@ class TourPortal extends Component {
     ),
     update: PropTypes.string,
     updateDelay: PropTypes.number,
+    disableInteraction: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -71,6 +74,7 @@ class TourPortal extends Component {
     scrollDuration: 1,
     maskSpace: 10,
     updateDelay: 1,
+    disableInteraction: false,
   }
 
   constructor() {
@@ -321,6 +325,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       nextButton,
       prevButton,
       badgeContent,
+      highlightedMaskClassName,
+      disableInteraction,
     } = this.props
 
     const {
@@ -378,6 +384,16 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
               className={maskClassName}
             />
           </div>
+          {disableInteraction && (
+            <ElementMask
+              targetTop={targetTop}
+              targetLeft={targetLeft}
+              targetWidth={targetWidth}
+              targetHeight={targetHeight}
+              padding={maskSpace}
+              className={highlightedMaskClassName}
+            />
+          )}
           <Guide
             innerRef={c => (this.helper = c)}
             targetHeight={targetHeight}

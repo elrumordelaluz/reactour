@@ -19,11 +19,11 @@ import Tour from 'reactour'
 
 class App extends Component {
   // ...
-  
+
   render  (
     <div>
       { /* other stuff */}
-      <Tour 
+      <Tour
         steps={steps}
         isOpen={this.state.isTourOpen}
         onRequestClose={this.closeTour} />
@@ -33,7 +33,7 @@ class App extends Component {
 
 const steps = [
   {
-    selector: '.first-step', 
+    selector: '.first-step',
     content: 'This is my first Step',
   },
   // ...
@@ -47,6 +47,8 @@ const steps = [
 | `badgeContent` | Function to customize Badge content `(current, total) => {} ` | `func` |  |  |
 | `className` | Custom class to add to the **helper** | `string` |  |  |
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
+| `disableInteraction` | Isn't possible to interact with highlighted elements | `bool` |  |  |
+| `highlightedMaskClassName` | Custom class name for element which is overlaid target element | `string` |  |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
 | `isOpen` | you know… | `bool` |  | ✅ |
 | `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `string` |  |  |
