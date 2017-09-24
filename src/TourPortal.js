@@ -224,7 +224,9 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
         },
       })
     } else {
-      this.setState(setNodeSate(node, this.helper, stepPosition), cb)
+      if (this.helper) {
+        this.setState(setNodeSate(node, this.helper, stepPosition), cb)
+      }
     }
   }
 
