@@ -4,7 +4,7 @@
 
 Tourist Guide into your React Components ([demo](https://elrumordelaluz.github.io/reactour/))
 
-[![Edit 7kjp4nzv9q](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/7kjp4nzv9q)
+[![Edit 7kjp4nzv9q](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/7kjp4nzv9q?module=%2FApp.js)
 
 ### Install
 
