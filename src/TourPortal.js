@@ -120,6 +120,13 @@ class TourPortal extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { isOpen } = this.props
+    if (isOpen) {
+      this.close()
+    }
+  }
+
   open() {
     const { isOpen, onAfterOpen, startAt } = this.props
     this.setState(
