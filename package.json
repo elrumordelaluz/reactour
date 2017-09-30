@@ -57,7 +57,7 @@
     "webpack-dev-server": "2.9.1"
   },
   "peerDependencies": {
-    "react": "^15.3.0"
+    "react": "^15.3.0 || ^16.0.0"
   },
   "babel": {
     "presets": [
@@ -70,9 +70,9 @@
     "classnames": "2.2.5",
     "exenv": "1.2.2",
     "lodash.pick": "4.4.0",
-    "prop-types": "15.5.10",
+    "prop-types": "15.6.0",
     "scroll-smooth": "1.0.1",
     "scrollparent": "2.0.1",
-    "styled-components": "2.1.2"
+    "styled-components": "2.2.0"
   }
 }
