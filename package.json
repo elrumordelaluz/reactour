@@ -9,7 +9,8 @@
     "prelib": "rimraf dist",
     "lib": "babel --out-dir dist --ignore *.test.js,src/demo src",
     "watch": "babel src --watch --out-dir dist --ignore *.test.js,src/demo",
-    "build": "NODE_ENV=production webpack -p"
+    "build": "NODE_ENV=production webpack -p",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -54,7 +55,8 @@
     "rimraf": "2.6.2",
     "style-loader": "0.18.2",
     "webpack": "3.6.0",
-    "webpack-dev-server": "2.9.1"
+    "webpack-dev-server": "2.9.1",
+    "jest": "^21.2.1"
   },
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0"
