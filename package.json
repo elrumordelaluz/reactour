@@ -9,7 +9,8 @@
     "prelib": "rimraf dist",
     "lib": "babel --out-dir dist --ignore *.test.js,src/demo src",
     "watch": "babel src --watch --out-dir dist --ignore *.test.js,src/demo",
-    "build": "NODE_ENV=production webpack -p"
+    "build": "NODE_ENV=production webpack -p",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
