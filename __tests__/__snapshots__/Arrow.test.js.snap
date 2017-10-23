@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Arrow component must have base methods 1`] = `
+<button
+  className="dummy-class sc-htpNat ekWfCE sc-bdVaJa bIMCVx"
+  onClick={[Function]}
+>
+  <span
+    className="sc-bwzfXH bWZsjK"
+  >
+    dummy label
+  </span>
+</button>
+`;
