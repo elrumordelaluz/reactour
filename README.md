@@ -80,7 +80,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
     PropTypes.element,
     PropTypes.func,
   ]).isRequired,
-  'position': PropTypes.string,
+  'position': PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
   'action': PropTypes.func,
   'style': PropTypes.object,
 })),
