@@ -81,7 +81,7 @@ const Guide = styled.div`
           windowHeight / 2 - helperHeight / 2,
         ],
       }
-      if (couldPositionAt(helperPosition)) {
+      if (helperPosition === 'center' || couldPositionAt(helperPosition)) {
         return coords[helperPosition]
       }
       return autoPosition(coords)
