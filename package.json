@@ -9,7 +9,8 @@
     "prelib": "rimraf dist",
     "lib": "babel --out-dir dist --ignore *.test.js,src/demo src",
     "watch": "babel src --watch --out-dir dist --ignore *.test.js,src/demo",
-    "build": "NODE_ENV=production webpack -p"
+    "build": "NODE_ENV=production webpack -p",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -41,15 +42,18 @@
   "homepage": "https://github.com/elrumordelaluz/reactour#readme",
   "devDependencies": {
     "babel-cli": "6.26.0",
+    "babel-jest": "^21.2.0",
     "babel-loader": "7.1.2",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
     "cross-env": "5.0.5",
     "css-loader": "0.28.7",
+    "jest": "^21.2.1",
     "react": "16.0.0",
     "react-dom": "16.0.0",
+    "react-test-renderer": "^16.0.0",
     "reshake": "1.0.7",
     "rimraf": "2.6.2",
     "style-loader": "0.18.2",
