@@ -1,15 +1,27 @@
-<img src="https://cdn.rawgit.com/elrumordelaluz/reactour/96793b17/logo.svg" width="50%" style="margin: 0 auto; display: block;"/>
+<p align="center">
+  <img alt="Reactour" title="Reactour" src="/logo.svg" width="250">
+</p>
+<p align="center" style="margin-top: 40px">
+  <strong>Tourist Guide</strong> into your React Components
+</p>
+<p align="center">
+  <a href="https://elrumordelaluz.github.io/reactour/">Demo</a>
+</p>
+<p align="center">
+  <a href="https://codesandbox.io/s/7kjp4nzv9q?module=%2FApp.js">
+    <img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="dit 7kjp4nzv9q">
+  </a>
+</p>
 
-## Reactour
-
-Tourist Guide into your React Components ([demo](https://elrumordelaluz.github.io/reactour/))
-
-[![Edit 7kjp4nzv9q](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/7kjp4nzv9q?module=%2FApp.js)
 
 ### Install
 
 ```
-npm i -S reactour
+npm i --save reactour
+```
+
+```
+yarn add reactour
 ```
 
 ### Initialize
