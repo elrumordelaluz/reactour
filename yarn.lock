@@ -4768,20 +4768,6 @@ style-loader@0.20.1:
     loader-utils "^1.1.0"
     schema-utils "^0.4.3"
 
-styled-components@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.1.4.tgz#1bdc1409c9bacafee3510c573d23b73039b0d875"
-  dependencies:
-    buffer "^5.0.3"
-    css-to-react-native "^2.0.3"
-    fbjs "^0.8.9"
-    hoist-non-react-statics "^1.2.0"
-    is-plain-object "^2.0.1"
-    prop-types "^15.5.4"
-    stylis "^3.4.0"
-    stylis-rule-sheet "^0.0.7"
-    supports-color "^3.2.3"
-
 styled-components@3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.1.5.tgz#7aaf0a97f8c5cd49791e924887f9d8f428fb010c"
