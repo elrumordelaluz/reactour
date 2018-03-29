@@ -42,6 +42,8 @@ class TourPortal extends Component {
     showNavigationNumber: PropTypes.bool,
     showNumber: PropTypes.bool,
     startAt: PropTypes.number,
+    goToStep: PropTypes.number,
+    getCurrentStep: PropTypes.func,
     steps: PropTypes.arrayOf(
       PropTypes.shape({
         selector: PropTypes.string.isRequired,
@@ -117,6 +119,10 @@ class TourPortal extends Component {
       } else {
         this.props.onRequestClose()
       }
+    }
+
+    if (isOpen && nextProps.isOpen && this.state.current !== nextProps.goToStep) {
+      this.gotoStep(nextProps.goToStep)
     }
   }
 
@@ -264,12 +270,10 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
 
   nextStep = () => {
-    const { steps } = this.props
+    const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
-      const nextStep =
-        prevState.current < steps.length - 1
-          ? prevState.current + 1
-          : prevState.current
+      const nextStep = prevState.current < steps.length - 1 ? prevState.current + 1 : prevState.current
+      getCurrentStep(nextStep)
       return {
         current: nextStep,
       }
@@ -277,10 +281,10 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
 
   prevStep = () => {
-    const { steps } = this.props
+    const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
-      const nextStep =
-        prevState.current > 0 ? prevState.current - 1 : prevState.current
+      const nextStep = prevState.current > 0 ? prevState.current - 1 : prevState.current
+      getCurrentStep(nextStep)
       return {
         current: nextStep,
       }
@@ -288,9 +292,10 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
 
   gotoStep = n => {
-    const { steps } = this.props
+    const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep = steps[n] ? n : prevState.current
+      getCurrentStep(nextStep)
       return {
         current: nextStep,
       }
