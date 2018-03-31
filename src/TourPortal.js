@@ -44,6 +44,8 @@ class TourPortal extends Component {
     startAt: PropTypes.number,
     goToStep: PropTypes.number,
     getCurrentStep: PropTypes.func,
+    nextStep: PropTypes.func,
+    prevStep: PropTypes.func,
     steps: PropTypes.arrayOf(
       PropTypes.shape({
         selector: PropTypes.string.isRequired,
@@ -273,7 +275,11 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep = prevState.current < steps.length - 1 ? prevState.current + 1 : prevState.current
-      getCurrentStep(nextStep)
+
+      if (typeof getCurrentStep === 'function') {
+        getCurrentStep(nextStep)
+      }
+
       return {
         current: nextStep,
       }
@@ -281,10 +287,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
 
   prevStep = () => {
-    const { steps, getCurrentStep } = this.props
+    const { getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep = prevState.current > 0 ? prevState.current - 1 : prevState.current
-      getCurrentStep(nextStep)
+
+      if (typeof getCurrentStep === 'function') {
+        getCurrentStep(nextStep)
+      }
+
       return {
         current: nextStep,
       }
@@ -295,7 +305,11 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
     const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep = steps[n] ? n : prevState.current
-      getCurrentStep(nextStep)
+
+      if (typeof getCurrentStep === 'function') {
+        getCurrentStep(nextStep)
+      }
+
       return {
         current: nextStep,
       }
@@ -303,7 +317,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
   }
 
   keyDownHandler = e => {
-    const { onRequestClose } = this.props
+    const { onRequestClose, nextStep, prevStep } = this.props
     e.stopPropagation()
     if (e.keyCode === 27) {
       // esc
@@ -311,14 +325,14 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       onRequestClose()
     }
     if (e.keyCode === 39) {
-      // rioght
+      // right
       e.preventDefault()
-      this.nextStep()
+      typeof nextStep === 'function' ? nextStep() : this.nextStep()
     }
     if (e.keyCode === 37) {
       // left
       e.preventDefault()
-      this.prevStep()
+      typeof prevStep === 'function' ? prevStep() : this.prevStep()
     }
   }
 
@@ -339,6 +353,8 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       badgeContent,
       highlightedMaskClassName,
       disableInteraction,
+      nextStep,
+      prevStep,
     } = this.props
 
     const {
@@ -446,7 +462,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             <Controls>
               {showButtons && (
                 <Arrow
-                  onClick={this.prevStep}
+                  onClick={typeof prevStep === 'function' ? prevStep : this.prevStep}
                   disabled={current === 0}
                   label={prevButton ? prevButton : null}
                 />
@@ -475,7 +491,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                     ) : (
                       () => {}
                     ) : (
-                      this.nextStep
+                      typeof nextStep === 'function' ? nextStep : this.nextStep
                     )
                   }
                   disabled={!lastStepNextButton && current === steps.length - 1}

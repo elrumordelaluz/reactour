@@ -66,15 +66,15 @@ const steps = [
 | `goToStep` | Programmatically change current step | `number` |  |  |
 | `highlightedMaskClassName` | Custom class name for element which is overlaid target element | `string` |  |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
-| `isOpen` | you know… | `bool` |  | ✅ |
+| `isOpen` | You know… | `bool` |  | ✅ |
 | `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `string` |  |  |
 | `maskClassName` | Custom class to add to the **mask** | `string` |  |  |
-| `maskSpace` | padding between elemente showed and **mask** | `number` | `10`  |  |
-| `nextButton` | next navigation button text | `string` |  |  |
-| `onAfterOpen` | function triggered after open | `func` | `() => { document.body.style.overflowY = 'hidden' }`  |  |
-| `onBeforeClose` | function triggered before close | `func` | `() => { document.body.style.overflowY = 'auto' }`  |  |
-| `onRequestClose` | function triggered to close | `func` |  |  |
-| `prevButton` | prev navigation button text | `string` |  |  |
+| `maskSpace` | Padding between elemente showed and **mask** | `number` | `10`  |  |
+| `nextButton` | Next navigation button text | `string` |  |  |
+| `onAfterOpen` | Function triggered after open | `func` | `() => { document.body.style.overflowY = 'hidden' }`  |  |
+| `onBeforeClose` | Function triggered before close | `func` | `() => { document.body.style.overflowY = 'auto' }`  |  |
+| `onRequestClose` | Function triggered to close | `func` |  |  |
+| `prevButton` | Prev navigation button text | `string` |  |  |
 | `scrollDuration` | Smooth scroll duration when positioning the target element | `number` | `1` |  |
 | `scrollOffset` | Offset when positioning the target element | `number` | calculates the vertical center of the page |  |
 | `showButtons` | Show **helper** navigation butons | `bool` | `true` |  |
