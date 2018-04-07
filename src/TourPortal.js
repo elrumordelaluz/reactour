@@ -41,6 +41,7 @@ class TourPortal extends Component {
     showNavigation: PropTypes.bool,
     showNavigationNumber: PropTypes.bool,
     showNumber: PropTypes.bool,
+    openTasting: PropTypes.func,
     startAt: PropTypes.number,
     steps: PropTypes.arrayOf(
       PropTypes.shape({
@@ -327,6 +328,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
       showNavigationNumber,
       showNumber,
       onRequestClose,
+      openTasting,
       maskSpace,
       lastStepNextButton,
       nextButton,
@@ -424,6 +426,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
             {steps[current] &&
               (typeof steps[current].content === 'function'
                 ? steps[current].content({
+                    openTasting: openTasting,
                     close: onRequestClose,
                     goTo: this.gotoStep,
                     inDOM,
