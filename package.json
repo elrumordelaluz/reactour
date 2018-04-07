@@ -1,44 +1,59 @@
 {
-  "name": "reactour",
-  "version": "1.6.5",
-  "description": "Tourist Guide into your React Components",
-  "main": "dist/index.js",
-  "scripts": {
-    "prepare": "npm run lib",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.config.babel.js",
-    "prelib": "rimraf dist",
-    "lib": "babel --out-dir dist --ignore *.test.js,src/demo src",
-    "watch": "babel src --watch --out-dir dist --ignore *.test.js,src/demo",
-    "build": "NODE_ENV=production webpack -p"
+  "_from": "reactour",
+  "_id": "reactour@1.6.5-fleyver",
+  "_inBundle": false,
+  "_integrity": "sha512-3yZQvsZXExCzXQcUTCT8QAOUKon8cNu5F3TBvsh7qEmig6PugesLydnGOqOaKXAYZBlc11HnzsR4IIgovsxmTw==",
+  "_location": "/reactour",
+  "_phantomChildren": {
+    "fbjs": "0.8.16",
+    "loose-envify": "1.3.1",
+    "object-assign": "4.1.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/elrumordelaluz/reactour.git"
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "reactour",
+    "name": "reactour",
+    "escapedName": "reactour",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
-  "keywords": [
-    "react",
-    "tour",
-    "intro",
-    "guide",
-    "introduction",
-    "step-by-step",
-    "guide",
-    "walkthrough",
-    "joyride",
-    "tourist-guide",
-    "product-intro",
-    "presentation"
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "author": "Lionel T <elrumordelaluz@hotmail.com> (https://elrumordelaluz.com/)",
-  "license": "MIT",
+  "_resolved": "https://registry.npmjs.org/reactour/-/reactour-1.6.5.tgz",
+  "_shasum": "66ef85654c845ddb18063077f7869a48bd66881d",
+  "_spec": "reactour",
+  "_where": "/Fleyver/app/client",
+  "author": {
+    "name": "Lionel T - edited by Dave Clissold",
+    "email": "elrumordelaluz@hotmail.com",
+    "url": "https://elrumordelaluz.com/"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-2"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/elrumordelaluz/reactour/issues"
   },
-  "homepage": "https://github.com/elrumordelaluz/reactour#readme",
+  "bundleDependencies": false,
+  "dependencies": {
+    "classnames": "2.2.5",
+    "exenv": "1.2.2",
+    "lodash.pick": "4.4.0",
+    "prop-types": "15.6.0",
+    "scroll-smooth": "1.0.1",
+    "scrollparent": "2.0.1",
+    "styled-components": "3.1.5"
+  },
+  "deprecated": false,
+  "description": "Tourist Guide into your React Components",
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-loader": "7.1.2",
@@ -56,24 +71,43 @@
     "webpack": "3.10.0",
     "webpack-dev-server": "2.11.1"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "homepage": "https://github.com/elrumordelaluz/reactour#readme",
+  "keywords": [
+    "react",
+    "tour",
+    "intro",
+    "guide",
+    "introduction",
+    "step-by-step",
+    "guide",
+    "walkthrough",
+    "joyride",
+    "tourist-guide",
+    "product-intro",
+    "presentation"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "reactour",
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0",
     "react-dom": "^15.3.0 || ^16.0.0"
   },
-  "babel": {
-    "presets": [
-      "react",
-      "es2015",
-      "stage-2"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elrumordelaluz/reactour.git"
   },
-  "dependencies": {
-    "classnames": "2.2.5",
-    "exenv": "1.2.2",
-    "lodash.pick": "4.4.0",
-    "prop-types": "15.6.0",
-    "scroll-smooth": "1.0.1",
-    "scrollparent": "2.0.1",
-    "styled-components": "3.1.5"
-  }
+  "scripts": {
+    "build": "NODE_ENV=production webpack -p",
+    "lib": "babel --out-dir dist --ignore *.test.js,src/demo src",
+    "prelib": "rimraf dist",
+    "prepare": "npm run lib",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.config.babel.js",
+    "watch": "babel src --watch --out-dir dist --ignore *.test.js,src/demo"
+  },
+  "version": "1.6.5"
 }
