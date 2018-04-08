@@ -431,7 +431,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                     goTo: this.gotoStep,
                     inDOM,
                     step: current + 1,
-                })
+                  })
                 : steps[current].content)}
             {showNumber && (
               <Badge>
