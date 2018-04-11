@@ -62,6 +62,8 @@ class TourPortal extends Component {
     update: PropTypes.string,
     updateDelay: PropTypes.number,
     disableInteraction: PropTypes.bool,
+    disableNavigationDotsInteraction: PropTypes.bool,
+    disableKeyboardNavigation: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -320,8 +322,13 @@ class TourPortal extends Component {
   }
 
   keyDownHandler = e => {
-    const { onRequestClose, nextStep, prevStep } = this.props
+    const { onRequestClose, nextStep, prevStep, disableKeyboardNavigation } = this.props
     e.stopPropagation()
+
+    if (disableKeyboardNavigation) {
+      return
+    }
+
     if (e.keyCode === 27) {
       // esc
       e.preventDefault()
@@ -356,6 +363,7 @@ class TourPortal extends Component {
       badgeContent,
       highlightedMaskClassName,
       disableInteraction,
+      disableNavigationDotsInteraction,
       nextStep,
       prevStep,
     } = this.props
@@ -479,7 +487,7 @@ class TourPortal extends Component {
                       onClick={() => this.gotoStep(i)}
                       current={current}
                       index={i}
-                      disabled={current === i}
+                      disabled={current === i || disableNavigationDotsInteraction }
                       showNumber={showNavigationNumber}
                     />
                   ))}
