@@ -48,7 +48,7 @@ class TourPortal extends Component {
     prevStep: PropTypes.func,
     steps: PropTypes.arrayOf(
       PropTypes.shape({
-        selector: PropTypes.string.isRequired,
+        selector: PropTypes.string,
         content: PropTypes.oneOfType([
           PropTypes.node,
           PropTypes.element,
@@ -157,7 +157,7 @@ class TourPortal extends Component {
     const { steps } = this.props
     const { current } = this.state
     const step = steps[current]
-    const node = document.querySelector(step.selector)
+    const node = step.selector ? document.querySelector(step.selector) : null
 
     const stepCallback = o => {
       if (step.action && typeof step.action === 'function') {
@@ -212,8 +212,11 @@ class TourPortal extends Component {
       this.calculateNode(node, step.position, cb)
     } else {
       this.setState(setNodeSate(null, this.helper, step.position), stepCallback)
-      console.warn(`Doesn't found a DOM node \`${step.selector}\`.
-Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
+
+      step.selector && console.warn(
+        `Doesn't found a DOM node '${step.selector}'.
+        Please check the 'steps' Tour prop Array at position: ${current + 1}.`
+      )
     }
   }
 
@@ -472,7 +475,7 @@ Please check the \`steps\` Tour prop Array at position: ${current + 1}.`)
                 <Navigation>
                   {steps.map((s, i) => (
                     <Dot
-                      key={`${s.selector}_${i}`}
+                      key={`${s.selector ? s.selector : 'undef'}_${i}`}
                       onClick={() => this.gotoStep(i)}
                       current={current}
                       index={i}
