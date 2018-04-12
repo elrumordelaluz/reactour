@@ -62,19 +62,23 @@ const steps = [
 | `className` | Custom class to add to the **helper** | `string` |  |  |
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
 | `disableInteraction` | Isn't possible to interact with highlighted elements | `bool` |  |  |
-| `getCurrentStep` | Function triggered each time current step change  | `func` | `step => { /* 'step' is the current step number */ }` |  |
+| `disableKeyboardNavigation` | Isn't possible to interact with keyboard arrows | `bool` |  |  |
+| `disableNavigationDotsInteraction` | Isn't possible to interact with helper dots | `bool` |  |  |
+| `getCurrentStep` | Function triggered each time current step change  | `func` | `step => { /* 'step' is the current step index */ }` |  |
 | `goToStep` | Programmatically change current step | `number` |  |  |
 | `highlightedMaskClassName` | Custom class name for element which is overlaid target element | `string` |  |  |
 | `inViewThreshold` | Scroll element to show when is outiside _viewport_ adding this threshold value | `number` |  |  |
 | `isOpen` | You know… | `bool` |  | ✅ |
-| `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `string` |  |  |
+| `lastStepNextButton` | Change _Next_ button in last step into a custom button to close the _Tour_ | `node` |  |  |
 | `maskClassName` | Custom class to add to the **mask** | `string` |  |  |
 | `maskSpace` | Padding between elemente showed and **mask** | `number` | `10`  |  |
-| `nextButton` | Next navigation button text | `string` |  |  |
+| `nextButton` | Next navigation button text | `node` |  |  |
+| `nextStep` | Override default `nextStep` function to use a custom one | `func` |  |  |
 | `onAfterOpen` | Function triggered after open | `func` | `() => { document.body.style.overflowY = 'hidden' }`  |  |
 | `onBeforeClose` | Function triggered before close | `func` | `() => { document.body.style.overflowY = 'auto' }`  |  |
 | `onRequestClose` | Function triggered to close | `func` |  |  |
-| `prevButton` | Prev navigation button text | `string` |  |  |
+| `prevButton` | Prev navigation button text | `node` |  |  |
+| `prevStep` | Override default `prevStep` function to use a custom one | `func` |  |  |
 | `scrollDuration` | Smooth scroll duration when positioning the target element | `number` | `1` |  |
 | `scrollOffset` | Offset when positioning the target element | `number` | calculates the vertical center of the page |  |
 | `showButtons` | Show **helper** navigation butons | `bool` | `true` |  |
@@ -88,7 +92,7 @@ const steps = [
 
 ```js
 steps: PropTypes.arrayOf(PropTypes.shape({
-  'selector': PropTypes.string.isRequired,
+  'selector': PropTypes.string,
   'content': PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.element,
