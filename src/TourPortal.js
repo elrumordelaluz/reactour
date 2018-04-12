@@ -8,14 +8,10 @@ import {
   Close,
   Guide,
   Badge,
-  TopMask,
-  RightMask,
-  BottomMask,
-  LeftMask,
-  ElementMask,
   Controls,
   Navigation,
   Dot,
+  SvgMask,
 } from './components/index'
 import * as hx from './helpers'
 
@@ -64,6 +60,7 @@ class TourPortal extends Component {
     disableInteraction: PropTypes.bool,
     disableNavigationDotsInteraction: PropTypes.bool,
     disableKeyboardNavigation: PropTypes.bool,
+    rounded: PropTypes.number,
   }
 
   static defaultProps = {
@@ -81,6 +78,7 @@ class TourPortal extends Component {
     maskSpace: 10,
     updateDelay: 1,
     disableInteraction: false,
+    rounded: 0,
   }
 
   constructor() {
@@ -271,7 +269,7 @@ class TourPortal extends Component {
 
   maskClickHandler = e => {
     const { closeWithMask, onRequestClose } = this.props
-    if (closeWithMask) {
+    if (closeWithMask && !e.target.classList.contains(CN.mask.disableInteraction)) {
       onRequestClose(e)
     }
   }
@@ -366,6 +364,7 @@ class TourPortal extends Component {
       disableNavigationDotsInteraction,
       nextStep,
       prevStep,
+      rounded,
     } = this.props
 
     const {
@@ -394,45 +393,20 @@ class TourPortal extends Component {
             className={cn(CN.mask.base, {
               [CN.mask.isOpen]: isOpen,
             })}>
-            <TopMask
-              targetTop={targetTop}
-              padding={maskSpace}
-              className={maskClassName}
-            />
-            <RightMask
-              targetTop={targetTop}
-              targetLeft={targetLeft}
+            <SvgMask
+              windowWidth={windowWidth}
+              windowHeight={windowHeight}
               targetWidth={targetWidth}
               targetHeight={targetHeight}
-              windowWidth={windowWidth}
-              padding={maskSpace}
-              className={maskClassName}
-            />
-            <BottomMask
-              targetHeight={targetHeight}
-              targetTop={targetTop}
-              windowHeight={windowHeight}
-              padding={maskSpace}
-              className={maskClassName}
-            />
-            <LeftMask
-              targetHeight={targetHeight}
               targetTop={targetTop}
               targetLeft={targetLeft}
               padding={maskSpace}
+              rounded={rounded}
               className={maskClassName}
+              disableInteraction={disableInteraction}
+              disableInteractionClassName={CN.mask.disableInteraction}
             />
           </div>
-          {disableInteraction && (
-            <ElementMask
-              targetTop={targetTop}
-              targetLeft={targetLeft}
-              targetWidth={targetWidth}
-              targetHeight={targetHeight}
-              padding={maskSpace}
-              className={highlightedMaskClassName}
-            />
-          )}
           <Guide
             innerRef={c => (this.helper = c)}
             targetHeight={targetHeight}
@@ -450,6 +424,7 @@ class TourPortal extends Component {
             tabIndex={-1}
             current={current}
             style={steps[current].style ? steps[current].style : {}}
+            rounded={rounded}
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}>
@@ -532,6 +507,7 @@ const CN = {
   mask: {
     base: 'reactour__mask',
     isOpen: 'reactour__mask--is-open',
+    disableInteraction: 'reactour__mask--disable-interaction',
   },
   helper: {
     base: 'reactour__helper',

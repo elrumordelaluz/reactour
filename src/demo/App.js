@@ -45,6 +45,7 @@ class App extends Component {
           isOpen={isTourOpen}
           maskClassName="mask"
           className="helper"
+          rounded={5}
         />
       </div>
     )
@@ -62,7 +63,7 @@ const tourConfig = [
   },
   {
     selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everithing during the Tour. 
+    content: `Keep in mind that you could try and test everything during the Tour.
       For example, try selecting the highlighted text…`,
   },
   {

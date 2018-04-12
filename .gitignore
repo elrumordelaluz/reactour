@@ -3,3 +3,4 @@ npm-debug.log
 /dist
 /lib
 .idea
+.DS_Store

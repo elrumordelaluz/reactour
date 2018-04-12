@@ -16,6 +16,7 @@ const Guide = styled.div`
   min-width: 150px;
   outline: 0;
   padding-right: 40px;
+  border-radius: ${props => props.rounded}px;
 
   transform: ${props => {
     const {
