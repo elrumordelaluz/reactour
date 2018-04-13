@@ -1,0 +1,30 @@
+{
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": ["error", {
+            "singleQuote": true,
+            "trailingComma": "es5",
+            "bracketSpacing": true,
+            "tabWidth": 4,
+            "printWidth": 120,
+            "semi": false
+        }]
+    },
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "extends": [
+        "prettier"
+    ]
+}

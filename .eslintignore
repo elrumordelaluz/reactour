@@ -1,0 +1,7 @@
+/node_modules
+/docs
+/dist
+/lib
+.idea
+.DS_Store
+/webpack.config.babel.js

@@ -113,7 +113,7 @@ const steps = [
     selector: '[data-tour="my-first-step"]',
     content: ({ goTo, inDOM }) => (
       <div>
-        Lorem ipsum <button onClick={() => goTo(4)}>Got to Step 5</button>
+        Lorem ipsum <button onClick={() => goTo(4)}>Go to Step 5</button>
         <br />{ inDOM && '🎉 Look at your step!'}
       </div>
     ),
