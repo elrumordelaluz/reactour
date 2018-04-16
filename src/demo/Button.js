@@ -17,25 +17,30 @@ const styles = `
     }
 `
 const Button = styled.button`
-    ${styles};
+  ${styles};
 `
 const Link = styled.a`
-    ${styles};
+  ${styles};
 `
 
 const StyledButton = styled(Button)`
-    font-size: ${props => (props.h ? headingSizes[props.h - 1] : 'inherit')};
-    background-color: ${props => themeColors[props.color] || themeColors.dark};
+  font-size: ${props => (props.h ? headingSizes[props.h - 1] : 'inherit')};
+  background-color: ${props => themeColors[props.color] || themeColors.dark};
 `
 
 const StyledLink = styled(Link)`
-    text-decoration: none;
-    font-size: ${props => (props.h ? headingSizes[props.h - 1] : 'inherit')};
-    background: ${props => (props.bg ? themeColors[props.bg] : 'none')};
-    color: ${props => (props.bg ? 'white' : props.color ? themeColors[props.color] : themeColors.black)};
-    ${props =>
-        props.nospaces &&
-        `
+  text-decoration: none;
+  font-size: ${props => (props.h ? headingSizes[props.h - 1] : 'inherit')};
+  background: ${props => (props.bg ? themeColors[props.bg] : 'none')};
+  color: ${props =>
+    props.bg
+      ? 'white'
+      : props.color
+        ? themeColors[props.color]
+        : themeColors.black};
+  ${props =>
+    props.nospaces &&
+    `
     display: inline-block;
     padding: 0;
     margin: 0;

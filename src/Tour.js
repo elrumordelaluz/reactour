@@ -8,73 +8,77 @@ const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer
 const SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {}
 
 function getParentElement(parentSelector) {
-    return parentSelector()
+  return parentSelector()
 }
 
 class Tour extends Component {
-    static propTypes = {
-        isOpen: PropTypes.bool.isRequired,
-        portalClassName: PropTypes.string,
-        appElement: PropTypes.instanceOf(SafeHTMLElement),
-        onAfterOpen: PropTypes.func,
-        onRequestClose: PropTypes.func,
-        closeWithMask: PropTypes.bool,
-        parentSelector: PropTypes.func,
+  static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    portalClassName: PropTypes.string,
+    appElement: PropTypes.instanceOf(SafeHTMLElement),
+    onAfterOpen: PropTypes.func,
+    onRequestClose: PropTypes.func,
+    closeWithMask: PropTypes.bool,
+    parentSelector: PropTypes.func,
+  }
+
+  static defaultProps = {
+    isOpen: false,
+    portalClassName: 'reactour-portal',
+    closeWithMask: true,
+    parentSelector() {
+      return document.body
+    },
+  }
+
+  componentDidMount() {
+    this.node = document.createElement('div')
+    this.node.className = this.props.portalClassName
+    const parent = getParentElement(this.props.parentSelector)
+    parent.appendChild(this.node)
+    this.renderPortal(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const currentParent = getParentElement(this.props.parentSelector)
+    const newParent = getParentElement(nextProps.parentSelector)
+
+    if (newParent !== currentParent) {
+      currentParent.removeChild(this.node)
+      newParent.appendChild(this.node)
     }
 
-    static defaultProps = {
-        isOpen: false,
-        portalClassName: 'reactour-portal',
-        closeWithMask: true,
-        parentSelector() {
-            return document.body
-        },
+    this.renderPortal(nextProps)
+  }
+
+  componentWillUnmount() {
+    this.removePortal()
+  }
+
+  renderPortal(props) {
+    if (props.isOpen) {
+      document.body.classList.add('reactour__body')
+    } else {
+      document.body.classList.remove('reactour__body')
     }
 
-    componentDidMount() {
-        this.node = document.createElement('div')
-        this.node.className = this.props.portalClassName
-        const parent = getParentElement(this.props.parentSelector)
-        parent.appendChild(this.node)
-        this.renderPortal(this.props)
-    }
+    this.portal = renderSubtreeIntoContainer(
+      this,
+      <TourPortal {...props} />,
+      this.node
+    )
+  }
 
-    componentWillReceiveProps(nextProps) {
-        const currentParent = getParentElement(this.props.parentSelector)
-        const newParent = getParentElement(nextProps.parentSelector)
+  removePortal() {
+    ReactDOM.unmountComponentAtNode(this.node)
+    const parent = getParentElement(this.props.parentSelector)
+    parent.removeChild(this.node)
+    document.body.classList.remove('reactour__body')
+  }
 
-        if (newParent !== currentParent) {
-            currentParent.removeChild(this.node)
-            newParent.appendChild(this.node)
-        }
-
-        this.renderPortal(nextProps)
-    }
-
-    componentWillUnmount() {
-        this.removePortal()
-    }
-
-    renderPortal(props) {
-        if (props.isOpen) {
-            document.body.classList.add('reactour__body')
-        } else {
-            document.body.classList.remove('reactour__body')
-        }
-
-        this.portal = renderSubtreeIntoContainer(this, <TourPortal {...props} />, this.node)
-    }
-
-    removePortal() {
-        ReactDOM.unmountComponentAtNode(this.node)
-        const parent = getParentElement(this.props.parentSelector)
-        parent.removeChild(this.node)
-        document.body.classList.remove('reactour__body')
-    }
-
-    render() {
-        return null
-    }
+  render() {
+    return null
+  }
 }
 
 export default Tour
