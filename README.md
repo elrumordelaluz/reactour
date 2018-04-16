@@ -79,6 +79,7 @@ const steps = [
 | `onRequestClose` | Function triggered to close | `func` |  |  |
 | `prevButton` | Prev navigation button text | `node` |  |  |
 | `prevStep` | Override default `prevStep` function to use a custom one | `func` |  |  |
+| `rounded` | Beautify helper + mask with border-radius (in px) | `number` | `0` |  |
 | `scrollDuration` | Smooth scroll duration when positioning the target element | `number` | `1` |  |
 | `scrollOffset` | Offset when positioning the target element | `number` | calculates the vertical center of the page |  |
 | `showButtons` | Show **helper** navigation butons | `bool` | `true` |  |
