@@ -225,7 +225,7 @@ class TourPortal extends Component {
         console.warn(
           `Doesn't found a DOM node '${step.selector}'.
                     Please check the 'steps' Tour prop Array at position: ${current +
-                      1}.`
+          1}.`
         )
     }
   }
@@ -430,7 +430,7 @@ class TourPortal extends Component {
               disableInteraction={disableInteraction}
               disableInteractionClassName={`${
                 CN.mask.disableInteraction
-              } ${highlightedMaskClassName}`}
+                } ${highlightedMaskClassName}`}
             />
           </div>
           <Guide
@@ -459,10 +459,10 @@ class TourPortal extends Component {
             {steps[current] &&
               (typeof steps[current].content === 'function'
                 ? steps[current].content({
-                    goTo: this.gotoStep,
-                    inDOM,
-                    step: current + 1,
-                  })
+                  goTo: this.gotoStep,
+                  inDOM,
+                  step: current + 1,
+                })
                 : steps[current].content)}
             {showNumber && (
               <Badge>
@@ -471,55 +471,57 @@ class TourPortal extends Component {
                   : current + 1}
               </Badge>
             )}
-            <Controls>
-              {showButtons && (
-                <Arrow
-                  onClick={
-                    typeof prevStep === 'function' ? prevStep : this.prevStep
-                  }
-                  disabled={current === 0}
-                  label={prevButton ? prevButton : null}
-                />
-              )}
+            {(showButtons || showNavigation) && (
+              <Controls>
+                {showButtons && (
+                  <Arrow
+                    onClick={
+                      typeof prevStep === 'function' ? prevStep : this.prevStep
+                    }
+                    disabled={current === 0}
+                    label={prevButton ? prevButton : null}
+                  />
+                )}
 
-              {showNavigation && (
-                <Navigation>
-                  {steps.map((s, i) => (
-                    <Dot
-                      key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                      onClick={() => this.gotoStep(i)}
-                      current={current}
-                      index={i}
-                      disabled={current === i || disableDotsNavigation}
-                      showNumber={showNavigationNumber}
-                    />
-                  ))}
-                </Navigation>
-              )}
+                {showNavigation && (
+                  <Navigation>
+                    {steps.map((s, i) => (
+                      <Dot
+                        key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                        onClick={() => this.gotoStep(i)}
+                        current={current}
+                        index={i}
+                        disabled={current === i || disableDotsNavigation}
+                        showNumber={showNavigationNumber}
+                      />
+                    ))}
+                  </Navigation>
+                )}
 
-              {showButtons && (
-                <Arrow
-                  onClick={
-                    current === steps.length - 1
-                      ? lastStepNextButton
-                        ? onRequestClose
-                        : () => {}
-                      : typeof nextStep === 'function'
-                        ? nextStep
-                        : this.nextStep
-                  }
-                  disabled={!lastStepNextButton && current === steps.length - 1}
-                  inverted
-                  label={
-                    lastStepNextButton && current === steps.length - 1
-                      ? lastStepNextButton
-                      : nextButton
-                        ? nextButton
-                        : null
-                  }
-                />
-              )}
-            </Controls>
+                {showButtons && (
+                  <Arrow
+                    onClick={
+                      current === steps.length - 1
+                        ? lastStepNextButton
+                          ? onRequestClose
+                          : () => { }
+                        : typeof nextStep === 'function'
+                          ? nextStep
+                          : this.nextStep
+                    }
+                    disabled={!lastStepNextButton && current === steps.length - 1}
+                    inverted
+                    label={
+                      lastStepNextButton && current === steps.length - 1
+                        ? lastStepNextButton
+                        : nextButton
+                          ? nextButton
+                          : null
+                    }
+                  />
+                )}
+              </Controls>
+            )}
 
             <Close onClick={onRequestClose} />
           </Guide>
@@ -556,16 +558,16 @@ const setNodeSate = (node, helper, position) => {
   const attrs = node
     ? hx.getNodeRect(node)
     : {
-        top: h + 10,
-        right: w / 2 + 9,
-        bottom: h / 2 + 9,
-        left: w / 2 - helperWidth / 2,
-        width: 0,
-        height: 0,
-        w,
-        h,
-        helperPosition: 'center',
-      }
+      top: h + 10,
+      right: w / 2 + 9,
+      bottom: h / 2 + 9,
+      left: w / 2 - helperWidth / 2,
+      width: 0,
+      height: 0,
+      w,
+      h,
+      helperPosition: 'center',
+    }
   return function update() {
     return {
       w,
