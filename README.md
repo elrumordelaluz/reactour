@@ -58,12 +58,13 @@ const steps = [
 
 | Prop  | Desc          | Type  | Default | Is Required |
 | ----- | ------------- | ----- | ------- | ------ |
+| `accentColor` | Change `--reactour-accent` color (helper number + dots) | `string` | `#007aff` |  |
 | `badgeContent` | Function to customize Badge content `(current, total) => {} ` | `func` |  |  |
 | `className` | Custom class to add to the **helper** | `string` |  |  |
 | `closeWithMask` | Close clicking the **mask** | `bool` | `true` |  |
+| `disableDotsNavigation` | Isn't possible to interact with helper dots | `bool` |  |  |
 | `disableInteraction` | Isn't possible to interact with highlighted elements | `bool` |  |  |
 | `disableKeyboardNavigation` | Isn't possible to interact with keyboard arrows | `bool` |  |  |
-| `disableNavigationDotsInteraction` | Isn't possible to interact with helper dots | `bool` |  |  |
 | `getCurrentStep` | Function triggered each time current step change  | `func` | `step => { /* 'step' is the current step index */ }` |  |
 | `goToStep` | Programmatically change current step | `number` |  |  |
 | `highlightedMaskClassName` | Custom class name for element which is overlaid target element | `string` |  |  |

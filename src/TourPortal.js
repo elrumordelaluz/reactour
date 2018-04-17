@@ -58,9 +58,10 @@ class TourPortal extends Component {
     update: PropTypes.string,
     updateDelay: PropTypes.number,
     disableInteraction: PropTypes.bool,
-    disableNavigationDotsInteraction: PropTypes.bool,
+    disableDotsNavigation: PropTypes.bool,
     disableKeyboardNavigation: PropTypes.bool,
     rounded: PropTypes.number,
+    accentColor: PropTypes.string,
   }
 
   static defaultProps = {
@@ -79,6 +80,7 @@ class TourPortal extends Component {
     updateDelay: 1,
     disableInteraction: false,
     rounded: 0,
+    accentColor: '#007aff',
   }
 
   constructor() {
@@ -381,10 +383,11 @@ class TourPortal extends Component {
       badgeContent,
       highlightedMaskClassName,
       disableInteraction,
-      disableNavigationDotsInteraction,
+      disableDotsNavigation,
       nextStep,
       prevStep,
       rounded,
+      accentColor,
     } = this.props
 
     const {
@@ -451,6 +454,7 @@ class TourPortal extends Component {
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}
+            accentColor={accentColor}
           >
             {steps[current] &&
               (typeof steps[current].content === 'function'
@@ -486,9 +490,7 @@ class TourPortal extends Component {
                       onClick={() => this.gotoStep(i)}
                       current={current}
                       index={i}
-                      disabled={
-                        current === i || disableNavigationDotsInteraction
-                      }
+                      disabled={current === i || disableDotsNavigation}
                       showNumber={showNavigationNumber}
                     />
                   ))}

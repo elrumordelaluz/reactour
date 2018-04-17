@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import * as hx from '../helpers'
 
 const Guide = styled.div`
-  --reactour-accent: #007aff;
+  --reactour-accent: ${props => props.accentColor};
   position: fixed;
   background-color: #fff;
   transition: transform 0.3s;

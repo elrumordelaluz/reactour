@@ -34,6 +34,8 @@ class App extends Component {
 
   render() {
     const { isTourOpen, isShowingMore } = this.state
+    const accentColor = '#5cb7b7'
+
     return (
       <div>
         <Demo
@@ -48,6 +50,7 @@ class App extends Component {
           maskClassName="mask"
           className="helper"
           rounded={5}
+          accentColor={accentColor}
         />
       </div>
     )
