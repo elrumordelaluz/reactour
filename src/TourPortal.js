@@ -471,55 +471,59 @@ class TourPortal extends Component {
                   : current + 1}
               </Badge>
             )}
-            <Controls>
-              {showButtons && (
-                <Arrow
-                  onClick={
-                    typeof prevStep === 'function' ? prevStep : this.prevStep
-                  }
-                  disabled={current === 0}
-                  label={prevButton ? prevButton : null}
-                />
-              )}
+            {(showButtons || showNavigation) && (
+              <Controls>
+                {showButtons && (
+                  <Arrow
+                    onClick={
+                      typeof prevStep === 'function' ? prevStep : this.prevStep
+                    }
+                    disabled={current === 0}
+                    label={prevButton ? prevButton : null}
+                  />
+                )}
 
-              {showNavigation && (
-                <Navigation>
-                  {steps.map((s, i) => (
-                    <Dot
-                      key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                      onClick={() => this.gotoStep(i)}
-                      current={current}
-                      index={i}
-                      disabled={current === i || disableDotsNavigation}
-                      showNumber={showNavigationNumber}
-                    />
-                  ))}
-                </Navigation>
-              )}
+                {showNavigation && (
+                  <Navigation>
+                    {steps.map((s, i) => (
+                      <Dot
+                        key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                        onClick={() => this.gotoStep(i)}
+                        current={current}
+                        index={i}
+                        disabled={current === i || disableDotsNavigation}
+                        showNumber={showNavigationNumber}
+                      />
+                    ))}
+                  </Navigation>
+                )}
 
-              {showButtons && (
-                <Arrow
-                  onClick={
-                    current === steps.length - 1
-                      ? lastStepNextButton
-                        ? onRequestClose
-                        : () => {}
-                      : typeof nextStep === 'function'
-                        ? nextStep
-                        : this.nextStep
-                  }
-                  disabled={!lastStepNextButton && current === steps.length - 1}
-                  inverted
-                  label={
-                    lastStepNextButton && current === steps.length - 1
-                      ? lastStepNextButton
-                      : nextButton
-                        ? nextButton
-                        : null
-                  }
-                />
-              )}
-            </Controls>
+                {showButtons && (
+                  <Arrow
+                    onClick={
+                      current === steps.length - 1
+                        ? lastStepNextButton
+                          ? onRequestClose
+                          : () => {}
+                        : typeof nextStep === 'function'
+                          ? nextStep
+                          : this.nextStep
+                    }
+                    disabled={
+                      !lastStepNextButton && current === steps.length - 1
+                    }
+                    inverted
+                    label={
+                      lastStepNextButton && current === steps.length - 1
+                        ? lastStepNextButton
+                        : nextButton
+                          ? nextButton
+                          : null
+                    }
+                  />
+                )}
+              </Controls>
+            )}
 
             <Close onClick={onRequestClose} />
           </Guide>
