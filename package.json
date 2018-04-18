@@ -1,6 +1,6 @@
 {
   "name": "reactour",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Tourist Guide into your React Components",
   "main": "dist/index.js",
   "scripts": {
@@ -30,9 +30,11 @@
     "product-intro",
     "presentation"
   ],
-  "files": ["dist", "README.md"],
-  "author":
-    "Lionel T <elrumordelaluz@hotmail.com> (https://elrumordelaluz.com/)",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": "Lionel T <elrumordelaluz@hotmail.com> (https://elrumordelaluz.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/elrumordelaluz/reactour/issues"
@@ -67,7 +69,11 @@
     "react-dom": "^15.3.0 || ^16.0.0"
   },
   "babel": {
-    "presets": ["react", "es2015", "stage-2"]
+    "presets": [
+      "react",
+      "es2015",
+      "stage-2"
+    ]
   },
   "dependencies": {
     "classnames": "2.2.5",
