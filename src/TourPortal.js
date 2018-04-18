@@ -102,9 +102,9 @@ class TourPortal extends Component {
   }
 
   componentDidMount() {
-    const { isOpen } = this.props
+    const { isOpen, startAt } = this.props
     if (isOpen) {
-      this.open()
+      this.open(startAt)
     }
   }
 
@@ -112,7 +112,7 @@ class TourPortal extends Component {
     const { isOpen, update, updateDelay } = this.props
 
     if (!isOpen && nextProps.isOpen) {
-      this.open(nextProps)
+      this.open(nextProps.startAt)
     } else if (isOpen && !nextProps.isOpen) {
       this.close()
     }
@@ -141,8 +141,8 @@ class TourPortal extends Component {
     }
   }
 
-  open(nextProps) {
-    const { onAfterOpen, startAt } = nextProps !== undefined ? nextProps : this.props
+  open(startAt) {
+    const { onAfterOpen } = this.props
     this.setState(
       prevState => ({
         isOpen: true,
