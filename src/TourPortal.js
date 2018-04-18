@@ -112,7 +112,7 @@ class TourPortal extends Component {
     const { isOpen, update, updateDelay } = this.props
 
     if (!isOpen && nextProps.isOpen) {
-      this.open()
+      this.open(nextProps)
     } else if (isOpen && !nextProps.isOpen) {
       this.close()
     }
@@ -141,8 +141,8 @@ class TourPortal extends Component {
     }
   }
 
-  open() {
-    const { onAfterOpen, startAt } = this.props
+  open(nextProps) {
+    const { onAfterOpen, startAt } = nextProps !== undefined ? nextProps : this.props
     this.setState(
       prevState => ({
         isOpen: true,
