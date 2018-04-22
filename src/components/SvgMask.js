@@ -25,6 +25,7 @@ export default function SvgMask({
   rounded,
   disableInteraction,
   disableInteractionClassName,
+  className,
 }) {
   const width = hx.safe(targetWidth + padding * 2)
   const height = hx.safe(targetHeight + padding * 2)
@@ -37,6 +38,7 @@ export default function SvgMask({
         width={windowWidth}
         height={windowHeight}
         xmlns="http://www.w3.org/2000/svg"
+        className={className}
       >
         <defs>
           <mask id="mask-main">
