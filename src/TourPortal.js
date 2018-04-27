@@ -465,14 +465,14 @@ class TourPortal extends Component {
                   })
                 : steps[current].content)}
             {showNumber && (
-              <Badge>
+              <Badge data-tour-elem="badge">
                 {typeof badgeContent === 'function'
                   ? badgeContent(current + 1, steps.length)
                   : current + 1}
               </Badge>
             )}
             {(showButtons || showNavigation) && (
-              <Controls>
+              <Controls data-tour-elem="controls">
                 {showButtons && (
                   <Arrow
                     onClick={
@@ -484,7 +484,7 @@ class TourPortal extends Component {
                 )}
 
                 {showNavigation && (
-                  <Navigation>
+                  <Navigation data-tour-elem="navigation">
                     {steps.map((s, i) => (
                       <Dot
                         key={`${s.selector ? s.selector : 'undef'}_${i}`}
@@ -493,6 +493,7 @@ class TourPortal extends Component {
                         index={i}
                         disabled={current === i || disableDotsNavigation}
                         showNumber={showNavigationNumber}
+                        data-tour-elem="dot"
                       />
                     ))}
                   </Navigation>
