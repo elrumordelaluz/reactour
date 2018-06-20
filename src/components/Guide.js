@@ -64,16 +64,18 @@ const Guide = styled.div`
           ? targetRight - helperWidth
           : targetRight - helperWidth + padding
         : targetLeft - padding
+      const x = hX > padding ? hX : padding
       const hY = hx.isOutsideY(targetTop + helperHeight, windowHeight)
         ? hx.isOutsideY(targetBottom + padding, windowHeight)
           ? targetBottom - helperHeight
           : targetBottom - helperHeight + padding
         : targetTop - padding
+      const y = hY > padding ? hY : padding
       const coords = {
-        top: [hX, targetTop - helperHeight - padding * 2],
-        right: [targetRight + padding * 2, hY],
-        bottom: [hX, targetBottom + padding * 2],
-        left: [targetLeft - helperWidth - padding * 2, hY],
+        top: [x, targetTop - helperHeight - padding * 2],
+        right: [targetRight + padding * 2, y],
+        bottom: [x, targetBottom + padding * 2],
+        left: [targetLeft - helperWidth - padding * 2, y],
         center: [
           windowWidth / 2 - helperWidth / 2,
           windowHeight / 2 - helperHeight / 2,
