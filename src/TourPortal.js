@@ -219,11 +219,11 @@ class TourPortal extends Component {
       const cb = () => stepCallback(node)
       this.calculateNode(node, step.position, cb)
     } else {
-      this.setState(setNodeSate(null, this.helper, step.position), stepCallback)
+      this.setState(setNodeState(null, this.helper, step.position), stepCallback)
 
       step.selector &&
         console.warn(
-          `Doesn't found a DOM node '${step.selector}'.
+          `Doesn't find a DOM node '${step.selector}'.
                     Please check the 'steps' Tour prop Array at position: ${current +
                       1}.`
         )
@@ -248,11 +248,11 @@ class TourPortal extends Component {
         duration: scrollDuration,
         offset: scrollOffset || -(h / 2),
         callback: nd => {
-          this.setState(setNodeSate(nd, this.helper, stepPosition), cb)
+          this.setState(setNodeState(nd, this.helper, stepPosition), cb)
         },
       })
     } else {
-      this.setState(setNodeSate(node, this.helper, stepPosition), cb)
+      this.setState(setNodeState(node, this.helper, stepPosition), cb)
     }
   }
 
@@ -548,7 +548,7 @@ const CN = {
   },
 }
 
-const setNodeSate = (node, helper, position) => {
+const setNodeState = (node, helper, position) => {
   const w = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth || 0
