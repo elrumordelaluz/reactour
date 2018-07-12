@@ -18,6 +18,21 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('keyup', this.keyHandling)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.keyHandling)
+  }
+
+  keyHandling = e => {
+    if (e.keyCode === 75) {
+      e.preventDefault()
+      this.openTour()
+    }
+  }
+
   toggleShowMore = () => {
     this.setState(prevState => ({
       isShowingMore: !prevState.isShowingMore,
