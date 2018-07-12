@@ -20,7 +20,9 @@ export const inView = ({ top, right, bottom, left, w, h, threshold = 0 }) => {
   )
 }
 
-export const isBody = node => node === document.querySelector('body')
+export const isBody = node =>
+  node === document.querySelector('body') ||
+  node === document.querySelector('html')
 export const isHoriz = pos => /(left|right)/.test(pos)
 export const isOutsideX = (val, windowWidth) => val > windowWidth
 export const isOutsideY = (val, windowHeight) => val > windowHeight

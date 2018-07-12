@@ -219,7 +219,10 @@ class TourPortal extends Component {
       const cb = () => stepCallback(node)
       this.calculateNode(node, step.position, cb)
     } else {
-      this.setState(setNodeState(null, this.helper, step.position), stepCallback)
+      this.setState(
+        setNodeState(null, this.helper, step.position),
+        stepCallback
+      )
 
       step.selector &&
         console.warn(
