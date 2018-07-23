@@ -102,6 +102,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
   'position': PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
   'action': PropTypes.func,
   'style': PropTypes.object,
+  'stepInteraction': PropTypes.bool,
 })),
 ```
 

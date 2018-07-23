@@ -53,6 +53,7 @@ class TourPortal extends Component {
         position: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
         action: PropTypes.func,
         style: PropTypes.object,
+        stepInteraction: PropTypes.bool,
       })
     ),
     update: PropTypes.string,
@@ -430,7 +431,11 @@ class TourPortal extends Component {
               padding={maskSpace}
               rounded={rounded}
               className={maskClassName}
-              disableInteraction={disableInteraction}
+              disableInteraction={
+                disableInteraction && steps[current].stepInteraction
+                  ? !steps[current].stepInteraction
+                  : disableInteraction
+              }
               disableInteractionClassName={`${
                 CN.mask.disableInteraction
               } ${highlightedMaskClassName}`}
