@@ -8,8 +8,8 @@
   <a href="https://elrumordelaluz.github.io/reactour/">Demo</a>
 </p>
 <p align="center">
-  <a href="https://codesandbox.io/s/1ql2n6l9o3?module=%2FApp.js">
-    <img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit 1ql2n6l9o3">
+  <a href="https://codesandbox.io/s/6z56m8x18k?module=%2FApp.js">
+    <img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit 6z56m8x18k">
   </a>
 </p>
 
