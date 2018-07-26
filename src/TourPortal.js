@@ -140,6 +140,12 @@ class TourPortal extends Component {
     if (isOpen) {
       this.close()
     }
+    if (this.state.observer) {
+      this.state.observer.disconnect()
+      this.setState({
+        observer: null,
+      })
+    }
   }
 
   open(startAt) {
@@ -178,32 +184,39 @@ class TourPortal extends Component {
       const target = document.querySelector(step.observe)
       const config = { attributes: true, childList: true, characterData: true }
       this.setState(
-        {
-          observer: new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-              if (
-                mutation.type === 'childList' &&
-                mutation.addedNodes.length > 0
-              ) {
-                const cb = () => stepCallback(mutation.addedNodes[0])
-                setTimeout(
-                  () =>
-                    this.calculateNode(
-                      mutation.addedNodes[0],
-                      step.position,
-                      cb
-                    ),
-                  100
-                )
-              } else if (
-                mutation.type === 'childList' &&
-                mutation.removedNodes.length > 0
-              ) {
-                const cb = () => stepCallback(node)
-                this.calculateNode(node, step.position, cb)
-              }
-            })
-          }),
+        prevState => {
+          if (prevState.observer) {
+            setTimeout(() => {
+              prevState.observer.disconnect()
+            }, 0);
+          }
+          return {
+            observer: new MutationObserver(mutations => {
+              mutations.forEach(mutation => {
+                if (
+                  mutation.type === 'childList' &&
+                  mutation.addedNodes.length > 0
+                ) {
+                  const cb = () => stepCallback(mutation.addedNodes[0])
+                  setTimeout(
+                    () =>
+                      this.calculateNode(
+                        mutation.addedNodes[0],
+                        step.position,
+                        cb
+                      ),
+                    100
+                  )
+                } else if (
+                  mutation.type === 'childList' &&
+                  mutation.removedNodes.length > 0
+                ) {
+                  const cb = () => stepCallback(node)
+                  this.calculateNode(node, step.position, cb)
+                }
+              })
+            }),
+          }
         },
         () => this.state.observer.observe(target, config)
       )
