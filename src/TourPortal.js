@@ -184,7 +184,7 @@ class TourPortal extends Component {
         prevState => {
           if (prevState.observer) {
             setTimeout(() => {
-              //prevState.observer.disconnect()
+              prevState.observer.disconnect()
             }, 0);
           }
           return {
