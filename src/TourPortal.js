@@ -142,9 +142,6 @@ class TourPortal extends Component {
     }
     if (this.state.observer) {
       this.state.observer.disconnect()
-      this.setState({
-        observer: null,
-      })
     }
   }
 
@@ -187,7 +184,7 @@ class TourPortal extends Component {
         prevState => {
           if (prevState.observer) {
             setTimeout(() => {
-              prevState.observer.disconnect()
+              //prevState.observer.disconnect()
             }, 0);
           }
           return {
