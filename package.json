@@ -55,12 +55,12 @@
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
     "prettier": "1.13.7",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
-    "reshake": "1.1.0",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "reshake": "1.1.1",
     "rimraf": "2.6.2",
     "style-loader": "0.21.0",
-    "webpack": "4.16.1",
+    "webpack": "4.16.4",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.5"
   },
@@ -75,6 +75,6 @@
     "prop-types": "15.6.2",
     "scroll-smooth": "1.0.1",
     "scrollparent": "2.0.1",
-    "styled-components": "3.3.3"
+    "styled-components": "3.4.0"
   }
 }
