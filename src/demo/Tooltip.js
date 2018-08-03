@@ -4,7 +4,6 @@ import { themeColors } from './settings'
 export default styled.span`
   position: relative;
   color: ${themeColors.dark};
-  cursor: pointer;
 
   &:after {
     content: attr(data-tooltip);

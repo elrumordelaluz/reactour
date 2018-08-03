@@ -10,7 +10,6 @@ const styles = `
     font-family: ${fontFamily};
     margin-left: .25em;
     margin-right: .25em;
-    cursor: pointer;
 
     &:hover {
         opacity: .9;

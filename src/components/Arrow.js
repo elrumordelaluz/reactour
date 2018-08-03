@@ -8,12 +8,13 @@ const Label = styled.span`
   line-height: 1;
 `
 
-function Arrow({ className, onClick, inverted, label }) {
+function Arrow({ className, onClick, inverted, label, disabled }) {
   return (
     <SvgButton
       className={className}
       onClick={onClick}
       data-tour-elem={`${inverted ? 'right' : 'left'}-arrow`}
+      disabled={disabled}
     >
       {label ? (
         <Label>{label}</Label>
@@ -42,12 +43,10 @@ Arrow.propTypes = {
   onClick: PropTypes.func.isRequired,
   inverted: PropTypes.bool,
   label: PropTypes.node,
+  disabled: PropTypes.bool
 }
 
 export default styled(Arrow)`
-  display: block;
-  cursor: pointer;
-
   color: ${props => (props.disabled ? '#caccce' : '#646464')};
 
   ${props => (props.inverted ? 'margin-left: 24px;' : 'margin-right: 24px;')};

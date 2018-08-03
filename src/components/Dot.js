@@ -11,8 +11,7 @@ const Dot = styled.button`
   margin: 4px;
   outline: 0;
   transition: opacity 0.3s, transform 0.3s;
-  cursor: ${props =>
-    props.current === props.index || props.disabled ? 'default' : 'pointer'};
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   transform: scale(${props => (props.current === props.index ? 1.25 : 1)});
   color: ${props =>
     props.current === props.index ? 'var(--reactour-accent)' : '#caccce'};
