@@ -16,12 +16,14 @@
 ### Install
 
 ```
-npm i --save reactour
+npm i --save reactour styled-components
 ```
 
 ```
-yarn add reactour
+yarn add reactour styled-components
 ```
+
+<small>From `v1.8.6` [styled-components](https://www.styled-components.com/) it isn't bundled into the package.</small>
 
 ### Initialize
 
