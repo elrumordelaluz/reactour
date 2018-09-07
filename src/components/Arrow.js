@@ -43,7 +43,7 @@ Arrow.propTypes = {
   onClick: PropTypes.func.isRequired,
   inverted: PropTypes.bool,
   label: PropTypes.node,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 export default styled(Arrow)`
