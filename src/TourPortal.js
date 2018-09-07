@@ -185,7 +185,7 @@ class TourPortal extends Component {
           if (prevState.observer) {
             setTimeout(() => {
               prevState.observer.disconnect()
-            }, 0);
+            }, 0)
           }
           return {
             observer: new MutationObserver(mutations => {
