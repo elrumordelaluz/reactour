@@ -12,7 +12,6 @@ import {
   Navigation,
   Dot,
   SvgMask,
-  Children,
 } from './components/index'
 import * as hx from './helpers'
 
@@ -547,7 +546,7 @@ class TourPortal extends Component {
 
             <Close onClick={onRequestClose} />
           </Guide>
-          <Children children={this.props.children} />
+          {this.props.children}
         </div>
       )
     }
