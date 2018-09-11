@@ -546,6 +546,7 @@ class TourPortal extends Component {
 
             <Close onClick={onRequestClose} />
           </Guide>
+          {this.props.children}
         </div>
       )
     }
