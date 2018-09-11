@@ -19,6 +19,7 @@ class TourPortal extends Component {
   static propTypes = {
     badgeContent: PropTypes.func,
     highlightedMaskClassName: PropTypes.string,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
     className: PropTypes.string,
     closeWithMask: PropTypes.bool,
     inViewThreshold: PropTypes.number,

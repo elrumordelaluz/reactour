@@ -129,7 +129,8 @@ const tourConfig = [
       return (
         <div>
           If you wanna go anywhere, skipping places, it is absolutely possible.
-          <br />&quot;Oh, I forgot something inside the bus&hellip;&quot;{' '}
+          <br />
+          &quot;Oh, I forgot something inside the bus&hellip;&quot;{' '}
           <button
             style={{
               border: '1px solid #f7f7f7',
