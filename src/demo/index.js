@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './App'
+import AppTSX from './App.tsx'
 
-render(<App />, document.querySelector('.container'))
+render(<AppTSX />, document.querySelector('.container'))

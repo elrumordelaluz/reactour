@@ -20,6 +20,28 @@ module.exports = {
         },
       },
       {
+        test: /\.ts(x?)$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'ts-loader'
+          },
+          {
+             loader: require.resolve( 'tslint-loader' ),
+             options: {
+              tsConfigFile: 'tsconfig.json',
+              failOnHint: false,
+              typeCheck:true,
+              fix: true
+             }
+          },
+          {
+            loader: 'import-glob'
+          }
+        ],
+        exclude: /node_modules/
+      },
+      {
         test: /\.html$/,
         use: [
           {

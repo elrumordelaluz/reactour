@@ -1,0 +1,54 @@
+{
+    "compilerOptions": {
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": true,
+      "strict": true,
+      "noUnusedLocals": true,
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "module": "commonjs",
+      "target": "es5",
+      "jsx": "react",
+      "allowJs": true,
+      "esModuleInterop": true ,
+      "lib": [
+        "es2017",
+        "dom",
+        "es6",
+        "esnext",
+        "es2015.core",
+        "es2015.collection",
+        "es2015.generator",
+        "es2015.iterable",
+        "es2015.promise",
+        "es2015.proxy",
+        "es2015.reflect",
+        "es2015.symbol",
+        "es2015.symbol.wellknown",
+        "esnext.asynciterable"
+      ],
+      "types": [
+        "react",
+        "react-router-dom"
+      ]
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "build",
+      "scripts",
+      "acceptance-tests",
+      "webpack",
+      "jest",
+      "src/setupTests.ts"
+    ],
+    "tslint": {
+      "args": ["--project", "${folder}"]
+    }
+  }
