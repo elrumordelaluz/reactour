@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
@@ -101,6 +101,7 @@ class TourPortal extends Component {
       inDOM: false,
       observer: null,
     }
+    this.helper = createRef()
   }
 
   componentDidMount() {
@@ -155,7 +156,7 @@ class TourPortal extends Component {
       }),
       () => {
         this.showStep()
-        this.helper.focus()
+        this.helper.current.focus()
         if (onAfterOpen) {
           onAfterOpen()
         }
@@ -232,7 +233,7 @@ class TourPortal extends Component {
       this.calculateNode(node, step.position, cb)
     } else {
       this.setState(
-        setNodeState(null, this.helper, step.position),
+        setNodeState(null, this.helper.current, step.position),
         stepCallback
       )
 
@@ -263,11 +264,11 @@ class TourPortal extends Component {
         duration: scrollDuration,
         offset: scrollOffset || -(h / 2),
         callback: nd => {
-          this.setState(setNodeState(nd, this.helper, stepPosition), cb)
+          this.setState(setNodeState(nd, this.helper.current, stepPosition), cb)
         },
       })
     } else {
-      this.setState(setNodeState(node, this.helper, stepPosition), cb)
+      this.setState(setNodeState(node, this.helper.current, stepPosition), cb)
     }
   }
 
@@ -453,7 +454,7 @@ class TourPortal extends Component {
             />
           </div>
           <Guide
-            innerRef={c => (this.helper = c)}
+            ref={this.helper}
             targetHeight={targetHeight}
             targetWidth={targetWidth}
             targetTop={targetTop}

@@ -23,7 +23,7 @@ npm i --save reactour styled-components
 yarn add reactour styled-components
 ```
 
-<small>From `v1.8.6` [styled-components](https://www.styled-components.com/) it isn't bundled into the package.</small>
+<small>From `v1.8.7` [styled-components](https://www.styled-components.com/) it isn't bundled into the package and is required `styled-components@^4` and `react@^16.3` due to the use of [createRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs).</small>
 
 ### Initialize
 
