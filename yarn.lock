@@ -4641,9 +4641,9 @@ requires-port@1.x.x, requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
 
-reshake@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/reshake/-/reshake-1.1.5.tgz#d4817e63517ace0e4a23c6f05a657473b7516ba1"
+reshake@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/reshake/-/reshake-1.1.6.tgz#f9312bda290d478c6ab961538f7168091007f125"
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
