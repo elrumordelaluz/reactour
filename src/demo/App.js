@@ -6,6 +6,11 @@ import Glitch from './Glitch'
 import Tooltip from './Tooltip'
 import { Link } from './Button'
 import PropTypes from 'prop-types'
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock'
 
 import './styles.css'
 
@@ -47,6 +52,9 @@ class App extends Component {
     this.setState({ isTourOpen: true })
   }
 
+  disableBody = target => disableBodyScroll(target)
+  enableBody = target => enableBodyScroll(target)
+
   render() {
     const { isTourOpen, isShowingMore } = this.state
     const accentColor = '#5cb7b7'
@@ -59,6 +67,8 @@ class App extends Component {
           isShowingMore={isShowingMore}
         />
         <Tour
+          onAfterOpen={this.disableBody}
+          onBeforeClose={this.enableBody}
           onRequestClose={this.closeTour}
           steps={tourConfig}
           isOpen={isTourOpen}

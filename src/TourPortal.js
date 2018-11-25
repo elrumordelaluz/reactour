@@ -67,12 +67,6 @@ class TourPortal extends Component {
   }
 
   static defaultProps = {
-    onAfterOpen: () => {
-      document.body.style.overflowY = 'hidden'
-    },
-    onBeforeClose: () => {
-      document.body.style.overflowY = 'auto'
-    },
     showNavigation: true,
     showNavigationNumber: true,
     showButtons: true,
@@ -102,6 +96,7 @@ class TourPortal extends Component {
       observer: null,
     }
     this.helper = createRef()
+    this.helperElement = null
   }
 
   componentDidMount() {
@@ -109,6 +104,7 @@ class TourPortal extends Component {
     if (isOpen) {
       this.open(startAt)
     }
+    this.helperElement = this.helper.current
   }
 
   componentWillReceiveProps(nextProps) {
@@ -158,7 +154,7 @@ class TourPortal extends Component {
         this.showStep()
         this.helper.current.focus()
         if (onAfterOpen) {
-          onAfterOpen()
+          onAfterOpen(this.helperElement)
         }
       }
     )
@@ -289,7 +285,7 @@ class TourPortal extends Component {
   onBeforeClose() {
     const { onBeforeClose } = this.props
     if (onBeforeClose) {
-      onBeforeClose()
+      onBeforeClose(this.helperElement)
     }
   }
 
