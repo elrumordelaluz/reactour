@@ -104,7 +104,6 @@ class TourPortal extends Component {
     if (isOpen) {
       this.open(startAt)
     }
-    this.helperElement = this.helper.current
   }
 
   componentWillReceiveProps(nextProps) {
@@ -152,6 +151,7 @@ class TourPortal extends Component {
       }),
       () => {
         this.showStep()
+        this.helperElement = this.helper.current
         this.helper.current.focus()
         if (onAfterOpen) {
           onAfterOpen(this.helperElement)
