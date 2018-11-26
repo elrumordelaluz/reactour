@@ -52,10 +52,7 @@ class App extends Component {
     this.setState({ isTourOpen: true })
   }
 
-  disableBody = target => {
-    console.log({ target })
-    return disableBodyScroll(target)
-  }
+  disableBody = target => disableBodyScroll(target)
   enableBody = target => enableBodyScroll(target)
 
   render() {
