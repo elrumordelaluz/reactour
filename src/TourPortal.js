@@ -35,6 +35,7 @@ class TourPortal extends Component {
     scrollDuration: PropTypes.number,
     scrollOffset: PropTypes.number,
     showButtons: PropTypes.bool,
+    showCloseButton: PropTypes.bool,
     showNavigation: PropTypes.bool,
     showNavigationNumber: PropTypes.bool,
     showNumber: PropTypes.bool,
@@ -70,6 +71,7 @@ class TourPortal extends Component {
     showNavigation: true,
     showNavigationNumber: true,
     showButtons: true,
+    showCloseButton: true,
     showNumber: true,
     scrollDuration: 1,
     maskSpace: 10,
@@ -384,6 +386,7 @@ class TourPortal extends Component {
       steps,
       maskClassName,
       showButtons,
+      showCloseButton,
       showNavigation,
       showNavigationNumber,
       showNumber,
@@ -542,7 +545,7 @@ class TourPortal extends Component {
               </Controls>
             )}
 
-            <Close onClick={onRequestClose} />
+            {showCloseButton ? <Close onClick={onRequestClose} /> : null}
           </Guide>
           {this.props.children}
         </div>
