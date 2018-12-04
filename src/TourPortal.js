@@ -292,18 +292,13 @@ class TourPortal extends Component {
   }
 
   maskClickHandler = e => {
-    const { closeWithMask, onRequestClose, showCloseButton } = this.props
+    const { closeWithMask, onRequestClose } = this.props
     if (
       closeWithMask &&
-      !e.target.classList.contains(CN.mask.disableInteraction) ||
-      !showCloseButton
+      !e.target.classList.contains(CN.mask.disableInteraction)
     ) {
       onRequestClose(e)
     }
-    !showCloseButton && !closeWithMask &&
-      console.warn(
-        `You can't use 'closeWithMask' prop when 'showCloseButton' prop is false`
-      )
   }
 
   nextStep = () => {
