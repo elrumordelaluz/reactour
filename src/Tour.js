@@ -19,6 +19,7 @@ class Tour extends Component {
     onAfterOpen: PropTypes.func,
     onRequestClose: PropTypes.func,
     closeWithMask: PropTypes.bool,
+    changeStepWithMask: PropTypes.bool,
     parentSelector: PropTypes.func,
   }
 
@@ -26,6 +27,7 @@ class Tour extends Component {
     isOpen: false,
     portalClassName: 'reactour-portal',
     closeWithMask: true,
+    changeStepWithMask: false,
     parentSelector() {
       return document.body
     },

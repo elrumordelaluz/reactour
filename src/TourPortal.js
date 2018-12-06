@@ -22,6 +22,7 @@ class TourPortal extends Component {
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
     className: PropTypes.string,
     closeWithMask: PropTypes.bool,
+    changeStepWithMask: PropTypes.bool,
     inViewThreshold: PropTypes.number,
     isOpen: PropTypes.bool.isRequired,
     lastStepNextButton: PropTypes.node,
@@ -292,12 +293,19 @@ class TourPortal extends Component {
   }
 
   maskClickHandler = e => {
-    const { closeWithMask, onRequestClose } = this.props
-    if (
-      closeWithMask &&
-      !e.target.classList.contains(CN.mask.disableInteraction)
-    ) {
-      onRequestClose(e)
+    const { closeWithMask, onRequestClose, changeStepWithMask } = this.props
+    if (!changeStepWithMask) {
+      if (
+        closeWithMask &&
+        !e.target.classList.contains(CN.mask.disableInteraction)
+      ) {
+        onRequestClose(e)
+      }
+    } else {
+      !e.shiftKey ? this.nextStep() : this.prevStep()      
+      if (closeWithMask) {
+        console.warn(`Can't close the Tour by clicking mask when changeStepWithMask prop is true.`)
+      }
     }
   }
 
