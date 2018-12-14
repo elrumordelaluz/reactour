@@ -65,6 +65,7 @@ class TourPortal extends Component {
     disableKeyboardNavigation: PropTypes.bool,
     rounded: PropTypes.number,
     accentColor: PropTypes.string,
+    skipNotFound: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -79,10 +80,11 @@ class TourPortal extends Component {
     disableInteraction: false,
     rounded: 0,
     accentColor: '#007aff',
+    skipNotFound: false,
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       isOpen: false,
       current: 0,
@@ -97,6 +99,9 @@ class TourPortal extends Component {
       inDOM: false,
       observer: null,
     }
+
+    const { skipNotFound, steps } = this.props
+    this.steps = skipNotFound ? this.filterSteps(steps) : steps
     this.helper = createRef()
     this.helperElement = null
   }
@@ -142,6 +147,7 @@ class TourPortal extends Component {
     if (this.state.observer) {
       this.state.observer.disconnect()
     }
+    this.steps = ''
   }
 
   open(startAt) {
@@ -166,9 +172,8 @@ class TourPortal extends Component {
   }
 
   showStep = () => {
-    const { steps } = this.props
     const { current } = this.state
-    const step = steps[current]
+    const step = this.steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
 
     const stepCallback = o => {
@@ -234,13 +239,6 @@ class TourPortal extends Component {
         setNodeState(null, this.helper.current, step.position),
         stepCallback
       )
-
-      step.selector &&
-        console.warn(
-          `Doesn't find a DOM node '${step.selector}'.
-                    Please check the 'steps' Tour prop Array at position: ${current +
-                      1}.`
-        )
     }
   }
 
@@ -302,10 +300,10 @@ class TourPortal extends Component {
   }
 
   nextStep = () => {
-    const { steps, getCurrentStep } = this.props
+    const { getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep =
-        prevState.current < steps.length - 1
+        prevState.current < this.steps.length - 1
           ? prevState.current + 1
           : prevState.current
 
@@ -336,9 +334,9 @@ class TourPortal extends Component {
   }
 
   gotoStep = n => {
-    const { steps, getCurrentStep } = this.props
+    const { getCurrentStep } = this.props
     this.setState(prevState => {
-      const nextStep = steps[n] ? n : prevState.current
+      const nextStep = this.steps[n] ? n : prevState.current
 
       if (typeof getCurrentStep === 'function') {
         getCurrentStep(nextStep)
@@ -349,6 +347,9 @@ class TourPortal extends Component {
       }
     }, this.showStep)
   }
+
+  filterSteps = steps => 
+    steps.filter(step => step.selector && document.querySelector(step.selector))
 
   keyDownHandler = e => {
     const {
@@ -383,7 +384,6 @@ class TourPortal extends Component {
   render() {
     const {
       className,
-      steps,
       maskClassName,
       showButtons,
       showCloseButton,
@@ -443,8 +443,8 @@ class TourPortal extends Component {
               rounded={rounded}
               className={maskClassName}
               disableInteraction={
-                disableInteraction && steps[current].stepInteraction
-                  ? !steps[current].stepInteraction
+                disableInteraction && this.steps[current].stepInteraction
+                  ? !this.steps[current].stepInteraction
                   : disableInteraction
               }
               disableInteractionClassName={`${
@@ -468,25 +468,25 @@ class TourPortal extends Component {
             padding={maskSpace}
             tabIndex={-1}
             current={current}
-            style={steps[current].style ? steps[current].style : {}}
+            style={this.steps[current].style ? this.steps[current].style : {}}
             rounded={rounded}
             className={cn(CN.helper.base, className, {
               [CN.helper.isOpen]: isOpen,
             })}
             accentColor={accentColor}
           >
-            {steps[current] &&
-              (typeof steps[current].content === 'function'
-                ? steps[current].content({
+            {this.steps[current] &&
+              (typeof this.steps[current].content === 'function'
+                ? this.steps[current].content({
                     goTo: this.gotoStep,
                     inDOM,
                     step: current + 1,
                   })
-                : steps[current].content)}
+                : this.steps[current].content)}
             {showNumber && (
               <Badge data-tour-elem="badge">
                 {typeof badgeContent === 'function'
-                  ? badgeContent(current + 1, steps.length)
+                  ? badgeContent(current + 1, this.steps.length)
                   : current + 1}
               </Badge>
             )}
@@ -504,7 +504,7 @@ class TourPortal extends Component {
 
                 {showNavigation && (
                   <Navigation data-tour-elem="navigation">
-                    {steps.map((s, i) => (
+                    {this.steps.map((s, i) => (
                       <Dot
                         key={`${s.selector ? s.selector : 'undef'}_${i}`}
                         onClick={() => this.gotoStep(i)}
@@ -521,7 +521,7 @@ class TourPortal extends Component {
                 {showButtons && (
                   <Arrow
                     onClick={
-                      current === steps.length - 1
+                      current === this.steps.length - 1
                         ? lastStepNextButton
                           ? onRequestClose
                           : () => {}
@@ -530,11 +530,11 @@ class TourPortal extends Component {
                           : this.nextStep
                     }
                     disabled={
-                      !lastStepNextButton && current === steps.length - 1
+                      !lastStepNextButton && current === this.steps.length - 1
                     }
                     inverted
                     label={
-                      lastStepNextButton && current === steps.length - 1
+                      lastStepNextButton && current === this.steps.length - 1
                         ? lastStepNextButton
                         : nextButton
                           ? nextButton
