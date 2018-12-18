@@ -478,6 +478,7 @@ class TourPortal extends Component {
             {steps[current] &&
               (typeof steps[current].content === 'function'
                 ? steps[current].content({
+                    close: onRequestClose
                     goTo: this.gotoStep,
                     inDOM,
                     step: current + 1,
