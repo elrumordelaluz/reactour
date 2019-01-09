@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 import ExecutionEnvironment from 'exenv'
 import TourPortal from './TourPortal'
 
-const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer
 const SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {}
 
 function getParentElement(parentSelector) {
@@ -62,11 +61,7 @@ class Tour extends Component {
       document.body.classList.remove('reactour__body')
     }
 
-    this.portal = renderSubtreeIntoContainer(
-      this,
-      <TourPortal {...props} />,
-      this.node
-    )
+    this.portal = ReactDOM.createPortal(<TourPortal {...props} />, this.node)
   }
 
   removePortal() {
@@ -77,7 +72,7 @@ class Tour extends Component {
   }
 
   render() {
-    return null
+    return this.portal || null
   }
 }
 
