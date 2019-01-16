@@ -477,6 +477,7 @@ class Tour extends Component {
             })}
             accentColor={accentColor}
           >
+            {this.props.children}
             {steps[current] &&
               (typeof steps[current].content === 'function'
                 ? steps[current].content({
@@ -550,7 +551,6 @@ class Tour extends Component {
 
             {showCloseButton ? <Close onClick={onRequestClose} /> : null}
           </Guide>
-          {this.props.children}
         </Portal>
       )
     }
