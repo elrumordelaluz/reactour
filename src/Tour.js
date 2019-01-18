@@ -517,6 +517,9 @@ class Tour extends Component {
                         disabled={current === i || disableDotsNavigation}
                         showNumber={showNavigationNumber}
                         data-tour-elem="dot"
+                        className={cn(CN.dot.base, {
+                          [CN.dot.active]: current === i,
+                        })}
                       />
                     ))}
                   </Navigation>
@@ -568,6 +571,10 @@ const CN = {
   helper: {
     base: 'reactour__helper',
     isOpen: 'reactour__helper--is-open',
+  },
+  dot: {
+    base: 'reactour__dot',
+    active: 'reactour__dot--is-active',
   },
 }
 
