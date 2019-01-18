@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import Demo from './Demo'
-import Tour from '../index'
+import Tour, { Arrow } from '../index'
 import Text from './Text'
 import Glitch from './Glitch'
 import Tooltip from './Tooltip'
 import { Link } from './Button'
 import PropTypes from 'prop-types'
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from 'body-scroll-lock'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import './styles.css'
 
@@ -20,6 +16,7 @@ class App extends Component {
     this.state = {
       isTourOpen: false,
       isShowingMore: false,
+      customComps: false,
     }
   }
 
@@ -36,11 +33,22 @@ class App extends Component {
       e.preventDefault()
       this.openTour()
     }
+
+    if (this.state.isTourOpen && e.keyCode === 13) {
+      e.preventDefault()
+      this.toggleCustomComps()
+    }
   }
 
   toggleShowMore = () => {
     this.setState(prevState => ({
       isShowingMore: !prevState.isShowingMore,
+    }))
+  }
+
+  toggleCustomComps = () => {
+    this.setState(prevState => ({
+      customComps: !prevState.customComps,
     }))
   }
 
@@ -56,7 +64,7 @@ class App extends Component {
   enableBody = target => enableBodyScroll(target)
 
   render() {
-    const { isTourOpen, isShowingMore } = this.state
+    const { isTourOpen, isShowingMore, customComps } = this.state
     const accentColor = '#5cb7b7'
 
     return (
@@ -76,10 +84,63 @@ class App extends Component {
           className="helper"
           rounded={5}
           accentColor={accentColor}
+          CustomHelper={customComps ? MyCustomHelper : null}
         />
       </div>
     )
   }
+}
+
+const MyCustomHelper = ({ current, content, totalSteps, gotoStep, close }) => {
+  return (
+    <main>
+      <span
+        style={{
+          position: 'absolute',
+          right: '1em',
+          bottom: '.5em',
+          fontSize: '10px',
+        }}
+      >
+        Step: {current + 1} |{' '}
+        <span style={{ cursor: 'pointer' }} onClick={close}>
+          ❌
+        </span>
+        <hr style={{ border: 0, borderBottom: '1px solid rgba(0,0,0,.1)' }} />
+        <Arrow
+          onClick={() => gotoStep(current < totalSteps - 1 ? current + 1 : 0)}
+          inverted={current < totalSteps - 1}
+        />
+      </span>
+
+      {content}
+      <ul
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          listStyle: 'none',
+        }}
+      >
+        {Array.from(Array(totalSteps).keys()).map((li, i) => (
+          <li key={li}>
+            <button
+              onClick={() => current !== i && gotoStep(i)}
+              style={{
+                color: current === i ? 'red' : 'initial',
+                border: 0,
+                backgroundColor: '#f7f7f7',
+                padding: '.5em',
+                margin: '1px',
+              }}
+            >
+              {li + 1}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
 }
 
 const tourConfig = [

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
+import debounce from 'lodash.debounce'
 import {
   Arrow,
   Close,
@@ -101,6 +102,7 @@ class Tour extends Component {
     }
     this.helper = createRef()
     this.helperElement = null
+    this.debouncedShowStep = debounce(this.showStep, 70)
   }
 
   componentDidMount() {
@@ -162,8 +164,8 @@ class Tour extends Component {
         }
       }
     )
-    // TODO: debounce it.
-    window.addEventListener('resize', this.showStep, false)
+
+    window.addEventListener('resize', this.debouncedShowStep, false)
     window.addEventListener('keydown', this.keyDownHandler, false)
   }
 
@@ -282,7 +284,7 @@ class Tour extends Component {
         observer: null,
       }
     }, this.onBeforeClose)
-    window.removeEventListener('resize', this.showStep)
+    window.removeEventListener('resize', this.debouncedShowStep)
     window.removeEventListener('keydown', this.keyDownHandler)
   }
 
@@ -405,6 +407,7 @@ class Tour extends Component {
       prevStep,
       rounded,
       accentColor,
+      CustomHelper,
     } = this.props
 
     const {
@@ -477,82 +480,108 @@ class Tour extends Component {
             })}
             accentColor={accentColor}
           >
-            {this.props.children}
-            {steps[current] &&
-              (typeof steps[current].content === 'function'
-                ? steps[current].content({
-                    close: onRequestClose,
-                    goTo: this.gotoStep,
-                    inDOM,
-                    step: current + 1,
-                  })
-                : steps[current].content)}
-            {showNumber && (
-              <Badge data-tour-elem="badge">
-                {typeof badgeContent === 'function'
-                  ? badgeContent(current + 1, steps.length)
-                  : current + 1}
-              </Badge>
-            )}
-            {(showButtons || showNavigation) && (
-              <Controls data-tour-elem="controls">
-                {showButtons && (
-                  <Arrow
-                    onClick={
-                      typeof prevStep === 'function' ? prevStep : this.prevStep
-                    }
-                    disabled={current === 0}
-                    label={prevButton ? prevButton : null}
-                  />
+            {CustomHelper ? (
+              <CustomHelper
+                current={current}
+                totalSteps={steps.length}
+                gotoStep={this.gotoStep}
+                close={onRequestClose}
+                content={
+                  steps[current] &&
+                  (typeof steps[current].content === 'function'
+                    ? steps[current].content({
+                        close: onRequestClose,
+                        goTo: this.gotoStep,
+                        inDOM,
+                        step: current + 1,
+                      })
+                    : steps[current].content)
+                }
+              >
+                {this.props.children}
+              </CustomHelper>
+            ) : (
+              <>
+                {this.props.children}
+                {steps[current] &&
+                  (typeof steps[current].content === 'function'
+                    ? steps[current].content({
+                        close: onRequestClose,
+                        goTo: this.gotoStep,
+                        inDOM,
+                        step: current + 1,
+                      })
+                    : steps[current].content)}
+                {showNumber && (
+                  <Badge data-tour-elem="badge">
+                    {typeof badgeContent === 'function'
+                      ? badgeContent(current + 1, steps.length)
+                      : current + 1}
+                  </Badge>
                 )}
-
-                {showNavigation && (
-                  <Navigation data-tour-elem="navigation">
-                    {steps.map((s, i) => (
-                      <Dot
-                        key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                        onClick={() => this.gotoStep(i)}
-                        current={current}
-                        index={i}
-                        disabled={current === i || disableDotsNavigation}
-                        showNumber={showNavigationNumber}
-                        data-tour-elem="dot"
-                        className={cn(CN.dot.base, {
-                          [CN.dot.active]: current === i,
-                        })}
+                {(showButtons || showNavigation) && (
+                  <Controls data-tour-elem="controls">
+                    {showButtons && (
+                      <Arrow
+                        onClick={
+                          typeof prevStep === 'function'
+                            ? prevStep
+                            : this.prevStep
+                        }
+                        disabled={current === 0}
+                        label={prevButton ? prevButton : null}
                       />
-                    ))}
-                  </Navigation>
+                    )}
+
+                    {showNavigation && (
+                      <Navigation data-tour-elem="navigation">
+                        {steps.map((s, i) => (
+                          <Dot
+                            key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                            onClick={() => this.gotoStep(i)}
+                            current={current}
+                            index={i}
+                            disabled={current === i || disableDotsNavigation}
+                            showNumber={showNavigationNumber}
+                            data-tour-elem="dot"
+                            className={cn(CN.dot.base, {
+                              [CN.dot.active]: current === i,
+                            })}
+                          />
+                        ))}
+                      </Navigation>
+                    )}
+
+                    {showButtons && (
+                      <Arrow
+                        onClick={
+                          current === steps.length - 1
+                            ? lastStepNextButton
+                              ? onRequestClose
+                              : () => {}
+                            : typeof nextStep === 'function'
+                            ? nextStep
+                            : this.nextStep
+                        }
+                        disabled={
+                          !lastStepNextButton && current === steps.length - 1
+                        }
+                        inverted
+                        label={
+                          lastStepNextButton && current === steps.length - 1
+                            ? lastStepNextButton
+                            : nextButton
+                            ? nextButton
+                            : null
+                        }
+                      />
+                    )}
+                  </Controls>
                 )}
 
-                {showButtons && (
-                  <Arrow
-                    onClick={
-                      current === steps.length - 1
-                        ? lastStepNextButton
-                          ? onRequestClose
-                          : () => {}
-                        : typeof nextStep === 'function'
-                        ? nextStep
-                        : this.nextStep
-                    }
-                    disabled={
-                      !lastStepNextButton && current === steps.length - 1
-                    }
-                    inverted
-                    label={
-                      lastStepNextButton && current === steps.length - 1
-                        ? lastStepNextButton
-                        : nextButton
-                        ? nextButton
-                        : null
-                    }
-                  />
-                )}
-              </Controls>
+                {showCloseButton ? <Close onClick={onRequestClose} /> : null}
+              </>
             )}
-
-            {showCloseButton ? <Close onClick={onRequestClose} /> : null}
           </Guide>
         </Portal>
       )

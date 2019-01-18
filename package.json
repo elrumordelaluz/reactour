@@ -73,6 +73,7 @@
   },
   "dependencies": {
     "classnames": "2.2.6",
+    "lodash.debounce": "4.0.8",
     "lodash.pick": "4.4.0",
     "prop-types": "15.6.2",
     "scroll-smooth": "1.0.1",
