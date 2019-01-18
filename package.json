@@ -1,6 +1,6 @@
 {
   "name": "reactour",
-  "version": "1.11.2",
+  "version": "1.12.0",
   "description": "Tourist Guide into your React Components",
   "main": "dist/index.js",
   "scripts": {
