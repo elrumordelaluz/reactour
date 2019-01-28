@@ -13,36 +13,41 @@
   </a>
 </p>
 
-### Install
+## Install
 
-```
-npm i --save reactour styled-components
-```
-
-```
-yarn add reactour styled-components
+```zsh
+npm i -S reactour
+# or
+yarn add reactour
 ```
 
-<small>From `v1.9.1` [styled-components](https://www.styled-components.com/) it isn't bundled into the package and is required `styled-components@^4` and `react@^16.3` due to the use of [createRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs).</small>
+<small>From `v1.9.1` [styled-components](https://www.styled-components.com/) it isn't bundled into the package and is required `styled-components@^4` and `react@^16.3` due to the use of [createRef](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs), so: </small>
 
-### Initialize
+```zsh
+npm i -S styled-components@^4.0.0
+# or
+yarn add styled-components@^4.0.0
+```
 
-Add the `Tour` Component in your Application:
+## Usage
+
+Add the `Tour` Component in your Application, passing the `steps` with the elements to highlight during the _Tour_.
 
 ```js
+import React from 'react'
 import Tour from 'reactour'
 
 class App extends Component {
   // ...
 
   render  (
-    <div>
+    <>
       { /* other stuff */}
       <Tour
         steps={steps}
         isOpen={this.state.isTourOpen}
         onRequestClose={this.closeTour} />
-    </div>
+    </>
   )
 }
 
@@ -55,45 +60,260 @@ const steps = [
 ]
 ```
 
-### PropTypes
+### Tour Props
 
-| Prop                        | Desc                                                                                                                    | Type          | Default                                              | Is Required |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- | ----------- |
-| `accentColor`               | Change `--reactour-accent` color (helper number + dots)                                                                 | `string`      | `#007aff`                                            |             |
-| `badgeContent`              | Function to customize Badge content `(current, total) => {}`                                                            | `func`        |                                                      |             |
-| `children`                  | Elements to appear after the _Mask_ (need to be styled correctly to have a `position` and `z-index` higher than _Mask_) | `node|elem`   | `false`                                              |             |
-| `className`                 | Custom class to add to the **helper**                                                                                   | `string`      |                                                      |             |
-| `closeWithMask`             | Close clicking the **mask**                                                                                             | `bool`        | `true`                                               |             |
-| `disableDotsNavigation`     | Isn't possible to interact with helper dots                                                                             | `bool`        |                                                      |             |
-| `disableInteraction`        | Isn't possible to interact with highlighted elements                                                                    | `bool`        |                                                      |             |
-| `disableKeyboardNavigation` | Isn't possible to interact with keyboard arrows                                                                         | `bool`        |                                                      |             |
-| `getCurrentStep`            | Function triggered each time current step change                                                                        | `func`        | `step => { /* 'step' is the current step index */ }` |             |
-| `goToStep`                  | Programmatically change current step                                                                                    | `number`      |                                                      |             |
-| `highlightedMaskClassName`  | Custom class name for element which is overlaid target element                                                          | `string`      |                                                      |             |
-| `inViewThreshold`           | Scroll element to show when is outiside _viewport_ adding this threshold value                                          | `number`      |                                                      |             |
-| `isOpen`                    | You know…                                                                                                               | `bool`        |                                                      | ✅          |
-| `lastStepNextButton`        | Change _Next_ button in last step into a custom button to close the _Tour_                                              | `node`        |                                                      |             |
-| `maskClassName`             | Custom class to add to the **mask**                                                                                     | `string`      |                                                      |             |
-| `maskSpace`                 | Padding between elemente showed and **mask**                                                                            | `number`      | `10`                                                 |             |
-| `nextButton`                | Next navigation button text                                                                                             | `node`        |                                                      |             |
-| `nextStep`                  | Override default `nextStep` function to use a custom one                                                                | `func`        |                                                      |             |
-| `onAfterOpen`               | Function triggered after open                                                                                           | `func`        | `target => { /* 'target' is the helper element */ }` |             |
-| `onBeforeClose`             | Function triggered before close                                                                                         | `func`        | `target => { /* 'target' is the helper element */ }` |             |
-| `onRequestClose`            | Function triggered to close                                                                                             | `func`        |                                                      |             |
-| `prevButton`                | Prev navigation button text                                                                                             | `node`        |                                                      |             |
-| `prevStep`                  | Override default `prevStep` function to use a custom one                                                                | `func`        |                                                      |             |
-| `rounded`                   | Beautify helper + mask with border-radius (in px)                                                                       | `number`      | `0`                                                  |             |
-| `scrollDuration`            | Smooth scroll duration when positioning the target element                                                              | `number`      | `1`                                                  |             |
-| `scrollOffset`              | Offset when positioning the target element                                                                              | `number`      | calculates the vertical center of the page           |             |
-| `showButtons`               | Show **helper** navigation buttons                                                                                      | `bool`        | `true`                                               |             |
-| `showCloseButton`           | Show **helper** close button                                                                                            | `bool`        | `true`                                               |             |
-| `showNavigation`            | Show **helper** navigation dots                                                                                         | `bool`        | `true`                                               |             |
-| `showNavigationNumber`      | Show number when hovers on each navigation dots                                                                         | `bool`        | `true`                                               |             |
-| `showNumber`                | Show **helper** number badge                                                                                            | `bool`        | `true`                                               |             |
-| `startAt`                   | Starting step each time the Tour is open                                                                                | `number`      |                                                      |             |
-| `steps`                     | Array of steps with info and `props`                                                                                    | [view bellow] |                                                      | ✅          |
-| `update`                    | Value to listen if a forced update is needed                                                                            | `string`      |                                                      |             |
-| `updateDelay`               | Delay time when forcing update. Useful when there are known animation/transitions                                       | `number`      | 1                                                    |             |
+#### accentColor
+
+> Change `--reactour-accent` css custom prop to apply color in _Helper_, number, dots, etc
+
+Type: `string`
+
+Default: `#007aff`
+
+#### badgeContent
+
+> Customize _Badge_ content using `current` and `total` steps values
+
+Type: `func`
+
+```js
+// example
+<Tour badgeContent={(curr, tot) => `${curr} of ${tot}`} />
+```
+
+#### children
+
+> Content to be rendered inside the _Helper_
+
+Type: `node | elem`
+
+#### className
+
+> Custom class name to add to the _Helper_
+
+Type: `string`
+
+#### closeWithMask
+
+> Close the _Tour_ by clicking the _Mask_
+
+Type: `bool`
+
+Default: `true`
+
+#### disableDotsNavigation
+
+> Disable interactivity with _Dots_ navigation in _Helper_
+
+Type: `bool`
+
+#### disableInteraction
+
+> Disable the ability to click or intercat in any way with the _Highlighted_ element
+
+Type: `bool`
+
+#### disableKeyboardNavigation
+
+> Disable keyboard navigation (next and prev step)
+
+Type: `bool`
+
+#### getCurrentStep
+
+> Function triggered each time current step change
+
+Type: `func`
+
+```js
+// example
+<Tour getCurrentStep={curr => console.log(`The current step is ${curr + 1}`)} />
+```
+
+#### goToStep
+
+> Programmatically change current step after the first render, when the value changes
+
+Type: `number`
+
+#### highlightedMaskClassName
+
+> Custom class name to add to the element which is the overlay for the target element when `disableInteraction`
+
+Type: `string`
+
+#### inViewThreshold
+
+> Tolerance in pixels to add when calculating if an element is outside viewport to scroll into view
+
+Type: `number`
+
+#### isOpen
+
+> You know…
+
+Type: `bool`
+
+Required: `true`
+
+#### lastStepNextButton
+
+> Change Next button in last step into a custom button to close the Tour
+
+Type: `node`
+
+```js
+// example
+<Tour lastStepNextButton={<MyButton>Done! Let's start playing</MyButton>} />
+```
+
+#### maskClassName
+
+> Custom class name to add to the _Mask_
+
+Type: `string`
+
+#### maskSpace
+
+> Extra Space between in pixels between Highlighted element and _Mask_
+
+Type: `number`
+
+Default: `10`
+
+#### nextButton
+
+> Renders as next button navigation
+
+Type: `node`
+
+#### nextStep
+
+> Overrides default `nextStep` internal function
+
+Type: `func`
+
+#### onAfterOpen
+
+> Do something after _Tour_ is opened
+
+Type: `func`
+
+```js
+// example
+<Tour onAfterOpen={target => (document.body.style.overflowY = 'hidden')} />
+```
+
+#### onBeforeClose
+
+> Do something before _Tour_ is closed
+
+Type: `func`
+
+```js
+// example
+<Tour onBeforeClose={target => (document.body.style.overflowY = 'auto')} />
+```
+
+#### onRequestClose
+
+> Function to close the _Tour_
+
+Type: `func`
+
+Required: `true`
+
+#### prevButton
+
+> Renders as prev button navigation
+
+Type: `node`
+
+#### prevStep
+
+> Overrides default `prevStep` internal function
+
+Type: `func`
+
+#### rounded
+
+> Beautify _Helper_ and _Mask_ with `border-radius` (in px)
+
+Type: `number`
+
+Default: `0`
+
+#### scrollDuration
+
+> Smooth scroll duration when positioning the target element (in ms)
+
+Type: `number`
+
+Default: `1`
+
+#### scrollOffset
+
+> Offset when positioning the target element after scroll to it
+
+Type: `number`
+
+Default: a calculation to the center of the viewport
+
+#### showButtons
+
+> Show/Hide _Helper_ Navigation buttons
+
+Type: `bool`
+
+Default: `true`
+
+#### showCloseButton
+
+> Show/Hide _Helper_ Close button
+
+Type: `bool`
+
+Default: `true`
+
+#### showNavigation
+
+> Show/Hide _Helper_ Navigation Dots
+
+Type: `bool`
+
+Default: `true`
+
+#### showNavigationNumber
+
+> Show/Hide number when hovers on each Navigation Dot
+
+Type: `bool`
+
+Default: `true`
+
+#### showNumber
+
+> Show/Hide _Helper_ Number Badge
+
+Type: `bool`
+
+Default: `true`
+
+#### startAt
+
+> Starting step when _Tour_ is open the first time
+
+Type: `number`
+
+#### steps
+
+> Array of elements to highligt with special info and props
+
+Type: `shape`
+
+Required: `true`
+
+##### Steps shape
 
 ```js
 steps: PropTypes.arrayOf(PropTypes.shape({
@@ -110,7 +330,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
 })),
 ```
 
-### Steps example
+##### Steps example
 
 ```js
 const steps = [
@@ -135,3 +355,44 @@ const steps = [
   // ...
 ]
 ```
+
+#### update
+
+> Value to listen if a forced update is needed
+
+Type: `string`
+
+#### updateDelay
+
+> Delay time when forcing update. Useful when there are known animation/transitions
+
+Type: `number`
+
+Default: `1`
+
+## FAQ
+
+<p>
+  <details>
+    <summary>How is implemented the scroll lock behaviour in the <a href="https://github.com/elrumordelaluz/reactour/blob/master/src/demo/App.js">Demo</a>?</summary>
+    <p>
+      To guarantee a cross browser behaviour we use <a href="https://www.npmjs.com/package/body-scroll-lock">body-scroll-lock</a>. </p>
+      <p>Import the library
+        <pre lang=js>
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'</pre>
+    </p>
+    <p>Create the event handlers
+        <pre lang=js>
+disableBody = target => disableBodyScroll(target)
+enableBody = target => enableBodyScroll(target)</pre>
+    </p>
+    <p>Then assign them into the Tour props
+        <pre lang=js>
+&lt;Tour
+  {...props}
+  onAfterOpen={this.disableBody}
+  onBeforeClose={this.enableBody}
+/&gt;</pre>
+    </p>
+  </details>
+</p>
