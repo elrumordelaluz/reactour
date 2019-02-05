@@ -115,9 +115,14 @@ Type: `bool`
 
 #### disableKeyboardNavigation
 
-> Disable keyboard navigation (next and prev step)
+> Disable all keyboard navigation (next and prev step) when true, disable only selected keys when array
 
-Type: `bool`
+Type: `bool | array(['esc', 'right', 'left'])`
+
+```js
+// example
+<Tour disableKeyboardNavigation={['esc']} />
+```
 
 #### getCurrentStep
 
