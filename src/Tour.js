@@ -64,7 +64,10 @@ class Tour extends Component {
     updateDelay: PropTypes.number,
     disableInteraction: PropTypes.bool,
     disableDotsNavigation: PropTypes.bool,
-    disableKeyboardNavigation: PropTypes.bool,
+    disableKeyboardNavigation: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.oneOf(['esc', 'right', 'left'])),
+      PropTypes.bool
+    ]),
     rounded: PropTypes.number,
     accentColor: PropTypes.string,
   }
@@ -364,21 +367,21 @@ class Tour extends Component {
     } = this.props
     e.stopPropagation()
 
-    if (disableKeyboardNavigation) {
+    if (disableKeyboardNavigation === true) {
       return
     }
 
-    if (e.keyCode === 27 && showCloseButton) {
+    if (e.keyCode === 27 && !disableKeyboardNavigation.contains('esc')) {
       // esc
       e.preventDefault()
       onRequestClose()
     }
-    if (e.keyCode === 39) {
+    if (e.keyCode === 39 && !disableKeyboardNavigation.contains('right')) {
       // right
       e.preventDefault()
       typeof nextStep === 'function' ? nextStep() : this.nextStep()
     }
-    if (e.keyCode === 37) {
+    if (e.keyCode === 37 && !disableKeyboardNavigation.includes('left')) {
       // left
       e.preventDefault()
       typeof prevStep === 'function' ? prevStep() : this.prevStep()
