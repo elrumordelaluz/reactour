@@ -360,6 +360,7 @@ class Tour extends Component {
       nextStep,
       prevStep,
       disableKeyboardNavigation,
+      showCloseButton,
     } = this.props
     e.stopPropagation()
 
@@ -367,7 +368,7 @@ class Tour extends Component {
       return
     }
 
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 && showCloseButton) {
       // esc
       e.preventDefault()
       onRequestClose()
