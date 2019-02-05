@@ -371,20 +371,30 @@ class Tour extends Component {
       return
     }
 
-    if (e.keyCode === 27 && !disableKeyboardNavigation.contains('esc')) {
+    let isEscDisabled, isRightDisabled, isLeftDisabled;
+
+    if (disableKeyboardNavigation) {
+      isEscDisabled = disableKeyboardNavigation.includes('esc');
+      isRightDisabled = disableKeyboardNavigation.includes('right');
+      isLeftDisabled = disableKeyboardNavigation.includes('left');
+    }
+
+    if (e.keyCode === 27 && !isEscDisabled) {
       // esc
-      e.preventDefault()
-      onRequestClose()
+      e.preventDefault();
+      onRequestClose();
     }
-    if (e.keyCode === 39 && !disableKeyboardNavigation.contains('right')) {
+
+    if (e.keyCode === 39 && !isRightDisabled) {
       // right
-      e.preventDefault()
-      typeof nextStep === 'function' ? nextStep() : this.nextStep()
+      e.preventDefault();
+      typeof nextStep === 'function' ? nextStep() : _this.nextStep();
     }
-    if (e.keyCode === 37 && !disableKeyboardNavigation.includes('left')) {
+
+    if (e.keyCode === 37 && !isLeftDisabled) {
       // left
-      e.preventDefault()
-      typeof prevStep === 'function' ? prevStep() : this.prevStep()
+      e.preventDefault();
+      typeof prevStep === 'function' ? prevStep() : _this.prevStep();
     }
   }
 
