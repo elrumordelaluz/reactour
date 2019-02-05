@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { createPortal } from 'react-dom'
 
-class Tour extends Component {
+class Portal extends Component {
   constructor(props) {
     super(props)
     this.el = document.createElement('div')
@@ -21,4 +21,4 @@ class Tour extends Component {
   }
 }
 
-export default Tour
+export default Portal
