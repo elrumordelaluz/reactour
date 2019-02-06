@@ -66,7 +66,7 @@ class Tour extends Component {
     disableDotsNavigation: PropTypes.bool,
     disableKeyboardNavigation: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOf(['esc', 'right', 'left'])),
-      PropTypes.bool
+      PropTypes.bool,
     ]),
     rounded: PropTypes.number,
     accentColor: PropTypes.string,
@@ -371,12 +371,12 @@ class Tour extends Component {
       return
     }
 
-    let isEscDisabled, isRightDisabled, isLeftDisabled;
+    let isEscDisabled, isRightDisabled, isLeftDisabled
 
     if (disableKeyboardNavigation) {
-      isEscDisabled = disableKeyboardNavigation.includes('esc');
-      isRightDisabled = disableKeyboardNavigation.includes('right');
-      isLeftDisabled = disableKeyboardNavigation.includes('left');
+      isEscDisabled = disableKeyboardNavigation.includes('esc')
+      isRightDisabled = disableKeyboardNavigation.includes('right')
+      isLeftDisabled = disableKeyboardNavigation.includes('left')
     }
 
     if (e.keyCode === 27 && !isEscDisabled) {
@@ -462,7 +462,7 @@ class Tour extends Component {
               rounded={rounded}
               className={maskClassName}
               disableInteraction={
-                disableInteraction && steps[current].stepInteraction
+                steps[current].stepInteraction === false || disableInteraction
                   ? !steps[current].stepInteraction
                   : disableInteraction
               }

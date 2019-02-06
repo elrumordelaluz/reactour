@@ -356,6 +356,10 @@ const steps = [
     style: {
       backgroundColor: '#bada55',
     },
+    // Disable interaction for this specific step.
+    // Could be enabled passing `true`
+    // when `disableInteraction` prop is present in Tour
+    stepInteraction: false,
   },
   // ...
 ]
