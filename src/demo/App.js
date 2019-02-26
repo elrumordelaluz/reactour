@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import Demo from './Demo'
 import Tour, { Arrow } from '../index'
 import Text from './Text'
@@ -10,88 +10,54 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import './styles.css'
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      isTourOpen: false,
-      isShowingMore: false,
-      customComps: false,
+function App() {
+  const [isTourOpen, setOpen] = useState(false)
+  const [isShowingMore, setShowingMore] = useState(false)
+  const [customComps, setCustomComps] = useState(false)
+
+  useEffect(() => {
+    function keyHandling(e) {
+      if (e.keyCode === 75) {
+        e.preventDefault()
+        setOpen(true)
+      }
+
+      if (isTourOpen && e.keyCode === 13) {
+        e.preventDefault()
+        setCustomComps(!customComps)
+      }
     }
-  }
+    window.addEventListener('keyup', keyHandling)
+    return () => window.removeEventListener('keyup', keyHandling)
+  }, [isTourOpen, customComps])
 
-  componentDidMount() {
-    window.addEventListener('keyup', this.keyHandling)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keyup', this.keyHandling)
-  }
-
-  keyHandling = e => {
-    if (e.keyCode === 75) {
-      e.preventDefault()
-      this.openTour()
-    }
-
-    if (this.state.isTourOpen && e.keyCode === 13) {
-      e.preventDefault()
-      this.toggleCustomComps()
-    }
-  }
-
-  toggleShowMore = () => {
-    this.setState(prevState => ({
-      isShowingMore: !prevState.isShowingMore,
-    }))
-  }
-
-  toggleCustomComps = () => {
-    this.setState(prevState => ({
-      customComps: !prevState.customComps,
-    }))
-  }
-
-  closeTour = () => {
-    this.setState({ isTourOpen: false })
-  }
-
-  openTour = () => {
-    this.setState({ isTourOpen: true })
-  }
-
-  disableBody = target => disableBodyScroll(target)
-  enableBody = target => enableBodyScroll(target)
-
-  render() {
-    const { isTourOpen, isShowingMore, customComps } = this.state
-    const accentColor = '#5cb7b7'
-
-    return (
-      <div>
-        <Demo
-          openTour={this.openTour}
-          toggleShowMore={this.toggleShowMore}
-          isShowingMore={isShowingMore}
-        />
-        <Tour
-          onAfterOpen={this.disableBody}
-          onBeforeClose={this.enableBody}
-          onRequestClose={this.closeTour}
-          steps={tourConfig}
-          isOpen={isTourOpen}
-          maskClassName="mask"
-          className="helper"
-          rounded={5}
-          accentColor={accentColor}
-          CustomHelper={customComps ? MyCustomHelper : null}
-        />
-      </div>
-    )
-  }
+  const disableBody = target => disableBodyScroll(target)
+  const enableBody = target => enableBodyScroll(target)
+  const accentColor = '#5cb7b7'
+  return (
+    <div>
+      <Demo
+        openTour={() => setOpen(true)}
+        toggleShowMore={() => setShowingMore(!isShowingMore)}
+        isShowingMore={isShowingMore}
+      />
+      <Tour
+        onAfterOpen={disableBody}
+        onBeforeClose={enableBody}
+        onRequestClose={() => setOpen(false)}
+        steps={tourConfig}
+        isOpen={isTourOpen}
+        maskClassName="mask"
+        className="helper"
+        rounded={5}
+        accentColor={accentColor}
+        CustomHelper={customComps ? MyCustomHelper : null}
+      />
+    </div>
+  )
 }
 
-const MyCustomHelper = ({ current, content, totalSteps, gotoStep, close }) => {
+function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
   return (
     <main>
       <span
