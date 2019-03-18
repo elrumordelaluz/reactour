@@ -16,6 +16,8 @@ import {
 } from './components/index'
 import Portal from './Portal'
 import * as hx from './helpers'
+import { propTypes, defaultProps } from './propTypes'
+import CN from './classNames'
 
 class Tour extends Component {
   constructor() {
@@ -375,33 +377,30 @@ class Tour extends Component {
     if (isOpen) {
       return (
         <Portal>
-          <div
-            ref={c => (this.mask = c)}
-            onClick={this.maskClickHandler}
-            className={cn(CN.mask.base, {
+          <SvgMask
+            className={cn(CN.mask.base, maskClassName, {
               [CN.mask.isOpen]: isOpen,
             })}
-          >
-            <SvgMask
-              windowWidth={windowWidth}
-              windowHeight={windowHeight}
-              targetWidth={targetWidth}
-              targetHeight={targetHeight}
-              targetTop={targetTop}
-              targetLeft={targetLeft}
-              padding={maskSpace}
-              rounded={rounded}
-              className={maskClassName}
-              disableInteraction={
-                steps[current].stepInteraction === false || disableInteraction
-                  ? !steps[current].stepInteraction
-                  : disableInteraction
-              }
-              disableInteractionClassName={`${
-                CN.mask.disableInteraction
-              } ${highlightedMaskClassName}`}
-            />
-          </div>
+            onClick={this.maskClickHandler}
+            forwardRef={c => (this.mask = c)}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
+            targetWidth={targetWidth}
+            targetHeight={targetHeight}
+            targetTop={targetTop}
+            targetLeft={targetLeft}
+            padding={maskSpace}
+            rounded={rounded}
+            className={maskClassName}
+            disableInteraction={
+              steps[current].stepInteraction === false || disableInteraction
+                ? !steps[current].stepInteraction
+                : disableInteraction
+            }
+            disableInteractionClassName={`${
+              CN.mask.disableInteraction
+            } ${highlightedMaskClassName}`}
+          />
           <Guide
             ref={this.helper}
             targetHeight={targetHeight}
@@ -536,22 +535,6 @@ class Tour extends Component {
   }
 }
 
-const CN = {
-  mask: {
-    base: 'reactour__mask',
-    isOpen: 'reactour__mask--is-open',
-    disableInteraction: 'reactour__mask--disable-interaction',
-  },
-  helper: {
-    base: 'reactour__helper',
-    isOpen: 'reactour__helper--is-open',
-  },
-  dot: {
-    base: 'reactour__dot',
-    active: 'reactour__dot--is-active',
-  },
-}
-
 const setNodeState = (node, helper, position) => {
   const w = Math.max(
     document.documentElement.clientWidth,
@@ -588,73 +571,8 @@ const setNodeState = (node, helper, position) => {
   }
 }
 
-Tour.propTypes = {
-  badgeContent: PropTypes.func,
-  highlightedMaskClassName: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
-  className: PropTypes.string,
-  closeWithMask: PropTypes.bool,
-  inViewThreshold: PropTypes.number,
-  isOpen: PropTypes.bool.isRequired,
-  lastStepNextButton: PropTypes.node,
-  maskClassName: PropTypes.string,
-  maskSpace: PropTypes.number,
-  nextButton: PropTypes.node,
-  onAfterOpen: PropTypes.func,
-  onBeforeClose: PropTypes.func,
-  onRequestClose: PropTypes.func,
-  prevButton: PropTypes.node,
-  scrollDuration: PropTypes.number,
-  scrollOffset: PropTypes.number,
-  showButtons: PropTypes.bool,
-  showCloseButton: PropTypes.bool,
-  showNavigation: PropTypes.bool,
-  showNavigationNumber: PropTypes.bool,
-  showNumber: PropTypes.bool,
-  startAt: PropTypes.number,
-  goToStep: PropTypes.number,
-  getCurrentStep: PropTypes.func,
-  nextStep: PropTypes.func,
-  prevStep: PropTypes.func,
-  steps: PropTypes.arrayOf(
-    PropTypes.shape({
-      selector: PropTypes.string,
-      content: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.element,
-        PropTypes.func,
-      ]).isRequired,
-      position: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
-      action: PropTypes.func,
-      style: PropTypes.object,
-      stepInteraction: PropTypes.bool,
-    })
-  ),
-  update: PropTypes.string,
-  updateDelay: PropTypes.number,
-  disableInteraction: PropTypes.bool,
-  disableDotsNavigation: PropTypes.bool,
-  disableKeyboardNavigation: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOf(['esc', 'right', 'left'])),
-    PropTypes.bool,
-  ]),
-  rounded: PropTypes.number,
-  accentColor: PropTypes.string,
-}
+Tour.propTypes = propTypes
 
-Tour.defaultProps = {
-  showNavigation: true,
-  showNavigationNumber: true,
-  showButtons: true,
-  showCloseButton: true,
-  showNumber: true,
-  scrollDuration: 1,
-  maskSpace: 10,
-  updateDelay: 1,
-  disableInteraction: false,
-  rounded: 0,
-  accentColor: '#007aff',
-  closeWithMask: true,
-}
+Tour.defaultProps = defaultProps
 
 export default Tour

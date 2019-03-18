@@ -1,11 +1,21 @@
 import React, { useState, useReducer, useEffect, createRef } from 'react'
-import PropTypes from 'prop-types'
+import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
 
 import Portal from './Portal'
-import { SvgMask, Guide } from './components/index'
+import {
+  SvgMask,
+  Guide,
+  Badge,
+  Controls,
+  Arrow,
+  Navigation,
+  Dot,
+} from './components/index'
 import * as hx from './helpers'
+import { propTypes, defaultProps } from './propTypes'
+import CN from './classNames'
 
 function Tour({
   children,
@@ -19,11 +29,22 @@ function Tour({
 
   disableInteraction,
   disableKeyboardNavigation,
-
+  className,
   closeWithMask,
   onRequestClose,
   onAfterOpen,
   CustomHelper,
+  showNumber,
+  accentColor,
+  highlightedMaskClassName,
+  maskClassName,
+  showButtons,
+  showNavigation,
+  prevButton,
+  showNavigationNumber,
+  disableDotsNavigation,
+  lastStepNextButton,
+  nextButton,
 }) {
   const [current, setCurrent] = useState(0)
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -31,7 +52,10 @@ function Tour({
 
   useEffect(() => {
     window.addEventListener('keydown', keyHandler, false)
-    return () => window.removeEventListener('keydown', keyHandler)
+
+    return () => {
+      window.removeEventListener('keydown', keyHandler)
+    }
   }, [])
 
   useEffect(() => {
@@ -45,9 +69,7 @@ function Tour({
   }, [isOpen])
 
   useEffect(() => {
-    if (isOpen) {
-      showStep()
-    }
+    if (isOpen) showStep()
   }, [current])
 
   function keyHandler(e) {
@@ -101,10 +123,13 @@ function Tour({
     setCurrent(prev => (prev > 0 ? prev - 1 : prev))
   }
 
+  function goTo(step) {
+    setCurrent(step)
+  }
+
   function showStep() {
     const step = steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
-
     if (node) {
       // DOM node exists
       const { w, h } = getWindow()
@@ -134,6 +159,7 @@ function Tour({
         helperPosition: step.position,
         w,
         h,
+        inDOM: false,
       })
     }
   }
@@ -151,34 +177,53 @@ function Tour({
       helperPosition,
       w,
       h,
+      inDOM: true,
     })
   }
 
   function maskClickHandler(e) {
-    onRequestClose(e)
+    if (
+      closeWithMask &&
+      !e.target.classList.contains(CN.mask.disableInteraction)
+    ) {
+      onRequestClose(e)
+    }
   }
-  console.log({ steps, current })
+
+  const stepContent =
+    steps[current] &&
+    (typeof steps[current].content === 'function'
+      ? steps[current].content({
+          close: onRequestClose,
+          goTo,
+          inDOM: state.inDOM,
+          step: current + 1,
+        })
+      : steps[current].content)
 
   return isOpen ? (
     <Portal>
-      <div className="mask" onClick={maskClickHandler}>
-        <SvgMask
-          windowWidth={state.w}
-          windowHeight={state.h}
-          targetWidth={state.width}
-          targetHeight={state.height}
-          targetTop={state.top}
-          targetLeft={state.left}
-          padding={10}
-          rounded={3}
-          className={'maskClassName'}
-          disableInteraction={
-            steps[current].stepInteraction === false || disableInteraction
-              ? !steps[current].stepInteraction
-              : disableInteraction
-          }
-        />
-      </div>
+      <SvgMask
+        onClick={maskClickHandler}
+        windowWidth={state.w}
+        windowHeight={state.h}
+        targetWidth={state.width}
+        targetHeight={state.height}
+        targetTop={state.top}
+        targetLeft={state.left}
+        padding={10}
+        rounded={3}
+        className={maskClassName}
+        disableInteraction={
+          steps[current].stepInteraction === false || disableInteraction
+            ? !steps[current].stepInteraction
+            : disableInteraction
+        }
+        disableInteractionClassName={cn(
+          CN.mask.disableInteraction,
+          highlightedMaskClassName
+        )}
+      />
       <Guide
         ref={helper}
         windowWidth={state.w}
@@ -197,19 +242,74 @@ function Tour({
         current={current}
         style={steps[current].style ? steps[current].style : {}}
         rounded={3}
-        className={'hjkh'}
-        accentColor={'#f00'}
+        accentColor={accentColor}
+        className={cn(CN.helper.base, className, {
+          [CN.helper.isOpen]: isOpen,
+        })}
       >
         {children}
-        {steps[current] &&
-          (typeof steps[current].content === 'function'
-            ? steps[current].content({
-                close: onRequestClose,
-                // goTo: this.gotoStep,
-                // inDOM:,
-                step: current + 1,
-              })
-            : steps[current].content)}
+        {stepContent}
+        {showNumber && (
+          <Badge data-tour-elem="badge">
+            {typeof badgeContent === 'function'
+              ? badgeContent(current + 1, steps.length)
+              : current + 1}
+          </Badge>
+        )}
+
+        {(showButtons || showNavigation) && (
+          <Controls data-tour-elem="controls">
+            {showButtons && (
+              <Arrow
+                onClick={prevStep}
+                disabled={current === 0}
+                label={prevButton ? prevButton : null}
+              />
+            )}
+
+            {showNavigation && (
+              <Navigation data-tour-elem="navigation">
+                {steps.map((s, i) => (
+                  <Dot
+                    key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                    onClick={() => goTo(i)}
+                    current={current}
+                    index={i}
+                    disabled={current === i || disableDotsNavigation}
+                    showNumber={showNavigationNumber}
+                    data-tour-elem="dot"
+                    className={cn(CN.dot.base, {
+                      [CN.dot.active]: current === i,
+                    })}
+                  />
+                ))}
+              </Navigation>
+            )}
+
+            {showButtons && (
+              <Arrow
+                onClick={
+                  current === steps.length - 1
+                    ? lastStepNextButton
+                      ? onRequestClose
+                      : () => {}
+                    : typeof nextStep === 'function'
+                    ? nextStep
+                    : this.nextStep
+                }
+                disabled={!lastStepNextButton && current === steps.length - 1}
+                inverted
+                label={
+                  lastStepNextButton && current === steps.length - 1
+                    ? lastStepNextButton
+                    : nextButton
+                    ? nextButton
+                    : null
+                }
+              />
+            )}
+          </Controls>
+        )}
       </Guide>
     </Portal>
   ) : null
@@ -261,30 +361,8 @@ function reducer(state, action) {
   }
 }
 
-Tour.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  startAt: PropTypes.number,
-  steps: PropTypes.arrayOf(
-    PropTypes.shape({
-      selector: PropTypes.string,
-      content: PropTypes.oneOfType([
-        PropTypes.node,
-        PropTypes.element,
-        PropTypes.func,
-      ]).isRequired,
-      position: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
-      action: PropTypes.func,
-      style: PropTypes.object,
-      stepInteraction: PropTypes.bool,
-    })
-  ),
-  inViewThreshold: PropTypes.number,
-  scrollDuration: PropTypes.number,
-}
+Tour.propTypes = propTypes
 
-Tour.defaultProps = {
-  startAt: 0,
-  scrollDuration: 100,
-}
+Tour.defaultProps = defaultProps
 
 export default Tour

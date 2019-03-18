@@ -26,6 +26,7 @@ export default function SvgMask({
   disableInteraction,
   disableInteractionClassName,
   className,
+  onClick,
 }) {
   const width = hx.safe(targetWidth + padding * 2)
   const height = hx.safe(targetHeight + padding * 2)
@@ -33,7 +34,7 @@ export default function SvgMask({
   const left = hx.safe(targetLeft - padding)
 
   return (
-    <SvgMaskWrapper>
+    <SvgMaskWrapper onClick={onClick}>
       <svg
         width={windowWidth}
         height={windowHeight}
