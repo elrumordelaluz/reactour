@@ -457,7 +457,7 @@ class Tour extends Component {
                       })
                     : steps[current].content)}
                 {showNumber && (
-                  <Badge data-tour-elem="badge">
+                  <Badge data-tour-elem="badge" accentColor={accentColor}>
                     {typeof badgeContent === 'function'
                       ? badgeContent(current + 1, steps.length)
                       : current + 1}
@@ -485,6 +485,7 @@ class Tour extends Component {
                             onClick={() => this.gotoStep(i)}
                             current={current}
                             index={i}
+                            accentColor={accentColor}
                             disabled={current === i || disableDotsNavigation}
                             showNumber={showNavigationNumber}
                             data-tour-elem="dot"

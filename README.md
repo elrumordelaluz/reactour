@@ -64,7 +64,7 @@ const steps = [
 
 #### accentColor
 
-> Change `--reactour-accent` css custom prop to apply color in _Helper_, number, dots, etc
+> Change `--reactour-accent` _(defaults to accentColor on IE)_ css custom prop to apply color in _Helper_, number, dots, etc
 
 Type: `string`
 
