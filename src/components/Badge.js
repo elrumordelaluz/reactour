@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const Badge = styled.span`
   position: absolute;
   font-family: monospace;
+  background-color: ${props => props.accentColor};
   background-color: var(--reactour-accent);
   height: 1.875em;
   line-height: 2;

@@ -13,6 +13,12 @@ const Dot = styled.button`
   transition: opacity 0.3s, transform 0.3s;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   transform: scale(${props => (props.current === props.index ? 1.25 : 1)});
+
+  color: ${props =>
+    props.current === props.index ? props.accentColor : '#caccce'};
+  background-color: ${props =>
+    props.current === props.index ? props.accentColor : 'transparent'};
+    
   color: ${props =>
     props.current === props.index ? 'var(--reactour-accent)' : '#caccce'};
   background-color: ${props =>
