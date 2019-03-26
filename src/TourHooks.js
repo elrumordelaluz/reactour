@@ -1,8 +1,8 @@
-import React, { useState, useReducer, useEffect, createRef } from 'react'
+import React, { useState, useReducer, useEffect, useRef, memo } from 'react'
 import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
-
+import debounce from 'lodash.debounce'
 import Portal from './Portal'
 import {
   SvgMask,
@@ -22,11 +22,9 @@ function Tour({
   isOpen,
   startAt,
   steps,
-
   scrollDuration,
   inViewThreshold,
   scrollOffset,
-
   disableInteraction,
   disableKeyboardNavigation,
   className,
@@ -48,20 +46,24 @@ function Tour({
 }) {
   const [current, setCurrent] = useState(0)
   const [state, dispatch] = useReducer(reducer, initialState)
-  const helper = createRef()
+  const helper = useRef(null)
 
   useEffect(() => {
+    const debouncedShowStep = debounce(showStep, 100)
     window.addEventListener('keydown', keyHandler, false)
+    window.addEventListener('resize', debouncedShowStep, false)
 
     return () => {
       window.removeEventListener('keydown', keyHandler)
+      window.removeEventListener('resize', debouncedShowStep)
     }
   }, [])
 
+  useWhyDidYouUpdate('Counter', { current, state, isOpen })
   useEffect(() => {
     if (isOpen) {
       open(startAt)
-      showStep()
+
       if (helper.current) {
         helper.current.focus()
       }
@@ -70,7 +72,7 @@ function Tour({
 
   useEffect(() => {
     if (isOpen) showStep()
-  }, [current])
+  }, [isOpen, current])
 
   function keyHandler(e) {
     e.stopPropagation()
@@ -107,7 +109,7 @@ function Tour({
   }
 
   function open(startAt) {
-    const firstStep = startAt || 0
+    const firstStep = startAt || current
     setCurrent(firstStep)
 
     if (onAfterOpen) {
@@ -130,9 +132,9 @@ function Tour({
   function showStep() {
     const step = steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
+    const { w, h } = getWindow()
     if (node) {
       // DOM node exists
-      const { w, h } = getWindow()
       const nodeRect = hx.getNodeRect(node)
 
       // step is outside view
@@ -153,9 +155,6 @@ function Tour({
       // No DOM node
       dispatch({
         type: 'without_node',
-        // ...nodeRect,
-        helperWidth,
-        helperHeight,
         helperPosition: step.position,
         w,
         h,
@@ -349,11 +348,11 @@ function reducer(state, action) {
         top: state.h + 10,
         right: state.w / 2 + 9,
         bottom: state.h / 2 + 9,
-        left: w / 2 - state.helperWidth / 2,
+        left: action.w / 2 - state.helperWidth / 2,
         width: 0,
         height: 0,
-        w,
-        h,
+        w: action.w,
+        h: action.h,
         helperPosition: 'center',
       }
     default:
@@ -365,4 +364,38 @@ Tour.propTypes = propTypes
 
 Tour.defaultProps = defaultProps
 
-export default Tour
+function useWhyDidYouUpdate(name, props) {
+  // Get a mutable ref object where we can store props ...
+  // ... for comparison next time this hook runs.
+  const previousProps = useRef()
+
+  useEffect(() => {
+    if (previousProps.current) {
+      // Get all keys from previous and current props
+      const allKeys = Object.keys({ ...previousProps.current, ...props })
+      // Use this object to keep track of changed props
+      const changesObj = {}
+      // Iterate through keys
+      allKeys.forEach(key => {
+        // If previous is different from current
+        if (previousProps.current[key] !== props[key]) {
+          // Add to changesObj
+          changesObj[key] = {
+            from: previousProps.current[key],
+            to: props[key],
+          }
+        }
+      })
+
+      // If changesObj not empty then output to console
+      if (Object.keys(changesObj).length) {
+        console.log('[why-did-you-update]', name, changesObj)
+      }
+    }
+
+    // Finally update previousProps with current props for next hook call
+    previousProps.current = props
+  })
+}
+
+export default memo(Tour)

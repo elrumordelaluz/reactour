@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { Component, useState, useEffect, Suspense, lazy } from 'react'
 import Demo from './Demo'
-import Tour, { Arrow } from '../index'
+import { Arrow } from '../index'
 import Text from './Text'
 import Glitch from './Glitch'
 import Tooltip from './Tooltip'
@@ -9,6 +9,10 @@ import PropTypes from 'prop-types'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import './styles.css'
+
+const LazyTour = React.lazy(() =>
+  import(/* webpackChunkName: "reactour" */ '../index')
+)
 
 function App() {
   const [isTourOpen, setOpen] = useState(false)
@@ -41,18 +45,20 @@ function App() {
         toggleShowMore={() => setShowingMore(!isShowingMore)}
         isShowingMore={isShowingMore}
       />
-      <Tour
-        onAfterOpen={disableBody}
-        onBeforeClose={enableBody}
-        onRequestClose={() => setOpen(false)}
-        steps={tourConfig}
-        isOpen={isTourOpen}
-        maskClassName="mask"
-        className="helper"
-        rounded={5}
-        accentColor={accentColor}
-        CustomHelper={customComps ? MyCustomHelper : null}
-      />
+      <Suspense fallback={<React.Fragment />}>
+        <LazyTour
+          onAfterOpen={disableBody}
+          onBeforeClose={enableBody}
+          onRequestClose={() => setOpen(false)}
+          steps={tourConfig}
+          isOpen={isTourOpen}
+          maskClassName="mask"
+          className="helper"
+          rounded={5}
+          accentColor={accentColor}
+          CustomHelper={customComps ? MyCustomHelper : null}
+        />
+      </Suspense>
     </div>
   )
 }
@@ -116,7 +122,7 @@ const tourConfig = [
       "Ok, let's start with the name of the Tour that is about to begin.",
   },
   {
-    selector: '[data-tut="reactour__logo"]',
+    selector: '[data-tut="reactour__logoooo"]',
     content: 'And this is our cool bus...',
   },
   {
