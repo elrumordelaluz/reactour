@@ -1,6 +1,6 @@
 {
   "name": "reactour",
-  "version": "1.13.2",
+  "version": "1.13.3",
   "description": "Tourist Guide into your React Components",
   "main": "dist/reactour.cjs.js",
   "module": "dist/reactour.esm.js",
