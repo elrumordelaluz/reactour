@@ -4,7 +4,6 @@
   "description": "Tourist Guide into your React Components",
   "main": "dist/reactour.cjs.js",
   "module": "dist/reactour.esm.js",
-  "browser": "dist/reactour.umd.js",
   "scripts": {
     "prepare": "npm run lib",
     "start": "webpack-dev-server --mode development --open",
