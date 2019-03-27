@@ -59,7 +59,6 @@ function Tour({
     }
   }, [])
 
-  useWhyDidYouUpdate('Counter', { current, state, isOpen })
   useEffect(() => {
     if (isOpen) {
       open(startAt)
@@ -132,7 +131,7 @@ function Tour({
   function showStep() {
     const step = steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
-    const { w, h } = getWindow()
+    const { w, h } = hx.getWindow()
     if (node) {
       // DOM node exists
       const nodeRect = hx.getNodeRect(node)
@@ -164,7 +163,7 @@ function Tour({
   }
 
   function makeCalculations(nodeRect, helperPosition) {
-    const { w, h } = getWindow()
+    const { w, h } = hx.getWindow()
     const { width: helperWidth, height: helperHeight } = hx.getNodeRect(
       helper.current
     )
@@ -246,84 +245,88 @@ function Tour({
           [CN.helper.isOpen]: isOpen,
         })}
       >
-        {children}
-        {stepContent}
-        {showNumber && (
-          <Badge data-tour-elem="badge">
-            {typeof badgeContent === 'function'
-              ? badgeContent(current + 1, steps.length)
-              : current + 1}
-          </Badge>
-        )}
-
-        {(showButtons || showNavigation) && (
-          <Controls data-tour-elem="controls">
-            {showButtons && (
-              <Arrow
-                onClick={prevStep}
-                disabled={current === 0}
-                label={prevButton ? prevButton : null}
-              />
+        {CustomHelper ? (
+          <CustomHelper
+            current={current}
+            totalSteps={steps.length}
+            gotoStep={goTo}
+            close={onRequestClose}
+            content={stepContent}
+          >
+            {children}
+          </CustomHelper>
+        ) : (
+          <>
+            {children}
+            {stepContent}
+            {showNumber && (
+              <Badge data-tour-elem="badge">
+                {typeof badgeContent === 'function'
+                  ? badgeContent(current + 1, steps.length)
+                  : current + 1}
+              </Badge>
             )}
 
-            {showNavigation && (
-              <Navigation data-tour-elem="navigation">
-                {steps.map((s, i) => (
-                  <Dot
-                    key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                    onClick={() => goTo(i)}
-                    current={current}
-                    index={i}
-                    disabled={current === i || disableDotsNavigation}
-                    showNumber={showNavigationNumber}
-                    data-tour-elem="dot"
-                    className={cn(CN.dot.base, {
-                      [CN.dot.active]: current === i,
-                    })}
+            {(showButtons || showNavigation) && (
+              <Controls data-tour-elem="controls">
+                {showButtons && (
+                  <Arrow
+                    onClick={prevStep}
+                    disabled={current === 0}
+                    label={prevButton ? prevButton : null}
                   />
-                ))}
-              </Navigation>
-            )}
+                )}
 
-            {showButtons && (
-              <Arrow
-                onClick={
-                  current === steps.length - 1
-                    ? lastStepNextButton
-                      ? onRequestClose
-                      : () => {}
-                    : typeof nextStep === 'function'
-                    ? nextStep
-                    : this.nextStep
-                }
-                disabled={!lastStepNextButton && current === steps.length - 1}
-                inverted
-                label={
-                  lastStepNextButton && current === steps.length - 1
-                    ? lastStepNextButton
-                    : nextButton
-                    ? nextButton
-                    : null
-                }
-              />
+                {showNavigation && (
+                  <Navigation data-tour-elem="navigation">
+                    {steps.map((s, i) => (
+                      <Dot
+                        key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                        onClick={() => goTo(i)}
+                        current={current}
+                        index={i}
+                        disabled={current === i || disableDotsNavigation}
+                        showNumber={showNavigationNumber}
+                        data-tour-elem="dot"
+                        className={cn(CN.dot.base, {
+                          [CN.dot.active]: current === i,
+                        })}
+                      />
+                    ))}
+                  </Navigation>
+                )}
+
+                {showButtons && (
+                  <Arrow
+                    onClick={
+                      current === steps.length - 1
+                        ? lastStepNextButton
+                          ? onRequestClose
+                          : () => {}
+                        : typeof nextStep === 'function'
+                        ? nextStep
+                        : this.nextStep
+                    }
+                    disabled={
+                      !lastStepNextButton && current === steps.length - 1
+                    }
+                    inverted
+                    label={
+                      lastStepNextButton && current === steps.length - 1
+                        ? lastStepNextButton
+                        : nextButton
+                        ? nextButton
+                        : null
+                    }
+                  />
+                )}
+              </Controls>
             )}
-          </Controls>
+          </>
         )}
       </Guide>
     </Portal>
   ) : null
-}
-
-function getWindow() {
-  const w = Math.max(
-    document.documentElement.clientWidth,
-    window.innerWidth || 0
-  )
-  const h = Math.max(
-    document.documentElement.clientHeight,
-    window.innerHeight || 0
-  )
-  return { w, h }
 }
 
 const initialState = {
@@ -363,39 +366,5 @@ function reducer(state, action) {
 Tour.propTypes = propTypes
 
 Tour.defaultProps = defaultProps
-
-function useWhyDidYouUpdate(name, props) {
-  // Get a mutable ref object where we can store props ...
-  // ... for comparison next time this hook runs.
-  const previousProps = useRef()
-
-  useEffect(() => {
-    if (previousProps.current) {
-      // Get all keys from previous and current props
-      const allKeys = Object.keys({ ...previousProps.current, ...props })
-      // Use this object to keep track of changed props
-      const changesObj = {}
-      // Iterate through keys
-      allKeys.forEach(key => {
-        // If previous is different from current
-        if (previousProps.current[key] !== props[key]) {
-          // Add to changesObj
-          changesObj[key] = {
-            from: previousProps.current[key],
-            to: props[key],
-          }
-        }
-      })
-
-      // If changesObj not empty then output to console
-      if (Object.keys(changesObj).length) {
-        console.log('[why-did-you-update]', name, changesObj)
-      }
-    }
-
-    // Finally update previousProps with current props for next hook call
-    previousProps.current = props
-  })
-}
 
 export default memo(Tour)
