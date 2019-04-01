@@ -3,6 +3,7 @@ import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
 import debounce from 'lodash.debounce'
+import useMutationObserver from '@rooks/use-mutation-observer'
 import Portal from './Portal'
 import {
   SvgMask,
@@ -47,6 +48,28 @@ function Tour({
   const [current, setCurrent] = useState(0)
   const [state, dispatch] = useReducer(reducer, initialState)
   const helper = useRef(null)
+  const observer = useRef(null)
+
+  useMutationObserver(observer, (mutationList, observer) => {
+    if (isOpen) {
+      showStep()
+      mutationList.forEach(mutation => {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          setTimeout(
+            () => makeCalculations(hx.getNodeRect(mutation.addedNodes[0])),
+            500
+          )
+        } else if (
+          mutation.type === 'childList' &&
+          mutation.removedNodes.length > 0
+        ) {
+          console.log('Removed node, do something')
+        }
+      })
+    } else {
+      observer.disconnect()
+    }
+  })
 
   useEffect(() => {
     const debouncedShowStep = debounce(showStep, 100)
@@ -132,6 +155,11 @@ function Tour({
     const step = steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
     const { w, h } = hx.getWindow()
+
+    if (step.observe) {
+      observer.current = document.querySelector(step.observe)
+    }
+
     if (node) {
       // DOM node exists
       const nodeRect = hx.getNodeRect(node)
