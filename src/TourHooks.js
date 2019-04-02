@@ -32,6 +32,7 @@ function Tour({
   closeWithMask,
   onRequestClose,
   onAfterOpen,
+  onBeforeClose,
   CustomHelper,
   showNumber,
   accentColor,
@@ -114,7 +115,7 @@ function Tour({
     if (e.keyCode === 27 && !isEscDisabled) {
       // esc
       e.preventDefault()
-      onRequestClose()
+      close()
     }
 
     if (e.keyCode === 39 && !isRightDisabled) {
@@ -137,6 +138,14 @@ function Tour({
     if (onAfterOpen) {
       onAfterOpen(helper.current)
     }
+  }
+
+  function close(e) {
+    if (onBeforeClose) {
+      onBeforeClose(helper.current)
+    }
+
+    onRequestClose(e)
   }
 
   function nextStep() {
@@ -212,7 +221,7 @@ function Tour({
       closeWithMask &&
       !e.target.classList.contains(CN.mask.disableInteraction)
     ) {
-      onRequestClose(e)
+      close(e)
     }
   }
 
@@ -220,7 +229,7 @@ function Tour({
     steps[current] &&
     (typeof steps[current].content === 'function'
       ? steps[current].content({
-          close: onRequestClose,
+          close: close,
           goTo,
           inDOM: state.inDOM,
           step: current + 1,
@@ -278,7 +287,7 @@ function Tour({
             current={current}
             totalSteps={steps.length}
             gotoStep={goTo}
-            close={onRequestClose}
+            close={close}
             content={stepContent}
           >
             {children}
@@ -329,7 +338,7 @@ function Tour({
                     onClick={
                       current === steps.length - 1
                         ? lastStepNextButton
-                          ? onRequestClose
+                          ? close
                           : () => {}
                         : typeof nextStep === 'function'
                         ? nextStep
