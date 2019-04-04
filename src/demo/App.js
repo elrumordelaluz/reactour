@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect, Suspense, lazy } from 'react'
+import Tour from '../index'
 import 'focus-outline-manager'
 import { GlobalStyle } from './../style'
 import Demo from './Demo'
@@ -12,9 +13,9 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import './styles.css'
 
-const LazyTour = React.lazy(() =>
-  import(/* webpackChunkName: "reactour" */ '../index')
-)
+// const LazyTour = React.lazy(() =>
+//   import(/* webpackChunkName: "reactour" */ '../index')
+// )
 
 function App() {
   const [isTourOpen, setOpen] = useState(false)
@@ -49,7 +50,7 @@ function App() {
         isShowingMore={isShowingMore}
       />
       <Suspense fallback={<React.Fragment />}>
-        <LazyTour
+        <Tour
           onAfterOpen={disableBody}
           onBeforeClose={enableBody}
           onRequestClose={() => setOpen(false)}
