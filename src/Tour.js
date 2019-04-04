@@ -4,6 +4,8 @@ import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
 import debounce from 'lodash.debounce'
+import FocusLock from 'react-focus-lock'
+import { GlobalStyle } from './style'
 import {
   Arrow,
   Close,
@@ -35,6 +37,7 @@ class Tour extends Component {
       h: 0,
       inDOM: false,
       observer: null,
+      focusUnlocked: false,
     }
     this.helper = createRef()
     this.helperElement = null
@@ -105,15 +108,29 @@ class Tour extends Component {
     window.addEventListener('keydown', this.keyDownHandler, false)
   }
 
+  unlockFocus = callback => {
+    this.setState(
+      {
+        focusUnlocked: true,
+      },
+      callback()
+    )
+  }
+
   showStep = () => {
     const { steps } = this.props
-    const { current } = this.state
+    const { current, focusUnlocked } = this.state
+    if (focusUnlocked) {
+      this.setState({
+        focusUnlocked: false,
+      })
+    }
     const step = steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
 
     const stepCallback = o => {
       if (step.action && typeof step.action === 'function') {
-        step.action(o)
+        this.unlockFocus(() => step.action(o))
       }
     }
 
@@ -372,11 +389,13 @@ class Tour extends Component {
       helperWidth,
       helperHeight,
       helperPosition,
+      focusUnlocked,
     } = this.state
 
     if (isOpen) {
       return (
         <Portal>
+          <GlobalStyle />
           <SvgMask
             className={cn(CN.mask.base, maskClassName, {
               [CN.mask.isOpen]: isOpen,
@@ -401,133 +420,135 @@ class Tour extends Component {
               CN.mask.disableInteraction
             } ${highlightedMaskClassName}`}
           />
-          <Guide
-            ref={this.helper}
-            targetHeight={targetHeight}
-            targetWidth={targetWidth}
-            targetTop={targetTop}
-            targetRight={targetRight}
-            targetBottom={targetBottom}
-            targetLeft={targetLeft}
-            windowWidth={windowWidth}
-            windowHeight={windowHeight}
-            helperWidth={helperWidth}
-            helperHeight={helperHeight}
-            helperPosition={helperPosition}
-            padding={maskSpace}
-            tabIndex={-1}
-            current={current}
-            style={steps[current].style ? steps[current].style : {}}
-            rounded={rounded}
-            className={cn(CN.helper.base, className, {
-              [CN.helper.isOpen]: isOpen,
-            })}
-            accentColor={accentColor}
-          >
-            {CustomHelper ? (
-              <CustomHelper
-                current={current}
-                totalSteps={steps.length}
-                gotoStep={this.gotoStep}
-                close={onRequestClose}
-                content={
-                  steps[current] &&
-                  (typeof steps[current].content === 'function'
-                    ? steps[current].content({
-                        close: onRequestClose,
-                        goTo: this.gotoStep,
-                        inDOM,
-                        step: current + 1,
-                      })
-                    : steps[current].content)
-                }
-              >
-                {this.props.children}
-              </CustomHelper>
-            ) : (
-              <>
-                {this.props.children}
-                {steps[current] &&
-                  (typeof steps[current].content === 'function'
-                    ? steps[current].content({
-                        close: onRequestClose,
-                        goTo: this.gotoStep,
-                        inDOM,
-                        step: current + 1,
-                      })
-                    : steps[current].content)}
-                {showNumber && (
-                  <Badge data-tour-elem="badge" accentColor={accentColor}>
-                    {typeof badgeContent === 'function'
-                      ? badgeContent(current + 1, steps.length)
-                      : current + 1}
-                  </Badge>
-                )}
-                {(showButtons || showNavigation) && (
-                  <Controls data-tour-elem="controls">
-                    {showButtons && (
-                      <Arrow
-                        onClick={
-                          typeof prevStep === 'function'
-                            ? prevStep
-                            : this.prevStep
-                        }
-                        disabled={current === 0}
-                        label={prevButton ? prevButton : null}
-                      />
-                    )}
+          <FocusLock disabled={focusUnlocked}>
+            <Guide
+              ref={this.helper}
+              targetHeight={targetHeight}
+              targetWidth={targetWidth}
+              targetTop={targetTop}
+              targetRight={targetRight}
+              targetBottom={targetBottom}
+              targetLeft={targetLeft}
+              windowWidth={windowWidth}
+              windowHeight={windowHeight}
+              helperWidth={helperWidth}
+              helperHeight={helperHeight}
+              helperPosition={helperPosition}
+              padding={maskSpace}
+              tabIndex={-1}
+              current={current}
+              style={steps[current].style ? steps[current].style : {}}
+              rounded={rounded}
+              className={cn(CN.helper.base, className, {
+                [CN.helper.isOpen]: isOpen,
+              })}
+              accentColor={accentColor}
+            >
+              {CustomHelper ? (
+                <CustomHelper
+                  current={current}
+                  totalSteps={steps.length}
+                  gotoStep={this.gotoStep}
+                  close={onRequestClose}
+                  content={
+                    steps[current] &&
+                    (typeof steps[current].content === 'function'
+                      ? steps[current].content({
+                          close: onRequestClose,
+                          goTo: this.gotoStep,
+                          inDOM,
+                          step: current + 1,
+                        })
+                      : steps[current].content)
+                  }
+                >
+                  {this.props.children}
+                </CustomHelper>
+              ) : (
+                <>
+                  {this.props.children}
+                  {steps[current] &&
+                    (typeof steps[current].content === 'function'
+                      ? steps[current].content({
+                          close: onRequestClose,
+                          goTo: this.gotoStep,
+                          inDOM,
+                          step: current + 1,
+                        })
+                      : steps[current].content)}
+                  {showNumber && (
+                    <Badge data-tour-elem="badge" accentColor={accentColor}>
+                      {typeof badgeContent === 'function'
+                        ? badgeContent(current + 1, steps.length)
+                        : current + 1}
+                    </Badge>
+                  )}
+                  {(showButtons || showNavigation) && (
+                    <Controls data-tour-elem="controls">
+                      {showButtons && (
+                        <Arrow
+                          onClick={
+                            typeof prevStep === 'function'
+                              ? prevStep
+                              : this.prevStep
+                          }
+                          disabled={current === 0}
+                          label={prevButton ? prevButton : null}
+                        />
+                      )}
 
-                    {showNavigation && (
-                      <Navigation data-tour-elem="navigation">
-                        {steps.map((s, i) => (
-                          <Dot
-                            key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                            onClick={() => this.gotoStep(i)}
-                            current={current}
-                            index={i}
-                            accentColor={accentColor}
-                            disabled={current === i || disableDotsNavigation}
-                            showNumber={showNavigationNumber}
-                            data-tour-elem="dot"
-                            className={cn(CN.dot.base, {
-                              [CN.dot.active]: current === i,
-                            })}
-                          />
-                        ))}
-                      </Navigation>
-                    )}
+                      {showNavigation && (
+                        <Navigation data-tour-elem="navigation">
+                          {steps.map((s, i) => (
+                            <Dot
+                              key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                              onClick={() => this.gotoStep(i)}
+                              current={current}
+                              index={i}
+                              accentColor={accentColor}
+                              disabled={current === i || disableDotsNavigation}
+                              showNumber={showNavigationNumber}
+                              data-tour-elem="dot"
+                              className={cn(CN.dot.base, {
+                                [CN.dot.active]: current === i,
+                              })}
+                            />
+                          ))}
+                        </Navigation>
+                      )}
 
-                    {showButtons && (
-                      <Arrow
-                        onClick={
-                          current === steps.length - 1
-                            ? lastStepNextButton
-                              ? onRequestClose
-                              : () => {}
-                            : typeof nextStep === 'function'
-                            ? nextStep
-                            : this.nextStep
-                        }
-                        disabled={
-                          !lastStepNextButton && current === steps.length - 1
-                        }
-                        inverted
-                        label={
-                          lastStepNextButton && current === steps.length - 1
-                            ? lastStepNextButton
-                            : nextButton
-                            ? nextButton
-                            : null
-                        }
-                      />
-                    )}
-                  </Controls>
-                )}
+                      {showButtons && (
+                        <Arrow
+                          onClick={
+                            current === steps.length - 1
+                              ? lastStepNextButton
+                                ? onRequestClose
+                                : () => {}
+                              : typeof nextStep === 'function'
+                              ? nextStep
+                              : this.nextStep
+                          }
+                          disabled={
+                            !lastStepNextButton && current === steps.length - 1
+                          }
+                          inverted
+                          label={
+                            lastStepNextButton && current === steps.length - 1
+                              ? lastStepNextButton
+                              : nextButton
+                              ? nextButton
+                              : null
+                          }
+                        />
+                      )}
+                    </Controls>
+                  )}
 
-                {showCloseButton ? <Close onClick={onRequestClose} /> : null}
-              </>
-            )}
-          </Guide>
+                  {showCloseButton ? <Close onClick={onRequestClose} /> : null}
+                </>
+              )}
+            </Guide>
+          </FocusLock>
         </Portal>
       )
     }

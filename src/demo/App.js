@@ -1,4 +1,6 @@
 import React, { Component, useState, useEffect, Suspense, lazy } from 'react'
+import 'focus-outline-manager'
+import { GlobalStyle } from './../style'
 import Demo from './Demo'
 import { Arrow } from '../index'
 import Text from './Text'
@@ -40,6 +42,7 @@ function App() {
   const accentColor = '#5cb7b7'
   return (
     <div>
+      <GlobalStyle />
       <Demo
         openTour={() => setOpen(true)}
         toggleShowMore={() => setShowingMore(!isShowingMore)}
@@ -122,7 +125,7 @@ const tourConfig = [
       "Ok, let's start with the name of the Tour that is about to begin.",
   },
   {
-    selector: '[data-tut="reactour__logoooo"]',
+    selector: '[data-tut="reactour__logo"]',
     content: 'And this is our cool bus...',
   },
   {
@@ -235,6 +238,7 @@ const tourConfig = [
     content:
       'And the Tour could be observing changes to update the view, try clicking the button…',
     observe: '[data-tut="reactour__state--observe"]',
+    action: node => node.focus(),
   },
 ]
 
