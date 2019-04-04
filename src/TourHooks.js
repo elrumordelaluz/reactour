@@ -20,6 +20,14 @@ import * as hx from './helpers'
 import { propTypes, defaultProps } from './propTypes'
 import CN from './classNames'
 
+function checkFnAndRun(fn = null) {
+  if (fn && typeof fn === 'function') {
+    return function(...args) {
+      return fn(...args)
+    }
+  }
+}
+
 function Tour({
   children,
   isOpen,
@@ -87,17 +95,17 @@ function Tour({
 
   useEffect(() => {
     if (isOpen) {
-      open(startAt)
-
+      showStep(startAt)
       if (helper.current) {
         helper.current.focus()
+        checkFnAndRun(onAfterOpen)(helper.current)
       }
     }
   }, [isOpen])
 
   useEffect(() => {
     if (isOpen) showStep()
-  }, [isOpen, current])
+  }, [current])
 
   function keyHandler(e) {
     e.stopPropagation()
@@ -133,20 +141,8 @@ function Tour({
     }
   }
 
-  function open(startAt) {
-    const firstStep = startAt || current
-    setCurrent(firstStep)
-
-    if (onAfterOpen) {
-      onAfterOpen(helper.current)
-    }
-  }
-
   function close(e) {
-    if (onBeforeClose) {
-      onBeforeClose(helper.current)
-    }
-
+    checkFnAndRun(onBeforeClose)(helper.current)
     onRequestClose(e)
   }
 
@@ -162,8 +158,13 @@ function Tour({
     setCurrent(step)
   }
 
-  function showStep() {
-    const step = steps[current]
+  async function showStep(nextStep) {
+    const step = steps[nextStep] || steps[current]
+
+    if (step.actionBefore && typeof step.actionBefore === 'function') {
+      await step.actionBefore()
+    }
+
     const node = step.selector ? document.querySelector(step.selector) : null
     const { w, h } = hx.getWindow()
 
@@ -198,6 +199,10 @@ function Tour({
         h,
         inDOM: false,
       })
+    }
+
+    if (step.action && typeof step.action === 'function') {
+      await step.action(node)
     }
   }
 
