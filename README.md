@@ -350,6 +350,7 @@ const steps = [
     ),
     position: 'top',
     action: node => {
+      // by using this, focus trap is temporary disabled
       node.focus()
       console.log('yup, the target element is also focused!')
     },

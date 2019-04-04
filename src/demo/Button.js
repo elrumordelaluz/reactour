@@ -4,7 +4,6 @@ import { fontFamily, headingSizes, themeColors } from './settings'
 const styles = `
     border: 0;
     border-radius: 4px;
-    outline: 0;
     color: white;
     padding: .5em 1em;
     font-family: ${fontFamily};

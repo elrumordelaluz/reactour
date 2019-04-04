@@ -1,4 +1,7 @@
 import React, { Component, useState, useEffect, Suspense, lazy } from 'react'
+import Tour from '../index'
+import 'focus-outline-manager'
+import { GlobalStyle } from './../style'
 import Demo from './Demo'
 import { Arrow } from '../index'
 import Text from './Text'
@@ -10,9 +13,9 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import './styles.css'
 
-const LazyTour = React.lazy(() =>
-  import(/* webpackChunkName: "reactour" */ '../index')
-)
+// const LazyTour = React.lazy(() =>
+//   import(/* webpackChunkName: "reactour" */ '../index')
+// )
 
 function App() {
   const [isTourOpen, setOpen] = useState(false)
@@ -40,13 +43,14 @@ function App() {
   const accentColor = '#5cb7b7'
   return (
     <div>
+      <GlobalStyle />
       <Demo
         openTour={() => setOpen(true)}
         toggleShowMore={() => setShowingMore(!isShowingMore)}
         isShowingMore={isShowingMore}
       />
       <Suspense fallback={<React.Fragment />}>
-        <LazyTour
+        <Tour
           onAfterOpen={disableBody}
           onBeforeClose={enableBody}
           onRequestClose={() => setOpen(false)}
@@ -122,7 +126,7 @@ const tourConfig = [
       "Ok, let's start with the name of the Tour that is about to begin.",
   },
   {
-    selector: '[data-tut="reactour__logoooo"]',
+    selector: '[data-tut="reactour__logo"]',
     content: 'And this is our cool bus...',
   },
   {
@@ -235,6 +239,7 @@ const tourConfig = [
     content:
       'And the Tour could be observing changes to update the view, try clicking the button…',
     observe: '[data-tut="reactour__state--observe"]',
+    action: node => node.focus(),
   },
 ]
 
