@@ -42,7 +42,7 @@ function App() {
   const enableBody = target => enableBodyScroll(target)
   const accentColor = '#5cb7b7'
   return (
-    <div>
+    <>
       <GlobalStyle />
       <Demo
         openTour={() => setOpen(true)}
@@ -63,7 +63,7 @@ function App() {
           CustomHelper={customComps ? MyCustomHelper : null}
         />
       </Suspense>
-    </div>
+    </>
   )
 }
 
@@ -133,7 +133,6 @@ const tourConfig = [
     selector: '[data-tut="reactour__copy"]',
     content: `Keep in mind that you could try and test everything during the Tour.
       For example, try selecting the highlighted text…`,
-    stepInteraction: false,
   },
   {
     selector: '[data-tut="reactour__style"]',

@@ -91,7 +91,7 @@ function Tour({
       window.removeEventListener('keydown', keyHandler)
       window.removeEventListener('resize', debouncedShowStep)
     }
-  }, [])
+  }, [current])
 
   useEffect(() => {
     if (isOpen) {

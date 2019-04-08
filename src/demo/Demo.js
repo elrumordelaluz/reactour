@@ -13,7 +13,7 @@ import PropTypes from 'prop-types'
 
 export default function Demo({ openTour, isShowingMore, toggleShowMore }) {
   return (
-    <div>
+    <>
       <Section center>
         <Logo />
         <Heading h="3" data-tut="reactour__copy">
@@ -284,7 +284,7 @@ export default function Demo({ openTour, isShowingMore, toggleShowMore }) {
           </Link>
         </Text>
       </Footer>
-    </div>
+    </>
   )
 }
 
