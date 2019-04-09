@@ -1,5 +1,4 @@
 import React, { Component, createRef } from 'react'
-import PropTypes from 'prop-types'
 import cn from 'classnames'
 import scrollSmooth from 'scroll-smooth'
 import Scrollparent from 'scrollparent'
