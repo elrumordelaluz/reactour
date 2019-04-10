@@ -312,7 +312,7 @@ Type: `number`
 
 #### steps
 
-> Array of elements to highligt with special info and props
+> Array of elements to highlight with special info and props
 
 Type: `shape`
 
@@ -332,6 +332,9 @@ steps: PropTypes.arrayOf(PropTypes.shape({
   'action': PropTypes.func,
   'style': PropTypes.object,
   'stepInteraction': PropTypes.bool,
+  'preAction': propTypes.func,
+  'postAction': propTypes.func,
+  'rewindAction': propTypes.func
 })),
 ```
 
@@ -361,6 +364,16 @@ const steps = [
     // Could be enabled passing `true`
     // when `disableInteraction` prop is present in Tour
     stepInteraction: false,
+    preAction: () => {
+        // this is executed before this step starts
+        // preActions will NOT run if used on the first step
+        console.log("Step is about to start")
+    },
+    postAction: () => {
+        // this is executed before this step ends
+        // postActions will NOT run if used on the last step
+        console.log("Step is about to finish")
+    }
   },
   // ...
 ]
@@ -380,11 +393,69 @@ Type: `number`
 
 Default: `1`
 
+### Step props
+
+#### content
+
+> The content of the step, which can be simple text, a node, element or a function that returns any of these.
+
+Type: `node`|`element`|`func`
+
+Required: true
+
+#### observe
+
+> Watches an element for changes and updates the spotlight accordingly
+
+Type: `node`
+
+#### position
+
+> Where the step modal will appear relative to the selected element.
+
+Type: `func`
+
+#### preAction
+
+> Action handler that is executed before this step executes.
+
+Type: `func`
+
+#### postAction
+
+> Action handler that is executed after this step executes.
+
+Type: `func`
+
+#### rewindAction
+
+> Action handler that is executed if this step is rewinded (for resetting)
+
+Type: `func`
+
+#### selector
+
+> This string is used with [`document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) to select the element for this step.
+
+Type: `string`
+
+#### stepInteraction
+
+> Disables interaction only for this step, rather than needing to enable it globally with `disableInteraction`.
+
+Type: `func`
+
+#### style
+
+> CSS/style to be applied to this step only. Pass as an object (or inline CSS).
+
+Type: `object`
+
 ## FAQ
 
 <p>
   <details>
-    <summary>How is implemented the scroll lock behaviour in the <a href="https://github.com/elrumordelaluz/reactour/blob/master/src/demo/App.js">Demo</a>?</summary>
+    <summary>How is the scroll lock behaviour implemented in the <a href="https://github.com/elrumordelaluz/reactour/blob/master/src/demo/App.js">Demo</a>?</summary>
     <p>
       To guarantee a cross browser behaviour we use <a href="https://www.npmjs.com/package/body-scroll-lock">body-scroll-lock</a>. </p>
       <p>Import the library
@@ -403,6 +474,52 @@ enableBody = target => enableBodyScroll(target)</pre>
   onAfterOpen={this.disableBody}
   onBeforeClose={this.enableBody}
 /&gt;</pre>
+    </p>
+  </details>
+</p>
+
+<p>
+  <details>
+    <summary>Why should I use pre instead of post? I can just use post in the step before (and vice versa).</summary>
+    <p>
+      In many cases, choosing between the pre & post action will not matter to the actual tour. They are mainly there to logically separate actions for the programmer.
+    </p>
+    <p>
+      Look at the example below to see an example of where this might help writing steps.
+
+      First of all, the bad version:
+    </p>
+    <pre lang=js>
+    [
+      {
+        selector: '#modal',
+        content: 'Here you can enter data'
+        postAction: () => openTheDropdown()
+      },
+      {
+        selector: '#the-dropdown',
+        content: 'Here is the dropdown'
+      },
+    ]
+    </pre>
+    <p>
+      This works, but why should the modal step care about the dropdown? In this case, the `preAction` handler makes more sense:
+    </p>
+    <pre lang=js>
+    [
+      {
+        selector: '#modal',
+        content: 'Here you can enter data'
+      },
+      {
+        selector: '#the-dropdown',
+        content: 'Here is the dropdown',
+        preAction: () => openTheDropdown()
+      },
+    ]
+    </pre>
+    <p>
+      Now if you have a lot of tour steps, each step is well separated in scope.
     </p>
   </details>
 </p>
