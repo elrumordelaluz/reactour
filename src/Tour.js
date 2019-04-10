@@ -269,6 +269,18 @@ class Tour extends Component {
         getCurrentStep(nextStep)
       }
 
+      if(prevState.current !== nextStep) {
+        if(steps[prevState.current].postAction && steps[prevState.current].postAction instanceof Function) {
+          steps[prevState.current].postAction()
+        }
+
+        if(steps[nextStep].preAction && steps[nextStep].preAction instanceof Function) {
+          steps[nextStep].preAction()
+        }
+      }
+
+
+
       return {
         current: nextStep,
       }
@@ -276,10 +288,14 @@ class Tour extends Component {
   }
 
   prevStep = () => {
-    const { getCurrentStep } = this.props
+    const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep =
         prevState.current > 0 ? prevState.current - 1 : prevState.current
+
+      if(prevState.current !== nextStep && steps[nextStep].rewind && steps[nextStep].rewind instanceof Function) {
+        steps[nextStep].rewind()
+      }
 
       if (typeof getCurrentStep === 'function') {
         getCurrentStep(nextStep)

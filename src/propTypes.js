@@ -40,6 +40,9 @@ export const propTypes = {
       action: PropTypes.func,
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
+      preAction: PropTypes.func,
+      postAction: PropTypes.func,
+      rewindAction: PropTypes.func
     })
   ),
   update: PropTypes.string,
