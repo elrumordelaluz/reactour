@@ -58,6 +58,7 @@ export const propTypes = {
   ]),
   rounded: PropTypes.number,
   accentColor: PropTypes.string,
+  deterministic: PropTypes.bool
 }
 
 export const defaultProps = {
@@ -73,4 +74,5 @@ export const defaultProps = {
   rounded: 0,
   accentColor: '#007aff',
   closeWithMask: true,
+  deterministic: true
 }
