@@ -202,9 +202,13 @@ Type: `node`
 
 #### nextStep
 
-> Overrides default `nextStep` internal function
+> Overrides default `nextStep` internal function. Gets passed the default `nextStep` handler as a parameter, so you can choose to execute it based on a requirement. Strange behaviour is expected if you change the current step then also execute the default implementation!
 
 Type: `func`
+
+```js
+<Tour prevStep={(defaultNext) => someRequirement && defaultNext()} />
+```
 
 #### onAfterOpen
 
@@ -244,9 +248,13 @@ Type: `node`
 
 #### prevStep
 
-> Overrides default `prevStep` internal function
+> Overrides default `prevStep` internal function. Gets passed the default `prevStep` handler as a parameter, so you can choose to execute it based on a requirement. Strange behaviour is expected if you change the current step then also execute the default implementation!
 
 Type: `func`
+
+```js
+<Tour prevStep={(defaultPrev) => someRequirement && defaultPrev()} />
+```
 
 #### rounded
 

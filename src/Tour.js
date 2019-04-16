@@ -383,13 +383,17 @@ class Tour extends Component {
     if (e.keyCode === 39 && !isRightDisabled) {
       // right
       e.preventDefault()
-      typeof nextStep === 'function' ? nextStep() : this.nextStep()
+      typeof nextStep === 'function'
+        ? nextStep(this.nextStep.bind(this))
+        : this.nextStep()
     }
 
     if (e.keyCode === 37 && !isLeftDisabled) {
       // left
       e.preventDefault()
-      typeof prevStep === 'function' ? prevStep() : this.prevStep()
+      typeof prevStep === 'function'
+        ? prevStep(this.prevStep.bind(this))
+        : this.prevStep()
     }
   }
 
@@ -535,7 +539,7 @@ class Tour extends Component {
                         <Arrow
                           onClick={
                             typeof prevStep === 'function'
-                              ? prevStep
+                              ? () => prevStep(this.prevStep.bind(this))
                               : this.prevStep
                           }
                           disabled={current === 0}
@@ -571,8 +575,8 @@ class Tour extends Component {
                                 ? onRequestClose
                                 : () => {}
                               : typeof nextStep === 'function'
-                              ? nextStep
-                              : this.nextStep
+                                ? () => nextStep(this.nextStep.bind(this))
+                                : this.nextStep
                           }
                           disabled={
                             !lastStepNextButton && current === steps.length - 1
