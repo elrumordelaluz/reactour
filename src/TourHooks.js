@@ -160,13 +160,14 @@ function Tour({
 
   async function showStep(nextStep) {
     const step = steps[nextStep] || steps[current]
+    const { w, h } = hx.getWindow()
 
     if (step.actionBefore && typeof step.actionBefore === 'function') {
+      dispatch({ type: 'without_node', w, h })
       await step.actionBefore()
     }
 
     const node = step.selector ? document.querySelector(step.selector) : null
-    const { w, h } = hx.getWindow()
 
     if (step.observe) {
       observer.current = document.querySelector(step.observe)
@@ -191,7 +192,6 @@ function Tour({
         makeCalculations(nodeRect, step.position)
       }
     } else {
-      // No DOM node
       dispatch({
         type: 'without_node',
         helperPosition: step.position,
@@ -287,6 +287,7 @@ function Tour({
           style={steps[current].style ? steps[current].style : {}}
           rounded={3}
           accentColor={accentColor}
+          defaultStyles={!CustomHelper}
           className={cn(CN.helper.base, className, {
             [CN.helper.isOpen]: isOpen,
           })}

@@ -442,6 +442,7 @@ class Tour extends Component {
                 [CN.helper.isOpen]: isOpen,
               })}
               accentColor={accentColor}
+              defaultStyles={!CustomHelper}
             >
               {CustomHelper ? (
                 <CustomHelper

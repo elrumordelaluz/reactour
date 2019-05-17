@@ -3,19 +3,24 @@ import * as hx from '../helpers'
 
 const Guide = styled.div`
   --reactour-accent: ${props => props.accentColor};
-  position: fixed;
-  background-color: #fff;
-  transition: transform 0.3s;
-  padding: 24px 30px;
-  box-shadow: 0 0.5em 3em rgba(0, 0, 0, 0.3);
-  top: 0;
-  left: 0;
-  color: inherit;
-  z-index: 1000000;
+  ${props =>
+    props.defaultStyles
+      ? `
   max-width: 331px;
   min-width: 150px;
   padding-right: 40px;
-  border-radius: ${props => props.rounded}px;
+  border-radius: ${props.rounded}px;
+  background-color: #fff;
+  padding: 24px 30px;
+  box-shadow: 0 0.5em 3em rgba(0, 0, 0, 0.3);
+  color: inherit;
+  `
+      : ''}
+  position: fixed;
+  transition: transform 0.3s;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
 
   transform: ${props => {
     const {
@@ -58,6 +63,22 @@ const Guide = styled.div`
     }
 
     const pos = helperPosition => {
+      if (Array.isArray(helperPosition)) {
+        const isOutX = hx.isOutsideX(helperPosition[0], windowWidth)
+        const isOutY = hx.isOutsideY(helperPosition[1], windowHeight)
+        const warn = (axis, num) => {
+          console.warn(
+            `${axis}:${num} is outside window, falling back to center`
+          )
+        }
+        if (isOutX) warn('x', helperPosition[0])
+        if (isOutY) warn('y', helperPosition[1])
+        return [
+          isOutX ? windowWidth / 2 - helperWidth / 2 : helperPosition[0],
+          isOutY ? windowHeight / 2 - helperHeight / 2 : helperPosition[1],
+        ]
+      }
+
       const hX = hx.isOutsideX(targetLeft + helperWidth, windowWidth)
         ? hx.isOutsideX(targetRight + padding, windowWidth)
           ? targetRight - helperWidth

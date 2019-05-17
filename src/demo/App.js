@@ -1,9 +1,8 @@
-import React, { Component, useState, useEffect, Suspense, lazy } from 'react'
-import Tour from '../index'
+import React, { useState, useEffect, Suspense, lazy } from 'react'
+import Tour, { Navigation, Dot, Controls, Arrow } from '../index'
 import 'focus-outline-manager'
 import { GlobalStyle } from './../style'
 import Demo from './Demo'
-import { Arrow } from '../index'
 import Text from './Text'
 import Glitch from './Glitch'
 import Tooltip from './Tooltip'
@@ -68,53 +67,60 @@ function App() {
 }
 
 function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
+  const accessories = [
+    'Blank',
+    'Kurt',
+    'Prescription01',
+    'Prescription02',
+    'Round',
+    'Sunglasses',
+    'Wayfarers',
+  ]
   return (
-    <main>
-      <span
-        style={{
-          position: 'absolute',
-          right: '1em',
-          bottom: '.5em',
-          fontSize: '10px',
-        }}
-      >
-        Step: {current + 1} |{' '}
-        <span style={{ cursor: 'pointer' }} onClick={close}>
-          ❌
-        </span>
-        <hr style={{ border: 0, borderBottom: '1px solid rgba(0,0,0,.1)' }} />
-        <Arrow
-          onClick={() => gotoStep(current < totalSteps - 1 ? current + 1 : 0)}
-          inverted={current < totalSteps - 1}
+    <main className="CustomHelper__wrapper">
+      <aside className="CustomHelper__sidebar">
+        <span className="CustomHelper__sidebar_step">Step {current + 1}</span>
+        <img
+          className="CustomHelper__sidebar_img"
+          src={`https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=${
+            accessories[current]
+          }&hairColor=Brown&facialHairType=BeardLight&facialHairColor=Black&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=UpDownNatural&mouthType=Smile&skinColor=Pale`}
         />
-      </span>
-
-      {content}
-      <ul
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          listStyle: 'none',
-        }}
-      >
-        {Array.from(Array(totalSteps).keys()).map((li, i) => (
-          <li key={li}>
-            <button
-              onClick={() => current !== i && gotoStep(i)}
-              style={{
-                color: current === i ? 'red' : 'initial',
-                border: 0,
-                backgroundColor: '#f7f7f7',
-                padding: '.5em',
-                margin: '1px',
-              }}
-            >
-              {li + 1}
-            </button>
-          </li>
-        ))}
-      </ul>
+        <span className="CustomHelper__sidebar_step">Lorem Ipsum</span>
+      </aside>
+      <div className="CustomHelper__content">
+        {content}
+        <Controls
+          data-tour-elem="controls"
+          className="CustomHelper__controls"
+          style={{ position: 'absolute' }}
+        >
+          <Arrow
+            onClick={() => gotoStep(current + 1)}
+            disabled={current === 0}
+            className="CustomHelper__navArrow"
+          />
+          <Navigation data-tour-elem="navigation">
+            {Array.from(Array(totalSteps).keys()).map((li, i) => (
+              <Dot
+                key={li}
+                onClick={() => current !== i && gotoStep(i)}
+                current={current}
+                index={i}
+                disabled={current === i}
+                showNumber={true}
+                data-tour-elem="dot"
+              />
+            ))}
+          </Navigation>
+          <Arrow
+            onClick={() => gotoStep(current + 1)}
+            disabled={current === totalSteps - 1}
+            className="CustomHelper__navArrow"
+            inverted
+          />
+        </Controls>
+      </div>
     </main>
   )
 }
@@ -128,6 +134,7 @@ const tourConfig = [
   {
     selector: '[data-tut="reactour__logo"]',
     content: 'And this is our cool bus...',
+    position: [20, 20],
   },
   {
     selector: '[data-tut="reactour__copy"]',

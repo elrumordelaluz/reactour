@@ -36,7 +36,10 @@ export const propTypes = {
         PropTypes.element,
         PropTypes.func,
       ]).isRequired,
-      position: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
+      position: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
+      ]),
       action: PropTypes.func,
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
