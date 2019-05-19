@@ -21,6 +21,10 @@ body {
   color: #2d2323;
 }
 
+.mask {
+  color: #021d1d;
+}
+
 [data-tour-elem='controls'] {
   justify-content: center;
 }

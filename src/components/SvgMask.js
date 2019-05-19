@@ -12,6 +12,7 @@ const SvgMaskWrapper = styled.div`
   position: fixed;
   z-index: 99999;
   pointer-events: none;
+  color: #000;
 `
 
 export default function SvgMask({
@@ -134,7 +135,7 @@ export default function SvgMask({
           y={0}
           width={windowWidth}
           height={windowHeight}
-          fill="#000000"
+          fill="currentColor"
           mask="url(#mask-main)"
         />
         <rect
@@ -142,7 +143,7 @@ export default function SvgMask({
           y={0}
           width={windowWidth}
           height={windowHeight}
-          fill="#000000"
+          fill="currentColor"
           clipPath="url(#clip-path)"
           pointerEvents="auto"
         />
