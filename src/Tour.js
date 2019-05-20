@@ -226,6 +226,11 @@ class Tour extends Component {
     }
   }
 
+  attemptExecution(handler, ...params) {
+    // yay for rest parameters and spreading
+    if(handler && handler instanceof Function) return handler(...params)
+  }
+
   close() {
     this.setState(prevState => {
       if (prevState.observer) {
@@ -269,6 +274,14 @@ class Tour extends Component {
         getCurrentStep(nextStep)
       }
 
+      if(prevState.current !== nextStep) {
+        const currentNode = document.querySelector(steps[prevState.current].selector) || undefined
+        this.attemptExecution(steps[prevState.current].postAction, currentNode)
+
+        const nextNode = document.querySelector(steps[nextStep].selector) || undefined
+        this.attemptExecution(steps[nextStep].preAction, nextNode)
+      }
+
       return {
         current: nextStep,
       }
@@ -276,10 +289,15 @@ class Tour extends Component {
   }
 
   prevStep = () => {
-    const { getCurrentStep } = this.props
+    const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep =
         prevState.current > 0 ? prevState.current - 1 : prevState.current
+
+      if(prevState.current !== nextStep) {
+        const nextNode = document.querySelector(steps[nextStep].selector) || undefined
+        this.attemptExecution(steps[nextStep].rewindAction, nextNode)
+      }
 
       if (typeof getCurrentStep === 'function') {
         getCurrentStep(nextStep)
@@ -293,8 +311,36 @@ class Tour extends Component {
 
   gotoStep = n => {
     const { steps, getCurrentStep } = this.props
+    const startingStep = this.state.current;
+
     this.setState(prevState => {
       const nextStep = steps[n] ? n : prevState.current
+
+      if (nextStep !== startingStep && this.props.deterministic) {
+        const startingNode = document.querySelector(steps[startingStep].selector) || undefined
+
+        if (nextStep > startingStep) {
+          // the next step is somewhere in the future list of steps
+          this.attemptExecution(steps[startingStep].postAction, startingNode)
+
+          steps.slice(startingStep, nextStep).forEach((interimStep) => {
+            const node = document.querySelector(interimStep.selector) || undefined
+
+            this.attemptExecution(interimStep.preAction, node)
+            this.attemptExecution(interimStep.action, node)
+            this.attemptExecution(interimStep.postAction, node)
+          })
+
+        } else if (nextStep < startingStep) {
+          // the next step is somewhere in the past list of steps
+          this.attemptExecution(startingStep.rewindAction, startingNode)
+
+          steps.slice(nextStep, startingStep).reverse().forEach((interimStep) => {
+            const node = document.querySelector(interimStep.selector) || undefined
+            this.attemptExecution(interimStep.rewindAction, node)
+          })
+        }
+      }
 
       if (typeof getCurrentStep === 'function') {
         getCurrentStep(nextStep)
@@ -337,13 +383,17 @@ class Tour extends Component {
     if (e.keyCode === 39 && !isRightDisabled) {
       // right
       e.preventDefault()
-      typeof nextStep === 'function' ? nextStep() : this.nextStep()
+      typeof nextStep === 'function'
+        ? nextStep(this.nextStep.bind(this))
+        : this.nextStep()
     }
 
     if (e.keyCode === 37 && !isLeftDisabled) {
       // left
       e.preventDefault()
-      typeof prevStep === 'function' ? prevStep() : this.prevStep()
+      typeof prevStep === 'function'
+        ? prevStep(this.prevStep.bind(this))
+        : this.prevStep()
     }
   }
 
@@ -489,7 +539,7 @@ class Tour extends Component {
                         <Arrow
                           onClick={
                             typeof prevStep === 'function'
-                              ? prevStep
+                              ? () => prevStep(this.prevStep.bind(this))
                               : this.prevStep
                           }
                           disabled={current === 0}
@@ -525,8 +575,8 @@ class Tour extends Component {
                                 ? onRequestClose
                                 : () => {}
                               : typeof nextStep === 'function'
-                              ? nextStep
-                              : this.nextStep
+                                ? () => nextStep(this.nextStep.bind(this))
+                                : this.nextStep
                           }
                           disabled={
                             !lastStepNextButton && current === steps.length - 1
