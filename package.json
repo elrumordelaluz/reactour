@@ -63,15 +63,15 @@
     "react-dom": "16.8.6",
     "reshake": "1.2.1",
     "rimraf": "^2.6.3",
-    "rollup": "1.13.1",
+    "rollup": "1.14.2",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-filesize": "6.1.0",
     "rollup-plugin-node-resolve": "5.0.1",
     "style-loader": "0.23.1",
-    "styled-components": "4.2.1",
-    "webpack": "4.32.2",
+    "styled-components": "4.3.0",
+    "webpack": "4.33.0",
     "webpack-cli": "3.3.2",
-    "webpack-dev-server": "3.5.1"
+    "webpack-dev-server": "3.6.0"
   },
   "peerDependencies": {
     "react": "^16.3.0",
