@@ -1,24 +1,22 @@
-import { Component } from 'react'
+import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
-class Portal extends Component {
-  constructor(props) {
-    super(props)
-    this.el = document.createElement('div')
-    this.el.setAttribute('id', '___reactour')
+function Portal({ children }) {
+  let ref = useRef(null)
+
+  if (ref.current === null) {
+    ref.current = document.createElement('div')
+    ref.current.setAttribute('id', '___reactour')
   }
 
-  componentDidMount() {
-    document.body.appendChild(this.el)
-  }
+  useEffect(() => {
+    document.body.appendChild(ref.current)
+    return () => {
+      document.body.removeChild(ref.current)
+    }
+  }, [ref])
 
-  componentWillUnmount() {
-    document.body.removeChild(this.el)
-  }
-
-  render() {
-    return createPortal(this.props.children, this.el)
-  }
+  return createPortal(children, ref.current)
 }
 
 export default Portal

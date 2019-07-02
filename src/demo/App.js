@@ -82,9 +82,7 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
         <span className="CustomHelper__sidebar_step">Step {current + 1}</span>
         <img
           className="CustomHelper__sidebar_img"
-          src={`https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=${
-            accessories[current]
-          }&hairColor=Brown&facialHairType=BeardLight&facialHairColor=Black&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=UpDownNatural&mouthType=Smile&skinColor=Pale`}
+          src={`https://avataaars.io/?avatarStyle=Circle&topType=LongHairNotTooLong&accessoriesType=${accessories[current]}&hairColor=Brown&facialHairType=BeardLight&facialHairColor=Black&clotheType=BlazerSweater&eyeType=WinkWacky&eyebrowType=UpDownNatural&mouthType=Smile&skinColor=Pale`}
         />
         <span className="CustomHelper__sidebar_step">Lorem Ipsum</span>
       </aside>
