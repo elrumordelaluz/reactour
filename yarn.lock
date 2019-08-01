@@ -5083,7 +5083,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-clientside-effect@^1.2.1:
+react-clientside-effect@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.2.tgz#6212fb0e07b204e714581dd51992603d1accc837"
   integrity sha512-nRmoyxeok5PBO6ytPvSjKp9xwXg9xagoTK1mMjwnQxqM9Hd7MNPl+LS1bOSOe+CV2+4fnEquc7H/S8QD3q697A==
@@ -5100,15 +5100,15 @@ react-dom@16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-react-focus-lock@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-2.0.4.tgz#b267c61a6acae7fdffcfa201b536b8e207862683"
-  integrity sha512-QPj1nI4IJft+rf6hEamEvGmb/UK3sw90c11x3Y6tmTGqcrFaKD78v+ZtMmZQHh48A87xnEkFMAA26BNOsNeRNg==
+react-focus-lock@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-2.0.5.tgz#2556a9714722c0a3f9d63542784ace01aa994907"
+  integrity sha512-Jh5QV9KEgAXYAPSF0NMlqxFuX2BBPvLP6spQLsPIVHkITyaOYapxfNIFm/piOk1skghXWsufPDInyY53n8sUMw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     focus-lock "^0.6.5"
     prop-types "^15.6.2"
-    react-clientside-effect "^1.2.1"
+    react-clientside-effect "^1.2.2"
     use-sidecar "^1.0.1"
 
 react-is@^16.6.0, react-is@^16.8.1:
