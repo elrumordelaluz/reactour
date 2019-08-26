@@ -50,8 +50,7 @@ function App() {
       />
       <Suspense fallback={<React.Fragment />}>
         <Tour
-          onAfterOpen={disableBody}
-          onBeforeClose={enableBody}
+
           onRequestClose={() => setOpen(false)}
           steps={tourConfig}
           isOpen={isTourOpen}
