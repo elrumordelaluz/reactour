@@ -126,10 +126,10 @@ const Guide = styled.div`
 
       const arrowPos = position[2]
       const offset = arrowPos === 'top' || arrowPos === 'bottom' ?
-        `left: ${(targetWidth < helperWidth - padding ? targetWidth : helperWidth - padding) / 2
-          - arrowSize + (position[0] < targetLeft ? targetLeft - position[0] : 0)}px`
-        : `top: ${(targetHeight < helperHeight - padding ? targetHeight : helperHeight - padding) / 2
-          - arrowSize + (position[1] < targetTop ? targetTop - position[1] : 0)}px`
+        `left: ${(targetWidth + 2 * padding < helperWidth ? targetWidth + 2 * padding : helperWidth) / 2 - arrowSize
+          + (position[0] + padding < targetLeft ? targetLeft - position[0] - padding : 0)}px`
+        : `top: ${(targetHeight + 2 * padding < helperHeight ? targetHeight + 2 * padding : helperHeight) / 2 - arrowSize 
+          + (position[1] + padding < targetTop ? targetTop - position[1] - padding : 0)}px`
       const arrowColor = props.style.backgroundColor || '#fff'
       return `
         &::before 
