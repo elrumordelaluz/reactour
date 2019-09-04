@@ -28,12 +28,16 @@ const Guide = styled.div`
       targetRight,
       targetBottom,
       targetLeft,
+      targetWidth,
+      targetHeight,
       windowWidth,
       windowHeight,
       helperWidth,
       helperHeight,
       helperPosition,
       padding,
+      showArrow,
+      arrowSize = 25
     } = props
 
     const available = {
@@ -56,7 +60,7 @@ const Guide = styled.div`
       const positionsOrder = hx.bestPositionOf(available)
       for (let j = 0; j < positionsOrder.length; j++) {
         if (couldPositionAt(positionsOrder[j])) {
-          return coords[positionsOrder[j]]
+          return showArrow ? [...coords[positionsOrder[j]], positionsOrder[j]] : coords[positionsOrder[j]]
         }
       }
       return coords.center
@@ -101,16 +105,56 @@ const Guide = styled.div`
           windowHeight / 2 - helperHeight / 2,
         ],
       }
+
+      if (showArrow) {
+        coords.top[1] -= arrowSize
+        coords.right[0] += arrowSize
+        coords.bottom[1] += arrowSize
+        coords.left[0] -= arrowSize
+      }
+      
       if (helperPosition === 'center' || couldPositionAt(helperPosition)) {
         return coords[helperPosition]
       }
       return autoPosition(coords)
     }
 
+    const arrow = position => {
+      if (position.length !== 3) {
+        return '';
+      }
+
+      const arrowPos = position[2]
+      const offset = arrowPos === 'top' || arrowPos === 'bottom' ?
+        `left: ${(targetWidth < helperWidth - padding ? targetWidth : helperWidth - padding) / 2
+          - arrowSize + (position[0] < targetLeft ? targetLeft - position[0] : 0)}px`
+        : `top: ${(targetHeight < helperHeight - padding ? targetHeight : helperHeight - padding) / 2
+          - arrowSize + (position[1] < targetTop ? targetTop - position[1] : 0)}px`
+      const arrowColor = props.style.backgroundColor || '#fff'
+      return `
+        &::before 
+        {
+        content: "";
+        position: absolute;
+        ${arrowPos}: 99%;
+        ${offset};
+        border-style: solid;
+        border-width: ${arrowSize}px;
+        border-color: ${arrowPos === 'top' ? arrowColor : 'transparent'}
+          ${arrowPos === 'right' ? arrowColor : 'transparent'}
+          ${arrowPos === 'bottom' ? arrowColor : 'transparent'}
+          ${arrowPos === 'left' ? arrowColor : 'transparent'};
+        display: block;
+        width: 0;
+        };
+      `
+    }
+
     const p = pos(helperPosition)
 
-    return `translate(${p[0]}px, ${p[1]}px)`
-  }};
+    return `translate(${p[0]}px, ${p[1]}px);
+    ${showArrow && arrow(p)}`
+  }}
 `
 
 export default Guide

@@ -371,6 +371,8 @@ class Tour extends Component {
       rounded,
       accentColor,
       CustomHelper,
+      showArrow,
+      arrowSize,
     } = this.props
 
     const {
@@ -443,6 +445,8 @@ class Tour extends Component {
               })}
               accentColor={accentColor}
               defaultStyles={!CustomHelper}
+              showArrow={showArrow}
+              arrowSize={arrowSize}
             >
               {CustomHelper ? (
                 <CustomHelper
