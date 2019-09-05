@@ -125,7 +125,7 @@ const Guide = styled.div`
       }
 
       const arrowPos = position[2]
-      const offset = arrowPos === 'top' || arrowPos === 'bottom' ?
+      const offset = !hx.isHoriz(arrowPos) ?
         `left: ${(targetWidth + 2 * padding < helperWidth ? targetWidth + 2 * padding : helperWidth) / 2 - arrowSize
           + (position[0] + padding < targetLeft ? targetLeft - position[0] - padding : 0)}px`
         : `top: ${(targetHeight + 2 * padding < helperHeight ? targetHeight + 2 * padding : helperHeight) / 2 - arrowSize 
@@ -134,18 +134,18 @@ const Guide = styled.div`
       return `
         &::before 
         {
-        content: "";
-        position: absolute;
-        ${arrowPos}: 99%;
-        ${offset};
-        border-style: solid;
-        border-width: ${arrowSize}px;
-        border-color: ${arrowPos === 'top' ? arrowColor : 'transparent'}
-          ${arrowPos === 'right' ? arrowColor : 'transparent'}
-          ${arrowPos === 'bottom' ? arrowColor : 'transparent'}
-          ${arrowPos === 'left' ? arrowColor : 'transparent'};
-        display: block;
-        width: 0;
+          content: "";
+          position: absolute;
+          ${arrowPos}: ${(hx.isHoriz(arrowPos) ? helperWidth : helperHeight) - 1}px;
+          ${offset};
+          border-style: solid;
+          border-width: ${arrowSize}px;
+          border-color: ${arrowPos === 'top' ? arrowColor : 'transparent'}
+            ${arrowPos === 'right' ? arrowColor : 'transparent'}
+            ${arrowPos === 'bottom' ? arrowColor : 'transparent'}
+            ${arrowPos === 'left' ? arrowColor : 'transparent'};
+          display: block;
+          width: 0;
         };
       `
     }
