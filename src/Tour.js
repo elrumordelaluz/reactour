@@ -265,6 +265,9 @@ class Tour extends Component {
           ? prevState.current + 1
           : prevState.current
 
+      if (prevState.current !== nextStep && steps[prevState.current].onLeave) {
+        steps[prevState.current].onLeave()
+      }
       if (typeof getCurrentStep === 'function') {
         getCurrentStep(nextStep)
       }
@@ -276,10 +279,14 @@ class Tour extends Component {
   }
 
   prevStep = () => {
-    const { getCurrentStep } = this.props
+    const { steps, getCurrentStep } = this.props
     this.setState(prevState => {
       const nextStep =
         prevState.current > 0 ? prevState.current - 1 : prevState.current
+
+      if (prevState.current !== nextStep && steps[prevState.current].onLeave) {
+        steps[prevState.current].onLeave()
+      }
 
       if (typeof getCurrentStep === 'function') {
         getCurrentStep(nextStep)

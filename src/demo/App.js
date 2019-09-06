@@ -133,6 +133,9 @@ const tourConfig = [
     selector: '[data-tut="reactour__logo"]',
     content: 'And this is our cool bus...',
     position: [20, 20],
+    onLeave: () => {
+      console.log('Goodbye bus')
+    },
   },
   {
     selector: '[data-tut="reactour__copy"]',
