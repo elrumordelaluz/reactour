@@ -1,7 +1,7 @@
 {
-  "name": "reactour",
-  "version": "1.15.0",
-  "description": "Tourist Guide into your React Components",
+  "name": "reactour2",
+  "version": "1.0.0",
+  "description": "Tourist Guide into your React Components. This is a fork of reactour. It includes some improvements not yet in reactour including pre/post action functions and optinal dealy to wait for components to render.",
   "main": "dist/reactour.cjs.js",
   "module": "dist/reactour.esm.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elrumordelaluz/reactour.git"
+    "url": "git+https://github.com/RobertGary1/reactour.git"
   },
   "keywords": [
     "react",
@@ -35,12 +35,12 @@
     "dist",
     "README.md"
   ],
-  "author": "Lionel T <elrumordelaluz@hotmail.com> (https://elrumordelaluz.com/)",
+  "author": "Robetr G <robertmgary@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/elrumordelaluz/reactour/issues"
+    "url": "hhttps://github.com/RobertGary1/reactour/issues"
   },
-  "homepage": "https://github.com/elrumordelaluz/reactour#readme",
+  "homepage": "hhttps://github.com/RobertGary1/reactour#readme",
   "devDependencies": {
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
