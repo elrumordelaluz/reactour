@@ -53,7 +53,7 @@ function App() {
           onAfterOpen={disableBody}
           onBeforeClose={enableBody}
           onRequestClose={() => setOpen(false)}
-          steps={tourConfig}
+          steps={tourConfig(setShowingMore)}
           isOpen={isTourOpen}
           maskClassName="mask"
           className="helper"
@@ -123,7 +123,7 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
   )
 }
 
-const tourConfig = [
+const tourConfig = (setShowingMoreHandler) => [
   {
     selector: '[data-tut="reactour__iso"]',
     content:
@@ -229,14 +229,40 @@ const tourConfig = [
   {
     selector: '[data-tut="reactour__action"]',
     content:
-      'When arrived on each place you could fire an action, like… (look at the console)',
+      'As soon as you arrive on a step you can perform actions, like… (look at the console)',
+    preAction: () =>
+        console.log(`
+                             [PRE-ACTION]
+           This handler executes just before the step starts to begin,
+              making it a good place to setup for this step.
+
+                      ----------🕒-🕒-----------
+              You can even perform actions in between steps,
+      e.g. making sure a dropdown is open before the next step loads...
+                      ----------🕒-🕒-----------
+        `),
     action: () =>
-      console.log(`
-                  ------------🏠🏚---------
-      🚌 Arrived to explore these beautiful buildings! 🚌
-                  ------------🏠🏚---------
-   🚧 This action could also fire a method in your Component 🚧
-    `),
+          console.log(`
+                               [ACTION]
+        This handler executes when the step/dialog has fully landed
+              on the selector and displayed 'step.content'.
+
+                      -----------🏠🏚----------
+          🚌 Arrived to explore these beautiful buildings! 🚌
+                      -----------🏠🏚----------
+       🚧 This action could also fire a method in your Component 🚧
+        `),
+    postAction: () =>
+        console.log(`
+                            [POST-ACTION]
+        This handler executes just before moving on to the next step
+        and should generally be used for cleanup of the current step.
+
+                      ----------🕒-🕒-----------
+            ...or the dropdown is closed for the next one,
+          Whichever makes the most semantic sense is up to you!
+                      ----------🕒-🕒-----------
+        `),
   },
   {
     selector: '[data-tut="reactour__state"]',
@@ -244,6 +270,15 @@ const tourConfig = [
       'And the Tour could be observing changes to update the view, try clicking the button…',
     observe: '[data-tut="reactour__state--observe"]',
     action: node => node.focus(),
+    rewindAction: () => {
+      setShowingMoreHandler(false)
+      console.log("🕒 Timewarp in progress... 🕒")
+    }
+  },
+  {
+    selector: '[data-tut="reactour__state"]',
+    content:
+      'Whoops - we\'ve made a change to the page\'s state... If we go backwards the tour might be depend on the buildings being hidden! See what happens when you rewind this step.',
   },
 ]
 

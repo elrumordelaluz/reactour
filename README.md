@@ -101,6 +101,14 @@ Type: `bool`
 
 Default: `true`
 
+#### deterministic
+
+> If jumping between steps (e.g. with dots) should we attempt to execute all preAction/action/postAction (or rewind) handlers in between? The element of each step (step.selector) is parsed and passed to each function, but may not be completely accurate, due to the fact that each step has to be replayed quickly - some UI elements may not respond quickly enough.
+
+Type: `bool`
+
+Default: `true`
+
 #### disableDotsNavigation
 
 > Disable interactivity with _Dots_ navigation in _Helper_
@@ -194,9 +202,13 @@ Type: `node`
 
 #### nextStep
 
-> Overrides default `nextStep` internal function
+> Overrides default `nextStep` internal function. Gets passed the default `nextStep` handler as a parameter, so you can choose to execute it based on a requirement. Strange behaviour is expected if you change the current step then also execute the default implementation!
 
 Type: `func`
+
+```js
+<Tour prevStep={(defaultNext) => someRequirement && defaultNext()} />
+```
 
 #### onAfterOpen
 
@@ -236,9 +248,13 @@ Type: `node`
 
 #### prevStep
 
-> Overrides default `prevStep` internal function
+> Overrides default `prevStep` internal function. Gets passed the default `prevStep` handler as a parameter, so you can choose to execute it based on a requirement. Strange behaviour is expected if you change the current step then also execute the default implementation!
 
 Type: `func`
+
+```js
+<Tour prevStep={(defaultPrev) => someRequirement && defaultPrev()} />
+```
 
 #### rounded
 
@@ -312,7 +328,7 @@ Type: `number`
 
 #### steps
 
-> Array of elements to highligt with special info and props
+> Array of elements to highlight with special info and props
 
 Type: `shape`
 
@@ -335,6 +351,9 @@ steps: PropTypes.arrayOf(PropTypes.shape({
   'action': PropTypes.func,
   'style': PropTypes.object,
   'stepInteraction': PropTypes.bool,
+  'preAction': propTypes.func,
+  'postAction': propTypes.func,
+  'rewindAction': propTypes.func
 })),
 ```
 
@@ -366,6 +385,16 @@ const steps = [
     // Could be enabled passing `true`
     // when `disableInteraction` prop is present in Tour
     stepInteraction: false,
+    preAction: () => {
+        // this is executed before this step starts
+        // preActions will NOT run if used on the first step
+        console.log("Step is about to start")
+    },
+    postAction: () => {
+        // this is executed before this step ends
+        // postActions will NOT run if used on the last step
+        console.log("Step is about to finish")
+    }
   },
   // ...
 ]
@@ -385,11 +414,91 @@ Type: `number`
 
 Default: `1`
 
+### Step props
+
+#### content
+
+> The content of the step, which can be simple text, a node, element or a function that returns any of these.
+
+Type: `node`|`element`|`func`
+
+Required: true
+
+#### observe
+
+> Watches an element for changes and updates the spotlight accordingly
+
+Type: `node`
+
+#### position
+
+> Where the step modal will appear relative to the selected element.
+
+Type: `func`
+
+#### action
+
+> Action handler that is executed after this step executes.
+
+Type: `func`
+
+Parameters: `node`
+
+Resolves [`step.selector`](#selector) as a node (with [`document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)) and passed to this handler.
+
+#### preAction
+
+> Action handler that is executed before this step executes.
+
+Type: `func`
+
+Parameters: `node`
+
+See [`action`](#action)
+
+#### postAction
+
+> Action handler that is executed after this step executes.
+
+Type: `func`
+
+Parameters: `node`
+
+See [`action`](#action)
+
+#### rewindAction
+
+> Action handler that is executed if this step is rewinded (for resetting)
+
+Type: `func`
+
+Parameters: `node`
+
+This performs the same role as the parameter for preAction, Action and postAction, but as the step is backwards, this may not be as reliable.
+
+#### selector
+
+> This string is used with [`document.querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) to select the element for this step.
+
+Type: `string`
+
+#### stepInteraction
+
+> Disables interaction only for this step, rather than needing to enable it globally with `disableInteraction`.
+
+Type: `func`
+
+#### style
+
+> CSS/style to be applied to this step only. Pass as an object (or inline CSS).
+
+Type: `object`
+
 ## FAQ
 
 <p>
   <details>
-    <summary>How is implemented the scroll lock behaviour in the <a href="https://github.com/elrumordelaluz/reactour/blob/master/src/demo/App.js">Demo</a>?</summary>
+    <summary>How is the scroll lock behaviour implemented in the <a href="https://github.com/elrumordelaluz/reactour/blob/master/src/demo/App.js">Demo</a>?</summary>
     <p>
       To guarantee a cross browser behaviour we use <a href="https://www.npmjs.com/package/body-scroll-lock">body-scroll-lock</a>. </p>
       <p>Import the library
@@ -411,3 +520,52 @@ enableBody = target => enableBodyScroll(target)</pre>
     </p>
   </details>
 </p>
+
+<p>
+  <details>
+    <summary>Why should I use pre instead of post? I can just use post in the step before (and vice versa).</summary>
+    <p>
+In many cases, choosing between the pre & post action will not matter to the actual tour. They are mainly there to logically separate actions for the programmer.
+    </p>
+    <p>
+Look at the example below to see an example of where this might help writing steps.
+
+The bad version:
+    </p>
+    <pre lang=js>
+[
+  {
+    selector: '#modal',
+    content: 'Here you can enter data'
+    postAction: () => openTheDropdown()
+  },
+  {
+    selector: '#the-dropdown',
+    content: 'Here is the dropdown'
+  },
+]
+    </pre>
+    <p>
+This works, but why should the modal step care about the dropdown? In this case, the `preAction` handler makes more sense.
+
+The better version:
+    </p>
+    <pre lang=js>
+[
+  {
+    selector: '#modal',
+    content: 'Here you can enter data'
+  },
+  {
+    selector: '#the-dropdown',
+    content: 'Here is the dropdown',
+    preAction: () => openTheDropdown()
+  },
+]
+    </pre>
+    <p>
+Now if you have a lot of tour steps, each step is well separated in scope.
+    </p>
+  </details>
+</p>
+
