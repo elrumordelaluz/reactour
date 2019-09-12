@@ -74,8 +74,8 @@ const Guide = styled.div`
         if (isOutX) warn('x', helperPosition[0])
         if (isOutY) warn('y', helperPosition[1])
         return [
-          isOutX ? windowWidth / 2 - helperWidth / 2 : helperPosition[0],
-          isOutY ? windowHeight / 2 - helperHeight / 2 : helperPosition[1],
+          Math.round(isOutX ? windowWidth / 2 - helperWidth / 2 : helperPosition[0]),
+          Math.round(isOutY ? windowHeight / 2 - helperHeight / 2 : helperPosition[1]),
         ]
       }
 
