@@ -333,6 +333,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
     PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
   ]),
   'action': PropTypes.func,
+  'waitSec': PropTypes.number,
   'style': PropTypes.object,
   'stepInteraction': PropTypes.bool,
 })),
@@ -359,6 +360,7 @@ const steps = [
       node.focus()
       console.log('yup, the target element is also focused!')
     },
+    waitSec: 5, //Allow 5 seconds for the content to appear before giving up
     style: {
       backgroundColor: '#bada55',
     },
