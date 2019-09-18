@@ -42,6 +42,7 @@ export const propTypes = {
       ]),
       action: PropTypes.func,
       style: PropTypes.object,
+      waitSec: PropTypes.number,
       stepInteraction: PropTypes.bool,
       preAction: PropTypes.func,
       postAction: PropTypes.func,

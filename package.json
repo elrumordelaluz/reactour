@@ -6,7 +6,7 @@
   "module": "dist/reactour.esm.js",
   "scripts": {
     "prepare": "npm run lib",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development --open --host=0.0.0.0 --disableHostCheck",
     "prelib": "rimraf dist",
     "lib": "rollup -c",
     "build": "webpack --mode production",
