@@ -74,8 +74,8 @@ const Guide = styled.div`
         if (isOutX) warn('x', helperPosition[0])
         if (isOutY) warn('y', helperPosition[1])
         return [
-          Math.round(isOutX ? windowWidth / 2 - helperWidth / 2 : helperPosition[0]),
-          Math.round(isOutY ? windowHeight / 2 - helperHeight / 2 : helperPosition[1]),
+          isOutX ? windowWidth / 2 - helperWidth / 2 : helperPosition[0],
+          isOutY ? windowHeight / 2 - helperHeight / 2 : helperPosition[1],
         ]
       }
 
@@ -109,7 +109,7 @@ const Guide = styled.div`
 
     const p = pos(helperPosition)
 
-    return `translate(${p[0]}px, ${p[1]}px)`
+    return `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px)`
   }};
 `
 
