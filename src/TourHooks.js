@@ -16,7 +16,7 @@ import {
   Navigation,
   Dot,
 } from './components/index'
-import * as hx from './helpers'
+import { getNodeRect, getWindow, inView, isBody } from './helpers'
 import { propTypes, defaultProps } from './propTypes'
 import CN from './classNames'
 
@@ -67,14 +67,14 @@ function Tour({
       mutationList.forEach(mutation => {
         if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
           setTimeout(
-            () => makeCalculations(hx.getNodeRect(mutation.addedNodes[0])),
+            () => makeCalculations(getNodeRect(mutation.addedNodes[0])),
             500
           )
         } else if (
           mutation.type === 'childList' &&
           mutation.removedNodes.length > 0
         ) {
-          console.log('Removed node, do something')
+          // console.log('Removed node, do something')
         }
       })
     } else {
@@ -87,13 +87,6 @@ function Tour({
     window.addEventListener('keydown', keyHandler, false)
     window.addEventListener('resize', debouncedShowStep, false)
 
-    return () => {
-      window.removeEventListener('keydown', keyHandler)
-      window.removeEventListener('resize', debouncedShowStep)
-    }
-  }, [current])
-
-  useEffect(() => {
     if (isOpen) {
       showStep(startAt)
       if (helper.current) {
@@ -101,11 +94,12 @@ function Tour({
         checkFnAndRun(onAfterOpen)(helper.current)
       }
     }
-  }, [isOpen])
 
-  useEffect(() => {
-    if (isOpen) showStep()
-  }, [current])
+    return () => {
+      window.removeEventListener('keydown', keyHandler)
+      window.removeEventListener('resize', debouncedShowStep)
+    }
+  }, [current, isOpen])
 
   function keyHandler(e) {
     e.stopPropagation()
@@ -160,10 +154,10 @@ function Tour({
 
   async function showStep(nextStep) {
     const step = steps[nextStep] || steps[current]
-    const { w, h } = hx.getWindow()
+    const { w, h } = getWindow()
 
     if (step.actionBefore && typeof step.actionBefore === 'function') {
-      dispatch({ type: 'without_node', w, h })
+      dispatch({ type: 'HAS_DOM_NODE', w, h })
       await step.actionBefore()
     }
 
@@ -175,17 +169,17 @@ function Tour({
 
     if (node) {
       // DOM node exists
-      const nodeRect = hx.getNodeRect(node)
+      const nodeRect = getNodeRect(node)
 
       // step is outside view
-      if (!hx.inView({ ...nodeRect, w, h, threshold: inViewThreshold })) {
+      if (!inView({ ...nodeRect, w, h, threshold: inViewThreshold })) {
         const parentScroll = Scrollparent(node)
         scrollSmooth.to(node, {
-          context: hx.isBody(parentScroll) ? window : parentScroll,
+          context: isBody(parentScroll) ? window : parentScroll,
           duration: scrollDuration,
           offset: scrollOffset || -(h / 2),
           callback: _node => {
-            makeCalculations(hx.getNodeRect(_node), step.position)
+            makeCalculations(getNodeRect(_node), step.position)
           },
         })
       } else {
@@ -193,7 +187,7 @@ function Tour({
       }
     } else {
       dispatch({
-        type: 'without_node',
+        type: 'NO_DOM_NODE',
         helperPosition: step.position,
         w,
         h,
@@ -207,12 +201,12 @@ function Tour({
   }
 
   function makeCalculations(nodeRect, helperPosition) {
-    const { w, h } = hx.getWindow()
-    const { width: helperWidth, height: helperHeight } = hx.getNodeRect(
+    const { w, h } = getWindow()
+    const { width: helperWidth, height: helperHeight } = getNodeRect(
       helper.current
     )
     dispatch({
-      type: 'with_node',
+      type: 'HAS_DOM_NODE',
       ...nodeRect,
       helperWidth,
       helperHeight,
@@ -390,10 +384,10 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'with_node':
+    case 'HAS_DOM_NODE':
       const { type, ...newState } = action
       return { ...state, ...newState }
-    case 'without_node':
+    case 'NO_DOM_NODE':
       return {
         ...state,
         top: state.h + 10,
@@ -407,7 +401,7 @@ function reducer(state, action) {
         helperPosition: 'center',
       }
     default:
-      throw new Error()
+      return state
   }
 }
 
