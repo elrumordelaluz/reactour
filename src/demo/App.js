@@ -140,46 +140,6 @@ const tourConfig = [
       For example, try selecting the highlighted text…`,
   },
   {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
     selector: '[data-tut="reactour__style"]',
     content: function DemoHelperComponent() {
       return (
