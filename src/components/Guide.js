@@ -60,7 +60,7 @@ const Guide = styled.div`
       const positionsOrder = hx.bestPositionOf(available)
       for (let j = 0; j < positionsOrder.length; j++) {
         if (couldPositionAt(positionsOrder[j])) {
-          return showArrow ? [...coords[positionsOrder[j]], positionsOrder[j]] : coords[positionsOrder[j]]
+          return coords[positionsOrder[j]]
         }
       }
       return coords.center
@@ -111,6 +111,11 @@ const Guide = styled.div`
         coords.right[0] += arrowSize
         coords.bottom[1] += arrowSize
         coords.left[0] -= arrowSize
+
+        coords.top.push('top')
+        coords.right.push('right')
+        coords.bottom.push('bottom')
+        coords.left.push('left')
       }
       
       if (helperPosition === 'center' || couldPositionAt(helperPosition)) {

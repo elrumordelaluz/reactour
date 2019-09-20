@@ -55,6 +55,8 @@ export const propTypes = {
   ]),
   rounded: PropTypes.number,
   accentColor: PropTypes.string,
+  showArrow: PropTypes.bool,
+  arrowSize: PropTypes.number,
 }
 
 export const defaultProps = {
