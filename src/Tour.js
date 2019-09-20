@@ -78,6 +78,9 @@ class Tour extends Component {
 
   componentWillUnmount() {
     const { isOpen } = this.props
+    clearInterval(this.watchInterval)
+
+
     if (isOpen) {
       this.close()
     }
@@ -125,7 +128,6 @@ class Tour extends Component {
       })
     }
     const step = steps[current]
-    const node = step.selector ? document.querySelector(step.selector) : null
 
     const stepCallback = o => {
       if (step.action && typeof step.action === 'function') {
@@ -133,71 +135,84 @@ class Tour extends Component {
       }
     }
 
-    if (step.observe) {
-      const target = document.querySelector(step.observe)
-      const config = { attributes: true, childList: true, characterData: true }
-      this.setState(
-        prevState => {
-          if (prevState.observer) {
-            setTimeout(() => {
-              prevState.observer.disconnect()
-            }, 0)
-          }
-          return {
-            observer: new MutationObserver(mutations => {
-              mutations.forEach(mutation => {
-                if (
-                  mutation.type === 'childList' &&
-                  mutation.addedNodes.length > 0
-                ) {
-                  const cb = () => stepCallback(mutation.addedNodes[0])
-                  setTimeout(
-                    () =>
-                      this.calculateNode(
-                        mutation.addedNodes[0],
-                        step.position,
-                        cb
-                      ),
-                    100
-                  )
-                } else if (
-                  mutation.type === 'childList' &&
-                  mutation.removedNodes.length > 0
-                ) {
-                  const cb = () => stepCallback(node)
-                  this.calculateNode(node, step.position, cb)
-                }
-              })
-            }),
-          }
-        },
-        () => this.state.observer.observe(target, config)
-      )
-    } else {
-      if (this.state.observer) {
-        this.state.observer.disconnect()
-        this.setState({
-          observer: null,
-        })
+    let waitTimes=0
+    clearInterval(this.watchInterval)
+
+    this.watchInterval = setInterval(() => {
+      const node = step.selector ? document.querySelector(step.selector) : null
+
+      if (!node && step.waitSec &&  waitTimes < step.waitSec) {
+        waitTimes++
+        return;
       }
-    }
+      clearInterval(this.watchInterval)
 
-    if (node) {
-      const cb = () => stepCallback(node)
-      this.calculateNode(node, step.position, cb)
-    } else {
-      this.setState(
-        setNodeState(null, this.helper.current, step.position),
-        stepCallback
-      )
+      if (step.observe) {
+        const target = document.querySelector(step.observe)
+        const config = {attributes: true, childList: true, characterData: true}
+        this.setState(
+          prevState => {
+            if (prevState.observer) {
+              setTimeout(() => {
+                prevState.observer.disconnect()
+              }, 0)
+            }
+            return {
+              observer: new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                  if (
+                    mutation.type === 'childList' &&
+                    mutation.addedNodes.length > 0
+                  ) {
+                    const cb = () => stepCallback(mutation.addedNodes[0])
+                    setTimeout(
+                      () =>
+                        this.calculateNode(
+                          mutation.addedNodes[0],
+                          step.position,
+                          cb
+                        ),
+                      100
+                    )
+                  } else if (
+                    mutation.type === 'childList' &&
+                    mutation.removedNodes.length > 0
+                  ) {
+                    const cb = () => stepCallback(node)
+                    this.calculateNode(node, step.position, cb)
+                  }
+                })
+              }),
+            }
+          },
+          () => this.state.observer.observe(target, config)
+        )
+      } else {
+        if (this.state.observer) {
+          this.state.observer.disconnect()
+          this.setState({
+            observer: null,
+          })
+        }
+      }
 
-      step.selector &&
+      if (node) {
+        const cb = () => stepCallback(node)
+        this.calculateNode(node, step.position, cb)
+      } else {
+        this.setState(
+          setNodeState(null, this.helper.current, step.position),
+          stepCallback
+        )
+
+        step.selector &&
         console.warn(
           `Doesn't find a DOM node '${
             step.selector
-          }'. Please check the 'steps' Tour prop Array at position ${current}.`
+            }'. Please check the 'steps' Tour prop Array at position ${current}.`
         )
-    }
+      }
+    }, step.waitSec ? 500: 0)
   }
 
   calculateNode = (node, stepPosition, cb) => {
