@@ -193,9 +193,7 @@ class Tour extends Component {
 
       step.selector &&
         console.warn(
-          `Doesn't find a DOM node '${
-            step.selector
-          }'. Please check the 'steps' Tour prop Array at position ${current}.`
+          `Doesn't find a DOM node '${step.selector}'. Please check the 'steps' Tour prop Array at position ${current}.`
         )
     }
   }
@@ -216,7 +214,7 @@ class Tour extends Component {
       scrollSmooth.to(node, {
         context: hx.isBody(parentScroll) ? window : parentScroll,
         duration: scrollDuration,
-        offset: scrollOffset || -(h / 2),
+        offset: scrollOffset || -(h / 2) + attrs.height / 2,
         callback: nd => {
           this.setState(setNodeState(nd, this.helper.current, stepPosition), cb)
         },
@@ -415,9 +413,7 @@ class Tour extends Component {
                 ? !steps[current].stepInteraction
                 : disableInteraction
             }
-            disableInteractionClassName={`${
-              CN.mask.disableInteraction
-            } ${highlightedMaskClassName}`}
+            disableInteractionClassName={`${CN.mask.disableInteraction} ${highlightedMaskClassName}`}
           />
           <FocusLock disabled={focusUnlocked}>
             <Guide
