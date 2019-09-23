@@ -40,7 +40,7 @@ class Tour extends Component {
     }
     this.helper = createRef()
     this.helperElement = null
-    this.debouncedShowStep = debounce(this.showStep, 70)
+    this.debouncedShowStep = debounce(this.showStep, 70);
   }
 
   componentDidMount() {
@@ -102,7 +102,7 @@ class Tour extends Component {
         }
       }
     )
-
+    window.addEventListener('scroll', this.scrollHandler, false)
     window.addEventListener('resize', this.debouncedShowStep, false)
     window.addEventListener('keydown', this.keyDownHandler, false)
   }
@@ -115,8 +115,10 @@ class Tour extends Component {
       callback()
     )
   }
-
-  showStep = () => {
+  scrollHandler = ()=>{
+    this.showStep(true);
+  }
+  showStep = (scrolled) => {
     const { steps } = this.props
     const { current, focusUnlocked } = this.state
     if (focusUnlocked) {
@@ -184,7 +186,12 @@ class Tour extends Component {
 
     if (node) {
       const cb = () => stepCallback(node)
-      this.calculateNode(node, step.position, cb)
+      if (scrolled===true){ 
+        this.setState(setNodeState(node, this.helper.current, step.position), cb)
+      }else{
+        this.calculateNode(node, step.position, cb)
+      }
+      
     } else {
       this.setState(
         setNodeState(null, this.helper.current, step.position),
@@ -236,6 +243,7 @@ class Tour extends Component {
         observer: null,
       }
     }, this.onBeforeClose)
+    window.removeEventListener('scroll', this.scrollDuration)
     window.removeEventListener('resize', this.debouncedShowStep)
     window.removeEventListener('keydown', this.keyDownHandler)
   }
