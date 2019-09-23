@@ -211,10 +211,15 @@ class Tour extends Component {
     )
     if (!hx.inView({ ...attrs, w, h, threshold: inViewThreshold })) {
       const parentScroll = Scrollparent(node)
+      const offset = scrollOffset
+        ? scrollOffset
+        : attrs.height > h
+        ? -25
+        : -(h / 2) + attrs.height / 2
       scrollSmooth.to(node, {
         context: hx.isBody(parentScroll) ? window : parentScroll,
         duration: scrollDuration,
-        offset: scrollOffset || -(h / 2) + attrs.height / 2,
+        offset,
         callback: nd => {
           this.setState(setNodeState(nd, this.helper.current, stepPosition), cb)
         },
