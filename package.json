@@ -68,7 +68,7 @@
     "rollup-plugin-filesize": "6.1.1",
     "rollup-plugin-node-resolve": "5.2.0",
     "style-loader": "1.0.0",
-    "styled-components": "4.3.2",
+    "styled-components": "4.4.0",
     "webpack": "4.40.2",
     "webpack-cli": "3.3.9",
     "webpack-dev-server": "3.8.1"
@@ -79,13 +79,13 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@rooks/use-mutation-observer": "3.0.1",
+    "@rooks/use-mutation-observer": "3.3.0",
     "classnames": "2.2.6",
     "focus-outline-manager": "^1.0.2",
     "lodash.debounce": "4.0.8",
     "lodash.pick": "4.4.0",
     "prop-types": "15.7.2",
-    "react-focus-lock": "2.0.5",
+    "react-focus-lock": "2.1.0",
     "scroll-smooth": "1.0.1",
     "scrollparent": "2.0.1"
   }
