@@ -7,6 +7,13 @@
 <p align="center">
   <a href="https://elrumordelaluz.github.io/reactour/">Demo</a>
 </p>
+<p>
+This is a fork from elrumordelaluz/reactour. I've added a few additional features including
+1) Pre and post action methods (credit to SacredSkull)
+2) Add waitSec to steps to allow some delay if the component isn't rendered when the step is reached.
+These changes are also up for PR on elrumordelaluz/reactour and I will deprecate this project if elrumordelaluz/reactour
+gets these changes on his branch.
+</p>
 <p align="center">
   <a href="https://codesandbox.io/s/6z56m8x18k?module=%2FApp.js">
     <img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit 6z56m8x18k">
