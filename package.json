@@ -1,12 +1,12 @@
 {
   "name": "reactour2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tourist Guide into your React Components. This is a fork of reactour. It includes some improvements not yet in reactour including pre/post action functions and optinal dealy to wait for components to render.",
   "main": "dist/reactour.cjs.js",
   "module": "dist/reactour.esm.js",
   "scripts": {
     "prepare": "npm run lib",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "webpack-dev-server --mode development --open --host=0.0.0.0 --disableHostCheck",
     "prelib": "rimraf dist",
     "lib": "rollup -c",
     "build": "webpack --mode production",
@@ -35,12 +35,12 @@
     "dist",
     "README.md"
   ],
-  "author": "Robetr G <robertmgary@gmail.com>",
+  "author": "Robert G <robertmgary@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "hhttps://github.com/RobertGary1/reactour/issues"
+    "url": "https://github.com/RobertGary1/reactour/issues"
   },
-  "homepage": "hhttps://github.com/RobertGary1/reactour#readme",
+  "homepage": "https://github.com/RobertGary1/reactour#readme",
   "devDependencies": {
     "@babel/cli": "7.5.5",
     "@babel/core": "7.5.5",
