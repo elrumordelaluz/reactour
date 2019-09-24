@@ -333,6 +333,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
     PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
   ]),
   'action': PropTypes.func,
+  'onLeave': PropTypes.func,
   'style': PropTypes.object,
   'stepInteraction': PropTypes.bool,
 })),
@@ -358,6 +359,9 @@ const steps = [
       // by using this, focus trap is temporary disabled
       node.focus()
       console.log('yup, the target element is also focused!')
+    },
+    onLeave: ()=>{
+        console.log('leaving this step')
     },
     style: {
       backgroundColor: '#bada55',
