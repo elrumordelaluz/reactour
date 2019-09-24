@@ -123,11 +123,17 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
   )
 }
 
+const timeout = ms => new Promise(res => setTimeout(res, ms))
+
 const tourConfig = [
   {
     selector: '[data-tut="reactour__iso"]',
     content:
       "Ok, let's start with the name of the Tour that is about to begin.",
+    actionBefore: async () => {
+      await timeout(5000)
+      console.log('Hola!')
+    },
   },
   {
     selector: '[data-tut="reactour__logo"]',

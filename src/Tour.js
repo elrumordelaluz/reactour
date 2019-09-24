@@ -55,6 +55,8 @@ function Tour({
   disableDotsNavigation,
   lastStepNextButton,
   nextButton,
+  rounded,
+  maskSpace,
 }) {
   const [current, setCurrent] = useState(0)
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -157,7 +159,16 @@ function Tour({
     const { w, h } = getWindow()
 
     if (step.actionBefore && typeof step.actionBefore === 'function') {
-      dispatch({ type: 'HAS_DOM_NODE', w, h })
+      // dispatch({ type: 'HAS_DOM_NODE', w, h })
+      makeCalculations(
+        {
+          width: maskSpace * -1,
+          height: maskSpace * -1,
+          top: rounded * -1,
+          left: rounded * -1,
+        },
+        'center'
+      )
       await step.actionBefore()
     }
 
@@ -253,8 +264,8 @@ function Tour({
         targetHeight={state.height}
         targetTop={state.top}
         targetLeft={state.left}
-        padding={10}
-        rounded={3}
+        padding={maskSpace}
+        rounded={rounded}
         className={maskClassName}
         disableInteraction={
           steps[current].stepInteraction === false || disableInteraction
@@ -280,11 +291,11 @@ function Tour({
           helperWidth={state.helperWidth}
           helperHeight={state.helperHeight}
           helperPosition={state.helperPosition}
-          padding={10}
+          padding={maskSpace}
           tabIndex={-1}
           current={current}
           style={steps[current].style ? steps[current].style : {}}
-          rounded={3}
+          rounded={rounded}
           accentColor={accentColor}
           defaultStyles={!CustomHelper}
           className={cn(CN.helper.base, className, {
@@ -398,7 +409,7 @@ function reducer(state, action) {
         top: state.h + 10,
         right: state.w / 2 + 9,
         bottom: state.h / 2 + 9,
-        left: action.w / 2 - state.helperWidth / 2,
+        left: action.w / 2 - state.helperWidth ? state.helperWidth / 2 : 0,
         width: 0,
         height: 0,
         w: action.w,
