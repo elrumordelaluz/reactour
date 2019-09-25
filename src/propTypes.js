@@ -41,6 +41,7 @@ export const propTypes = {
         PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
       ]),
       action: PropTypes.func,
+      actionBefore: PropTypes.func,
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
     })
