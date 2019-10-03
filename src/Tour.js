@@ -159,7 +159,6 @@ function Tour({
     const { w, h } = getWindow()
 
     if (step.actionBefore && typeof step.actionBefore === 'function') {
-      // dispatch({ type: 'HAS_DOM_NODE', w, h })
       makeCalculations(
         {
           width: maskSpace * -1,
