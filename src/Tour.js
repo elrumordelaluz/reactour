@@ -94,7 +94,7 @@ class Tour extends Component {
         current: startAt !== undefined ? startAt : prevState.current,
       }),
       () => {
-        this.showStep()
+        setTimeout(this.showStep, 1)
         this.helperElement = this.helper.current
         this.helper.current.focus()
         if (onAfterOpen) {
@@ -568,6 +568,7 @@ const setNodeState = (node, helper, position) => {
     window.innerHeight || 0
   )
   const { width: helperWidth, height: helperHeight } = hx.getNodeRect(helper)
+
   const attrs = node
     ? hx.getNodeRect(node)
     : {
