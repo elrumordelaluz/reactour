@@ -478,7 +478,7 @@ class TourPortal extends Component {
             {steps[current] &&
               (typeof steps[current].content === 'function'
                 ? steps[current].content({
-                    close: onRequestClose
+                    close: onRequestClose,
                     goTo: this.gotoStep,
                     inDOM,
                     step: current + 1,
@@ -527,8 +527,8 @@ class TourPortal extends Component {
                           ? onRequestClose
                           : () => {}
                         : typeof nextStep === 'function'
-                          ? nextStep
-                          : this.nextStep
+                        ? nextStep
+                        : this.nextStep
                     }
                     disabled={
                       !lastStepNextButton && current === steps.length - 1
@@ -538,15 +538,17 @@ class TourPortal extends Component {
                       lastStepNextButton && current === steps.length - 1
                         ? lastStepNextButton
                         : nextButton
-                          ? nextButton
-                          : null
+                        ? nextButton
+                        : null
                     }
                   />
                 )}
               </Controls>
             )}
 
-            {showCloseButton ? <Close onClick={onRequestClose} /> : null}
+            {showCloseButton ? (
+              <Close onClick={onRequestClose} className="reactour__close" />
+            ) : null}
           </Guide>
           {this.props.children}
         </div>
