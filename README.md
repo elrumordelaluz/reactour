@@ -312,7 +312,7 @@ Type: `number`
 
 #### steps
 
-> Array of elements to highligt with special info and props
+> Array of elements to highlight with special info and props
 
 Type: `shape`
 
@@ -335,6 +335,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
   'action': PropTypes.func,
   'style': PropTypes.object,
   'stepInteraction': PropTypes.bool,
+  'navDotAriaLabel': PropTypes.string,
 })),
 ```
 
@@ -366,6 +367,8 @@ const steps = [
     // Could be enabled passing `true`
     // when `disableInteraction` prop is present in Tour
     stepInteraction: false,
+    // Text read to screen reader software for this step's navigation dot
+    navDotAriaLabel: 'Go to step 4',
   },
   // ...
 ]

@@ -347,6 +347,7 @@ function Tour({
                           className={cn(CN.dot.base, {
                             [CN.dot.active]: current === i,
                           })}
+                          aria-label={s.navDotAriaLabel}
                         />
                       ))}
                     </Navigation>
