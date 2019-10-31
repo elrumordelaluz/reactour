@@ -93,7 +93,9 @@ function Tour({
       showStep(startAt)
       if (helper.current) {
         helper.current.focus()
-        checkFnAndRun(onAfterOpen)(helper.current)
+        if (onAfterOpen && typeof onAfterOpen === 'function') {
+          onAfterOpen(helper.current)
+        }
       }
     }
 
