@@ -94,9 +94,11 @@ function Tour({
           },
           'center'
         )
+        setCurrent(startAt)
+      } else {
+        showStep()
       }
 
-      showStep(startAt)
       if (helper.current) {
         helper.current.focus()
         if (onAfterOpen && typeof onAfterOpen === 'function') {
