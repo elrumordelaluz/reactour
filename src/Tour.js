@@ -51,6 +51,7 @@ function Tour({
   maskSpace,
 }) {
   const [current, setCurrent] = useState(0)
+  const [started, setStarted] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const helper = useRef(null)
   const observer = useRef(null)
@@ -82,6 +83,19 @@ function Tour({
     window.addEventListener('resize', debouncedShowStep, false)
 
     if (isOpen) {
+      if (!started) {
+        setStarted(true)
+        makeCalculations(
+          {
+            width: maskSpace * -1,
+            height: maskSpace * -1,
+            top: rounded * -1,
+            left: rounded * -1,
+          },
+          'center'
+        )
+      }
+
       showStep(startAt)
       if (helper.current) {
         helper.current.focus()
@@ -155,15 +169,6 @@ function Tour({
     const { w, h } = getWindow()
 
     if (step.actionBefore && typeof step.actionBefore === 'function') {
-      makeCalculations(
-        {
-          width: maskSpace * -1,
-          height: maskSpace * -1,
-          top: rounded * -1,
-          left: rounded * -1,
-        },
-        'center'
-      )
       await step.actionBefore()
     }
 
