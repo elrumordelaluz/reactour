@@ -20,14 +20,6 @@ import { getNodeRect, getWindow, inView, isBody } from './helpers'
 import { propTypes, defaultProps } from './propTypes'
 import CN from './classNames'
 
-function checkFnAndRun(fn = null) {
-  if (fn && typeof fn === 'function') {
-    return function(...args) {
-      return fn(...args)
-    }
-  }
-}
-
 function Tour({
   children,
   isOpen,
@@ -140,7 +132,9 @@ function Tour({
   }
 
   function close(e) {
-    checkFnAndRun(onBeforeClose)(helper.current)
+    if (onBeforeClose && typeof onBeforeClose === 'function') {
+      onBeforeClose(helper.current)
+    }
     onRequestClose(e)
   }
 
