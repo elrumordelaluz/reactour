@@ -1,6 +1,6 @@
 {
   "name": "reactour2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tourist Guide into your React Components. This is a fork of reactour. It includes some improvements not yet in reactour including pre/post action functions and optinal dealy to wait for components to render.",
   "main": "dist/reactour.cjs.js",
   "module": "dist/reactour.esm.js",

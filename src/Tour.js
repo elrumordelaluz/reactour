@@ -212,7 +212,7 @@ class Tour extends Component {
             }'. Please check the 'steps' Tour prop Array at position ${current}.`
         )
       }
-    }, step.waitSec ? 500: 0)
+    }, step.waitSec ? 20: 0)
   }
 
   calculateNode = (node, stepPosition, cb) => {
