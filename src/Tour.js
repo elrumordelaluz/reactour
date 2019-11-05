@@ -61,7 +61,7 @@ class Tour extends Component {
 
     if (isOpen && update !== nextProps.update) {
       if (nextProps.steps[this.state.current]) {
-        setTimeout(this.showStep, updateDelay)
+        setTimeout(() => this.helper.current && this.showStep(), updateDelay)
       } else {
         this.props.onRequestClose()
       }
