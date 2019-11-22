@@ -60,7 +60,6 @@ function App() {
           rounded={5}
           accentColor={accentColor}
           CustomHelper={customComps ? MyCustomHelper : null}
-          navigationPosition="right"
         />
       </Suspense>
     </>
