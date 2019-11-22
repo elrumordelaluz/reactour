@@ -13,10 +13,6 @@
   </a>
 </p>
 
-## Zegami Fork Changes
-* Fixed functionality that starts the tour at a specific step - [6deb977e0145c5c10cbff5bc99fa7a02fdb636d3](https://github.com/tarqu1n/reactour/commit/6deb977e0145c5c10cbff5bc99fa7a02fdb636d3)
-* Ensure tour step dialog starts centered when the tour starts but does not attempt to center between other steps when the 'actionBefore' function is used to pause step execution. [2d04fc04d8effc72d78868891ac9408f6f76b1fc](https://github.com/tarqu1n/reactour/commit/2d04fc04d8effc72d78868891ac9408f6f76b1fc)
-* Remove use of `checkFnAndRun` helper script as there were scoping issues with its execution. [9e374360fff679cd619ea8f7b131f0617484a860](https://github.com/tarqu1n/reactour/commit/9e374360fff679cd619ea8f7b131f0617484a860)
 ## Install
 
 ```zsh
