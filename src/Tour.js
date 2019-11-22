@@ -238,7 +238,9 @@ function Tour({
   function maskClickHandler(e) {
     if (
       closeWithMask &&
-      !e.target.classList.contains(CN.mask.disableInteraction)
+      e.target.className.baseVal
+        .split(' ')
+        .indexOf(CN.mask.disableInteraction) === -1
     ) {
       close(e)
     }
