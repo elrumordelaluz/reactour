@@ -186,6 +186,14 @@ Type: `number`
 
 Default: `10`
 
+#### navigationPosition
+
+> Aligns navigation bar in the helper box
+
+Type: `string`
+
+Default: `center`
+
 #### nextButton
 
 > Renders as next button navigation

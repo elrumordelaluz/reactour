@@ -25,9 +25,9 @@ body {
   color: #021d1d;
 }
 
-[data-tour-elem='controls'] {
+/* [data-tour-elem='controls'] {
   justify-content: center;
-}
+} */
 
 .CustomHelper__wrapper {
   display: flex;
