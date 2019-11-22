@@ -310,6 +310,8 @@ Default: `true`
 
 Type: `number`
 
+Default: `0`
+
 #### steps
 
 > Array of elements to highligt with special info and props

@@ -64,6 +64,7 @@ export const defaultProps = {
   showButtons: true,
   showCloseButton: true,
   showNumber: true,
+  startAt: 0,
   scrollDuration: 1,
   maskSpace: 10,
   updateDelay: 1,
