@@ -13,6 +13,12 @@
   </a>
 </p>
 
+<br />
+
+> ⚠️ The `master` branch is currently in _development_. Please use the [v1 branch](https://github.com/elrumordelaluz/reactour/tree/v1) to follow the current versions published.
+
+<br />
+
 ## Install
 
 ```zsh
