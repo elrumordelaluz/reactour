@@ -94,7 +94,7 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
           style={{ position: 'absolute' }}
         >
           <Arrow
-            onClick={() => gotoStep(current + 1)}
+            onClick={() => gotoStep(current - 1)}
             disabled={current === 0}
             className="CustomHelper__navArrow"
           />
