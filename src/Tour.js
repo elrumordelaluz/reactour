@@ -95,6 +95,7 @@ function Tour({
           'center'
         )
         setCurrent(startAt)
+        showStep(startAt)
       } else {
         showStep()
       }
