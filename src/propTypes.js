@@ -43,6 +43,7 @@ export const propTypes = {
       action: PropTypes.func,
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
+      navDotAriaLabel: PropTypes.string,
     })
   ),
   update: PropTypes.string,
