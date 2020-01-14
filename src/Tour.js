@@ -306,6 +306,7 @@ function Tour({
           className={cn(CN.helper.base, className, {
             [CN.helper.isOpen]: isOpen,
           })}
+          role="dialog"
         >
           {CustomHelper ? (
             <CustomHelper
