@@ -49,6 +49,8 @@ function Tour({
   nextButton,
   rounded,
   maskSpace,
+  showArrow,
+  arrowSize,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -306,6 +308,8 @@ function Tour({
           className={cn(CN.helper.base, className, {
             [CN.helper.isOpen]: isOpen,
           })}
+          showArrow={showArrow}
+          arrowSize={arrowSize}
           role="dialog"
         >
           {CustomHelper ? (

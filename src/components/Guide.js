@@ -28,12 +28,16 @@ const Guide = styled.div`
       targetRight,
       targetBottom,
       targetLeft,
+      targetWidth,
+      targetHeight,
       windowWidth,
       windowHeight,
       helperWidth,
       helperHeight,
       helperPosition,
       padding,
+      showArrow,
+      arrowSize = 25
     } = props
 
     const available = {
@@ -101,15 +105,60 @@ const Guide = styled.div`
           windowHeight / 2 - helperHeight / 2,
         ],
       }
+
+      if (showArrow) {
+        coords.top[1] -= arrowSize
+        coords.right[0] += arrowSize
+        coords.bottom[1] += arrowSize
+        coords.left[0] -= arrowSize
+
+        coords.top.push('top')
+        coords.right.push('right')
+        coords.bottom.push('bottom')
+        coords.left.push('left')
+      }
+      
       if (helperPosition === 'center' || couldPositionAt(helperPosition)) {
         return coords[helperPosition]
       }
       return autoPosition(coords)
     }
 
+    const arrow = position => {
+      if (position.length !== 3) {
+        return '';
+      }
+
+      const arrowPos = position[2]
+      const offset = !hx.isHoriz(arrowPos) ?
+        `left: ${(targetWidth + 2 * padding < helperWidth ? targetWidth + 2 * padding : helperWidth) / 2 - arrowSize
+          + (position[0] + padding < targetLeft ? targetLeft - position[0] - padding : 0)}px`
+        : `top: ${(targetHeight + 2 * padding < helperHeight ? targetHeight + 2 * padding : helperHeight) / 2 - arrowSize 
+          + (position[1] + padding < targetTop ? targetTop - position[1] - padding : 0)}px`
+      const arrowColor = props.style.backgroundColor || '#fff'
+      return `
+        &::before 
+        {
+          content: "";
+          position: absolute;
+          ${arrowPos}: ${(hx.isHoriz(arrowPos) ? helperWidth : helperHeight) - 1}px;
+          ${offset};
+          border-style: solid;
+          border-width: ${arrowSize}px;
+          border-color: ${arrowPos === 'top' ? arrowColor : 'transparent'}
+            ${arrowPos === 'right' ? arrowColor : 'transparent'}
+            ${arrowPos === 'bottom' ? arrowColor : 'transparent'}
+            ${arrowPos === 'left' ? arrowColor : 'transparent'};
+          display: block;
+          width: 0;
+        };
+      `
+    }
+
     const p = pos(helperPosition)
 
-    return `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px)`
+    return `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px);
+    ${showArrow && arrow(p)}`
   }};
 `
 
