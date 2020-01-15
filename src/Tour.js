@@ -389,6 +389,9 @@ function Tour({
                   )}
                 </Controls>
               )}
+              {showCloseButton && (
+                <Close onClick={close} ariaLabel={closeButtonAriaLabel} />
+              )}
             </>
           )}
         </Guide>
