@@ -99,6 +99,12 @@ Type: `node | elem`
 
 Type: `string`
 
+#### closeButtonAriaLabel
+
+> `aria-label` attribute for the close button (for accessibility)
+
+Type: `string`
+
 #### closeWithMask
 
 > Close the _Tour_ by clicking the _Mask_

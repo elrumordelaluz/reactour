@@ -5,6 +5,7 @@ export const propTypes = {
   highlightedMaskClassName: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   className: PropTypes.string,
+  closeButtonAriaLabel: PropTypes.string,
   closeWithMask: PropTypes.bool,
   inViewThreshold: PropTypes.number,
   isOpen: PropTypes.bool.isRequired,

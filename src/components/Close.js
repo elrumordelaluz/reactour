@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import SvgButton from './SvgButton'
 import PropTypes from 'prop-types'
 
-function Close({ className, onClick }) {
+function Close({ className, onClick, ariaLabel }) {
   return (
-    <SvgButton className={className} onClick={onClick}>
+    <SvgButton className={className} onClick={onClick} aria-label={ariaLabel}>
       <svg viewBox="0 0 9.1 9.1">
         <path
           fill="currentColor"
@@ -19,6 +19,7 @@ function Close({ className, onClick }) {
 Close.propTypes = {
   className: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  ariaLabel: PropTypes.string,
 }
 
 const StyledClose = styled(Close)`
