@@ -44,6 +44,7 @@ export const propTypes = {
       actionBefore: PropTypes.func,
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
+      navDotAriaLabel: PropTypes.string,
     })
   ),
   update: PropTypes.string,
@@ -66,6 +67,7 @@ export const defaultProps = {
   showButtons: true,
   showCloseButton: true,
   showNumber: true,
+  startAt: 0,
   scrollDuration: 1,
   maskSpace: 10,
   updateDelay: 1,

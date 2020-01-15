@@ -157,9 +157,9 @@ const Guide = styled.div`
 
     const p = pos(helperPosition)
 
-    return `translate(${p[0]}px, ${p[1]}px);
+    return `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px);
     ${showArrow && arrow(p)}`
-  }}
+  }};
 `
 
 export default Guide
