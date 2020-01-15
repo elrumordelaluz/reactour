@@ -444,6 +444,7 @@ class Tour extends Component {
               })}
               accentColor={accentColor}
               defaultStyles={!CustomHelper}
+              role="dialog"
             >
               {CustomHelper ? (
                 <CustomHelper
