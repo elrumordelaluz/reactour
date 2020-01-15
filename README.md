@@ -87,6 +87,12 @@ Type: `func`
 <Tour badgeContent={(curr, tot) => `${curr} of ${tot}`} />
 ```
 
+#### ariaLabelledBy
+
+> `ariaLabelledBy` attribute to associate the dialog with a title for screen readers (accessibility)
+
+Type: `string`
+
 #### children
 
 > Content to be rendered inside the _Helper_

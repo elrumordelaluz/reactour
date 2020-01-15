@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
 export const propTypes = {
+  ariaLabelledBy: PropTypes.string,
   badgeContent: PropTypes.func,
   highlightedMaskClassName: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
