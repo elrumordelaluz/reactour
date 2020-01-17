@@ -105,6 +105,8 @@ Type: `string`
 
 Type: `string`
 
+Default: `'Close'`
+
 #### closeWithMask
 
 > Close the _Tour_ by clicking the _Mask_

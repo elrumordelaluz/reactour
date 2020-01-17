@@ -65,6 +65,7 @@ export const defaultProps = {
   showNavigationNumber: true,
   showButtons: true,
   showCloseButton: true,
+  closeButtonAriaLabel: 'Close',
   showNumber: true,
   startAt: 0,
   scrollDuration: 1,
