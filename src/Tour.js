@@ -15,6 +15,7 @@ import {
   Arrow,
   Navigation,
   Dot,
+  Close,
 } from './components/index'
 import { getNodeRect, getWindow, inView, isBody } from './helpers'
 import { propTypes, defaultProps } from './propTypes'
@@ -49,6 +50,8 @@ function Tour({
   nextButton,
   rounded,
   maskSpace,
+  showCloseButton,
+  closeButtonAriaLabel,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -385,6 +388,9 @@ function Tour({
                     />
                   )}
                 </Controls>
+              )}
+              {showCloseButton && (
+                <Close onClick={close} ariaLabel={closeButtonAriaLabel} />
               )}
             </>
           )}
