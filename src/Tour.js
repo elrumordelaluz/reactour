@@ -52,6 +52,7 @@ function Tour({
   maskSpace,
   showCloseButton,
   closeButtonAriaLabel,
+  ariaLabelledBy,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -310,6 +311,7 @@ function Tour({
             [CN.helper.isOpen]: isOpen,
           })}
           role="dialog"
+          aria-labelledby={ariaLabelledBy}
         >
           {CustomHelper ? (
             <CustomHelper
