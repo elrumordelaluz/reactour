@@ -308,6 +308,14 @@ Type: `bool`
 
 Default: `true`
 
+#### showNavigationScreenReaders
+
+> Show/Hide _Helper_ Navigation Dots for screen reader software
+
+Type: `bool`
+
+Default: `true`
+
 #### showNavigationNumber
 
 > Show/Hide number when hovers on each Navigation Dot

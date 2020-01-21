@@ -24,6 +24,7 @@ export const propTypes = {
   showCloseButton: PropTypes.bool,
   showNavigation: PropTypes.bool,
   showNavigationNumber: PropTypes.bool,
+  showNavigationScreenReaders: PropTypes.bool,
   showNumber: PropTypes.bool,
   startAt: PropTypes.number,
   goToStep: PropTypes.number,
@@ -64,6 +65,7 @@ export const propTypes = {
 export const defaultProps = {
   showNavigation: true,
   showNavigationNumber: true,
+  showNavigationScreenReaders: true,
   showButtons: true,
   showCloseButton: true,
   closeButtonAriaLabel: 'Close',

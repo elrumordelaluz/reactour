@@ -43,6 +43,7 @@ function Tour({
   maskClassName,
   showButtons,
   showNavigation,
+  showNavigationScreenReaders,
   prevButton,
   showNavigationNumber,
   disableDotsNavigation,
@@ -346,7 +347,10 @@ function Tour({
                   )}
 
                   {showNavigation && (
-                    <Navigation data-tour-elem="navigation">
+                    <Navigation
+                      data-tour-elem="navigation"
+                      aria-hidden={!showNavigationScreenReaders}
+                    >
                       {steps.map((s, i) => (
                         <Dot
                           key={`${s.selector ? s.selector : 'undef'}_${i}`}
