@@ -76,6 +76,22 @@ Type: `string`
 
 Default: `#007aff`
 
+#### accessibilityOptions
+
+> Configure accessibility related accessibility options
+
+Type: `object`
+
+Default:
+```js
+    // attribute to associate the dialog with a title for screen readers
+    ariaLabelledBy: null,
+    // aria-label attribute for the close button
+    closeButtonAriaLabel: 'Close',
+    // Show/Hide Navigation Dots for screen reader software
+    showNavigationScreenReaders: true,
+```
+
 #### badgeContent
 
 > Customize _Badge_ content using `current` and `total` steps values
@@ -86,12 +102,6 @@ Type: `func`
 // example
 <Tour badgeContent={(curr, tot) => `${curr} of ${tot}`} />
 ```
-
-#### ariaLabelledBy
-
-> `ariaLabelledBy` attribute to associate the dialog with a title for screen readers (accessibility)
-
-Type: `string`
 
 #### children
 
@@ -104,14 +114,6 @@ Type: `node | elem`
 > Custom class name to add to the _Helper_
 
 Type: `string`
-
-#### closeButtonAriaLabel
-
-> `aria-label` attribute for the close button (for accessibility)
-
-Type: `string`
-
-Default: `'Close'`
 
 #### closeWithMask
 
@@ -303,14 +305,6 @@ Default: `true`
 #### showNavigation
 
 > Show/Hide _Helper_ Navigation Dots
-
-Type: `bool`
-
-Default: `true`
-
-#### showNavigationScreenReaders
-
-> Show/Hide _Helper_ Navigation Dots for screen reader software
 
 Type: `bool`
 
