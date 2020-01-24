@@ -131,6 +131,7 @@ const tourConfig = [
     content:
       "Ok, let's start with the name of the Tour that is about to begin.",
     actionBefore: async () => {
+      // TODO: This should be moved to another step of the demo to show that the step can wait for animations to complete
       await timeout(5000)
       console.log('Hola!')
     },
