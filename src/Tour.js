@@ -52,6 +52,8 @@ function Tour({
   maskSpace,
   showCloseButton,
   accessibilityOptions,
+  autoPlay,
+  autoPlayTimeout,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -61,6 +63,25 @@ function Tour({
   const a11yOptions = {
     ...defaultProps.accessibilityOptions,
     ...accessibilityOptions,
+  }
+
+  let autoPlayTimer
+
+  const setAutoPlay = () => {
+    if (isOpen && autoPlay && !autoPlayTimer) {
+      // if autoplay is set but the timer has not been started
+      autoPlayTimer = setTimeout(() => {
+        if (current >= steps.length - 1) {
+          setCurrent(0)
+        } else {
+          nextStep()
+        }
+      }, autoPlayTimeout)
+    } else if ((!isOpen || !autoPlay) && autoPlayTimer) {
+      // if the timer is running but the tour is closed or autoPlay is set to false
+      clearTimeout(autoPlayTimer)
+      autoPlayTimer = null
+    }
   }
 
   useMutationObserver(observer, (mutationList, observer) => {
@@ -85,6 +106,7 @@ function Tour({
   })
 
   useEffect(() => {
+    setAutoPlay()
     const debouncedShowStep = debounce(showStep, 100)
     window.addEventListener('keydown', keyHandler, false)
     window.addEventListener('resize', debouncedShowStep, false)
