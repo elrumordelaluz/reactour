@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types'
 
 export const propTypes = {
-  ariaLabelledBy: PropTypes.string,
+  accessibilityOptions: PropTypes.shape({
+    ariaLabelledBy: PropTypes.string,
+    closeButtonAriaLabel: PropTypes.string,
+    showNavigationScreenReaders: PropTypes.bool,
+  }),
   badgeContent: PropTypes.func,
   highlightedMaskClassName: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   className: PropTypes.string,
-  closeButtonAriaLabel: PropTypes.string,
   closeWithMask: PropTypes.bool,
   inViewThreshold: PropTypes.number,
   isOpen: PropTypes.bool.isRequired,
@@ -62,11 +65,14 @@ export const propTypes = {
 }
 
 export const defaultProps = {
+  accessibilityOptions: {
+    closeButtonAriaLabel: 'Close',
+    showNavigationScreenReaders: true,
+  },
   showNavigation: true,
   showNavigationNumber: true,
   showButtons: true,
   showCloseButton: true,
-  closeButtonAriaLabel: 'Close',
   showNumber: true,
   startAt: 0,
   scrollDuration: 1,

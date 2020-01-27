@@ -51,14 +51,17 @@ function Tour({
   rounded,
   maskSpace,
   showCloseButton,
-  closeButtonAriaLabel,
-  ariaLabelledBy,
+  accessibilityOptions,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const helper = useRef(null)
   const observer = useRef(null)
+  const a11yOptions = {
+    ...defaultProps.accessibilityOptions,
+    ...accessibilityOptions,
+  }
 
   useMutationObserver(observer, (mutationList, observer) => {
     if (isOpen) {
@@ -311,7 +314,7 @@ function Tour({
             [CN.helper.isOpen]: isOpen,
           })}
           role="dialog"
-          aria-labelledby={ariaLabelledBy}
+          aria-labelledby={a11yOptions.ariaLabelledBy}
         >
           {CustomHelper ? (
             <CustomHelper
@@ -346,7 +349,10 @@ function Tour({
                   )}
 
                   {showNavigation && (
-                    <Navigation data-tour-elem="navigation">
+                    <Navigation
+                      data-tour-elem="navigation"
+                      aria-hidden={!a11yOptions.showNavigationScreenReaders}
+                    >
                       {steps.map((s, i) => (
                         <Dot
                           key={`${s.selector ? s.selector : 'undef'}_${i}`}
@@ -392,7 +398,10 @@ function Tour({
                 </Controls>
               )}
               {showCloseButton && (
-                <Close onClick={close} ariaLabel={closeButtonAriaLabel} />
+                <Close
+                  onClick={close}
+                  ariaLabel={a11yOptions.closeButtonAriaLabel}
+                />
               )}
             </>
           )}
