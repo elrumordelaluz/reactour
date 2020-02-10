@@ -68,6 +68,22 @@ const steps = [
 
 ### Tour Props
 
+#### autoPlay
+
+> Auto play through tour steps
+
+Type: `bool`
+
+Default: `false`
+
+#### autoPlayTimeout
+
+> Time taken, in milliseconds, to pause on a single step while auto playing.
+
+Type: `number`
+
+Default: `5000`
+
 #### accentColor
 
 > Change `--reactour-accent` _(defaults to accentColor on IE)_ css custom prop to apply color in _Helper_, number, dots, etc
