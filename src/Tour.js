@@ -52,6 +52,7 @@ function Tour({
   maskSpace,
   showCloseButton,
   accessibilityOptions,
+  disableFocusLock,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -289,7 +290,7 @@ function Tour({
           highlightedMaskClassName
         )}
       />
-      <FocusLock>
+      <FocusLock disabled={disableFocusLock}>
         <Guide
           ref={helper}
           windowWidth={state.w}
