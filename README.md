@@ -388,6 +388,15 @@ Type: `number`
 
 Default: `1`
 
+#### disableFocusLock
+
+> Disable FocusLock component.
+
+Type: `bool`
+
+Default: `false`
+
+
 ## FAQ
 
 <p>
