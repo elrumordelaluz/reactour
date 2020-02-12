@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
 export const propTypes = {
+  disableFocusLock: PropTypes.bool,
   accessibilityOptions: PropTypes.shape({
     ariaLabelledBy: PropTypes.string,
     closeButtonAriaLabel: PropTypes.string,
@@ -65,6 +66,7 @@ export const propTypes = {
 }
 
 export const defaultProps = {
+  disableFocusLock: false,
   accessibilityOptions: {
     closeButtonAriaLabel: 'Close',
     showNavigationScreenReaders: true,
