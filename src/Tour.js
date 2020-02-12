@@ -96,7 +96,7 @@ class Tour extends Component {
       () => {
         setTimeout(this.showStep, 1)
         this.helperElement = this.helper.current
-        if (!disableFocusLock) this.helper.current.focus()
+        if (!this.props.disableFocusLock) this.helper.current.focus()
         if (onAfterOpen) {
           onAfterOpen(this.helperElement)
         }
