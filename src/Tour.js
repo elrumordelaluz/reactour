@@ -50,7 +50,7 @@ class Tour extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { isOpen, update, updateDelay } = this.props
 
     if (!isOpen && nextProps.isOpen) {
@@ -76,7 +76,7 @@ class Tour extends Component {
     }
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     const { isOpen } = this.props
     if (isOpen) {
       this.close()
