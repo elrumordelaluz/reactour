@@ -76,7 +76,7 @@ class Tour extends Component {
     }
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     const { isOpen } = this.props
     if (isOpen) {
       this.close()
