@@ -117,6 +117,7 @@ class Tour extends Component {
   }
 
   showStep = () => {
+    if (!this.helper || !this.helper.current) return;
     const { steps } = this.props
     const { current, focusUnlocked } = this.state
     if (focusUnlocked) {
