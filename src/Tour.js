@@ -363,6 +363,7 @@ class Tour extends Component {
       showNumber,
       onRequestClose,
       maskSpace,
+      helperSpace,
       lastStepNextButton,
       nextButton,
       prevButton,
@@ -435,7 +436,8 @@ class Tour extends Component {
               helperWidth={helperWidth}
               helperHeight={helperHeight}
               helperPosition={helperPosition}
-              padding={maskSpace}
+              maskPadding={maskSpace}
+              helperPadding={helperSpace}
               tabIndex={-1}
               current={current}
               style={steps[current].style ? steps[current].style : {}}
