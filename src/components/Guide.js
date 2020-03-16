@@ -35,13 +35,19 @@ const Guide = styled.div`
       helperPosition,
       maskPadding,
       helperPadding,
+      stepPadding,
     } = props
 
+    const maskPaddingTop = stepPadding ? stepPadding[0] : maskPadding
+    const maskPaddingRight = stepPadding ? stepPadding[1] : maskPadding
+    const maskPaddingBottom = stepPadding ? stepPadding[2] : maskPadding
+    const maskPaddingLeft = stepPadding ? stepPadding[3] : maskPadding
+
     const available = {
-      left: targetLeft - maskPadding,
-      right: windowWidth - targetRight - maskPadding,
-      top: targetTop - maskPadding,
-      bottom: windowHeight - targetBottom - maskPadding,
+      left: targetLeft - maskPaddingLeft,
+      right: windowWidth - targetRight - maskPaddingRight,
+      top: targetTop - maskPaddingTop,
+      bottom: windowHeight - targetBottom - maskPaddingBottom,
     }
 
     const couldPositionAt = position => {
@@ -80,24 +86,28 @@ const Guide = styled.div`
         ]
       }
 
-      const hX = hx.isOutsideX(targetLeft + helperWidth, windowWidth)
-        ? hx.isOutsideX(targetRight + maskPadding, windowWidth)
+      const hX = hx.isOutsideX(
+        targetLeft - maskPaddingLeft + helperWidth,
+        windowWidth
+      )
+        ? hx.isOutsideX(targetRight + maskPaddingRight, windowWidth)
           ? targetRight - helperWidth
-          : targetRight - helperWidth + maskPadding
-        : targetLeft - maskPadding
+          : targetRight + maskPaddingRight - helperWidth
+        : targetLeft - maskPaddingLeft
       const x = hX > helperPadding ? hX : helperPadding
+
       const hY = hx.isOutsideY(targetTop + helperHeight, windowHeight)
-        ? hx.isOutsideY(targetBottom + maskPadding, windowHeight)
+        ? hx.isOutsideY(targetBottom + maskPaddingBottom, windowHeight)
           ? targetBottom - helperHeight
-          : targetBottom - helperHeight + maskPadding
-        : targetTop - maskPadding
+          : targetBottom + maskPaddingBottom - helperHeight
+        : targetTop - maskPaddingTop
       const y = hY > helperPadding ? hY : helperPadding
 
       const coords = {
-        top: [x, targetTop - helperHeight - maskPadding - helperPadding],
-        right: [targetRight + maskPadding + helperPadding, y],
-        bottom: [x, targetBottom + maskPadding + helperPadding],
-        left: [targetLeft - helperWidth - maskPadding - helperPadding, y],
+        top: [x, targetTop - maskPaddingTop - helperHeight - helperPadding],
+        right: [targetRight + maskPaddingRight + helperPadding, y],
+        bottom: [x, targetBottom + maskPaddingBottom + helperPadding],
+        left: [targetLeft - maskPaddingLeft - helperWidth - helperPadding, y],
         center: [
           windowWidth / 2 - helperWidth / 2,
           windowHeight / 2 - helperHeight / 2,

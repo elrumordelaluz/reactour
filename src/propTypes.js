@@ -45,6 +45,7 @@ export const propTypes = {
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
       navDotAriaLabel: PropTypes.string,
+      padding: PropTypes.arrayOf(PropTypes.number),
     })
   ),
   update: PropTypes.string,

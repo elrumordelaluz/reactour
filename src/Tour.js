@@ -412,7 +412,8 @@ class Tour extends Component {
             targetHeight={targetHeight}
             targetTop={targetTop}
             targetLeft={targetLeft}
-            padding={maskSpace}
+            maskPadding={maskSpace}
+            stepPadding={steps[current].padding}
             rounded={rounded}
             className={maskClassName}
             disableInteraction={
@@ -438,6 +439,7 @@ class Tour extends Component {
               helperPosition={helperPosition}
               maskPadding={maskSpace}
               helperPadding={helperSpace}
+              stepPadding={steps[current].padding}
               tabIndex={-1}
               current={current}
               style={steps[current].style ? steps[current].style : {}}
