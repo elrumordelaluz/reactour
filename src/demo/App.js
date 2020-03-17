@@ -133,6 +133,7 @@ const tourConfig = [
     selector: '[data-tut="reactour__logo"]',
     content: 'And this is our cool bus...',
     position: [20, 20],
+    roundedStep: true,
   },
   {
     selector: '[data-tut="reactour__copy"]',

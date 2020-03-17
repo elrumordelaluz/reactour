@@ -400,9 +400,6 @@ class Tour extends Component {
         <Portal>
           <GlobalStyle />
           <SvgMask
-            className={cn(CN.mask.base, maskClassName, {
-              [CN.mask.isOpen]: isOpen,
-            })}
             onClick={this.maskClickHandler}
             forwardRef={c => (this.mask = c)}
             windowWidth={windowWidth}
@@ -413,6 +410,7 @@ class Tour extends Component {
             targetLeft={targetLeft}
             padding={maskSpace}
             rounded={rounded}
+            roundedStep={steps[current].roundedStep}
             className={maskClassName}
             disableInteraction={
               steps[current].stepInteraction === false || disableInteraction

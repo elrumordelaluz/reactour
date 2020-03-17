@@ -24,6 +24,7 @@ export default function SvgMask({
   targetLeft,
   padding,
   rounded,
+  roundedStep,
   disableInteraction,
   disableInteractionClassName,
   className,
@@ -33,6 +34,8 @@ export default function SvgMask({
   const height = hx.safe(targetHeight + padding * 2)
   const top = hx.safe(targetTop - padding)
   const left = hx.safe(targetLeft - padding)
+
+  const roundedRadius = roundedStep ? Math.min(width / 2, height / 2) : rounded
 
   return (
     <SvgMaskWrapper onClick={onClick}>
@@ -56,56 +59,56 @@ export default function SvgMask({
             <rect
               x={left - 1}
               y={top - 1}
-              width={rounded}
-              height={rounded}
+              width={roundedRadius}
+              height={roundedRadius}
               fill="white"
             />
             <circle
-              cx={left + rounded}
-              cy={top + rounded}
-              r={rounded}
+              cx={left + roundedRadius}
+              cy={top + roundedRadius}
+              r={roundedRadius}
               fill="black"
             />
             {/* top right rounded corner */}
             <rect
-              x={left + width - rounded + 1}
+              x={left + width - roundedRadius + 1}
               y={top - 1}
-              width={rounded}
-              height={rounded}
+              width={roundedRadius}
+              height={roundedRadius}
               fill="white"
             />
             <circle
-              cx={left + width - rounded}
-              cy={top + rounded}
-              r={rounded}
+              cx={left + width - roundedRadius}
+              cy={top + roundedRadius}
+              r={roundedRadius}
               fill="black"
             />
             {/* bottom left rounded corner */}
             <rect
               x={left - 1}
-              y={top + height - rounded + 1}
-              width={rounded}
-              height={rounded}
+              y={top + height - roundedRadius + 1}
+              width={roundedRadius}
+              height={roundedRadius}
               fill="white"
             />
             <circle
-              cx={left + rounded}
-              cy={top + height - rounded}
-              r={rounded}
+              cx={left + roundedRadius}
+              cy={top + height - roundedRadius}
+              r={roundedRadius}
               fill="black"
             />
             {/* bottom right rounded corner */}
             <rect
-              x={left + width - rounded + 1}
-              y={top + height - rounded + 1}
-              width={rounded}
-              height={rounded}
+              x={left + width - roundedRadius + 1}
+              y={top + height - roundedRadius + 1}
+              width={roundedRadius}
+              height={roundedRadius}
               fill="white"
             />
             <circle
-              cx={left + width - rounded}
-              cy={top + height - rounded}
-              r={rounded}
+              cx={left + width - roundedRadius}
+              cy={top + height - roundedRadius}
+              r={roundedRadius}
               fill="black "
             />
           </mask>
@@ -171,6 +174,7 @@ SvgMask.propTypes = {
   targetLeft: PropTypes.number.isRequired,
   padding: PropTypes.number.isRequired,
   rounded: PropTypes.number.isRequired,
+  roundedStep: PropTypes.bool,
   disableInteraction: PropTypes.bool.isRequired,
   disableInteractionClassName: PropTypes.string.isRequired,
 }
