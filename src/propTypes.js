@@ -11,6 +11,7 @@ export const propTypes = {
   lastStepNextButton: PropTypes.node,
   maskClassName: PropTypes.string,
   maskSpace: PropTypes.number,
+  helperSpace: PropTypes.number,
   nextButton: PropTypes.node,
   onAfterOpen: PropTypes.func,
   onBeforeClose: PropTypes.func,
@@ -44,6 +45,7 @@ export const propTypes = {
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
       navDotAriaLabel: PropTypes.string,
+      padding: PropTypes.arrayOf(PropTypes.number),
     })
   ),
   update: PropTypes.string,
@@ -66,6 +68,7 @@ export const defaultProps = {
   showNumber: true,
   scrollDuration: 1,
   maskSpace: 10,
+  helperSpace: 10,
   updateDelay: 1,
   disableInteraction: false,
   rounded: 0,

@@ -22,17 +22,23 @@ export default function SvgMask({
   targetHeight,
   targetTop,
   targetLeft,
-  padding,
+  maskPadding,
+  stepPadding,
   rounded,
   disableInteraction,
   disableInteractionClassName,
   className,
   onClick,
 }) {
-  const width = hx.safe(targetWidth + padding * 2)
-  const height = hx.safe(targetHeight + padding * 2)
-  const top = hx.safe(targetTop - padding)
-  const left = hx.safe(targetLeft - padding)
+  const maskPaddingTop = stepPadding ? stepPadding[0] : maskPadding
+  const maskPaddingRight = stepPadding ? stepPadding[1] : maskPadding
+  const maskPaddingBottom = stepPadding ? stepPadding[2] : maskPadding
+  const maskPaddingLeft = stepPadding ? stepPadding[3] : maskPadding
+
+  const width = hx.safe(targetWidth + maskPaddingLeft + maskPaddingRight)
+  const height = hx.safe(targetHeight + maskPaddingTop + maskPaddingBottom)
+  const top = hx.safe(targetTop - maskPaddingTop)
+  const left = hx.safe(targetLeft - maskPaddingLeft)
 
   return (
     <SvgMaskWrapper onClick={onClick}>
@@ -116,7 +122,7 @@ export default function SvgMask({
             <rect x={0} y={top} width={left} height={height} />
             {/* right */}
             <rect
-              x={targetLeft + targetWidth + padding}
+              x={targetLeft + targetWidth + maskPaddingRight}
               y={top}
               width={hx.safe(windowWidth - targetWidth - left)}
               height={height}
@@ -124,7 +130,7 @@ export default function SvgMask({
             {/* bottom */}
             <rect
               x={0}
-              y={targetTop + targetHeight + padding}
+              y={targetTop + targetHeight + maskPaddingBottom}
               width={windowWidth}
               height={hx.safe(windowHeight - targetHeight - top)}
             />
@@ -169,7 +175,8 @@ SvgMask.propTypes = {
   targetHeight: PropTypes.number.isRequired,
   targetTop: PropTypes.number.isRequired,
   targetLeft: PropTypes.number.isRequired,
-  padding: PropTypes.number.isRequired,
+  maskPadding: PropTypes.number.isRequired,
+  stepPadding: PropTypes.arrayOf(PropTypes.number),
   rounded: PropTypes.number.isRequired,
   disableInteraction: PropTypes.bool.isRequired,
   disableInteractionClassName: PropTypes.string.isRequired,
