@@ -162,17 +162,19 @@ export default function SvgMask({
           className={disableInteractionClassName}
         />
         {/* border */}
-        <rect
-          x={hx.safe(left + highlightedBorder.width / 2.0)}
-          y={hx.safe(top + highlightedBorder.width / 2.0)}
-          width={hx.safe(width - highlightedBorder.width)}
-          height={hx.safe(height - highlightedBorder.width)}
-          pointerEvents="auto"
-          fill="none"
-          strokeWidth={highlightedBorder.width}
-          stroke={highlightedBorder.color}
-          rx={roundedRadius - 2}
-        />
+        {highlightedBorder && (
+          <rect
+            x={hx.safe(left + highlightedBorder.width / 2.0)}
+            y={hx.safe(top + highlightedBorder.width / 2.0)}
+            width={hx.safe(width - highlightedBorder.width)}
+            height={hx.safe(height - highlightedBorder.width)}
+            pointerEvents="auto"
+            fill="none"
+            strokeWidth={highlightedBorder.width}
+            stroke={highlightedBorder.color}
+            rx={roundedRadius - 2}
+          />
+        )}
       </svg>
     </SvgMaskWrapper>
   )
@@ -192,7 +194,6 @@ SvgMask.propTypes = {
   disableInteractionClassName: PropTypes.string.isRequired,
   highlightedBorder: PropTypes.shape({
     color: PropTypes.string.isRequired,
-    radius: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
   }),
 }
