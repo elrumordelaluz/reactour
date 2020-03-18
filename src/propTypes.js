@@ -57,6 +57,11 @@ export const propTypes = {
   ]),
   rounded: PropTypes.number,
   accentColor: PropTypes.string,
+  highlightedBorder: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    radius: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+  }),
 }
 
 export const defaultProps = {

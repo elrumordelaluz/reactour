@@ -4,7 +4,8 @@ import * as hx from '../helpers'
 import PropTypes from 'prop-types'
 
 const SvgMaskWrapper = styled.div`
-  opacity: 0.7;
+  opacity: ${props => !props.maskClassName && 0.7};
+  color: ${props => !props.maskClassName && '#000'};
   width: 100%;
   left: 0;
   top: 0;
@@ -12,7 +13,6 @@ const SvgMaskWrapper = styled.div`
   position: fixed;
   z-index: 99999;
   pointer-events: none;
-  color: #000;
 `
 
 export default function SvgMask({
@@ -29,6 +29,7 @@ export default function SvgMask({
   disableInteractionClassName,
   className,
   onClick,
+  highlightedBorder,
 }) {
   const width = hx.safe(targetWidth + padding * 2)
   const height = hx.safe(targetHeight + padding * 2)
@@ -38,7 +39,7 @@ export default function SvgMask({
   const roundedRadius = roundedStep ? Math.min(width / 2, height / 2) : rounded
 
   return (
-    <SvgMaskWrapper onClick={onClick}>
+    <SvgMaskWrapper onClick={onClick} maskClassName={className}>
       <svg
         width={windowWidth}
         height={windowHeight}
@@ -160,6 +161,18 @@ export default function SvgMask({
           display={disableInteraction ? 'block' : 'none'}
           className={disableInteractionClassName}
         />
+        {/* border */}
+        <rect
+          x={hx.safe(left + highlightedBorder.width / 2.0)}
+          y={hx.safe(top + highlightedBorder.width / 2.0)}
+          width={hx.safe(width - highlightedBorder.width)}
+          height={hx.safe(height - highlightedBorder.width)}
+          pointerEvents="auto"
+          fill="none"
+          strokeWidth={highlightedBorder.width}
+          stroke={highlightedBorder.color}
+          rx={roundedRadius - 2}
+        />
       </svg>
     </SvgMaskWrapper>
   )
@@ -177,4 +190,9 @@ SvgMask.propTypes = {
   roundedStep: PropTypes.bool,
   disableInteraction: PropTypes.bool.isRequired,
   disableInteractionClassName: PropTypes.string.isRequired,
+  highlightedBorder: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    radius: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+  }),
 }

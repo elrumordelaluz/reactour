@@ -375,6 +375,7 @@ class Tour extends Component {
       rounded,
       accentColor,
       CustomHelper,
+      highlightedBorder,
     } = this.props
 
     const {
@@ -418,6 +419,7 @@ class Tour extends Component {
                 : disableInteraction
             }
             disableInteractionClassName={`${CN.mask.disableInteraction} ${highlightedMaskClassName}`}
+            highlightedBorder={highlightedBorder}
           />
           <FocusLock disabled={focusUnlocked}>
             <Guide
