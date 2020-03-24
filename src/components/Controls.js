@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../styled'
 const Controls = styled.div`
   display: flex;
   margin-top: 24px;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../styled'
 import { themeColors } from './settings'
 
 export default styled.aside`

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../styled'
 import { fontFamily, themeColors } from './settings'
 
 export default styled.p`

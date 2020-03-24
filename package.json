@@ -71,12 +71,16 @@
     "styled-components": "4.4.1",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.9.0"
+    "webpack-dev-server": "3.9.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27"
   },
   "peerDependencies": {
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "styled-components": "^4.0.0"
+    "styled-components": "^4.0.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27"
   },
   "dependencies": {
     "@rooks/use-mutation-observer": "3.4.2",

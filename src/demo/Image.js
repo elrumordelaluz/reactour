@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../styled'
 
 export default styled.img`
   border: 0;
