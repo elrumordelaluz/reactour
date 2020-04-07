@@ -45,6 +45,7 @@ export const propTypes = {
       style: PropTypes.object,
       stepInteraction: PropTypes.bool,
       navDotAriaLabel: PropTypes.string,
+      roundedStep: PropTypes.bool,
     })
   ),
   update: PropTypes.string,
@@ -57,6 +58,10 @@ export const propTypes = {
   ]),
   rounded: PropTypes.number,
   accentColor: PropTypes.string,
+  highlightedBorder: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    width: PropTypes.number.isRequired,
+  }),
 }
 
 export const defaultProps = {

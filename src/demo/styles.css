@@ -23,6 +23,7 @@ body {
 
 .mask {
   color: #021d1d;
+  opacity: 0.7
 }
 
 [data-tour-elem='controls'] {
