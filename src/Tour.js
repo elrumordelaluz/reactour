@@ -50,7 +50,7 @@ class Tour extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { isOpen, update, updateDelay } = this.props
 
     if (!isOpen && nextProps.isOpen) {
@@ -117,6 +117,7 @@ class Tour extends Component {
   }
 
   showStep = () => {
+    if (!this.helper || !this.helper.current) return
     const { steps } = this.props
     const { current, focusUnlocked } = this.state
     if (focusUnlocked) {
@@ -548,7 +549,12 @@ class Tour extends Component {
                     </Controls>
                   )}
 
-                  {showCloseButton ? <Close onClick={onRequestClose} /> : null}
+                  {showCloseButton ? (
+                    <Close
+                      onClick={onRequestClose}
+                      className="reactour__close"
+                    />
+                  ) : null}
                 </>
               )}
             </Guide>
