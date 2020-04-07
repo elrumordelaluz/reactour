@@ -96,7 +96,7 @@ class Tour extends Component {
       () => {
         setTimeout(this.showStep, 1)
         this.helperElement = this.helper.current
-        this.helper.current.focus()
+        if (!this.props.disableFocusLock) this.helper.current.focus()
         if (onAfterOpen) {
           onAfterOpen(this.helperElement)
         }
@@ -375,6 +375,7 @@ class Tour extends Component {
       rounded,
       accentColor,
       CustomHelper,
+      disableFocusLock,
     } = this.props
 
     const {
@@ -421,7 +422,7 @@ class Tour extends Component {
             }
             disableInteractionClassName={`${CN.mask.disableInteraction} ${highlightedMaskClassName}`}
           />
-          <FocusLock disabled={focusUnlocked}>
+          <FocusLock disabled={disableFocusLock}>
             <Guide
               ref={this.helper}
               targetHeight={targetHeight}
