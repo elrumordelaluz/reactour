@@ -401,6 +401,7 @@ function Tour({
                 <Close
                   onClick={close}
                   ariaLabel={a11yOptions.closeButtonAriaLabel}
+                  className="reactour__close"
                 />
               )}
             </>
