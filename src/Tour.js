@@ -328,84 +328,85 @@ function Tour({
               {children}
             </CustomHelper>
           ) : (
-              <>
-                {children}
-                {stepContent}
-                {showNumber && (
-                  <Badge data-tour-elem="badge">
-                    {typeof badgeContent === 'function'
-                      ? badgeContent(current + 1, steps.length)
-                      : current + 1}
-                  </Badge>
-                )}
+            <>
+              {children}
+              {stepContent}
+              {showNumber && (
+                <Badge data-tour-elem="badge">
+                  {typeof badgeContent === 'function'
+                    ? badgeContent(current + 1, steps.length)
+                    : current + 1}
+                </Badge>
+              )}
 
-                {(showButtons || showNavigation) && (
-                  <Controls data-tour-elem="controls">
-                    {showButtons && (
-                      <Arrow
-                        onClick={prevStep}
-                        disabled={current === 0}
-                        label={prevButton ? prevButton : null}
-                      />
-                    )}
+              {(showButtons || showNavigation) && (
+                <Controls data-tour-elem="controls">
+                  {showButtons && (
+                    <Arrow
+                      onClick={prevStep}
+                      disabled={current === 0}
+                      label={prevButton ? prevButton : null}
+                    />
+                  )}
 
-                    {showNavigation && (
-                      <Navigation
-                        data-tour-elem="navigation"
-                        aria-hidden={!a11yOptions.showNavigationScreenReaders}
-                      >
-                        {steps.map((s, i) => (
-                          <Dot
-                            key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                            onClick={() => goTo(i)}
-                            current={current}
-                            index={i}
-                            disabled={current === i || disableDotsNavigation}
-                            showNumber={showNavigationNumber}
-                            data-tour-elem="dot"
-                            className={cn(CN.dot.base, {
-                              [CN.dot.active]: current === i,
-                            })}
-                            aria-label={s.navDotAriaLabel}
-                          />
-                        ))}
-                      </Navigation>
-                    )}
+                  {showNavigation && (
+                    <Navigation
+                      data-tour-elem="navigation"
+                      aria-hidden={!a11yOptions.showNavigationScreenReaders}
+                    >
+                      {steps.map((s, i) => (
+                        <Dot
+                          key={`${s.selector ? s.selector : 'undef'}_${i}`}
+                          onClick={() => goTo(i)}
+                          current={current}
+                          index={i}
+                          disabled={current === i || disableDotsNavigation}
+                          showNumber={showNavigationNumber}
+                          data-tour-elem="dot"
+                          className={cn(CN.dot.base, {
+                            [CN.dot.active]: current === i,
+                          })}
+                          aria-label={s.navDotAriaLabel}
+                        />
+                      ))}
+                    </Navigation>
+                  )}
 
-                    {showButtons && (
-                      <Arrow
-                        onClick={
-                          current === steps.length - 1
-                            ? lastStepNextButton
-                              ? close
-                              : () => { }
-                            : typeof nextStep === 'function'
-                              ? nextStep
-                              : this.nextStep
-                        }
-                        disabled={
-                          !lastStepNextButton && current === steps.length - 1
-                        }
-                        inverted
-                        label={
-                          lastStepNextButton && current === steps.length - 1
-                            ? lastStepNextButton
-                            : nextButton
-                              ? nextButton
-                              : null
-                        }
-                      />
-                    )}
-                  </Controls>
-                )}
-                {showCloseButton && (
-                  <Close
-                    onClick={close}
-                    ariaLabel={a11yOptions.closeButtonAriaLabel}
-                  />
-                )}
-              </>
-            )}
+                  {showButtons && (
+                    <Arrow
+                      onClick={
+                        current === steps.length - 1
+                          ? lastStepNextButton
+                            ? close
+                            : () => {}
+                          : typeof nextStep === 'function'
+                          ? nextStep
+                          : this.nextStep
+                      }
+                      disabled={
+                        !lastStepNextButton && current === steps.length - 1
+                      }
+                      inverted
+                      label={
+                        lastStepNextButton && current === steps.length - 1
+                          ? lastStepNextButton
+                          : nextButton
+                          ? nextButton
+                          : null
+                      }
+                    />
+                  )}
+                </Controls>
+              )}
+              {showCloseButton && (
+                <Close
+                  onClick={close}
+                  ariaLabel={a11yOptions.closeButtonAriaLabel}
+                  className="reactour__close"
+                />
+              )}
+            </>
+          )}
         </Guide>
       </FocusLock>
     </Portal>
