@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components'
+import styled from '../styled'
+import keyframes from '../keyframes'
 import { fontFamily } from './settings'
 
 // from http://codepen.io/lbebber/pen/ypgql?editors=0100

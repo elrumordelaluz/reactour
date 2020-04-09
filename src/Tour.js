@@ -267,7 +267,7 @@ function Tour({
 
   return isOpen ? (
     <Portal>
-      <GlobalStyle />
+      {/*<GlobalStyle />*/}
       <SvgMask
         onClick={maskClickHandler}
         windowWidth={state.w}

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../styled'
 
 export default styled.section`
   min-height: 100vh;

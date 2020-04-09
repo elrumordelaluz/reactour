@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from '../styled'
 import { fontFamily, headingSizes, themeColors } from './settings'
 
 export default styled(({ h, ...props }) => {

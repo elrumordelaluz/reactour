@@ -42,7 +42,7 @@ function App() {
   const accentColor = 'linear-gradient(to right, #1c8f9e, #5cb7b7)'
   return (
     <>
-      <GlobalStyle />
+      {/*<GlobalStyle />*/}
       <Demo
         openTour={() => setOpen(true)}
         toggleShowMore={() => setShowingMore(!isShowingMore)}
@@ -129,7 +129,7 @@ const tourConfig = [
   {
     selector: '[data-tut="reactour__iso"]',
     content:
-      "Ok, let's start with the name of the Tour that is about to begin.",
+      "Ok!, let's start with the name of the Tour that is about to begin.",
     actionBefore: async () => {
       await timeout(5000)
       console.log('Hola!')
