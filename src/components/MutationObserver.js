@@ -17,8 +17,7 @@ export default ({ step, refresh }) => {
         )
 
         if (found) {
-          // hack to postpone execution in the event queue
-          setTimeout(() => refresh(), 0)
+          refresh()
         }
       }
     }
@@ -43,7 +42,7 @@ export default ({ step, refresh }) => {
     return () => {
       mutationObserver.disconnect()
     }
-  }, [])
+  }, [step])
 
   return null
 }

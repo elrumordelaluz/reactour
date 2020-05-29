@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 export default ({ step, refresh }) => {
   const [mutationsCounter, setMutationsCounter] = useState(0)
 
+  // only use to notify main logic below
+  // that a resizeObservable has been added to DOM (or removed from it)
   useEffect(() => {
     if (!step.resizeObservables) {
       return
@@ -19,8 +21,7 @@ export default ({ step, refresh }) => {
         )
 
         if (found) {
-          // hack to postpone execution in the event queue
-          setTimeout(() => setMutationsCounter(mutationsCounter + 1), 0)
+          setMutationsCounter(mutationsCounter + 1)
         }
       }
     }
@@ -45,8 +46,9 @@ export default ({ step, refresh }) => {
     return () => {
       mutationObserver.disconnect()
     }
-  }, [mutationsCounter])
+  }, [step, mutationsCounter])
 
+  // the main logic is here
   useEffect(() => {
     if (!step.resizeObservables) {
       return
@@ -67,7 +69,7 @@ export default ({ step, refresh }) => {
     return () => {
       resizeObserver.disconnect()
     }
-  }, [mutationsCounter])
+  }, [step, mutationsCounter])
 
   return null
 }

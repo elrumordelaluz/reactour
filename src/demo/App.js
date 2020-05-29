@@ -125,13 +125,6 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
 
 const tourConfig = [
   {
-    selector: '[data-tut="reactour__highlighted"]',
-    content: 'Hello world',
-    highlightedSelectors: ['[data-tut="reactour__highlighted-absolute-child"]'],
-    mutationObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
-    resizeObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
-  },
-  {
     selector: '[data-tut="reactour__iso"]',
     content:
       "Ok, let's start with the name of the Tour that is about to begin.",
@@ -252,6 +245,14 @@ const tourConfig = [
       'And the Tour could be observing changes to update the view, try clicking the button…',
     observe: '[data-tut="reactour__state--observe"]',
     action: node => node.focus(),
+  },
+  {
+    selector: '[data-tut="reactour__highlighted"]',
+    content:
+      'Moreover you can highlight multiple elements and adjust highlighted region depending on DOM resizes and mutations. Try clicking the "?" tooltip and playing with tabs...',
+    highlightedSelectors: ['[data-tut="reactour__highlighted-absolute-child"]'],
+    mutationObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
+    resizeObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
   },
 ]
 
