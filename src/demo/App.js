@@ -129,6 +129,7 @@ const tourConfig = [
     content: 'Hello world',
     highlightedSelectors: ['[data-tut="reactour__highlighted-absolute-child"]'],
     mutationObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
+    resizeObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
   },
   {
     selector: '[data-tut="reactour__iso"]',

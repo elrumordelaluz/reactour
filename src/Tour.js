@@ -14,6 +14,7 @@ import {
   Navigation,
   Dot,
   SvgMask,
+  ResizeObserver as ReactourResizeObserver,
   MutationObserver as ReactourMutationObserver,
 } from './components/index'
 import Portal from './Portal'
@@ -223,6 +224,17 @@ class Tour extends Component {
     }
   }
 
+  recalculateNode = step => {
+    const node = document.querySelector(step.selector)
+    const stepCallback = o => {
+      if (step.action && typeof step.action === 'function') {
+        this.unlockFocus(() => step.action(o))
+      }
+    }
+
+    this.calculateNode(node, step, () => stepCallback(node))
+  }
+
   close() {
     this.setState(prevState => {
       if (prevState.observer) {
@@ -394,19 +406,13 @@ class Tour extends Component {
       return (
         <Portal>
           <GlobalStyle />
+          <ReactourResizeObserver
+            step={steps[current]}
+            refresh={() => this.recalculateNode(steps[current])}
+          />
           <ReactourMutationObserver
             step={steps[current]}
-            refresh={() => {
-              const step = steps[current]
-              const node = document.querySelector(step.selector)
-              const stepCallback = o => {
-                if (step.action && typeof step.action === 'function') {
-                  this.unlockFocus(() => step.action(o))
-                }
-              }
-
-              this.calculateNode(node, steps[current], () => stepCallback(node))
-            }}
+            refresh={() => this.recalculateNode(steps[current])}
           />
           <SvgMask
             onClick={this.maskClickHandler}
