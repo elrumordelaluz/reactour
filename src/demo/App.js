@@ -125,6 +125,11 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
 
 const tourConfig = [
   {
+    selector: '[data-tut="reactour__highlighted"]',
+    content: 'Hello world',
+    highlightedSelectors: ['[data-tut="reactour__highlighted-absolute-child"]'],
+  },
+  {
     selector: '[data-tut="reactour__iso"]',
     content:
       "Ok, let's start with the name of the Tour that is about to begin.",

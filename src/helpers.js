@@ -10,6 +10,49 @@ export function getNodeRect(node) {
   return { top, right, bottom, left, width, height }
 }
 
+export function getHighlightedRect(node, step) {
+  if (!step.highlightedSelectors) {
+    return getNodeRect(node)
+  }
+
+  let attrs = getNodeRect(node)
+
+  for (const selector of step.highlightedSelectors) {
+    const element = document.querySelector(selector)
+
+    if (
+      !element ||
+      element.style.display === 'none' ||
+      element.style.visibility === 'hidden'
+    ) {
+      continue
+    }
+
+    const rect = getNodeRect(element)
+
+    if (rect.top < attrs.top) {
+      attrs.top = rect.top
+    }
+
+    if (rect.right > attrs.right) {
+      attrs.right = rect.right
+    }
+
+    if (rect.bottom > attrs.bottom) {
+      attrs.bottom = rect.bottom
+    }
+
+    if (rect.left < attrs.left) {
+      attrs.left = rect.left
+    }
+  }
+
+  attrs.width = attrs.right - attrs.left
+  attrs.height = attrs.bottom - attrs.top
+
+  return attrs
+}
+
 export function inView({ top, right, bottom, left, w, h, threshold = 0 }) {
   return (
     top >= 0 + threshold &&

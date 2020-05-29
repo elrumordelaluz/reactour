@@ -9,6 +9,7 @@ import Scrollable from './Scrollable'
 import Footer from './Footer'
 import Image from './Image'
 import { Button, Link } from './Button'
+import Dropdown from './Dropdown'
 import PropTypes from 'prop-types'
 
 export default function Demo({ openTour, isShowingMore, toggleShowMore }) {
@@ -168,7 +169,21 @@ export default function Demo({ openTour, isShowingMore, toggleShowMore }) {
 
         <Row>
           <Box align="right">
-            <Heading h="2">109 Baptist St</Heading>
+            <Heading
+              h="2"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+              }}
+              data-tut="reactour__highlighted"
+            >
+              109 Baptist St
+              <Dropdown>
+                This is a dropdown in absolute position which will be in the
+                highlighted region of the mask when tour is running.
+              </Dropdown>
+            </Heading>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
               neque vero consequuntur recusandae, dolore. Aut molestiae error
