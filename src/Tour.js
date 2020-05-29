@@ -14,6 +14,7 @@ import {
   Navigation,
   Dot,
   SvgMask,
+  MutationObserver as ReactourMutationObserver,
 } from './components/index'
 import Portal from './Portal'
 import * as hx from './helpers'
@@ -393,6 +394,20 @@ class Tour extends Component {
       return (
         <Portal>
           <GlobalStyle />
+          <ReactourMutationObserver
+            step={steps[current]}
+            refresh={() => {
+              const step = steps[current]
+              const node = document.querySelector(step.selector)
+              const stepCallback = o => {
+                if (step.action && typeof step.action === 'function') {
+                  this.unlockFocus(() => step.action(o))
+                }
+              }
+
+              this.calculateNode(node, steps[current], () => stepCallback(node))
+            }}
+          />
           <SvgMask
             onClick={this.maskClickHandler}
             forwardRef={c => (this.mask = c)}

@@ -41,23 +41,9 @@ const DropdownTrigger = styled.div`
 export default ({ children }) => {
   const [visible, setVisible] = useState(false)
 
-  useEffect(() => {
-    window.addEventListener('click', hide)
-
-    return () => {
-      window.removeEventListener('click', hide)
-    }
-  }, [visible])
-
-  const hide = () => {
-    if (visible) {
-      setVisible(false)
-    }
-  }
-
   return (
     <DropdownWrapper>
-      <DropdownTrigger onClick={() => setVisible(true)}>?</DropdownTrigger>
+      <DropdownTrigger onClick={() => setVisible(!visible)}>?</DropdownTrigger>
       {visible && (
         <DropdownContent data-tut="reactour__highlighted-absolute-child">
           {children}
