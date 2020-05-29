@@ -336,6 +336,7 @@ steps: PropTypes.arrayOf(PropTypes.shape({
   'style': PropTypes.object,
   'stepInteraction': PropTypes.bool,
   'navDotAriaLabel': PropTypes.string,
+  'observe': PropTypes.string,
 })),
 ```
 
@@ -369,6 +370,10 @@ const steps = [
     stepInteraction: false,
     // Text read to screen reader software for this step's navigation dot
     navDotAriaLabel: 'Go to step 4',
+    // Observe direct children DOM mutations of this node
+    // If a child is added: the highlighted region is redrawn focused on it
+    // If a child is removed: the highlighted region is redrawn focused on the step selector node
+    observe: '[data-tour="observable-parent"]',
   },
   // ...
 ]
