@@ -246,6 +246,14 @@ const tourConfig = [
     observe: '[data-tut="reactour__state--observe"]',
     action: node => node.focus(),
   },
+  {
+    selector: '[data-tut="reactour__highlighted"]',
+    content:
+      'Moreover you can highlight multiple elements and adjust highlighted region depending on DOM resizes and mutations. Try clicking the "?" tooltip and playing with tabs...',
+    highlightedSelectors: ['[data-tut="reactour__highlighted-absolute-child"]'],
+    mutationObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
+    resizeObservables: ['[data-tut="reactour__highlighted-absolute-child"]'],
+  },
 ]
 
 export default App

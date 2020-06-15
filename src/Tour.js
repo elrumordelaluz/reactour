@@ -14,6 +14,8 @@ import {
   Navigation,
   Dot,
   SvgMask,
+  ResizeObserver as ReactourResizeObserver,
+  MutationObserver as ReactourMutationObserver,
 } from './components/index'
 import Portal from './Portal'
 import * as hx from './helpers'
@@ -153,12 +155,7 @@ class Tour extends Component {
                 ) {
                   const cb = () => stepCallback(mutation.addedNodes[0])
                   setTimeout(
-                    () =>
-                      this.calculateNode(
-                        mutation.addedNodes[0],
-                        step.position,
-                        cb
-                      ),
+                    () => this.calculateNode(mutation.addedNodes[0], step, cb),
                     100
                   )
                 } else if (
@@ -166,7 +163,7 @@ class Tour extends Component {
                   mutation.removedNodes.length > 0
                 ) {
                   const cb = () => stepCallback(node)
-                  this.calculateNode(node, step.position, cb)
+                  this.calculateNode(node, step, cb)
                 }
               })
             }),
@@ -185,12 +182,9 @@ class Tour extends Component {
 
     if (node) {
       const cb = () => stepCallback(node)
-      this.calculateNode(node, step.position, cb)
+      this.calculateNode(node, step, cb)
     } else {
-      this.setState(
-        setNodeState(null, this.helper.current, step.position),
-        stepCallback
-      )
+      this.setState(setNodeState(null, step, this.helper.current), stepCallback)
 
       step.selector &&
         console.warn(
@@ -199,9 +193,9 @@ class Tour extends Component {
     }
   }
 
-  calculateNode = (node, stepPosition, cb) => {
+  calculateNode = (node, step, cb) => {
     const { scrollDuration, inViewThreshold, scrollOffset } = this.props
-    const attrs = hx.getNodeRect(node)
+    const attrs = hx.getHighlightedRect(node, step)
     const w = Math.max(
       document.documentElement.clientWidth,
       window.innerWidth || 0
@@ -222,12 +216,23 @@ class Tour extends Component {
         duration: scrollDuration,
         offset,
         callback: nd => {
-          this.setState(setNodeState(nd, this.helper.current, stepPosition), cb)
+          this.setState(setNodeState(nd, step, this.helper.current), cb)
         },
       })
     } else {
-      this.setState(setNodeState(node, this.helper.current, stepPosition), cb)
+      this.setState(setNodeState(node, step, this.helper.current), cb)
     }
+  }
+
+  recalculateNode = step => {
+    const node = document.querySelector(step.selector)
+    const stepCallback = o => {
+      if (step.action && typeof step.action === 'function') {
+        this.unlockFocus(() => step.action(o))
+      }
+    }
+
+    this.calculateNode(node, step, () => stepCallback(node))
   }
 
   close() {
@@ -401,6 +406,14 @@ class Tour extends Component {
       return (
         <Portal>
           <GlobalStyle />
+          <ReactourResizeObserver
+            step={steps[current]}
+            refresh={() => this.recalculateNode(steps[current])}
+          />
+          <ReactourMutationObserver
+            step={steps[current]}
+            refresh={() => this.recalculateNode(steps[current])}
+          />
           <SvgMask
             onClick={this.maskClickHandler}
             forwardRef={c => (this.mask = c)}
@@ -567,7 +580,7 @@ class Tour extends Component {
   }
 }
 
-const setNodeState = (node, helper, position) => {
+const setNodeState = (node, step, helper) => {
   const w = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth || 0
@@ -578,26 +591,29 @@ const setNodeState = (node, helper, position) => {
   )
   const { width: helperWidth, height: helperHeight } = hx.getNodeRect(helper)
 
-  const attrs = node
-    ? hx.getNodeRect(node)
-    : {
-        top: h + 10,
-        right: w / 2 + 9,
-        bottom: h / 2 + 9,
-        left: w / 2 - helperWidth / 2,
-        width: 0,
-        height: 0,
-        w,
-        h,
-        helperPosition: 'center',
-      }
+  let attrs = {
+    top: h + 10,
+    right: w / 2 + 9,
+    bottom: h / 2 + 9,
+    left: w / 2 - helperWidth / 2,
+    width: 0,
+    height: 0,
+    w,
+    h,
+    helperPosition: 'center',
+  }
+
+  if (node) {
+    attrs = hx.getHighlightedRect(node, step)
+  }
+
   return function update() {
     return {
       w,
       h,
       helperWidth,
       helperHeight,
-      helperPosition: position,
+      helperPosition: step.position,
       ...attrs,
       inDOM: node ? true : false,
     }
