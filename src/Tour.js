@@ -15,18 +15,11 @@ import {
   Arrow,
   Navigation,
   Dot,
+  Close,
 } from './components/index'
 import { getNodeRect, getWindow, inView, isBody } from './helpers'
 import { propTypes, defaultProps } from './propTypes'
 import CN from './classNames'
-
-function checkFnAndRun(fn = null) {
-  if (fn && typeof fn === 'function') {
-    return function(...args) {
-      return fn(...args)
-    }
-  }
-}
 
 function Tour({
   children,
@@ -58,11 +51,19 @@ function Tour({
   rounded,
   maskSpace,
   navigationPosition,
+  showCloseButton,
+  accessibilityOptions,
+
 }) {
   const [current, setCurrent] = useState(0)
+  const [started, setStarted] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const helper = useRef(null)
   const observer = useRef(null)
+  const a11yOptions = {
+    ...defaultProps.accessibilityOptions,
+    ...accessibilityOptions,
+  }
 
   useMutationObserver(observer, (mutationList, observer) => {
     if (isOpen) {
@@ -91,10 +92,28 @@ function Tour({
     window.addEventListener('resize', debouncedShowStep, false)
 
     if (isOpen) {
-      showStep(startAt)
+      if (!started) {
+        setStarted(true)
+        makeCalculations(
+          {
+            width: maskSpace * -1,
+            height: maskSpace * -1,
+            top: rounded * -1,
+            left: rounded * -1,
+          },
+          'center'
+        )
+        setCurrent(startAt)
+        showStep(startAt)
+      } else {
+        showStep()
+      }
+
       if (helper.current) {
         helper.current.focus()
-        checkFnAndRun(onAfterOpen)(helper.current)
+        if (onAfterOpen && typeof onAfterOpen === 'function') {
+          onAfterOpen(helper.current)
+        }
       }
     }
 
@@ -139,7 +158,9 @@ function Tour({
   }
 
   function close(e) {
-    checkFnAndRun(onBeforeClose)(helper.current)
+    if (onBeforeClose && typeof onBeforeClose === 'function') {
+      onBeforeClose(helper.current)
+    }
     onRequestClose(e)
   }
 
@@ -160,15 +181,6 @@ function Tour({
     const { w, h } = getWindow()
 
     if (step.actionBefore && typeof step.actionBefore === 'function') {
-      makeCalculations(
-        {
-          width: maskSpace * -1,
-          height: maskSpace * -1,
-          top: rounded * -1,
-          left: rounded * -1,
-        },
-        'center'
-      )
       await step.actionBefore()
     }
 
@@ -236,7 +248,9 @@ function Tour({
   function maskClickHandler(e) {
     if (
       closeWithMask &&
-      !e.target.classList.contains(CN.mask.disableInteraction)
+      e.target.className.baseVal
+        .split(' ')
+        .indexOf(CN.mask.disableInteraction) === -1
     ) {
       close(e)
     }
@@ -301,6 +315,8 @@ function Tour({
           className={cn(CN.helper.base, className, {
             [CN.helper.isOpen]: isOpen,
           })}
+          role="dialog"
+          aria-labelledby={a11yOptions.ariaLabelledBy}
         >
           {CustomHelper ? (
             <CustomHelper
@@ -338,7 +354,10 @@ function Tour({
                   )}
 
                   {showNavigation && (
-                    <Navigation data-tour-elem="navigation">
+                    <Navigation
+                      data-tour-elem="navigation"
+                      aria-hidden={!a11yOptions.showNavigationScreenReaders}
+                    >
                       {steps.map((s, i) => (
                         <Dot
                           key={`${s.selector ? s.selector : 'undef'}_${i}`}
@@ -351,6 +370,7 @@ function Tour({
                           className={cn(CN.dot.base, {
                             [CN.dot.active]: current === i,
                           })}
+                          aria-label={s.navDotAriaLabel}
                         />
                       ))}
                     </Navigation>
@@ -381,6 +401,13 @@ function Tour({
                     />
                   )}
                 </Controls>
+              )}
+              {showCloseButton && (
+                <Close
+                  onClick={close}
+                  ariaLabel={a11yOptions.closeButtonAriaLabel}
+                  className="reactour__close"
+                />
               )}
             </>
           )}
