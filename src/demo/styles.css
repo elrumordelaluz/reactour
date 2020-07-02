@@ -25,10 +25,6 @@ body {
   color: #021d1d;
 }
 
-[data-tour-elem='controls'] {
-  justify-content: center;
-}
-
 .CustomHelper__wrapper {
   display: flex;
   background-color: #f8f8f8;

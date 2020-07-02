@@ -50,8 +50,10 @@ function Tour({
   nextButton,
   rounded,
   maskSpace,
+  navigationPosition,
   showCloseButton,
   accessibilityOptions,
+
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -339,7 +341,10 @@ function Tour({
               )}
 
               {(showButtons || showNavigation) && (
-                <Controls data-tour-elem="controls">
+                <Controls
+                  data-tour-elem="controls"
+                  alignNavbar={navigationPosition}
+                >
                   {showButtons && (
                     <Arrow
                       onClick={prevStep}

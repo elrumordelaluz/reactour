@@ -208,6 +208,14 @@ Type: `number`
 
 Default: `10`
 
+#### navigationPosition
+
+> Aligns navigation bar in the helper box on the left, center or right
+
+Type: `string`
+
+Default: `center`
+
 #### nextButton
 
 > Renders as next button navigation
