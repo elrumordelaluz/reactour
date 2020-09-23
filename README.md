@@ -40,22 +40,8 @@ yarn add styled-components@^4.0.0
 Add the `Tour` Component in your Application, passing the `steps` with the elements to highlight during the _Tour_.
 
 ```js
-import React from 'react'
+import React, { useState } from 'react'
 import Tour from 'reactour'
-
-class App extends Component {
-  // ...
-
-  render  (
-    <>
-      { /* other stuff */}
-      <Tour
-        steps={steps}
-        isOpen={this.state.isTourOpen}
-        onRequestClose={this.closeTour} />
-    </>
-  )
-}
 
 const steps = [
   {
@@ -63,7 +49,22 @@ const steps = [
     content: 'This is my first Step',
   },
   // ...
-]
+];
+
+const App = () => {
+  const [isTourOpen, setIsTourOpen] = useState(false);
+
+  return (
+    <>
+      { /* other stuff */}
+      <Tour
+        steps={steps}
+        isOpen={isTourOpen}
+        onRequestClose={() => setIsTourOpen(false)}
+      />
+    </>
+  )
+};
 ```
 
 ### Tour Props
