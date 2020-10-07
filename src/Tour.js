@@ -52,8 +52,8 @@ function Tour({
   maskSpace,
   showCloseButton,
   accessibilityOptions,
-  renderPrevButton,
-  renderNextButton,
+  renderPrevButton = props => <Arrow {...props} />,
+  renderNextButton = props => <Arrow {...props} />,
 }) {
   const [current, setCurrent] = useState(0)
   const [started, setStarted] = useState(false)
@@ -357,15 +357,11 @@ function Tour({
               {(showButtons || showNavigation) && (
                 <Controls data-tour-elem="controls">
                   {showButtons &&
-                    (renderPrevButton ? (
-                      renderPrevButton({ onClick: prevStep, disabled })
-                    ) : (
-                      <Arrow
-                        onClick={prevStep}
-                        disabled={current === 0}
-                        label={prevButton ? prevButton : null}
-                      />
-                    ))}
+                    renderPrevButton({
+                      onClick: prevStep,
+                      disabled: current === 0,
+                      label: prevButton ? prevButton : null,
+                    })}
 
                   {showNavigation && (
                     <Navigation
@@ -391,28 +387,18 @@ function Tour({
                   )}
 
                   {showButtons &&
-                    (renderNextButton ? (
-                      renderNextButton({
-                        onClick: onClickNext,
-                        disabled:
-                          !lastStepNextButton && current === steps.length - 1,
-                      })
-                    ) : (
-                      <Arrow
-                        onClick={onClickNext}
-                        disabled={
-                          !lastStepNextButton && current === steps.length - 1
-                        }
-                        inverted
-                        label={
-                          lastStepNextButton && current === steps.length - 1
-                            ? lastStepNextButton
-                            : nextButton
-                            ? nextButton
-                            : null
-                        }
-                      />
-                    ))}
+                    renderNextButton({
+                      onClick: onClickNext,
+                      disabled:
+                        !lastStepNextButton && current === steps.length - 1,
+                      inverted: true,
+                      label:
+                        lastStepNextButton && current === steps.length - 1
+                          ? lastStepNextButton
+                          : nextButton
+                          ? nextButton
+                          : null,
+                    })}
                 </Controls>
               )}
               {showCloseButton && (
