@@ -263,6 +263,18 @@ Type: `node`
 
 Type: `func`
 
+#### renderNextButton
+
+> Overrides default `renderNextButton` internal function
+
+Type: `func`
+
+#### renderPrevButton
+
+> Overrides default `renderPrevButton` internal function
+
+Type: `func`
+
 #### rounded
 
 > Beautify _Helper_ and _Mask_ with `border-radius` (in px)
