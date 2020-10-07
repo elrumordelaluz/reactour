@@ -171,20 +171,6 @@ function Tour({
   function prevStep() {
     setCurrent(prev => (prev > 0 ? prev - 1 : prev))
   }
-  function onClickNext() {
-    const action =
-      current === steps.length - 1
-        ? lastStepNextButton
-          ? close
-          : () => {}
-        : typeof nextStep === 'function'
-        ? nextStep
-        : this.nextStep
-
-    if (action) {
-      action()
-    }
-  }
 
   function goTo(step) {
     setCurrent(step)
@@ -388,7 +374,14 @@ function Tour({
 
                   {showButtons &&
                     renderNextButton({
-                      onClick: onClickNext,
+                      onClick:
+                        current === steps.length - 1
+                          ? lastStepNextButton
+                            ? close
+                            : () => {}
+                          : typeof nextStep === 'function'
+                          ? nextStep
+                          : this.nextStep,
                       disabled:
                         !lastStepNextButton && current === steps.length - 1,
                       inverted: true,
