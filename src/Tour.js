@@ -347,6 +347,9 @@ function Tour({
                       onClick: prevStep,
                       disabled: current === 0,
                       label: prevButton ? prevButton : null,
+                      inverted: false,
+                      firstStep: current === 0,
+                      close,
                     })}
 
                   {showNavigation && (
