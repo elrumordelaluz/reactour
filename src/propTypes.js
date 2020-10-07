@@ -62,6 +62,8 @@ export const propTypes = {
   ]),
   rounded: PropTypes.number,
   accentColor: PropTypes.string,
+  renderPrevButton: PropTypes.func,
+  renderNextButton: PropTypes.func,
 }
 
 export const defaultProps = {
