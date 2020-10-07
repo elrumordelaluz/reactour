@@ -391,6 +391,9 @@ function Tour({
                           : nextButton
                           ? nextButton
                           : null,
+                      lastStep: current === steps.length - 1,
+                      close,
+                      nextStep,
                     })}
                 </Controls>
               )}
