@@ -51,63 +51,7 @@ export default function SvgMask({
               height={windowHeight}
               fill="white"
             />
-            <rect x={left} y={top} width={width} height={height} fill="black" />
-            {/* top left rounded corner */}
-            <rect
-              x={left - 1}
-              y={top - 1}
-              width={rounded}
-              height={rounded}
-              fill="white"
-            />
-            <circle
-              cx={left + rounded}
-              cy={top + rounded}
-              r={rounded}
-              fill="black"
-            />
-            {/* top right rounded corner */}
-            <rect
-              x={left + width - rounded + 1}
-              y={top - 1}
-              width={rounded}
-              height={rounded}
-              fill="white"
-            />
-            <circle
-              cx={left + width - rounded}
-              cy={top + rounded}
-              r={rounded}
-              fill="black"
-            />
-            {/* bottom left rounded corner */}
-            <rect
-              x={left - 1}
-              y={top + height - rounded + 1}
-              width={rounded}
-              height={rounded}
-              fill="white"
-            />
-            <circle
-              cx={left + rounded}
-              cy={top + height - rounded}
-              r={rounded}
-              fill="black"
-            />
-            {/* bottom right rounded corner */}
-            <rect
-              x={left + width - rounded + 1}
-              y={top + height - rounded + 1}
-              width={rounded}
-              height={rounded}
-              fill="white"
-            />
-            <circle
-              cx={left + width - rounded}
-              cy={top + height - rounded}
-              r={rounded}
-              fill="black "
-            />
+            <rect x={left} y={top} width={width} height={height} rx={rounded} fill="black" />
           </mask>
           <clipPath id="clip-path">
             {/* top */}
