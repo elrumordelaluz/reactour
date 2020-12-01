@@ -136,6 +136,14 @@ Type: `bool`
 
 Type: `bool`
 
+#### disableFocusLock
+
+> Disable the ability to set a focus on Input in the _Highlighted_ element
+
+Type: `bool`
+
+Default: `true`
+
 #### disableKeyboardNavigation
 
 > Disable all keyboard navigation (next and prev step) when true, disable only selected keys when array
