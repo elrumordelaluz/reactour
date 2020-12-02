@@ -145,7 +145,12 @@ function Tour({
     if (e.keyCode === 39 && !isRightDisabled) {
       // right
       e.preventDefault()
-      nextStep()
+
+      if (current === steps.length - 1) {
+        close()
+      } else {
+        nextStep()
+      }
     }
 
     if (e.keyCode === 37 && !isLeftDisabled) {
