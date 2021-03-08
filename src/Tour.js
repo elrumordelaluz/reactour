@@ -91,7 +91,7 @@ class Tour extends Component {
   open(startAt) {
     const { onAfterOpen } = this.props
     this.setState(
-      prevState => ({
+      (prevState) => ({
         isOpen: true,
         current: startAt !== undefined ? startAt : prevState.current,
       }),
@@ -109,7 +109,7 @@ class Tour extends Component {
     window.addEventListener('keydown', this.keyDownHandler, false)
   }
 
-  unlockFocus = callback => {
+  unlockFocus = (callback) => {
     this.setState(
       {
         focusUnlocked: true,
@@ -130,7 +130,7 @@ class Tour extends Component {
     const step = steps[current]
     const node = step.selector ? document.querySelector(step.selector) : null
 
-    const stepCallback = o => {
+    const stepCallback = (o) => {
       if (step.action && typeof step.action === 'function') {
         this.unlockFocus(() => step.action(o))
       }
@@ -140,15 +140,15 @@ class Tour extends Component {
       const target = document.querySelector(step.observe)
       const config = { attributes: true, childList: true, characterData: true }
       this.setState(
-        prevState => {
+        (prevState) => {
           if (prevState.observer) {
             setTimeout(() => {
               prevState.observer.disconnect()
             }, 0)
           }
           return {
-            observer: new MutationObserver(mutations => {
-              mutations.forEach(mutation => {
+            observer: new MutationObserver((mutations) => {
+              mutations.forEach((mutation) => {
                 if (
                   mutation.type === 'childList' &&
                   mutation.addedNodes.length > 0
@@ -215,7 +215,7 @@ class Tour extends Component {
         context: hx.isBody(parentScroll) ? window : parentScroll,
         duration: scrollDuration,
         offset,
-        callback: nd => {
+        callback: (nd) => {
           this.setState(setNodeState(nd, step, this.helper.current), cb)
         },
       })
@@ -224,9 +224,9 @@ class Tour extends Component {
     }
   }
 
-  recalculateNode = step => {
+  recalculateNode = (step) => {
     const node = document.querySelector(step.selector)
-    const stepCallback = o => {
+    const stepCallback = (o) => {
       if (step.action && typeof step.action === 'function') {
         this.unlockFocus(() => step.action(o))
       }
@@ -236,7 +236,7 @@ class Tour extends Component {
   }
 
   close() {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (prevState.observer) {
         prevState.observer.disconnect()
       }
@@ -256,7 +256,7 @@ class Tour extends Component {
     }
   }
 
-  maskClickHandler = e => {
+  maskClickHandler = (e) => {
     const { closeWithMask, onRequestClose } = this.props
     if (
       closeWithMask &&
@@ -268,7 +268,7 @@ class Tour extends Component {
 
   nextStep = () => {
     const { steps, getCurrentStep } = this.props
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const nextStep =
         prevState.current < steps.length - 1
           ? prevState.current + 1
@@ -286,7 +286,7 @@ class Tour extends Component {
 
   prevStep = () => {
     const { getCurrentStep } = this.props
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const nextStep =
         prevState.current > 0 ? prevState.current - 1 : prevState.current
 
@@ -300,9 +300,9 @@ class Tour extends Component {
     }, this.showStep)
   }
 
-  gotoStep = n => {
+  gotoStep = (n) => {
     const { steps, getCurrentStep } = this.props
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const nextStep = steps[n] ? n : prevState.current
 
       if (typeof getCurrentStep === 'function') {
@@ -315,7 +315,7 @@ class Tour extends Component {
     }, this.showStep)
   }
 
-  keyDownHandler = e => {
+  keyDownHandler = (e) => {
     const {
       onRequestClose,
       nextStep,
@@ -416,7 +416,7 @@ class Tour extends Component {
           />
           <SvgMask
             onClick={this.maskClickHandler}
-            forwardRef={c => (this.mask = c)}
+            forwardRef={(c) => (this.mask = c)}
             windowWidth={windowWidth}
             windowHeight={windowHeight}
             targetWidth={targetWidth}
@@ -435,7 +435,7 @@ class Tour extends Component {
             disableInteractionClassName={`${CN.mask.disableInteraction} ${highlightedMaskClassName}`}
             highlightedBorder={highlightedBorder}
           />
-          <FocusLock disabled={disableFocusLock}>
+          <FocusLock disabled={disableFocusLock} autoFocus={false}>
             <Guide
               ref={this.helper}
               targetHeight={targetHeight}
