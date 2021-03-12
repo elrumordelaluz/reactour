@@ -581,6 +581,8 @@ class Tour extends Component {
 }
 
 const setNodeState = (node, step, helper) => {
+  if (!helper) return
+  
   const w = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth || 0
