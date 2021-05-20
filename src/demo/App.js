@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import Tour, { Navigation, Dot, Controls, Arrow } from '../index'
 import 'focus-outline-manager'
-import { GlobalStyle } from './../style'
 import Demo from './Demo'
 import Text from './Text'
 import Glitch from './Glitch'
@@ -42,7 +41,6 @@ function App() {
   const accentColor = 'linear-gradient(to right, #1c8f9e, #5cb7b7)'
   return (
     <>
-      <GlobalStyle />
       <Demo
         openTour={() => setOpen(true)}
         toggleShowMore={() => setShowingMore(!isShowingMore)}

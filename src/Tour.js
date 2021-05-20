@@ -5,7 +5,6 @@ import Scrollparent from 'scrollparent'
 import debounce from 'lodash.debounce'
 import useMutationObserver from '@rooks/use-mutation-observer'
 import FocusLock from 'react-focus-lock'
-import { GlobalStyle } from './style'
 import Portal from './Portal'
 import {
   SvgMask,
@@ -20,6 +19,8 @@ import {
 import { getNodeRect, getWindow, inView, isBody } from './helpers'
 import { propTypes, defaultProps } from './propTypes'
 import CN from './classNames'
+
+import './global-styles.css'
 
 function Tour({
   children,
@@ -267,7 +268,6 @@ function Tour({
 
   return isOpen ? (
     <Portal>
-      <GlobalStyle />
       <SvgMask
         onClick={maskClickHandler}
         windowWidth={state.w}

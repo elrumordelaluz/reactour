@@ -1,0 +1,3 @@
+ .focus-outline-hidden :focus {
+      outline: none;
+  }
