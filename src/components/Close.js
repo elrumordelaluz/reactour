@@ -1,11 +1,23 @@
 import React from 'react'
-import styled from 'styled-components'
 import SvgButton from './SvgButton'
 import PropTypes from 'prop-types'
 
+import './components.css'
 function Close({ className, onClick, ariaLabel }) {
   return (
-    <SvgButton className={className} onClick={onClick} aria-label={ariaLabel}>
+    <SvgButton
+      style={{
+        position: 'absolute',
+        top: '22px',
+        right: '22px',
+        width: '9px',
+        height: '9px',
+        color: '#5e5e5e',
+      }}
+      className={'Close ' + className}
+      onClick={onClick}
+      aria-label={ariaLabel}
+    >
       <svg viewBox="0 0 9.1 9.1" aria-hidden role="presentation">
         <path
           fill="currentColor"
@@ -22,16 +34,4 @@ Close.propTypes = {
   ariaLabel: PropTypes.string,
 }
 
-const StyledClose = styled(Close)`
-  position: absolute;
-  top: 22px;
-  right: 22px;
-  width: 9px;
-  height: 9px;
-  color: #5e5e5e;
-  &:hover {
-    color: #000;
-  }
-`
-
-export default StyledClose
+export default Close

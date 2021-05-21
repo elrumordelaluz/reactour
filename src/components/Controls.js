@@ -1,8 +1,10 @@
-import styled from 'styled-components'
-const Controls = styled.div`
-  display: flex;
-  margin-top: 24px;
-  align-items: center;
-  justify-content: center;
-`
-export default Controls
+import React from 'react'
+import './components.css'
+
+export default function Controls({ children, className, ...props }) {
+  return (
+    <div className={'Controls ' + className} {...props}>
+      {children}
+    </div>
+  )
+}
