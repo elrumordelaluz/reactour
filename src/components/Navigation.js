@@ -1,11 +1,18 @@
-import styled from 'styled-components'
+import React from 'react'
 
-const Navigation = styled.nav`
-  counter-reset: dot;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-`
-
-export default Navigation
+export default function Navigation({ children, ...props }) {
+  return (
+    <nav
+      style={{
+        counterReset: 'dot',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+      }}
+      {...props}
+    >
+      {children}
+    </nav>
+  )
+}

@@ -1,19 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import * as hx from '../helpers'
 import PropTypes from 'prop-types'
-
-const SvgMaskWrapper = styled.div`
-  opacity: 0.7;
-  width: 100%;
-  left: 0;
-  top: 0;
-  height: 100%;
-  position: fixed;
-  z-index: 99999;
-  pointer-events: none;
-  color: #000;
-`
 
 export default function SvgMask({
   windowWidth,
@@ -35,7 +22,20 @@ export default function SvgMask({
   const left = hx.safe(targetLeft - padding)
 
   return (
-    <SvgMaskWrapper onClick={onClick}>
+    <div
+      style={{
+        opacity: 0.7,
+        width: '100%',
+        left: 0,
+        top: 0,
+        height: '100%',
+        position: 'fixed',
+        zIndex: 99999,
+        pointerEvents: 'none',
+        color: '#000',
+      }}
+      onClick={onClick}
+    >
       <svg
         width={windowWidth}
         height={windowHeight}
@@ -158,7 +158,7 @@ export default function SvgMask({
           className={disableInteractionClassName}
         />
       </svg>
-    </SvgMaskWrapper>
+    </div>
   )
 }
 
