@@ -1,23 +1,13 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import Tour, { Navigation, Dot, Controls, Arrow } from '../index'
 import 'focus-outline-manager'
-import Demo from './Demo'
-import Text from './Text'
-import Glitch from './Glitch'
-import Tooltip from './Tooltip'
-import { Link } from './Button'
-import PropTypes from 'prop-types'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 import './styles.css'
 
-// const LazyTour = React.lazy(() =>
-//   import(/* webpackChunkName: "reactour" */ '../index')
-// )
-
 function App() {
   const [isTourOpen, setOpen] = useState(false)
-  const [isShowingMore, setShowingMore] = useState(false)
+  const [isShowingMore, setShowingMore] = useState(true)
   const [customComps, setCustomComps] = useState(false)
 
   useEffect(() => {
@@ -41,17 +31,34 @@ function App() {
   const accentColor = 'linear-gradient(to right, #1c8f9e, #5cb7b7)'
   return (
     <>
-      <Demo
-        openTour={() => setOpen(true)}
-        toggleShowMore={() => setShowingMore(!isShowingMore)}
-        isShowingMore={isShowingMore}
-      />
+      <div>
+        <h1 className="header">Hello World</h1>
+        <p className="text">This is a paragraph text</p>
+        <footer
+          id="footer"
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            padding: 24,
+            background: '#efefef',
+          }}
+        >
+          This is a footer
+        </footer>
+      </div>
+      <div>
+        <button style={{}} onClick={() => setOpen(true)}>
+          Try It
+        </button>
+      </div>
       <Suspense fallback={<React.Fragment />}>
         <Tour
           onAfterOpen={disableBody}
           onBeforeClose={enableBody}
           onRequestClose={() => setOpen(false)}
-          steps={tourConfig}
+          steps={newTourConfig}
           isOpen={isTourOpen}
           maskClassName="mask"
           className="helper"
@@ -121,133 +128,18 @@ function MyCustomHelper({ current, content, totalSteps, gotoStep, close }) {
   )
 }
 
-const timeout = ms => new Promise(res => setTimeout(res, ms))
-
-const tourConfig = [
+const newTourConfig = [
   {
-    selector: '[data-tut="reactour__iso"]',
-    content:
-      "Ok, let's start with the name of the Tour that is about to begin.",
-    actionBefore: async () => {
-      await timeout(5000)
-      console.log('Hola!')
-    },
+    selector: '.header',
+    content: 'Ok, so it begins',
   },
   {
-    selector: '[data-tut="reactour__logo"]',
-    content: 'And this is our cool bus...',
-    position: [20, 20],
+    selector: '.text',
+    content: 'And another step now',
   },
   {
-    selector: '[data-tut="reactour__copy"]',
-    content: `Keep in mind that you could try and test everything during the Tour.
-      For example, try selecting the highlighted text…`,
-  },
-  {
-    selector: '[data-tut="reactour__style"]',
-    content: function DemoHelperComponent() {
-      return (
-        <div>
-          <Glitch data-glitch="Styled">Styled</Glitch>
-          <Text color="#e5e5e5">
-            The <Tooltip data-tooltip="this helper ⬇">tourist guide</Tooltip>{' '}
-            could be dressed in any way, using custom components, styles and so
-            on…
-          </Text>
-          <Text color="#373737" size=".7em" style={{ marginTop: '.7em' }}>
-            <Link
-              href="http://codepen.io/lbebber/full/ypgql/"
-              color="dark"
-              nospaces
-            >
-              Text effect
-            </Link>{' '}
-            by{' '}
-            <Link href="https://twitter.com/lucasbebber" color="dark" nospaces>
-              Lucas Bebber
-            </Link>
-          </Text>
-        </div>
-      )
-    },
-    style: {
-      backgroundColor: 'black',
-      color: 'white',
-    },
-  },
-  {
-    selector: '[data-tut="reactour__goTo"]',
-    content: function DemoHelperComponent({ goTo }) {
-      DemoHelperComponent.propTypes = {
-        goTo: PropTypes.func.isRequired,
-      }
-
-      return (
-        <div>
-          If you wanna go anywhere, skipping places, it is absolutely possible.
-          <br />
-          &quot;Oh, I forgot something inside the bus&hellip;&quot;{' '}
-          <button
-            style={{
-              border: '1px solid #f7f7f7',
-              background: 'none',
-              padding: '.3em .7em',
-              fontSize: 'inherit',
-              display: 'block',
-              cursor: 'pointer',
-              margin: '1em auto',
-            }}
-            onClick={() => goTo(1)}
-          >
-            Please go back to 🚌
-          </button>
-        </div>
-      )
-    },
-  },
-  {
-    selector: '[data-tut="reactour__position"]',
-    content: function DemoHelperComponent() {
-      return (
-        <Text>
-          The <Tooltip data-tooltip="this helper ⬇">tourist guide</Tooltip>{' '}
-          could be positioned where you want.
-          <br />
-          In this case will try to stay in the <strong>left side</strong> if
-          there is available space, otherwise will{' '}
-          <strong>auto position</strong>.
-        </Text>
-      )
-    },
-    position: 'left',
-  },
-  {
-    selector: '[data-tut="reactour__scroll"]',
-    content:
-      'Probably you noted that the Tour scrolled directly to the desired place, and you could control the time also…',
-  },
-  {
-    selector: '[data-tut="reactour__scroll--hidden"]',
-    content: 'Also when places are pretty hidden…',
-  },
-  {
-    selector: '[data-tut="reactour__action"]',
-    content:
-      'When arrived on each place you could fire an action, like… (look at the console)',
-    action: () =>
-      console.log(`
-                  ------------🏠🏚---------
-      🚌 Arrived to explore these beautiful buildings! 🚌
-                  ------------🏠🏚---------
-   🚧 This action could also fire a method in your Component 🚧
-    `),
-  },
-  {
-    selector: '[data-tut="reactour__state"]',
-    content:
-      'And the Tour could be observing changes to update the view, try clicking the button…',
-    observe: '[data-tut="reactour__state--observe"]',
-    action: node => node.focus(),
+    selector: '#footer',
+    content: 'Now we are at the footer',
   },
 ]
 

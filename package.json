@@ -69,7 +69,6 @@
     "rollup-plugin-filesize": "6.2.1",
     "rollup-plugin-node-resolve": "5.2.0",
     "style-loader": "1.0.1",
-    "styled-components": "^5.0.0",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.9.0"
@@ -77,8 +76,7 @@
   "peerDependencies": {
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-is": "^16.8",
-    "styled-components": "^4.0.0 || ^5.0.0"
+    "react-is": "^16.8"
   },
   "dependencies": {
     "@rooks/use-mutation-observer": "3.4.2",
