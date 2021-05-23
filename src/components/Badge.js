@@ -15,8 +15,8 @@ export default function Badge({ children, className, accentColor, ...props }) {
   )
 }
 
-Badge.PropTypes = {
-  children: PropTypes.element.isRequired,
-  accentColor: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+Badge.propTypes = {
+  children: PropTypes.any.isRequired,
+  accentColor: PropTypes.string,
+  className: PropTypes.string,
 }

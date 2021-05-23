@@ -1,23 +1,48 @@
 import React from 'react'
-import styled from 'styled-components'
 import SvgButton from './SvgButton'
 import PropTypes from 'prop-types'
 
-const Label = styled.span`
-  font-size: 12px;
-  line-height: 1;
-`
+import './components.css'
 
 function Arrow({ className, onClick, inverted, label, disabled }) {
+  const [isHovered, setIsHovered] = React.useState(false)
+
+  const toggleHover = () => {
+    setIsHovered(isHovered => !isHovered)
+  }
+
+  const labelStyles = !label
+    ? {
+        width: '16px',
+        height: '12px',
+        flex: '0 0 16px',
+      }
+    : {}
+
+  const hoverStyle = isHovered
+    ? {
+        color: disabled ? '#caccce' : '#000',
+      }
+    : {}
+
   return (
     <SvgButton
+      style={{
+        color: disabled ? '#caccce' : '#646464',
+        marginLeft: inverted ? '24px' : 'auto',
+        marginRight: inverted ? 'auto' : '24px',
+        ...labelStyles,
+        ...hoverStyle,
+      }}
       className={className}
       onClick={onClick}
       data-tour-elem={`${inverted ? 'right' : 'left'}-arrow`}
       disabled={disabled}
+      onMouseEnter={() => toggleHover()}
+      onMouseLeave={() => toggleHover()}
     >
       {label ? (
-        <Label>{label}</Label>
+        <span className="Arrow__label">{label}</span>
       ) : (
         <svg viewBox="0 0 18.4 14.4">
           <path
@@ -46,19 +71,4 @@ Arrow.propTypes = {
   disabled: PropTypes.bool,
 }
 
-export default styled(Arrow)`
-  color: ${props => (props.disabled ? '#caccce' : '#646464')};
-
-  ${props => (props.inverted ? 'margin-left: 24px;' : 'margin-right: 24px;')};
-  ${props =>
-    !props.label &&
-    `
-    width: 16px;
-    height: 12px;
-    flex: 0 0 16px;
-  `};
-
-  &:hover {
-    color: ${props => (props.disabled ? '#caccce' : '#000')};
-  }
-`
+export default Arrow

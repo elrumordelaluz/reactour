@@ -25,3 +25,63 @@
   align-items: center;
   justify-content: center;
 }
+
+.Arrow__label {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.Dot {
+  counter-increment: dot;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  padding: 0;
+  display: block;
+  margin: 4px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.Dot::before {
+  content: counter(dot);
+  position: absolute;
+  bottom: calc(100% + 0.25em);
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, 1em);
+  transition: 0.3s;
+  display: none;
+}
+
+.showNumber.Dot::before {
+  display: block !important;
+}
+
+.Dot.disabled {
+  cursor: not-allowed;
+}
+
+.Dot.not-disabled {
+  cursor: pointer;
+}
+
+.Dot.not-selected {
+  border: 1px solid #caccce;
+  color: caccce;
+  background: none;
+}
+
+.Dot.selected {
+  border: 0;
+  color: #fff;
+  background: #fff;
+}
+
+.Dot:hover {
+  background-color: currentColor;
+ }
+
+ .Dot:hover::before {
+  opacity: 0.5;
+  transform: translate(-50%, -2px);
+ }
