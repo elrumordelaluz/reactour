@@ -1,3 +1,26 @@
+:root {
+   --reactour-base: #1b8ebf;
+}
+
+.Guide.default-styles {
+  max-width: 331px;
+  min-width: 150px;
+  padding-right: 40px;
+  /* border-radius: ${props.rounded}px; */
+  background-color: var(--reactour-base);
+  padding: 24px 30px;
+  box-shadow: 0 0.5em 3em rgba(0, 0, 0, 0.3);
+  color: inherit;
+}
+
+.Guide {
+  position: fixed;
+  transition: transform 0.3s;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+}
+
 .Close:hover {
     color: #000 !important;
 }
