@@ -16,9 +16,10 @@ export default ({ step, refresh }) => {
           continue
         }
 
-        const found = step.resizeObservables.find(observable =>
-          node.matches(observable)
-        )
+        const found = step.resizeObservables.find(observable => (
+          node.matches(observable) ||
+          node.querySelector(observable) != null
+        ))
 
         if (found) {
           setMutationsCounter(mutationsCounter + 1)
