@@ -381,12 +381,12 @@ const steps = [
     // in the highlighted region of the mask. You don't need to add the 
     // step selector here as the default highlighted region is focused on it
     highlightedSelectors: ['[data-tour="highlighted-element"]'],
-    // Array of selectors, each selected node DOM addition/removal will triggered a rerender
-    // of the mask shape. Useful in combinaison with highlightedSelectors when highlighted
+    // Array of selectors, addition/removal of a matching node will trigger a rerender
+    // of the mask shape. Useful in combination with highlightedSelectors when highlighted
     // region of mask should be redrawn after a user action
     mutationObservables: ['[data-tour="mutable-element"]'],
     // Array of selectors, each selected node resize will triggered a rerender of the mask shape.
-    // Useful in combinaison with highlightedSelectors when highlighted region of mask should
+    // Useful in combination with highlightedSelectors when highlighted region of mask should
     // be redrawn after a user action. You should also add the selector in mutationObservables
     // if you want to track DOM addition/removal too
     resizeObservables: ['[data-tour="resizable-parent"]'],
