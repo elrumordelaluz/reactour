@@ -316,13 +316,8 @@ class Tour extends Component {
   }
 
   keyDownHandler = (e) => {
-    const {
-      onRequestClose,
-      nextStep,
-      prevStep,
-      disableKeyboardNavigation,
-      showCloseButton,
-    } = this.props
+    const { onRequestClose, nextStep, prevStep, disableKeyboardNavigation } =
+      this.props
     e.stopPropagation()
 
     if (disableKeyboardNavigation === true) {
@@ -363,6 +358,7 @@ class Tour extends Component {
       maskClassName,
       showButtons,
       showCloseButton,
+      closeButtonAriaLabel,
       showNavigation,
       showNavigationNumber,
       showNumber,
@@ -399,7 +395,6 @@ class Tour extends Component {
       helperWidth,
       helperHeight,
       helperPosition,
-      focusUnlocked,
     } = this.state
 
     if (isOpen) {
@@ -562,12 +557,13 @@ class Tour extends Component {
                     </Controls>
                   )}
 
-                  {showCloseButton ? (
+                  {showCloseButton && (
                     <Close
                       onClick={onRequestClose}
                       className="reactour__close"
+                      ariaLabel={closeButtonAriaLabel}
                     />
-                  ) : null}
+                  )}
                 </>
               )}
             </Guide>
@@ -582,7 +578,7 @@ class Tour extends Component {
 
 const setNodeState = (node, step, helper) => {
   if (!helper) return
-  
+
   const w = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth || 0

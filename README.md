@@ -93,6 +93,14 @@ Type: `node | elem`
 
 Type: `string`
 
+#### closeButtonAriaLabel
+
+> `aria-label` attribute for the close button (for accessibility)
+
+Type: `string`
+
+Default: `'Close'`
+
 #### closeWithMask
 
 > Close the _Tour_ by clicking the _Mask_
@@ -132,7 +140,9 @@ Type: `func`
 
 ```js
 // example
-<Tour getCurrentStep={curr => console.log(`The current step is ${curr + 1}`)} />
+<Tour
+  getCurrentStep={(curr) => console.log(`The current step is ${curr + 1}`)}
+/>
 ```
 
 #### goToStep
@@ -206,7 +216,7 @@ Type: `func`
 
 ```js
 // example
-<Tour onAfterOpen={target => (document.body.style.overflowY = 'hidden')} />
+<Tour onAfterOpen={(target) => (document.body.style.overflowY = 'hidden')} />
 ```
 
 #### onBeforeClose
@@ -217,7 +227,7 @@ Type: `func`
 
 ```js
 // example
-<Tour onBeforeClose={target => (document.body.style.overflowY = 'auto')} />
+<Tour onBeforeClose={(target) => (document.body.style.overflowY = 'auto')} />
 ```
 
 #### onRequestClose
@@ -359,7 +369,7 @@ const steps = [
     position: 'top',
     // you could do something like:
     // position: [160, 250],
-    action: node => {
+    action: (node) => {
       // by using this, focus trap is temporary disabled
       node.focus()
       console.log('yup, the target element is also focused!')
@@ -378,7 +388,7 @@ const steps = [
     // If a child is removed: the highlighted region is redrawn focused on the step selector node
     observe: '[data-tour="observable-parent"]',
     // Array of selectors, each selected node will be included (by union)
-    // in the highlighted region of the mask. You don't need to add the 
+    // in the highlighted region of the mask. You don't need to add the
     // step selector here as the default highlighted region is focused on it
     highlightedSelectors: ['[data-tour="highlighted-element"]'],
     // Array of selectors, addition/removal of a matching node will trigger a rerender
@@ -416,7 +426,6 @@ Default: `1`
 Type: `bool`
 
 Default: `false`
-
 
 ## FAQ
 

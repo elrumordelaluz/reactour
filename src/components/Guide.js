@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import * as hx from '../helpers'
 
 const Guide = styled.div`
-  --reactour-accent: ${props => props.accentColor};
-  ${props =>
+  --reactour-accent: ${(props) => props.accentColor};
+  ${(props) =>
     props.defaultStyles
       ? `
   max-width: 331px;
@@ -22,7 +22,8 @@ const Guide = styled.div`
   left: 0;
   z-index: 1000000;
 
-  transform: ${props => {
+  transform: ${(props) => {
+    console.log({ props })
     const {
       targetTop,
       targetRight,
@@ -43,7 +44,7 @@ const Guide = styled.div`
       bottom: windowHeight - targetBottom,
     }
 
-    const couldPositionAt = position => {
+    const couldPositionAt = (position) => {
       return (
         available[position] >
         (hx.isHoriz(position)
@@ -52,7 +53,7 @@ const Guide = styled.div`
       )
     }
 
-    const autoPosition = coords => {
+    const autoPosition = (coords) => {
       const positionsOrder = hx.bestPositionOf(available)
       for (let j = 0; j < positionsOrder.length; j++) {
         if (couldPositionAt(positionsOrder[j])) {
@@ -62,7 +63,7 @@ const Guide = styled.div`
       return coords.center
     }
 
-    const pos = helperPosition => {
+    const pos = (helperPosition) => {
       if (Array.isArray(helperPosition)) {
         const isOutX = hx.isOutsideX(helperPosition[0], windowWidth)
         const isOutY = hx.isOutsideY(helperPosition[1], windowHeight)
