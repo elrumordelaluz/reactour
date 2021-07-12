@@ -23,7 +23,6 @@ const Guide = styled.div`
   z-index: 1000000;
 
   transform: ${(props) => {
-    console.log({ props })
     const {
       targetTop,
       targetRight,
