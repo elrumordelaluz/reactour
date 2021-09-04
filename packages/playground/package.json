@@ -1,0 +1,49 @@
+{
+  "name": "@reactour/playground",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/styled": "11.3.0",
+    "@reactour/mask": "*",
+    "@reactour/popover": "*",
+    "@reactour/tour": "*",
+    "@reactour/utils": "*",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "body-scroll-lock": "4.0.0-beta.0",
+    "framer-motion": "4.1.17",
+    "modaaals": "0.9.0",
+    "react": "^17.0.2",
+    "react-docgen-typescript": "2.1.0",
+    "react-dom": "^17.0.2",
+    "react-modal": "3.14.3",
+    "react-router-dom": "5.2.1",
+    "react-scripts": "4.0.3",
+    "react-styleguidist": "11.1.7",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "styleguidist server",
+    "build": "styleguidist build",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

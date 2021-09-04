@@ -1,0 +1,65 @@
+{
+  "version": "0.2.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": "16.x || 17.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "name": "@reactour/mask",
+  "author": "Lionel Tzatzkin",
+  "module": "dist/reactour-mask.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/reactour-mask.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/reactour-mask.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "5.0.3",
+    "@types/react": "17.0.19",
+    "@types/react-dom": "17.0.9",
+    "husky": "7.0.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "size-limit": "5.0.3",
+    "tsdx": "0.14.1",
+    "tslib": "2.3.1",
+    "typescript": "4.4.2"
+  },
+  "dependencies": {
+    "@emotion/react": "11.4.1",
+    "@reactour/utils": "*"
+  },
+  "keywords": [
+    "react",
+    "mask",
+    "svg",
+    "emotion",
+    "highligted area"
+  ]
+}
