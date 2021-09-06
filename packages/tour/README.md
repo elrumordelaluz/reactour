@@ -67,6 +67,7 @@ The [Playground](../playground) is the perfect place to play aroud with all `@re
 #### Sandboxes
 
 - [Using React Router](https://codesandbox.io/s/reactour-tour-demo-using-react-router-dom-kujql)
+- [Using React Modal](https://codesandbox.io/s/reactour-tour-demo-using-react-modal-8v0eo)
 - [Using Semantic UI Modal](https://codesandbox.io/s/reactour-tour-demo-using-semantic-ui-modal-xmqee)
 - [Using React Bootstrap Modal](https://codesandbox.io/s/reactour-tour-demo-using-react-bootstrap-modal-qjws4)
 
