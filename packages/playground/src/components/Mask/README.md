@@ -190,7 +190,7 @@ Useful solution to use when blink dots needed in certain Elements of the viewpor
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { getRect } from '@reactour/utils'
 import { keyframes } from '@emotion/core'
-import { useIntersectionObserver } from '../../hooks'
+import { useIntersectionObserver } from '../hooks'
 
 const [isOpen, setIsOpen] = useState(false)
 const [sizesss, setSizes] = useState([])

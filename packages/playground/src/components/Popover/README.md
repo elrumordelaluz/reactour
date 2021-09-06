@@ -330,7 +330,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useRect } from '@reactour/utils'
 import { Mask } from '@reactour/mask'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useIntersectionObserver } from '../../hooks'
+import { useIntersectionObserver } from '../hooks'
 
 const [isOpen, setIsOpen] = useState(false)
 const [updater, setUpdater] = useState([])

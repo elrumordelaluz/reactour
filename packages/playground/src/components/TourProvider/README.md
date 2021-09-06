@@ -722,3 +722,94 @@ function DemoHome() {
   </ModalProvider>
 </TourProvider>
 ```
+
+### Disable Actions
+
+Disable all actions (next, prev, close) until unlocked in some way
+
+```jsx
+import { useEffect, useState } from 'react'
+import { useTour } from '@reactour/tour'
+
+const steps = [
+  {
+    selector: '[data-tour="disabled-1"]',
+    content: 'Lorem ipsum dolor sit amet',
+  },
+  {
+    selector: '[data-tour="disabled-2"]',
+    content: 'You are the only one that could let the Tour continue.',
+    disableActions: true,
+    highlightedSelectors: ['.step-wrapper'],
+    mutationObservables: ['.to-observe'],
+  },
+  { selector: '[data-tour="disabled-3"]', content: 'Etiam in leo urna.' },
+]
+
+function DemoHome() {
+  const { setIsOpen, setCurrentStep, setDisabledActions } = useTour()
+  const [showMore, setShowMore] = useState(false)
+
+  return (
+    <div style={{ textAlign: 'center', padding: 50 }}>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+        volutpat quam eu mauris euismod imperdiet. Nullam elementum fermentum
+        neque a placerat. Vivamus sed dui nisi. Phasellus vel dolor interdum,
+        accumsan eros ut, rutrum dolor. Etiam in leo urna. Vestibulum maximus
+        vitae urna at congue.{' '}
+        <button data-tour="disabled-1">Lorem Ipsum</button>
+        Vivamus lectus nisi, pellentesque at orci a, tempor lobortis orci. Praesent
+        non lorem erat. Ut augue massa, aliquam in bibendum sed, euismod vitae magna.
+        Nulla sit amet sodales augue. Curabitur in nulla in magna luctus porta et
+        sit amet dolor. Pellentesque a magna enim. Pellentesque malesuada egestas
+        urna, et pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce
+        at ante nunc. Maecenas ut leo eu erat porta fermentum.
+      </p>{' '}
+      <p className="step-wrapper">
+        At this point you need to make an action to continue the Tour. Please
+        <button
+          to="/"
+          data-tour="disabled-2"
+          onClick={() => {
+            setShowMore(s => !s)
+            setDisabledActions(false)
+          }}
+        >
+          Enable actions
+        </button> {showMore && (
+          <>
+            <br />
+            <strong className="to-observe">
+              Great! Now you could continue the Tour.
+            </strong>
+          </>
+        )}
+      </p>
+      <button onClick={() => setIsOpen(true)}>Open Tour</button>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+        volutpat quam eu mauris euismod imperdiet. Nullam elementum fermentum
+        neque a placerat. Vivamus sed dui nisi. Phasellus vel dolor interdum,
+        accumsan eros ut, rutrum dolor. Etiam in leo urna. Vestibulum maximus
+        vitae urna at congue. Vivamus lectus nisi, pellentesque at orci a,
+        tempor lobortis orci. Praesent non lorem erat. Ut augue massa, aliquam
+        in bibendum sed, euismod vitae magna. Nulla sit amet sodales augue.
+        Curabitur in nulla in magna luctus porta et sit amet dolor. Pellentesque
+        a magna enim. Pellentesque malesuada{' '}
+        <button data-tour="disabled-3" onClick={() => setCurrentStep(0)}>
+          Back To Fisrt Step{' '}
+        </button>
+        egestas urna, et pulvinar lorem viverra suscipit. Duis sit amet mauris ante.
+        Fusce at ante nunc. Maecenas ut leo eu erat porta fermentum.
+      </p>
+    </div>
+  )
+}
+
+;<TourProvider steps={steps}>
+  <div className="disabled-wrapper">
+    <DemoHome />
+  </div>
+</TourProvider>
+```
