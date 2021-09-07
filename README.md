@@ -5,18 +5,28 @@
   <strong>Tourist Guide</strong> and a set of <strong>Assistants</strong> to travel into your React Components
 </p>
 
-### Packages
+## Packages
 
-[@reactour/mask](/packages/mask) a customizable Component to highlight certain element or area of the viewport
+### [@reactour/tour](/packages/tour) 
 
-[@reactour/popover](/packages/popover) a customizable Component to attach to an element or position of the viewport to show conten
+The main package, which uses the other ones to highlight parts of your application from an array of steps.
 
-[@reactour/tour](/packages/tour) the main responsible package, which uses the other ones to highlight parts of your application from an array of steps
+### [@reactour/mask](/packages/mask) 
 
-[@reactour/utils](/packages/utils) a set of helper functions used by the other packages
+Acustomizable Component to highlight certain element or area of the viewport.
 
-[@reactour/playground](/packages/playground) the place where all the stuff is visible working
+### [@reactour/popover](/packages/popover) 
 
-#### License
+A customizable Component to attach to an element or position of the viewport to show content.
+
+### [@reactour/utils](/packages/utils) 
+
+A set of helper functions used by the other packages.
+
+### [@reactour/playground](/packages/playground) 
+
+The place where all the stuff is visible working, live [here](https://reactour.vercel.app/).
+
+## License
 
 MIT © [Lionel Tzatzkin](https://lionel.tzatzk.in)
