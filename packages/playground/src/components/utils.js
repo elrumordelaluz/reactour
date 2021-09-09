@@ -72,7 +72,7 @@ export function doSteps(demoId) {
   ]
 }
 
-function IcecreamIcon(props) {
+export function IcecreamIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@ function IcecreamIcon(props) {
   )
 }
 
-function BallIcon(props) {
+export function BallIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +201,7 @@ function BallIcon(props) {
   )
 }
 
-function BeachIcon(props) {
+export function BeachIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +260,7 @@ function BeachIcon(props) {
   )
 }
 
-function BoatIcon(props) {
+export function BoatIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -294,7 +294,7 @@ function BoatIcon(props) {
   )
 }
 
-function GuideIcon(props) {
+export function GuideIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

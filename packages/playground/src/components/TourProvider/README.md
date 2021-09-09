@@ -813,3 +813,60 @@ function DemoHome() {
   </div>
 </TourProvider>
 ```
+
+### Autoplay
+
+This demo change step every 3 seconds
+
+```jsx
+import { useEffect } from 'react'
+import { useTour } from '@reactour/tour'
+import {
+  doSteps,
+  BeachIcon,
+  BoatIcon,
+  BallIcon,
+  GuideIcon,
+  IcecreamIcon,
+} from '../utils'
+const demoId = 'autoplay'
+const steps = doSteps(demoId)
+
+function Placeholder({ demoId = 'basic', children, className, style }) {
+  const { steps, setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
+
+  useEffect(() => {
+    const delay = 3000
+    let timer
+    if (isOpen) {
+      timer = setTimeout(
+        () => setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1)),
+        delay
+      )
+    }
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [isOpen, currentStep])
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)} className="open-button">
+        Start Tour
+      </button>
+      {children}
+      <div className={`${className} wrapper`} style={style}>
+        <BeachIcon className="icon" data-tour={`step-1-${demoId}`} />
+        <BoatIcon className="icon" data-tour={`step-4-${demoId}`} />
+        <BallIcon className="icon" data-tour={`step-2-${demoId}`} />
+        <GuideIcon className="icon" data-tour={`step-5-${demoId}`} />
+        <IcecreamIcon className="icon" data-tour={`step-3-${demoId}`} />
+      </div>
+    </>
+  )
+}
+
+;<TourProvider steps={steps}>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```
