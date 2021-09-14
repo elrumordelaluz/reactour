@@ -68,7 +68,7 @@ const { x, y } = useMousePosition()
 Masks a specifix element from DOM and updates when resizing the window
 
 ```jsx
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRect } from '@reactour/utils'
 import { motion } from 'framer-motion'
 const [isOpen, setIsOpen] = useState(false)
@@ -76,8 +76,13 @@ const [elem, setElem] = useState('box')
 const refBox = useRef(null)
 const refParagraph = useRef(null)
 const [updater, setUpdater] = useState([])
-const sizes = useRect(elem === 'box' ? refBox : refParagraph, updater)
+const sizes = useRect(refBox, updater)
 
+useEffect(() => {
+  window.addEventListener('scroll', () => setUpdater([]))
+
+  return () => window.removeEventListener('scroll')
+}, [])
 ;<>
   <button onClick={() => setIsOpen(o => !o)} style={{ marginBottom: '1em' }}>
     {isOpen ? 'Close' : 'Open'} Mask to Highlight{' '}
