@@ -4,6 +4,7 @@ import React, { MouseEventHandler } from 'react'
 import { StylesObj, stylesMatcher } from './styles'
 import { safe, getWindow, getPadding, RectResult } from '@reactour/utils'
 const maskID = 'tour__mask'
+const clipID = 'tour__clip'
 
 const Mask: React.FC<MaskProps> = ({
   padding = 10,
@@ -51,7 +52,24 @@ const Mask: React.FC<MaskProps> = ({
               })}
             />
           </mask>
+          <clipPath id={clipID}>
+            <rect x={0} y={0} width={windowWidth} height={top} />
+            <rect x={0} y={top} width={left} height={height} />
+            <rect
+              x={left + width + px}
+              y={top}
+              width={safe(windowWidth - width - left)}
+              height={height}
+            />
+            <rect
+              x={0}
+              y={top + height + py}
+              width={windowWidth}
+              height={safe(windowHeight - height - top)}
+            />
+          </clipPath>
         </defs>
+
         {/* The actual Mask */}
         <rect
           css={getStyles('maskRect', {
@@ -69,6 +87,7 @@ const Mask: React.FC<MaskProps> = ({
             left,
             width,
             height,
+            clipID,
           })}
         />
         <rect

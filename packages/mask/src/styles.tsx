@@ -50,16 +50,25 @@ export const defaultStyles: Styles = {
     fill: 'currentColor',
     mask: `url(#${maskID})`,
   }),
-  clickArea: ({ windowWidth, windowHeight, top, left, width, height }) => ({
+  clickArea: ({
+    windowWidth,
+    windowHeight,
+    top,
+    left,
+    width,
+    height,
+    clipID,
+  }) => ({
+    '--clip-path': `polygon(0 0, 0 ${windowHeight}px, ${left}px ${windowHeight}px, ${left}px ${top}px, ${left +
+      width}px ${top}px, ${left + width}px ${top + height}px, ${left}px ${top +
+      height}px, ${left}px ${windowHeight}px, ${windowWidth}px ${windowHeight}px, ${windowWidth}px 0)`,
     x: 0,
     y: 0,
     width: windowWidth,
     height: windowHeight,
     fill: 'currentcolor',
     pointerEvents: 'auto',
-    clipPath: `polygon(0 0, 0 ${windowHeight}px, ${left}px ${windowHeight}px, ${left}px ${top}px, ${left +
-      width}px ${top}px, ${left + width}px ${top + height}px, ${left}px ${top +
-      height}px, ${left}px ${windowHeight}px, ${windowWidth}px ${windowHeight}px, ${windowWidth}px 0)`,
+    clipPath: `url(#${clipID})`,
   }),
   highlightedArea: ({ x, y, width, height }) => ({
     x,

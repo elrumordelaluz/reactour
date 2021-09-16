@@ -65,7 +65,7 @@ const { x, y } = useMousePosition()
 
 ### Masking DOM Elements
 
-Masks a specifix element from DOM and updates when resizing the window
+Masks a specific element from DOM and updates when resizing the window
 
 ```jsx
 import { useState, useRef, useEffect } from 'react'
@@ -81,7 +81,6 @@ const sizes = useRect(r, updater)
 
 useEffect(() => {
   window.addEventListener('scroll', () => setUpdater([]))
-
   return () => window.removeEventListener('scroll')
 }, [])
 ;<>
