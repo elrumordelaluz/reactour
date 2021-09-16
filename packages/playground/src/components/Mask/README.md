@@ -76,7 +76,8 @@ const [elem, setElem] = useState('box')
 const refBox = useRef(null)
 const refParagraph = useRef(null)
 const [updater, setUpdater] = useState([])
-const sizes = useRect(refBox, updater)
+let r = elem === 'box' ? refBox : refParagraph
+const sizes = useRect(r, updater)
 
 useEffect(() => {
   window.addEventListener('scroll', () => setUpdater([]))
