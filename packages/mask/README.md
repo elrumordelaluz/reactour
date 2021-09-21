@@ -10,7 +10,7 @@
 ```zsh
 npm i -S @reactour/mask
 # or
-yarn add @reacmask/mask
+yarn add @reactour/mask
 ```
 
 ## Usage
