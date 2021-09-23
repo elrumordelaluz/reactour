@@ -55,6 +55,7 @@ const Navigation: React.FC<NavigationProps> = ({
       >
         {!hideArrow ? (
           <Arrow
+            styles={styles}
             inverted={rtl ? kind === 'prev' : kind === 'next'}
             disabled={
               disableAll
