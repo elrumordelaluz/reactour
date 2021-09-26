@@ -106,3 +106,4 @@ export type NavButtonProps = {
   kind?: 'next' | 'prev'
   hideArrow?: boolean
 }
+export { Position }
