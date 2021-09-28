@@ -142,7 +142,7 @@ Prop to customize styles for the different parts of the _Mask_, _Popover_ and _T
 
 #### Style keys and props available
 
-Refer to [Mask docs]('../mask/README.md') and [Popover docs]('../popover/README.md') for its specific Components
+Refer to [Mask docs](../mask/README.md) and [Popover docs](../popover/README.md) for its specific Components
 
 ##### Tour Components
 
