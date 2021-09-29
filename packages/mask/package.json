@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
+    "src",
     "dist"
   ],
   "engines": {
@@ -28,14 +29,14 @@
   },
   "name": "@reactour/mask",
   "author": "Lionel Tzatzkin",
-  "module": "dist/reactour-mask.esm.js",
+  "module": "dist/mask.esm.js",
   "size-limit": [
     {
-      "path": "dist/reactour-mask.cjs.production.min.js",
+      "path": "dist/mask.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/reactour-mask.esm.js",
+      "path": "dist/mask.esm.js",
       "limit": "10 KB"
     }
   ],
