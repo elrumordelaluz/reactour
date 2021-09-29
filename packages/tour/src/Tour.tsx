@@ -38,7 +38,7 @@ const Tour: React.FC<TourProps> = ({
   showPrevNextButtons = true,
   showCloseButton = true,
   showNavigation = true,
-  showBagde = true,
+  showBadge = true,
   disabledActions,
   setDisabledActions,
   rtl,
@@ -146,7 +146,7 @@ const Tour: React.FC<TourProps> = ({
           aria-labelledby={accessibilityOptions?.ariaLabelledBy}
           className={className}
         >
-          {showBagde ? <Badge styles={styles}>{badge}</Badge> : null}
+          {showBadge ? <Badge styles={styles}>{badge}</Badge> : null}
           {showCloseButton ? (
             <Close
               styles={styles}

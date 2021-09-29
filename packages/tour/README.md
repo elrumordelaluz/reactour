@@ -370,7 +370,7 @@ Show or hide _Prev_ and _Next_ buttons inside _Popover_.
 
 Show or hide the _Close_ button inside _Popover_.
 
-### `showBagde?: boolean`
+### `showBadge?: boolean`
 
 Show or hide the _Badge_ inside _Popover_.
 

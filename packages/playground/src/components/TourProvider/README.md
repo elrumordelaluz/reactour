@@ -417,7 +417,7 @@ function toggleKeys(key) {
 
 ;<TourProvider
   steps={steps}
-  showBagde={values.badge}
+  showBadge={values.badge}
   showCloseButton={values.close}
   showNavigation={values.nav}
   showPrevNextButtons={values.prevNext}
