@@ -70,6 +70,7 @@ The [Playground](../playground) is the perfect place to play aroud with all `@re
 - [Using React Modal](https://codesandbox.io/s/reactour-tour-demo-using-react-modal-8v0eo)
 - [Using Semantic UI Modal](https://codesandbox.io/s/reactour-tour-demo-using-semantic-ui-modal-xmqee)
 - [Using React Bootstrap Modal](https://codesandbox.io/s/reactour-tour-demo-using-react-bootstrap-modal-qjws4)
+- [Tour with data fetching](https://codesandbox.io/s/tour-with-data-fetching-dv2q0?file=/src/index.js)
 
 [![Edit @reactour/tour Demo Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/reactour-tour-demo-template-fglzv?fontsize=14&hidenavigation=1&theme=dark)
 
