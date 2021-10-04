@@ -871,3 +871,51 @@ function Placeholder({ demoId = 'basic', children, className, style }) {
   <Placeholder demoId={demoId} />
 </TourProvider>
 ```
+
+### Higher Order Component
+
+This demo uses `withTour` HoC in case you are using Class Component
+
+```jsx
+import { Component } from 'react'
+import { withTour } from '@reactour/tour'
+import {
+  doSteps,
+  BeachIcon,
+  BoatIcon,
+  BallIcon,
+  GuideIcon,
+  IcecreamIcon,
+} from '../utils'
+const demoId = 'withTour'
+const steps = doSteps(demoId)
+
+class Placeholder extends Component {
+  render() {
+    const { demoId = 'basic', children, className, style } = this.props
+    return (
+      <>
+        <button
+          onClick={() => this.props.setIsOpen(true)}
+          className="open-button"
+        >
+          Start Tour
+        </button>
+        <div className={`${className} wrapper`} style={style}>
+          <BeachIcon className="icon" data-tour={`step-1-${demoId}`} />
+          <BoatIcon className="icon" data-tour={`step-4-${demoId}`} />
+          <BallIcon className="icon" data-tour={`step-2-${demoId}`} />
+          <GuideIcon className="icon" data-tour={`step-5-${demoId}`} />
+          <IcecreamIcon className="icon" data-tour={`step-3-${demoId}`} />
+        </div>
+      </>
+    )
+  }
+}
+
+const PlaceholderWithTour = withTour(Placeholder)
+
+;<TourProvider steps={steps}>
+  <PlaceholderWithTour demoId={demoId} />
+</TourProvider>
+```
