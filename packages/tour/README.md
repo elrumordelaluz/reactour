@@ -465,3 +465,25 @@ The `Array` of steps set currently
 
 <!-- disabledActions: false,
   setDisabledActions: () => false, -->
+
+## `withTour`
+
+In case you needed there is an enhacer that allows you to have all `useTour` functionalities through a Higher Order Component.
+
+```jsx
+import { Component } from 'react'
+import { withTour } from '@reactour/tour'
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <>
+        <button onClick={() => this.props.setIsOpen(true)}>Start Tour</button>
+        <div>{/* ... */}</div>
+      </>
+    )
+  }
+}
+
+export defatult withTour(MyCompnent)
+```
