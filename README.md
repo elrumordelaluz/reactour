@@ -7,7 +7,7 @@
 
 ## Packages
 
-This documentation is for the latest release, which uses npm scopes (@reactour). The original (reactour) is now a branch (v1) and its documentation can be found here: [https://github.com/elrumordelaluz/reactour/tree/v1](https://github.com/elrumordelaluz/reactour/tree/v1)
+> This documentation is for the latest release, which uses [npm scoped package](https://docs.npmjs.com/cli/v7/using-npm/scope) `@reactour`. The original `reactour` is now on branch `v1` and its documentation can be found [here](https://github.com/elrumordelaluz/reactour/tree/v1).
 
 ### [@reactour/tour](/packages/tour)
 
