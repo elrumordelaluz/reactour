@@ -133,6 +133,10 @@ Allow to disable all possible actions (interaction with _Mask_, _Navigation Arro
 
 Control padding spaces for this specific step.
 
+#### `bypassElem?: boolean`
+
+Excludes the main `selector` when calculating highlited area if present `highlightedSelectors`.
+
 #### `styles?: StylesObj & PopoverStylesObj & MaskStylesObj`
 
 Customize styles fro this specific step.
