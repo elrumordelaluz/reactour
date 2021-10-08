@@ -919,3 +919,60 @@ const PlaceholderWithTour = withTour(Placeholder)
   <PlaceholderWithTour demoId={demoId} />
 </TourProvider>
 ```
+
+### Highlighted Selectors
+
+```jsx
+import { useTour } from '@reactour/tour'
+import {
+  doSteps,
+  BeachIcon,
+  BoatIcon,
+  BallIcon,
+  GuideIcon,
+  IcecreamIcon,
+} from '../utils'
+const demoId = 'highlighted-selectors'
+
+const steps = [
+  {
+    highlightedSelectors: [
+      `[data-tour="step-1-${demoId}"]`,
+      `[data-tour="step-2-${demoId}"]`,
+    ],
+    content: <p>Vamos a la playa!</p>,
+  },
+  {
+    selector: `[data-tour="step-2-${demoId}"]`,
+    content: <p>Play beach ball all day long!</p>,
+  },
+  {
+    selector: `[data-tour="step-3-${demoId}"]`,
+    content: <p>Then, a deliciuos ice cream!</p>,
+  },
+]
+
+function Placeholder({ demoId = 'basic', children, className, style }) {
+  const { steps, setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)} className="open-button">
+        Start Tour
+      </button>
+      {children}
+      <div className={`${className} wrapper`} style={style}>
+        <BeachIcon className="icon" data-tour={`step-1-${demoId}`} />
+        <BoatIcon className="icon" data-tour={`step-4-${demoId}`} />
+        <BallIcon className="icon" data-tour={`step-2-${demoId}`} />
+        <GuideIcon className="icon" data-tour={`step-5-${demoId}`} />
+        <IcecreamIcon className="icon" data-tour={`step-3-${demoId}`} />
+      </div>
+    </>
+  )
+}
+
+;<TourProvider steps={steps}>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```

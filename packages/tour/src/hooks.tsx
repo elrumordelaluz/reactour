@@ -24,26 +24,30 @@ export function useSizes(
   const [transition, setTransition] = useState(false)
   const [observing, setObserving] = useState(false)
   const [refresher, setRefresher] = useState(null as any)
-  const target = document.querySelector(step?.selector)
   const [dimensions, setdDimensions] = useState(initialState)
+  const target = document.querySelector(step?.selector)
 
   const handleResize = useCallback(() => {
-    if (!target) return
-    setdDimensions(getHighlightedRect(target, step?.highlightedSelectors))
-  }, [target])
+    // if (!target && !step?.highlightedSelectors) return
+    setdDimensions(
+      getHighlightedRect(target, step?.highlightedSelectors, step?.bypassElem)
+    )
+  }, [target, step?.highlightedSelectors])
 
   useEffect(() => {
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [target, refresher])
+  }, [target, step?.highlightedSelectors, refresher])
 
   useEffect(() => {
     const isInView = inView({
       ...dimensions,
       threshold: scrollOptions.inViewThreshold,
     })
-    if (!isInView) {
+    // TODO: - Solve cases when target elemente exceeds viewport
+    // TODO: - Solve cases when no target but highlightedSelectors
+    if (!isInView && target) {
       setTransition(true)
       smoothScroll(target, scrollOptions)
         .then(() => {
@@ -57,7 +61,9 @@ export function useSizes(
 
   function observableRefresher() {
     setObserving(true)
-    setdDimensions(getHighlightedRect(target, step?.highlightedSelectors))
+    setdDimensions(
+      getHighlightedRect(target, step?.highlightedSelectors, step?.bypassElem)
+    )
     setObserving(false)
   }
 
@@ -100,7 +106,7 @@ function getHighlightedRect(
 
     const rect = getRect(element)
 
-    if (bypassElem) {
+    if (bypassElem || !node) {
       if (rect.top < altAttrs.top) {
         altAttrs.top = rect.top
       }
@@ -141,9 +147,8 @@ function getHighlightedRect(
     }
   }
 
-  const bypassable = bypassElem
-    ? altAttrs.width > 0 && altAttrs.height > 0
-    : false
+  const bypassable =
+    bypassElem || !node ? altAttrs.width > 0 && altAttrs.height > 0 : false
 
   return {
     left: (bypassable ? altAttrs : attrs).left,

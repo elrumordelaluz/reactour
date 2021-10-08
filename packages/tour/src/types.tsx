@@ -90,6 +90,7 @@ export type StepType = {
   action?: (elem: Element | null) => void
   disableActions?: boolean
   padding?: Padding
+  bypassElem?: boolean
   styles?: StylesObj & PopoverStylesObj & MaskStylesObj
 }
 
