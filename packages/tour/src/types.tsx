@@ -1,4 +1,4 @@
-import { Dispatch, MouseEventHandler } from 'react'
+import { Dispatch, MouseEventHandler, ReactElement } from 'react'
 import { Position, PopoverStylesObj } from '@reactour/popover'
 import { MaskStylesObj } from '@reactour/mask'
 import { StylesObj } from './styles'
@@ -80,7 +80,7 @@ export type ContentProps = {
 
 export type StepType = {
   selector: string
-  content: string | ((props: ContentProps) => void)
+  content: ReactElement | string | ((props: ContentProps) => void)
   position?: Position
   highlightedSelectors?: string[]
   mutationObservables?: string[]
