@@ -923,6 +923,7 @@ const PlaceholderWithTour = withTour(Placeholder)
 ### Highlighted Selectors
 
 ```jsx
+import { useState } from 'react'
 import { useTour } from '@reactour/tour'
 import {
   doSteps,
@@ -933,6 +934,19 @@ import {
   IcecreamIcon,
 } from '../utils'
 const demoId = 'highlighted-selectors'
+
+function ExampleComp() {
+  const [isOn, setIsOn] = useState(false)
+  return (
+    <>
+      <button onClick={() => setIsOn(o => !o)}>
+        Set {isOn ? 'off' : 'on'}
+      </button>
+      <br />
+      <p>Lorem ipsum {isOn ? 'ON' : 'OFF'}</p>
+    </>
+  )
+}
 
 const steps = [
   {
@@ -948,7 +962,7 @@ const steps = [
   },
   {
     selector: `[data-tour="step-3-${demoId}"]`,
-    content: <p>Then, a deliciuos ice cream!</p>,
+    content: <ExampleComp />,
   },
 ]
 
