@@ -56,11 +56,17 @@ const steps = [
     content: <p>Vivamus sed dui nisi</p>,
   },
 ]
-;<>
-  <TourProvider steps={steps}>
-    <Paragraphs />
-  </TourProvider>
-</>
+
+
+const AppDemo = () => {
+  return (
+    <TourProvider steps={steps}>
+      <Paragraphs />
+    </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Mask Click
@@ -69,20 +75,27 @@ Change to next step clicking the _Mask_, when is the last one, closes the _Tour_
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'mask-click'
 const steps = doSteps(demoId)
 
-;<TourProvider
-  steps={steps}
-  onClickMask={({ setCurrentStep, currentStep, setIsOpen }) => {
-    if (currentStep === steps.length - 1) {
-      setIsOpen(false)
-    }
-    setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
-  }}
->
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+    <TourProvider
+      steps={steps}
+      onClickMask={({ setCurrentStep, currentStep, setIsOpen }) => {
+        if (currentStep === steps.length - 1) {
+          setIsOpen(false)
+        }
+        setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
+      }}
+    >
+      <Placeholder demoId={demoId} />
+    </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Disable Keyboard Navigation
@@ -92,6 +105,7 @@ Change to next step clicking the _Mask_, when is the last one, closes the _Tour_
 ```jsx
 import { useState } from 'react'
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'disable-keyboard'
 const steps = doSteps(demoId)
 const [disable, setDisable] = useState(true)
@@ -118,43 +132,49 @@ function toggleKeys(key) {
   })
 }
 
-;<TourProvider steps={steps} disableKeyboardNavigation={disable}>
-  <Placeholder demoId={demoId}>
-    {' '}
-    Disable: <label>
-      <input
-        type="checkbox"
-        onChange={e => setDisable(e.target.checked)}
-        checked={disable === true}
-      />
-      All
-    </label>
-    <label>
-      <input
-        type="checkbox"
-        onChange={() => toggleKeys('left')}
-        checked={Array.isArray(disable) && disable.includes('left')}
-      />
-      Left
-    </label>
-    <label>
-      <input
-        type="checkbox"
-        onChange={() => toggleKeys('right')}
-        checked={Array.isArray(disable) && disable.includes('right')}
-      />
-      Right
-    </label>
-    <label>
-      <input
-        type="checkbox"
-        onChange={() => toggleKeys('esc')}
-        checked={Array.isArray(disable) && disable.includes('esc')}
-      />
-      Esc
-    </label>
-  </Placeholder>
-</TourProvider>
+const AppDemo = () => {
+ return (
+   <TourProvider steps={steps} disableKeyboardNavigation={disable}>
+    <Placeholder demoId={demoId}>
+      {' '}
+      Disable: <label>
+        <input
+          type="checkbox"
+          onChange={e => setDisable(e.target.checked)}
+          checked={disable === true}
+        />
+        All
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          onChange={() => toggleKeys('left')}
+          checked={Array.isArray(disable) && disable.includes('left')}
+        />
+        Left
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          onChange={() => toggleKeys('right')}
+          checked={Array.isArray(disable) && disable.includes('right')}
+        />
+        Right
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          onChange={() => toggleKeys('esc')}
+          checked={Array.isArray(disable) && disable.includes('esc')}
+        />
+        Esc
+      </label>
+    </Placeholder>
+  </TourProvider>
+ )
+}
+
+<AppDemo />
 ```
 
 ### Scroll Smooth
@@ -163,12 +183,19 @@ Change to next step clicking the _Mask_, when is the last one, closes the _Tour_
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'scroll-smooth'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} scrollSmooth>
-  <Placeholder demoId={demoId} className="scroll-demo" />
-</TourProvider>
+const AppDemo = () => {
+ return (
+   <TourProvider steps={steps} scrollSmooth>
+    <Placeholder demoId={demoId} className="scroll-demo" />
+    </TourProvider>
+ )
+}
+
+<AppDemo />
 ```
 
 ### Popover fixed position
@@ -177,6 +204,7 @@ Show the Popover at the same fixed position on each step
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'fixed-position'
 const steps = doSteps(demoId)
 
@@ -185,9 +213,15 @@ function calcPosition(sizes) {
   return [windowWidth - width - 20, windowHeight - height - 20]
 }
 
-;<TourProvider steps={steps} position={calcPosition}>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps} position={calcPosition}>
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+ )
+}
+
+<AppDemo />
 ```
 
 ### Padding
@@ -196,12 +230,19 @@ Adjunsting padding values
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'padding'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} padding={{ mask: 0, popover: [1, 5] }}>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps} padding={{ mask: 0, popover: [1, 5] }}>
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Custom Prev and Next Button
@@ -210,55 +251,62 @@ Using cutsom buttons and behavior
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'prev-next-btn'
 const steps = doSteps(demoId)
 
-;<TourProvider
-  steps={steps}
-  nextButton={({
-    Button,
-    currentStep,
-    stepsLength,
-    setIsOpen,
-    setCurrentStep,
-  }) => {
-    const last = currentStep === stepsLength - 1
-    return (
-      <Button
-        hideArrow={last}
-        onClick={() => {
-          if (last) {
-            setIsOpen(false)
-          } else {
-            setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
-          }
-        }}
-      >
-        {last ? 'Close!' : null}
-      </Button>
-    )
-  }}
-  prevButton={({ currentStep, stepsLength, setIsOpen, setCurrentStep }) => {
-    const first = currentStep === 0
-    const next = first ? steps.length - 1 : currentStep - 1
-    return (
-      <button
-        class="custom-btn"
-        onClick={() => {
-          if (first) {
-            setCurrentStep(s => steps.length - 1)
-          } else {
-            setCurrentStep(s => s - 1)
-          }
-        }}
-      >
-        Back to step {next + 1}. {steps[next].content}
-      </button>
-    )
-  }}
->
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+   <TourProvider
+    steps={steps}
+    nextButton={({
+      Button,
+      currentStep,
+      stepsLength,
+      setIsOpen,
+      setCurrentStep,
+    }) => {
+      const last = currentStep === stepsLength - 1
+      return (
+        <Button
+          hideArrow={last}
+          onClick={() => {
+            if (last) {
+              setIsOpen(false)
+            } else {
+              setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
+            }
+          }}
+        >
+          {last ? 'Close!' : null}
+        </Button>
+      )
+    }}
+    prevButton={({ currentStep, stepsLength, setIsOpen, setCurrentStep }) => {
+      const first = currentStep === 0
+      const next = first ? steps.length - 1 : currentStep - 1
+      return (
+        <button
+          class="custom-btn"
+          onClick={() => {
+            if (first) {
+              setCurrentStep(s => steps.length - 1)
+            } else {
+              setCurrentStep(s => s - 1)
+            }
+          }}
+        >
+          Back to step {next + 1}. {steps[next].content}
+        </button>
+      )
+    }}
+  >
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### RTL
@@ -267,12 +315,19 @@ Using RTL layout
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'rtl'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} rtl>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps} rtl>
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Styles
@@ -282,6 +337,7 @@ Customizing styles
 ```jsx
 import { Placeholder, doSteps } from '../utils'
 import { keyframes } from '@emotion/core'
+
 const demoId = 'custom-styles'
 const steps = doSteps(demoId)
 const radius = 10
@@ -292,35 +348,41 @@ const keyframesRotate = keyframes`
   }
 }`
 
-;<TourProvider
-  styles={{
-    popover: base => ({
-      ...base,
-      '--reactour-accent': '#ef5a3d',
-      borderRadius: radius,
-    }),
-    maskArea: base => ({ ...base, rx: radius }),
-    maskWrapper: base => ({ ...base, color: '#ef5a3d' }),
-    badge: base => ({ ...base, left: 'auto', right: '-0.8125em' }),
-    controls: base => ({ ...base, marginTop: 100 }),
-    close: base => ({ ...base, right: 'auto', left: 8, top: 8 }),
-    dot: base => ({
-      ...base,
-      animationDuration: '1s',
-      animationName: keyframesRotate,
-      animationIterationCount: 'infinite',
-      '&:nth-of-type(1)': {
-        animationDelay: '.3s',
-      },
-      '&:nth-of-type(2)': {
-        animationDelay: '.6s',
-      },
-    }),
-  }}
-  steps={steps}
->
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+   <TourProvider
+    styles={{
+      popover: base => ({
+        ...base,
+        '--reactour-accent': '#ef5a3d',
+        borderRadius: radius,
+      }),
+      maskArea: base => ({ ...base, rx: radius }),
+      maskWrapper: base => ({ ...base, color: '#ef5a3d' }),
+      badge: base => ({ ...base, left: 'auto', right: '-0.8125em' }),
+      controls: base => ({ ...base, marginTop: 100 }),
+      close: base => ({ ...base, right: 'auto', left: 8, top: 8 }),
+      dot: base => ({
+        ...base,
+        animationDuration: '1s',
+        animationName: keyframesRotate,
+        animationIterationCount: 'infinite',
+        '&:nth-of-type(1)': {
+          animationDelay: '.3s',
+        },
+        '&:nth-of-type(2)': {
+          animationDelay: '.6s',
+        },
+      }),
+    }}
+    steps={steps}
+  >
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Disable scroll
@@ -330,14 +392,21 @@ In this example we are using [body-scroll-lock](https://www.npmjs.com/package/bo
 ```jsx
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'scroll-lock'
 const steps = doSteps(demoId)
 const disableBody = target => disableBodyScroll(target)
 const enableBody = target => enableBodyScroll(target)
 
-;<TourProvider steps={steps} afterOpen={disableBody} beforeClose={enableBody}>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+    <TourProvider steps={steps} afterOpen={disableBody} beforeClose={enableBody}>
+      <Placeholder demoId={demoId} />
+    </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Badge Content
@@ -346,29 +415,43 @@ Update Badge content thourgh custom function
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'custom-badge'
 const steps = doSteps(demoId)
 
-;<TourProvider
-  steps={steps}
-  badgeContent={({ totalSteps, currentStep }) =>
-    `${currentStep + 1}/${totalSteps}`
-  }
->
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+    <TourProvider
+      steps={steps}
+      badgeContent={({ totalSteps, currentStep }) =>
+        `${currentStep + 1}/${totalSteps}`
+      }
+    >
+      <Placeholder demoId={demoId} />
+    </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Disable Dots Navigation
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'disable-dots-nav'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} disableDotsNavigation>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+   <TourProvider steps={steps} disableDotsNavigation>
+      <Placeholder demoId={demoId} />
+    </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Disable Interaction
@@ -377,19 +460,26 @@ In this example is disabled the ability to interact with the highlightes content
 
 ```jsx
 import { TextPlaceholder, doSteps } from '../utils'
+
 const demoId = 'disable-interaction'
 const steps = doSteps(demoId)
 
-;<TourProvider
-  steps={steps}
-  onClickHighlighted={e => {
-    e.stopPropagation()
-    console.log('No interaction')
-  }}
-  disableInteraction
->
-  <TextPlaceholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider
+    steps={steps}
+    onClickHighlighted={e => {
+      e.stopPropagation()
+      console.log('No interaction')
+    }}
+    disableInteraction
+  >
+    <TextPlaceholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Show/Hide Navigation parts
@@ -397,6 +487,7 @@ const steps = doSteps(demoId)
 ```jsx
 import { useState } from 'react'
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'show-hide-nav'
 const steps = doSteps(demoId)
 const [values, setValues] = useState({
@@ -415,61 +506,74 @@ function toggleKeys(key) {
   })
 }
 
-;<TourProvider
-  steps={steps}
-  showBadge={values.badge}
-  showCloseButton={values.close}
-  showNavigation={values.nav}
-  showPrevNextButtons={values.prevNext}
->
-  <Placeholder demoId={demoId}>
-    {' '}
-    <label>
-      <input
-        type="checkbox"
-        onChange={e => toggleKeys('badge')}
-        checked={values.badge}
-      />
-      Badge
-    </label>
-    <label>
-      <input
-        type="checkbox"
-        onChange={e => toggleKeys('close')}
-        checked={values.close}
-      />
-      Close button
-    </label>
-    <label>
-      <input
-        type="checkbox"
-        onChange={e => toggleKeys('nav')}
-        checked={values.nav}
-      />
-      Navigation
-    </label>
-    <label>
-      <input
-        type="checkbox"
-        onChange={e => toggleKeys('prevNext')}
-        checked={values.prevNext}
-      />
-      Prev and Next buttons
-    </label>
-  </Placeholder>
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider
+    steps={steps}
+    showBadge={values.badge}
+    showCloseButton={values.close}
+    showNavigation={values.nav}
+    showPrevNextButtons={values.prevNext}
+  >
+    <Placeholder demoId={demoId}>
+      {' '}
+      <label>
+        <input
+          type="checkbox"
+          onChange={e => toggleKeys('badge')}
+          checked={values.badge}
+        />
+        Badge
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          onChange={e => toggleKeys('close')}
+          checked={values.close}
+        />
+        Close button
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          onChange={e => toggleKeys('nav')}
+          checked={values.nav}
+        />
+        Navigation
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          onChange={e => toggleKeys('prevNext')}
+          checked={values.prevNext}
+        />
+        Prev and Next buttons
+      </label>
+    </Placeholder>
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Start at specific step
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
+
 const demoId = 'start-at'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} startAt={1}>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps} startAt={1}>
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Routes Demo
@@ -626,11 +730,17 @@ function DemoHome() {
   )
 }
 
-;<Router>
-  <TourProvider steps={steps}>
-    <Routes />
-  </TourProvider>
-</Router>
+const AppDemo = () => {
+ return (
+  <Router>
+    <TourProvider steps={steps}>
+      <Routes />
+    </TourProvider>
+  </Router>
+ )
+}
+
+<AppDemo />
 ```
 
 ### Modal Demo
@@ -710,18 +820,24 @@ function DemoHome() {
   )
 }
 
-;<TourProvider steps={steps}>
-  <ModalProvider
-    modals={modals}
-    styles={{
-      contentInner: base => ({ ...base, margin: 50 }),
-    }}
-    className="modaaals-modal"
-    skipMotion
-  >
-    <DemoHome />
-  </ModalProvider>
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps}>
+    <ModalProvider
+      modals={modals}
+      styles={{
+        contentInner: base => ({ ...base, margin: 50 }),
+      }}
+      className="modaaals-modal"
+      skipMotion
+    >
+      <DemoHome />
+    </ModalProvider>
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Disable Actions
@@ -808,11 +924,17 @@ function DemoHome() {
   )
 }
 
-;<TourProvider steps={steps}>
-  <div className="disabled-wrapper">
-    <DemoHome />
-  </div>
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps}>
+    <div className="disabled-wrapper">
+      <DemoHome />
+    </div>
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Autoplay
@@ -830,6 +952,7 @@ import {
   GuideIcon,
   IcecreamIcon,
 } from '../utils'
+
 const demoId = 'autoplay'
 const steps = doSteps(demoId)
 
@@ -867,9 +990,15 @@ function Placeholder({ demoId = 'basic', children, className, style }) {
   )
 }
 
-;<TourProvider steps={steps}>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps}>
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Higher Order Component
@@ -887,6 +1016,7 @@ import {
   GuideIcon,
   IcecreamIcon,
 } from '../utils'
+
 const demoId = 'withTour'
 const steps = doSteps(demoId)
 
@@ -915,9 +1045,15 @@ class Placeholder extends Component {
 
 const PlaceholderWithTour = withTour(Placeholder)
 
-;<TourProvider steps={steps}>
-  <PlaceholderWithTour demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps}>
+    <PlaceholderWithTour demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
 
 ### Highlighted Selectors
@@ -933,6 +1069,7 @@ import {
   GuideIcon,
   IcecreamIcon,
 } from '../utils'
+
 const demoId = 'highlighted-selectors'
 
 function ExampleComp() {
@@ -986,7 +1123,13 @@ function Placeholder({ demoId = 'basic', children, className, style }) {
   )
 }
 
-;<TourProvider steps={steps}>
-  <Placeholder demoId={demoId} />
-</TourProvider>
+const AppDemo = () => {
+ return (
+  <TourProvider steps={steps}>
+    <Placeholder demoId={demoId} />
+  </TourProvider>
+  )
+}
+
+<AppDemo />
 ```
