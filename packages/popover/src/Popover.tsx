@@ -154,11 +154,31 @@ const Popover: React.FC<PopoverProps> = ({
 export default Popover
 
 export type PopoverProps = {
+  /**
+   * Object containing size and position informations of where to position the Popover
+   */
   sizes: RectResult
+
   children?: React.ReactNode
+
+  /**
+   * The position for the Popover, fixed in case of [number, number], calculated prefered position in case of string
+   */
   position?: PositionType
+
+  /**
+   * Extra space to add in Popover position calculations. Useful when calculating space from Element bounding rect and want to add more space.
+   */
   padding?: number | [number, number]
+
+  /**
+   * Prop to customize styles for the different parts of the Mask using a function that allows to extend the base styles an take advantage of some state props.
+   */
   styles?: StylesObj
+
+  /**
+   * Class to apply to the Popover
+   */
   className?: string
 }
 

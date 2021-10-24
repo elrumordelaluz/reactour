@@ -107,12 +107,41 @@ const Mask: React.FC<MaskProps> = ({
 
 export type MaskProps = {
   children?: React.ReactNode
+
+  /**
+   * Object containing size and position informations of where to position the Mask.
+   */
   sizes: RectResult
+
+  /**
+   * Prop to customize styles for the different parts of the Mask using a function that allows to extend the base styles an take advantage of some state props.
+   */
   styles?: StylesObj
+
+  /**
+   * Class to apply to the Mask wrapper
+   */
   className?: string
+
+  /**
+   * Class to apply to the Highlighted area rect
+   */
   highlightedAreaClassName?: string
+
+  /**
+   * Extra space to add in Mask calculations. Useful when calculating space from Element bounding rect and want to add more space.
+   * Single number sets sema space for x and y, otherwise, an Array sets [x, y].
+   */
   padding?: number | [number, number]
+
+  /**
+   * Click handler for the Mask except the highlighted area.
+   */
   onClick?: MouseEventHandler<HTMLDivElement>
+
+  /**
+   * Click handler for the Highlighted area.
+   */
   onClickHighlighted?: MouseEventHandler<SVGRectElement>
 }
 
