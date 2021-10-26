@@ -8,9 +8,9 @@
 ## Install
 
 ```zsh
-npm i -S @reactour/popover
+npm i -S @reactour/popover @emotion/react
 # or
-yarn add @reacmask/popover
+yarn add @reacmask/popover @emotion/react
 ```
 
 ## Usage

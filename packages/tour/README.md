@@ -11,9 +11,9 @@
 ## Install
 
 ```zsh
-npm i -S @reactour/tour
+npm i -S @reactour/tour @emotion/react
 # or
-yarn add @reactour/tour
+yarn add @reactour/tour @emotion/react
 ```
 
 ## Usage

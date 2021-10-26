@@ -8,9 +8,9 @@
 ## Install
 
 ```zsh
-npm i -S @reactour/mask
+npm i -S @reactour/mask @emotion/react
 # or
-yarn add @reactour/mask
+yarn add @reactour/mask @emotion/react
 ```
 
 ## Usage
