@@ -281,7 +281,7 @@ Customizing styles
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
-import { keyframes } from '@emotion/core'
+import { keyframes } from '@emotion/react'
 const demoId = 'custom-styles'
 const steps = doSteps(demoId)
 const radius = 10

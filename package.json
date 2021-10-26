@@ -23,7 +23,7 @@
     "start": "node index"
   },
   "dependencies": {
-    "concurrently": "6.2.1"
+    "concurrently": "6.3.0"
   },
   "devDependencies": {
     "launchit": "1.1.2"

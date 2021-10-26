@@ -42,15 +42,15 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "5.0.3",
-    "@types/react": "17.0.19",
-    "@types/react-dom": "17.0.9",
-    "husky": "7.0.2",
+    "@types/react": "17.0.33",
+    "@types/react-dom": "17.0.10",
+    "husky": "7.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "size-limit": "5.0.3",
     "tsdx": "0.14.1",
     "tslib": "2.3.1",
-    "typescript": "4.4.2"
+    "typescript": "4.4.4"
   },
   "dependencies": {
     "@rooks/use-mutation-observer": "4.11.2",
