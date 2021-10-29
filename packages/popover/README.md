@@ -13,6 +13,8 @@ npm i -S @reactour/popover @emotion/react
 yarn add @reacmask/popover @emotion/react
 ```
 
+> From `v0.3.0` `@emotion/react` is a Peer Dependency
+
 ## Usage
 
 ```js

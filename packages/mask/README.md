@@ -13,6 +13,8 @@ npm i -S @reactour/mask @emotion/react
 yarn add @reactour/mask @emotion/react
 ```
 
+> From `v0.3.0` `@emotion/react` is a Peer Dependency
+
 ## Usage
 
 ```js

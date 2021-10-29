@@ -16,6 +16,8 @@ npm i -S @reactour/tour @emotion/react
 yarn add @reactour/tour @emotion/react
 ```
 
+> From `v2.3.0` `@emotion/react` is a Peer Dependency
+
 ## Usage
 
 Add the `TourProvider` at the root of your Application, passing the `steps` of the elements to highlight during the _Tour_.
