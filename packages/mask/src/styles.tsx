@@ -1,18 +1,16 @@
-export type StylesKeys =
-  | 'maskWrapper'
-  | 'maskArea'
-  | 'maskRect'
-  | 'clickArea'
-  | 'highlightedArea'
+import { CSSObject } from '@emotion/react'
 
-export type StylesObj = {
-  [key in StylesKeys]?: StyleFn
-}
+export type StyleFn = (props: StyleFnProps, state?: StyleFnProps) => CSSObject
 
-export type StyleFn = (
-  props: { [key: string]: any },
-  state?: { [key: string]: any }
-) => React.CSSProperties
+export type StyleFnProps = CSSObject &
+  Partial<{
+    x: number
+    y: number
+    windowWidth: number
+    windowHeight: number
+    maskID: string
+    clipID: string
+  }>
 
 export type Styles = {
   maskWrapper: StyleFn
@@ -22,7 +20,14 @@ export type Styles = {
   highlightedArea: StyleFn
 }
 
+export type StylesObj = Partial<Styles>
+
 export type StyleKey = keyof Styles
+
+/**
+ * @deprecated Use `StyleKey` alias instead.
+ */
+export type StylesKeys = StyleKey
 
 export const defaultStyles: Styles = {
   maskWrapper: () => ({
@@ -50,18 +55,7 @@ export const defaultStyles: Styles = {
     fill: 'currentColor',
     mask: `url(#${maskID})`,
   }),
-  clickArea: ({
-    windowWidth,
-    windowHeight,
-    top,
-    left,
-    width,
-    height,
-    clipID,
-  }) => ({
-    '--clip-path': `polygon(0 0, 0 ${windowHeight}px, ${left}px ${windowHeight}px, ${left}px ${top}px, ${left +
-      width}px ${top}px, ${left + width}px ${top + height}px, ${left}px ${top +
-      height}px, ${left}px ${windowHeight}px, ${windowWidth}px ${windowHeight}px, ${windowWidth}px 0)`,
+  clickArea: ({ windowWidth, windowHeight, clipID }) => ({
     x: 0,
     y: 0,
     width: windowWidth,
@@ -84,7 +78,7 @@ export const defaultStyles: Styles = {
 export type getStylesType = (key: StylesKeys, extra?: any) => {}
 
 export function stylesMatcher(styles: StylesObj) {
-  return (key: StyleKey, state: {}): {} => {
+  return (key: StyleKey, state: {}): CSSObject => {
     const base = defaultStyles[key](state)
     const custom = styles[key]
     return custom ? custom(base, state) : base

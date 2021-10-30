@@ -87,12 +87,12 @@ Prop to customize styles for the different parts of the _Mask_ using a function 
 
 #### Style keys and props available
 
-| key               | props                                                           |
-| ----------------- | --------------------------------------------------------------- |
-| `maskArea`        | `x`, `y`, `width`, `height`                                     |
-| `maskRect`        | `windowWidth`, `windowHeight`, `maskID`                         |
-| `clickArea`       | `windowWidth`, `windowHeight`, `top`, `left`, `width`, `height` |
-| `highlightedArea` | `x`, `y`, `width`, `height`                                     |
+| key               | props                                                  |
+| ----------------- | ------------------------------------------------------ |
+| `maskArea`        | `x`, `y`, `width`, `height`                            |
+| `maskRect`        | `windowWidth`, `windowHeight`, `maskID`                |
+| `clickArea`       | `windowWidth`, `windowHeight`, `clipID`                |
+| `highlightedArea` | `x`, `y`, `width`, `height`                            |
 
 #### Example
 
