@@ -53,20 +53,9 @@ const Mask: React.FC<MaskProps> = ({
             />
           </mask>
           <clipPath id={clipID}>
-            <rect x={0} y={0} width={windowWidth} height={top} />
-            <rect x={0} y={top} width={left} height={height} />
-            <rect
-              x={left + width + px}
-              y={top}
-              width={safe(windowWidth - width - left)}
-              height={height}
-            />
-            <rect
-              x={0}
-              y={top + height + py}
-              width={windowWidth}
-              height={safe(windowHeight - height - top)}
-            />
+            <polygon points={`0 0, 0 ${windowHeight}, ${left} ${windowHeight}, ${left} ${top}, ${left +
+              width} ${top}, ${left + width} ${top + height}, ${left} ${top +
+              height}, ${left} ${windowHeight}, ${windowWidth} ${windowHeight}, ${windowWidth} 0`}/>
           </clipPath>
         </defs>
 
