@@ -106,6 +106,10 @@ Prop to customize styles for the different parts of the _Mask_ using a function 
 | --------- | ----- |
 | `popover` |       |
 
+### `refresher?: any`
+
+Any value that if changed, updates [rect](../packages/utils#refresher-any) calculations
+
 #### Example
 
 ```js
