@@ -145,6 +145,7 @@ const Tour: React.FC<TourProps> = ({
           padding={popoverPadding}
           aria-labelledby={accessibilityOptions?.ariaLabelledBy}
           className={className}
+          refresher={currentStep}
         >
           {showBadge ? <Badge styles={styles}>{badge}</Badge> : null}
           {showCloseButton ? (

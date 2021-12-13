@@ -22,6 +22,7 @@ const Popover: React.FC<PopoverProps> = ({
   padding = 10,
   styles = {},
   sizes,
+  refresher,
   ...props
 }) => {
   const helperRef = useRef(null)
@@ -31,7 +32,10 @@ const Popover: React.FC<PopoverProps> = ({
   const { w: windowWidth, h: windowHeight } = getWindow()
   const getStyles = stylesMatcher(styles)
 
-  const { width: helperWidth, height: helperHeight } = useRect(helperRef)
+  const { width: helperWidth, height: helperHeight } = useRect(
+    helperRef,
+    refresher
+  )
 
   const targetLeft = sizes?.left
   const targetTop = sizes?.top
@@ -160,6 +164,7 @@ export type PopoverProps = {
   padding?: number | [number, number]
   styles?: StylesObj
   className?: string
+  refresher?: any
 }
 
 export type PositionType =
