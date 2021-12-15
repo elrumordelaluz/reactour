@@ -23,6 +23,7 @@ const Tour: React.FC<TourProps> = ({
   padding = 10,
   position,
   onClickMask,
+  onClickClose,
   onClickHighlighted,
   badgeContent,
   className = 'reactour__popover',
@@ -73,6 +74,16 @@ const Tour: React.FC<TourProps> = ({
     if (!disabledActions) {
       if (onClickMask && typeof onClickMask === 'function') {
         onClickMask({ setCurrentStep, setIsOpen, currentStep })
+      } else {
+        setIsOpen(false)
+      }
+    }
+  }
+
+  function closeClickHandler() {
+    if (!disabledActions) {
+      if (onClickClose && typeof onClickClose === 'function') {
+        onClickClose({ setCurrentStep, setIsOpen, currentStep })
       } else {
         setIsOpen(false)
       }
@@ -153,9 +164,7 @@ const Tour: React.FC<TourProps> = ({
               styles={styles}
               aria-label={accessibilityOptions?.closeButtonAriaLabel}
               disabled={disabledActions}
-              onClick={() => {
-                if (!disabledActions) setIsOpen(false)
-              }}
+              onClick={closeClickHandler}
             />
           ) : null}
           <Content

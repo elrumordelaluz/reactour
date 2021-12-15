@@ -20,6 +20,7 @@ type SharedProps = {
   afterOpen?: (target: Element | null) => void
   beforeClose?: (target: Element | null) => void
   onClickMask?: (clickProps: ClickProps) => void
+  onClickClose?: (clickProps: ClickProps) => void
   onClickHighlighted?: MouseEventHandler<SVGRectElement>
   badgeContent?: (badgeProps: BadgeProps) => any
   showNavigation?: boolean

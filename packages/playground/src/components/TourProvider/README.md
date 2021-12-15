@@ -85,6 +85,28 @@ const steps = doSteps(demoId)
 </TourProvider>
 ```
 
+### Close Click
+
+Change to next step clicking the Popover _Close icon_, when is the last one, closes the _Tour_.
+
+```jsx
+import { Placeholder, doSteps } from '../utils'
+const demoId = 'mask-click'
+const steps = doSteps(demoId)
+
+;<TourProvider
+  steps={steps}
+  onClickClose={({ setCurrentStep, currentStep, setIsOpen }) => {
+    if (currentStep === steps.length - 1) {
+      setIsOpen(false)
+    }
+    setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
+  }}
+>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```
+
 ### Disable Keyboard Navigation
 
 Change to next step clicking the _Mask_, when is the last one, closes the _Tour_.
