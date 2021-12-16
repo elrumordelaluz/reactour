@@ -91,7 +91,7 @@ Change to next step clicking the Popover _Close icon_, when is the last one, clo
 
 ```jsx
 import { Placeholder, doSteps } from '../utils'
-const demoId = 'mask-click'
+const demoId = 'close-click'
 const steps = doSteps(demoId)
 
 ;<TourProvider
@@ -1127,6 +1127,61 @@ function Arrow({ inverted }) {
       border: current ? '0' : '1px solid #cce3ff',
     }),
   }}
+>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```
+
+### Custom Popover Content
+
+```jsx
+import { useEffect } from 'react'
+import { components } from '@reactour/tour'
+import { motion } from 'framer-motion'
+import { Placeholder, doSteps } from '../utils'
+const demoId = 'custom-popover-content'
+const steps = doSteps(demoId)
+
+function ContentComponent(props) {
+  // const controls = useAnimation()
+  // useEffect(() => {
+  //   controls.start(i => ({
+  //     opacity: 0,
+  //     x: 100,
+  //     transition: { delay: i * 0.3 },
+  //   }))
+  // }, [props.currentStep])
+  const isLastStep = props.currentStep === props.steps.length - 1
+  return (
+    <motion.div
+      animate={{
+        scale: (props.currentStep + 1) * 1.1,
+        rotate: [0, 0, 270, 270, 0],
+      }}
+      custom={props.currentStep + 1}
+      style={{ border: '5px solid red', padding: 10, background: 'white' }}
+    >
+      {props.steps[props.currentStep].content}
+      <components.Badge>{props.currentStep + 1}</components.Badge>
+      <button
+        onClick={() => {
+          if (isLastStep) {
+            props.setIsOpen(false)
+          } else {
+            props.setCurrentStep(s => s + 1)
+          }
+        }}
+      >
+        {isLastStep ? 'x' : '>'}
+      </button>
+    </motion.div>
+  )
+}
+
+;<TourProvider
+  steps={steps}
+  ContentComponent={ContentComponent}
+  styles={{ popover: base => ({ ...base, padding: 0 }) }}
 >
   <Placeholder demoId={demoId} />
 </TourProvider>

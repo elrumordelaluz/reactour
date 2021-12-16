@@ -6,8 +6,7 @@ import { FocusScope } from '@react-aria/focus'
 import { useSizes } from './hooks'
 import { TourProps, Padding } from './types'
 import Keyboard from './Keyboard'
-
-import { defaultComponents } from './components/index'
+import PopoverContent from './components/PopoverContent'
 
 const Tour: React.FC<TourProps> = ({
   currentStep,
@@ -21,23 +20,14 @@ const Tour: React.FC<TourProps> = ({
   padding = 10,
   position,
   onClickMask,
-  onClickClose,
   onClickHighlighted,
-  badgeContent,
   className = 'reactour__popover',
   maskClassName = 'reactour__mask',
   highlightedMaskClassName,
   disableInteraction,
   disableFocusLock,
-  disableDotsNavigation,
   disableKeyboardNavigation,
   inViewThreshold,
-  nextButton,
-  prevButton,
-  showPrevNextButtons = true,
-  showCloseButton = true,
-  showNavigation = true,
-  showBadge = true,
   disabledActions,
   setDisabledActions,
   rtl,
@@ -45,7 +35,8 @@ const Tour: React.FC<TourProps> = ({
     closeButtonAriaLabel: 'Close Tour',
     showNavigationScreenReaders: true,
   },
-  components = {},
+  ContentComponent,
+  ...popoverProps
 }) => {
   const step = steps[currentStep]
   const styles = step?.styles || globalStyles
@@ -79,25 +70,6 @@ const Tour: React.FC<TourProps> = ({
     }
   }
 
-  function closeClickHandler() {
-    if (!disabledActions) {
-      if (onClickClose && typeof onClickClose === 'function') {
-        onClickClose({ setCurrentStep, setIsOpen, currentStep })
-      } else {
-        setIsOpen(false)
-      }
-    }
-  }
-
-  const badge =
-    badgeContent && typeof badgeContent === 'function'
-      ? badgeContent({
-          currentStep,
-          totalSteps: steps.length,
-          transition,
-        })
-      : currentStep + 1
-
   const doDisableInteraction = step?.stepInteraction
     ? !step?.stepInteraction
     : disableInteraction
@@ -117,10 +89,6 @@ const Tour: React.FC<TourProps> = ({
     : step?.position
     ? step?.position
     : position
-
-  const { Badge, Close, Content, Navigation, Arrow } = defaultComponents(
-    components
-  )
 
   return step ? (
     <Portal>
@@ -165,39 +133,33 @@ const Tour: React.FC<TourProps> = ({
           className={className}
           refresher={currentStep}
         >
-          {showBadge ? <Badge styles={styles}>{badge}</Badge> : null}
-          {showCloseButton ? (
-            <Close
+          {ContentComponent ? (
+            <ContentComponent
               styles={styles}
-              aria-label={accessibilityOptions?.closeButtonAriaLabel}
-              disabled={disabledActions}
-              onClick={closeClickHandler}
-            />
-          ) : null}
-          <Content
-            content={step?.content}
-            setCurrentStep={setCurrentStep}
-            currentStep={currentStep}
-            transition={transition}
-            setIsOpen={setIsOpen}
-          />
-          {showNavigation ? (
-            <Navigation
               setCurrentStep={setCurrentStep}
               currentStep={currentStep}
               setIsOpen={setIsOpen}
               steps={steps}
-              styles={styles}
-              aria-hidden={!accessibilityOptions?.showNavigationScreenReaders}
-              nextButton={nextButton}
-              prevButton={prevButton}
-              disableDots={disableDotsNavigation}
-              hideButtons={!showPrevNextButtons}
-              disableAll={disabledActions}
+              accessibilityOptions={accessibilityOptions}
+              disabledActions={disabledActions}
+              transition={transition}
               rtl={rtl}
-              Arrow={Arrow}
+              {...popoverProps}
             />
-          ) : null}
+          ) : (
+            <PopoverContent
+              styles={styles}
+              setCurrentStep={setCurrentStep}
+              currentStep={currentStep}
+              setIsOpen={setIsOpen}
+              steps={steps}
+              accessibilityOptions={accessibilityOptions}
+              disabledActions={disabledActions}
+              transition={transition}
+              rtl={rtl}
+              {...popoverProps}
+            />
+          )}
         </Popover>
       </FocusManager>
     </Portal>

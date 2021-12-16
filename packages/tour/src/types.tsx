@@ -1,4 +1,4 @@
-import { Dispatch, MouseEventHandler, ReactElement } from 'react'
+import { Dispatch, MouseEventHandler, ReactElement, ComponentType } from 'react'
 import { Position, PopoverStylesObj } from '@reactour/popover'
 import { MaskStylesObj } from '@reactour/mask'
 import { PopoverComponentsType } from './components/index'
@@ -33,10 +33,33 @@ type SharedProps = {
   accessibilityOptions?: A11yOptions
   rtl?: boolean
   components: PopoverComponentsType
+  ContentComponent?: ComponentType<PopoverContentProps>
+}
+
+export type PopoverContentProps = {
+  styles?: StylesObj & PopoverStylesObj & MaskStylesObj
+  badgeContent?: (badgeProps: BadgeProps) => any
+  components?: PopoverComponentsType
+  accessibilityOptions?: A11yOptions
+  disabledActions?: boolean
+  onClickClose?: (clickProps: ClickProps) => void
+  setCurrentStep: Dispatch<React.SetStateAction<number>>
+  currentStep: number
+  transition?: boolean
+  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  steps: StepType[]
+  showNavigation?: boolean
+  showPrevNextButtons?: boolean
+  showCloseButton?: boolean
+  showBadge?: boolean
+  nextButton?: (props: BtnFnProps) => void
+  prevButton?: (props: BtnFnProps) => void
+  disableDotsNavigation?: boolean
+  rtl?: boolean
 }
 
 type A11yOptions = {
-  ariaLabelledBy: string
+  ariaLabelledBy?: string
   closeButtonAriaLabel: string
   showNavigationScreenReaders: boolean
 }
@@ -65,7 +88,7 @@ export type TourProps = SharedProps &
 type BadgeProps = {
   totalSteps: number
   currentStep: number
-  transition: boolean
+  transition?: boolean
 }
 
 export type ProviderProps = SharedProps & {
