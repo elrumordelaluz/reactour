@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
-import React, { Dispatch } from 'react'
-import { StylesObj, stylesMatcher } from './styles'
-import { StepType, BtnFnProps, NavButtonProps } from './types'
+import React, { Dispatch, ComponentType } from 'react'
+import { StylesObj, stylesMatcher } from '../styles'
+import { StepType, BtnFnProps, NavButtonProps } from '../types'
 
 const Navigation: React.FC<NavigationProps> = ({
   styles = {},
@@ -16,6 +16,7 @@ const Navigation: React.FC<NavigationProps> = ({
   hideButtons,
   disableAll,
   rtl,
+  Arrow = DefaultArrow,
 }) => {
   const stepsLength = steps.length
   const getStyles = stylesMatcher(styles)
@@ -126,7 +127,7 @@ type BaseProps = {
   styles?: StylesObj
 }
 
-type NavigationProps = BaseProps & {
+export type NavigationProps = BaseProps & {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   steps: StepType[]
   currentStep: number
@@ -138,14 +139,21 @@ type NavigationProps = BaseProps & {
   hideDots?: boolean
   disableAll?: boolean
   rtl?: boolean
+  Arrow?: ComponentType<ArrowProps>
 }
 
 export default Navigation
 
-const Arrow: React.FC<BaseProps & {
+export type ArrowProps = BaseProps & {
   inverted?: Boolean
   disabled?: Boolean
-}> = ({ styles = {}, inverted = false, disabled }) => {
+}
+
+export const DefaultArrow: React.FC<ArrowProps> = ({
+  styles = {},
+  inverted = false,
+  disabled,
+}) => {
   const getStyles = stylesMatcher(styles)
   return (
     <svg

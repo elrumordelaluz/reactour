@@ -12,6 +12,7 @@ const defaultState = {
   setSteps: () => [],
   disabledActions: false,
   setDisabledActions: () => false,
+  components: {},
 }
 
 const TourContext = React.createContext<TourProps>(defaultState)

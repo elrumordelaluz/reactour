@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { StylesObj, stylesMatcher } from './styles'
+import { StylesObj, stylesMatcher } from '../styles'
 
 const Close: React.FC<CloseProps> = ({
   styles = {},
@@ -26,7 +26,7 @@ const Close: React.FC<CloseProps> = ({
   )
 }
 
-type CloseProps = {
+export type CloseProps = {
   styles?: StylesObj
   onClick?: () => void
   disabled?: boolean

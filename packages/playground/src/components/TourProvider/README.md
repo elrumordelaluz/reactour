@@ -1012,3 +1012,122 @@ function Placeholder({ demoId = 'basic', children, className, style }) {
   <Placeholder demoId={demoId} />
 </TourProvider>
 ```
+
+### Custom Components
+
+```jsx
+import { components } from '@reactour/tour'
+import { Placeholder, doSteps } from '../utils'
+const demoId = 'custom-components'
+const steps = doSteps(demoId)
+
+function Badge({ children }) {
+  return (
+    <components.Badge
+      styles={{ badge: base => ({ ...base, backgroundColor: 'red' }) }}
+    >
+      👉 {children} 👈
+    </components.Badge>
+  )
+}
+
+function Close({ onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{ position: 'absolute', right: 0, top: 0 }}
+    >
+      x
+    </button>
+  )
+}
+
+function Content({ content }) {
+  return (
+    <>
+      <span style={{ fontSize: 11 }}>Step Content:</span>
+      <br /> {content}
+    </>
+  )
+}
+
+function Arrow({ inverted }) {
+  return (
+    <div style={{ width: 30, height: 30 }}>
+      {inverted ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 64 64"
+          aria-labelledby="title"
+          aria-describedby="desc"
+          role="img"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+        >
+          <title>Arrow Right Square</title>
+          <desc>A flat styled icon from Orion Icon Library.</desc>
+          <path data-name="layer2" fill="#cce3ff" d="M2 2h60v60H2z" />
+          <path
+            data-name="opacity"
+            fill="#000064"
+            opacity=".15"
+            d="M49.455 32l-35.604-.271L2 43.584V62h17.591l29.864-30z"
+          />
+          <path
+            data-name="layer1"
+            d="M49 33H14a1 1 0 0 1 0-2h35a1 1 0 0 1 0 2z"
+            fill="#7c89ad"
+          />
+          <path
+            data-name="layer1"
+            d="M36 44a1 1 0 0 1-.647-1.763L47.452 32l-12.1-10.234a1 1 0 1 1 1.292-1.527l13 11a1 1 0 0 1 0 1.527l-13 11A1 1 0 0 1 36 44z"
+            fill="#7c89ad"
+          />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 64 64"
+          aria-labelledby="title"
+          aria-describedby="desc"
+          role="img"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+        >
+          <title>Arrow Left Square</title>
+          <desc>A flat styled icon from Orion Icon Library.</desc>
+          <path data-name="layer2" fill="#cce3ff" d="M2 2h60v60H2z" />
+          <path
+            data-name="opacity"
+            fill="#000064"
+            opacity=".15"
+            d="M51 32H14.281L2 44.344V62h19.251L51 32z"
+          />
+          <path
+            data-name="layer1"
+            d="M50 33H15a1 1 0 0 1 0-2h35a1 1 0 0 1 0 2z"
+            fill="#7c89ad"
+          />
+          <path
+            data-name="layer1"
+            d="M28 44a1 1 0 0 1-.646-.237l-13-11a1 1 0 0 1 0-1.527l13-11a1 1 0 1 1 1.292 1.527L16.548 32l12.1 10.239A1 1 0 0 1 28 44z"
+            fill="#7c89ad"
+          />
+        </svg>
+      )}
+    </div>
+  )
+}
+
+;<TourProvider
+  steps={steps}
+  components={{ Badge, Close, Content, Arrow }}
+  styles={{
+    dot: (base, { current }) => ({
+      ...base,
+      background: current ? '#7c89ad' : '#cce3ff',
+      border: current ? '0' : '1px solid #cce3ff',
+    }),
+  }}
+>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```

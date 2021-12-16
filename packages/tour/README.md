@@ -145,6 +145,62 @@ Customize styles fro this specific step.
 
 </details>
 
+### `components?: PopoverComponentsType`
+
+Prop to customize granurally each Component inside the _Popover_.
+
+#### Components available
+
+| key          | props                                                                                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Badge`      | `styles`                                                                                                                                                            |
+| `Close`      | `styles`, `onClick`, `disabled`                                                                                                                                     |
+| `Content`    | `content`,`setCurrentStep`,`transition`,`currentStep`,`setIsOpen`                                                                                                   |
+| `Navigation` | `styles`,`setCurrentStep`, `steps`, `currentStep`, `disableDots`, `nextButton`, `prevButton`, `setIsOpen`, `hideButtons`, `hideDots`, `disableAll`, `rtl`, `Arrow`, |
+| `Arrow`      | `styles`, `inverted`, `disabled`                                                                                                                                    |
+
+<details>
+  <summary>Example</summary>
+
+```js
+import { components } from '@reactour/tour'
+
+function Badge({ children }) {
+  return (
+    <components.Badge
+      styles={{ badge: base => ({ ...base, backgroundColor: 'red' }) }}
+    >
+      👉 {children} 👈
+    </components.Badge>
+  )
+}
+
+function Close({ onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{ position: 'absolute', right: 0, top: 0 }}
+    >
+      x
+    </button>
+  )
+}
+
+const steps = [
+  /* ... */
+]
+
+export default function App() {
+  return (
+    <TourProvider steps={steps} components={{ Badge, Close }}>
+      {/* ... */}
+    </TourProvider>
+  )
+}
+```
+
+</details>
+
 ### `styles?: StylesObj & PopoverStylesObj & MaskStylesObj`
 
 Prop to customize styles for the different parts of the _Mask_, _Popover_ and _Tour_ using a function that allows to extend the base styles an take advantage of some state props.

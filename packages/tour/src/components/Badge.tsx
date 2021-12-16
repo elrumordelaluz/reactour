@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react'
 import React from 'react'
-import { StylesObj, stylesMatcher } from './styles'
+import { StylesObj, stylesMatcher } from '../styles'
 
 const Badge: React.FC<BadgeProps> = ({ styles = {}, children }) => {
   const getStyles = stylesMatcher(styles)

@@ -5,11 +5,9 @@ import { Popover } from '@reactour/popover'
 import { FocusScope } from '@react-aria/focus'
 import { useSizes } from './hooks'
 import { TourProps, Padding } from './types'
-import Badge from './Badge'
-import Navigation from './Navigation'
-import Content from './Content'
-import Close from './Close'
 import Keyboard from './Keyboard'
+
+import { defaultComponents } from './components/index'
 
 const Tour: React.FC<TourProps> = ({
   currentStep,
@@ -47,6 +45,7 @@ const Tour: React.FC<TourProps> = ({
     closeButtonAriaLabel: 'Close Tour',
     showNavigationScreenReaders: true,
   },
+  components = {},
 }) => {
   const step = steps[currentStep]
   const styles = step?.styles || globalStyles
@@ -92,7 +91,11 @@ const Tour: React.FC<TourProps> = ({
 
   const badge =
     badgeContent && typeof badgeContent === 'function'
-      ? badgeContent({ currentStep, totalSteps: steps.length, transition })
+      ? badgeContent({
+          currentStep,
+          totalSteps: steps.length,
+          transition,
+        })
       : currentStep + 1
 
   const doDisableInteraction = step?.stepInteraction
@@ -114,6 +117,10 @@ const Tour: React.FC<TourProps> = ({
     : step?.position
     ? step?.position
     : position
+
+  const { Badge, Close, Content, Navigation, Arrow } = defaultComponents(
+    components
+  )
 
   return step ? (
     <Portal>
@@ -137,7 +144,7 @@ const Tour: React.FC<TourProps> = ({
           sizes={sizes}
           onClick={maskClickHandler}
           styles={{
-            highlightedArea: base => ({
+            highlightedArea: (base: any) => ({
               ...base,
               display: doDisableInteraction ? 'block' : 'none',
             }),
@@ -188,6 +195,7 @@ const Tour: React.FC<TourProps> = ({
               hideButtons={!showPrevNextButtons}
               disableAll={disabledActions}
               rtl={rtl}
+              Arrow={Arrow}
             />
           ) : null}
         </Popover>

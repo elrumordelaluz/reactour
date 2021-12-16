@@ -12,7 +12,7 @@ const Content: React.FC<ContentProps> = ({
     : content
 }
 
-type ContentProps = {
+export type ContentProps = {
   content: any
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   setIsOpen?: Dispatch<React.SetStateAction<Boolean>>

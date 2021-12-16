@@ -1,6 +1,7 @@
 import { Dispatch, MouseEventHandler, ReactElement } from 'react'
 import { Position, PopoverStylesObj } from '@reactour/popover'
 import { MaskStylesObj } from '@reactour/mask'
+import { PopoverComponentsType } from './components/index'
 import { StylesObj } from './styles'
 
 type SharedProps = {
@@ -31,6 +32,7 @@ type SharedProps = {
   inViewThreshold?: number
   accessibilityOptions?: A11yOptions
   rtl?: boolean
+  components: PopoverComponentsType
 }
 
 type A11yOptions = {
