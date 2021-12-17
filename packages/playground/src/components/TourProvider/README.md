@@ -1143,14 +1143,6 @@ const demoId = 'custom-popover-content'
 const steps = doSteps(demoId)
 
 function ContentComponent(props) {
-  // const controls = useAnimation()
-  // useEffect(() => {
-  //   controls.start(i => ({
-  //     opacity: 0,
-  //     x: 100,
-  //     transition: { delay: i * 0.3 },
-  //   }))
-  // }, [props.currentStep])
   const isLastStep = props.currentStep === props.steps.length - 1
   return (
     <motion.div

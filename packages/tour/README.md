@@ -487,6 +487,82 @@ Configure generic accessibility related attributes like [aria-labelledby](https:
 
 Option to navigate and show _Navigation_ in right-to-left mode
 
+### `ContentComponent?: ComponentType<PopoverContentProps>`
+
+Completelly custom component to rendere inside the _Popover_.
+
+<details>
+  <summary><small>Type details</small></summary>
+
+```ts
+type PopoverContentProps = {
+  styles?: StylesObj & PopoverStylesObj & MaskStylesObj
+  badgeContent?: (badgeProps: BadgeProps) => any
+  components?: PopoverComponentsType
+  accessibilityOptions?: A11yOptions
+  disabledActions?: boolean
+  onClickClose?: (clickProps: ClickProps) => void
+  setCurrentStep: Dispatch<React.SetStateAction<number>>
+  currentStep: number
+  transition?: boolean
+  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  steps: StepType[]
+  showNavigation?: boolean
+  showPrevNextButtons?: boolean
+  showCloseButton?: boolean
+  showBadge?: boolean
+  nextButton?: (props: BtnFnProps) => void
+  prevButton?: (props: BtnFnProps) => void
+  disableDotsNavigation?: boolean
+  rtl?: boolean
+}
+```
+
+</details>
+
+<details>
+  <summary>Example</summary>
+
+```js
+function ContentComponent(props) {
+  const isLastStep = props.currentStep === props.steps.length - 1
+  return (
+    <div style={{ border: '5px solid red', padding: 10, background: 'white' }}>
+      {props.steps[props.currentStep].content}
+      <button
+        onClick={() => {
+          if (isLastStep) {
+            props.setIsOpen(false)
+          } else {
+            props.setCurrentStep(s => s + 1)
+          }
+        }}
+      >
+        {isLastStep ? 'x' : '>'}
+      </button>
+    </div>
+  )
+}
+
+const steps = [
+  /* ... */
+]
+
+function App() {
+  return (
+    <TourProvider
+      steps={steps}
+      ContentComponent={ContentComponent}
+      styles={{ popover: base => ({ ...base, padding: 0 }) }}
+    >
+      {/* ... */}
+    </TourProvider>
+  )
+}
+```
+
+</details>
+
 ## `useTour`
 
 Later in any Component down in the tree of _TourProvider_ you can control the _Tour_ in many ways
