@@ -1178,3 +1178,20 @@ function ContentComponent(props) {
   <Placeholder demoId={demoId} />
 </TourProvider>
 ```
+
+### Controlled Tour
+
+```jsx
+import { useState } from 'react'
+import { components } from '@reactour/tour'
+import { motion } from 'framer-motion'
+import { Placeholder, doSteps } from '../utils'
+const demoId = 'controlled'
+const steps = doSteps(demoId)
+
+const [curr, set] = useState(2)
+
+;<TourProvider steps={steps} setCurrentStep={set} currentStep={curr}>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```

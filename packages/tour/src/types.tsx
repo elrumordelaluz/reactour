@@ -95,6 +95,8 @@ export type ProviderProps = SharedProps & {
   children: React.ReactNode
   defaultOpen?: Boolean
   startAt?: number
+  setCurrentStep?: Dispatch<React.SetStateAction<number>>
+  currentStep?: number
 }
 
 export type ContentProps = {

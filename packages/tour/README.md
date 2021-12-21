@@ -287,6 +287,16 @@ type PositionProps = {
 
 Set a global position for the _Popover_ in all steps, fixed in case of `[number, number]`, calculated in case of position `string`
 
+### `setCurrentStep: Dispatch<React.SetStateAction<number>>`
+
+Function to control the _Tour_ current step state.
+
+### `currentStep: number`
+
+Custom _Tour_ current `step` state.
+
+This option could be overrided on specific steps using [`stepInteraction`]() prop.
+
 ### `disableInteraction?: boolean`
 
 Disables the ability to click or interact in any way with the Highlighted element on every step.
