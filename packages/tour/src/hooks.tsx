@@ -25,7 +25,10 @@ export function useSizes(
   const [observing, setObserving] = useState(false)
   const [refresher, setRefresher] = useState(null as any)
   const [dimensions, setdDimensions] = useState(initialState)
-  const target = document.querySelector(step?.selector)
+  const target =
+    step?.selector instanceof Element
+      ? step?.selector
+      : document.querySelector(step?.selector)
 
   const handleResize = useCallback(() => {
     // if (!target && !step?.highlightedSelectors) return

@@ -105,7 +105,7 @@ export type ContentProps = {
 }
 
 export type StepType = {
-  selector: string
+  selector: string | Element
   content: ReactElement | string | ((props: ContentProps) => void)
   position?: Position
   highlightedSelectors?: string[]
