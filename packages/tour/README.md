@@ -91,7 +91,7 @@ required: `true`
 <details>
   <summary><code>StepType</code></summary>
   
-  #### `selector: string`
+  #### `selector: string | Element`
 
 A string containing one [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) to match and highlight the at the time of this step.
 
