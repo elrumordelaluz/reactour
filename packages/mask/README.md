@@ -81,18 +81,26 @@ Click handler for the _Mask_ except the highlighted area.
 
 Click handler for the _Highlighted_ area.
 
+### `maskId?: string`
+
+String to be assigned to the `<mask />` element, otherwise an automatic unique id is assigned.
+
+### `clipId?: string`
+
+String to be assigned to the `<clipPath />` element, otherwise an automatic unique id is assigned.
+
 ### `styles?: StylesObj`
 
 Prop to customize styles for the different parts of the _Mask_ using a function that allows to extend the base styles an take advantage of some state props.
 
 #### Style keys and props available
 
-| key               | props                                                  |
-| ----------------- | ------------------------------------------------------ |
-| `maskArea`        | `x`, `y`, `width`, `height`                            |
-| `maskRect`        | `windowWidth`, `windowHeight`, `maskID`                |
-| `clickArea`       | `windowWidth`, `windowHeight`, `clipID`                |
-| `highlightedArea` | `x`, `y`, `width`, `height`                            |
+| key               | props                                   |
+| ----------------- | --------------------------------------- |
+| `maskArea`        | `x`, `y`, `width`, `height`             |
+| `maskRect`        | `windowWidth`, `windowHeight`, `maskID` |
+| `clickArea`       | `windowWidth`, `windowHeight`, `clipID` |
+| `highlightedArea` | `x`, `y`, `width`, `height`             |
 
 #### Example
 

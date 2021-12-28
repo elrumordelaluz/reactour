@@ -11,11 +11,56 @@ const sizes = {
   top: 100,
   left: 100,
 }
+
 ;<>
   <button onClick={() => setIsOpen(o => !o)}>
     {isOpen ? 'Close' : 'Open'} Mask
   </button>
   {isOpen ? <Mask sizes={sizes} onClick={() => setIsOpen(false)} /> : null}
+</>
+```
+
+### More Masks
+
+Open more than one Mask a certain position and with specific size
+
+```jsx
+import { useState } from 'react'
+const [isOpen, setIsOpen] = useState(false)
+const sizes = {
+  width: 100,
+  height: 100,
+  top: 100,
+  left: 100,
+}
+const sizes2 = {
+  width: 50,
+  height: 50,
+  top: 50,
+  left: 50,
+}
+const sizes3 = {
+  width: 250,
+  height: 250,
+  top: 250,
+  left: 250,
+}
+;<>
+  <button onClick={() => setIsOpen(o => !o)}>
+    {isOpen ? 'Close' : 'Open'} Mask
+  </button>
+  {isOpen ? (
+    <>
+      <Mask sizes={sizes} onClick={() => setIsOpen(false)} />
+      <Mask sizes={sizes2} onClick={() => setIsOpen(false)} />
+      <Mask
+        maskId="my-mask"
+        clipId="my-clip"
+        sizes={sizes3}
+        onClick={() => setIsOpen(false)}
+      />
+    </>
+  ) : null}
 </>
 ```
 

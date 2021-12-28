@@ -3,8 +3,6 @@ import { jsx } from '@emotion/react'
 import React, { MouseEventHandler } from 'react'
 import { StylesObj, stylesMatcher } from './styles'
 import { safe, getWindow, getPadding, RectResult } from '@reactour/utils'
-const maskID = 'tour__mask'
-const clipID = 'tour__clip'
 
 const Mask: React.FC<MaskProps> = ({
   padding = 10,
@@ -14,7 +12,11 @@ const Mask: React.FC<MaskProps> = ({
   sizes,
   className,
   highlightedAreaClassName,
+  maskId,
+  clipId,
 }) => {
+  const maskID = maskId || uniqueId('mask__')
+  const clipID = clipId || uniqueId('clip__')
   const getStyles = stylesMatcher(styles)
   const [px, py] = getPadding(padding)
   const { w: windowWidth, h: windowHeight } = getWindow()
@@ -53,9 +55,11 @@ const Mask: React.FC<MaskProps> = ({
             />
           </mask>
           <clipPath id={clipID}>
-            <polygon points={`0 0, 0 ${windowHeight}, ${left} ${windowHeight}, ${left} ${top}, ${left +
-              width} ${top}, ${left + width} ${top + height}, ${left} ${top +
-              height}, ${left} ${windowHeight}, ${windowWidth} ${windowHeight}, ${windowWidth} 0`}/>
+            <polygon
+              points={`0 0, 0 ${windowHeight}, ${left} ${windowHeight}, ${left} ${top}, ${left +
+                width} ${top}, ${left + width} ${top + height}, ${left} ${top +
+                height}, ${left} ${windowHeight}, ${windowWidth} ${windowHeight}, ${windowWidth} 0`}
+            />
           </clipPath>
         </defs>
 
@@ -103,6 +107,17 @@ export type MaskProps = {
   padding?: number | [number, number]
   onClick?: MouseEventHandler<HTMLDivElement>
   onClickHighlighted?: MouseEventHandler<SVGRectElement>
+  maskId?: string
+  clipId?: string
 }
 
 export default Mask
+
+function uniqueId(prefix: string) {
+  return (
+    prefix +
+    Math.random()
+      .toString(36)
+      .substring(2, 16)
+  )
+}
