@@ -32,7 +32,7 @@ type SharedProps = {
   inViewThreshold?: number
   accessibilityOptions?: A11yOptions
   rtl?: boolean
-  components: PopoverComponentsType
+  components?: PopoverComponentsType
   ContentComponent?: ComponentType<PopoverContentProps>
 }
 
