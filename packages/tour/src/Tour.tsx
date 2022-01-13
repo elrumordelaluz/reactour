@@ -41,7 +41,13 @@ const Tour: React.FC<TourProps> = ({
   const step = steps[currentStep]
   const styles = step?.styles || globalStyles
 
-  const { sizes, transition, observableRefresher, target } = useSizes(step, {
+  const {
+    sizes,
+    transition,
+    observableRefresher,
+    isHighlightingObserved,
+    target,
+  } = useSizes(step, {
     block: 'center',
     behavior: scrollSmooth ? 'smooth' : 'auto',
     inViewThreshold,
@@ -143,6 +149,7 @@ const Tour: React.FC<TourProps> = ({
               accessibilityOptions={accessibilityOptions}
               disabledActions={disabledActions}
               transition={transition}
+              isHighlightingObserved={isHighlightingObserved}
               rtl={rtl}
               {...popoverProps}
             />
@@ -156,6 +163,7 @@ const Tour: React.FC<TourProps> = ({
               accessibilityOptions={accessibilityOptions}
               disabledActions={disabledActions}
               transition={transition}
+              isHighlightingObserved={isHighlightingObserved}
               rtl={rtl}
               {...popoverProps}
             />

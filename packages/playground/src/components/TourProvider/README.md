@@ -665,7 +665,11 @@ import { useTour } from '@reactour/tour'
 const steps = [
   {
     selector: '[data-tour="1"]',
-    content: 'text 1',
+    content: ({ isHighlightingObserved }) => {
+      return isHighlightingObserved
+        ? 'Is showing the observed highlighted selector'
+        : 'text 1'
+    },
     highlightedSelectors: ['.modaaals-modal'],
     mutationObservables: ['#portaaal'],
   },

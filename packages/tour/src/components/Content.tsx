@@ -4,11 +4,18 @@ const Content: React.FC<ContentProps> = ({
   content,
   setCurrentStep,
   transition,
+  isHighlightingObserved,
   currentStep,
   setIsOpen,
 }) => {
   return typeof content === 'function'
-    ? content({ setCurrentStep, transition, currentStep, setIsOpen })
+    ? content({
+        setCurrentStep,
+        transition,
+        isHighlightingObserved,
+        currentStep,
+        setIsOpen,
+      })
     : content
 }
 
@@ -18,6 +25,7 @@ export type ContentProps = {
   setIsOpen?: Dispatch<React.SetStateAction<Boolean>>
   currentStep: number
   transition?: boolean
+  isHighlightingObserved?: boolean
 }
 
 export default Content

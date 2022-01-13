@@ -23,6 +23,7 @@ export function useSizes(
 ) {
   const [transition, setTransition] = useState(false)
   const [observing, setObserving] = useState(false)
+  const [isHighlightingObserved, setIsHighlightingObserved] = useState(false)
   const [refresher, setRefresher] = useState(null as any)
   const [dimensions, setdDimensions] = useState(initialState)
   const target =
@@ -64,13 +65,23 @@ export function useSizes(
 
   function observableRefresher() {
     setObserving(true)
-    setdDimensions(
-      getHighlightedRect(target, step?.highlightedSelectors, step?.bypassElem)
+    const { hasHighligtedElems, ...dimesions } = getHighlightedRect(
+      target,
+      step?.highlightedSelectors,
+      step?.bypassElem
     )
+    setIsHighlightingObserved(hasHighligtedElems)
+    setdDimensions(dimesions)
     setObserving(false)
   }
 
-  return { sizes: dimensions, transition, target, observableRefresher }
+  return {
+    sizes: dimensions,
+    transition,
+    target,
+    observableRefresher,
+    isHighlightingObserved,
+  }
 }
 
 function getHighlightedRect(
@@ -78,12 +89,14 @@ function getHighlightedRect(
   highlightedSelectors: string[] = [],
   bypassElem = true
 ) {
+  let hasHighligtedElems = false
   const { w: windowWidth, h: windowHeight } = getWindow()
   if (!highlightedSelectors) {
     return {
       ...getRect(node),
       windowWidth,
       windowHeight,
+      hasHighligtedElems: false,
     }
   }
 
@@ -108,7 +121,7 @@ function getHighlightedRect(
     }
 
     const rect = getRect(element)
-
+    hasHighligtedElems = true
     if (bypassElem || !node) {
       if (rect.top < altAttrs.top) {
         altAttrs.top = rect.top
@@ -162,5 +175,6 @@ function getHighlightedRect(
     height: (bypassable ? altAttrs : attrs).height,
     windowWidth,
     windowHeight,
+    hasHighligtedElems,
   }
 }

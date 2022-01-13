@@ -15,6 +15,7 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
   setCurrentStep,
   currentStep,
   transition,
+  isHighlightingObserved,
   setIsOpen,
   nextButton,
   prevButton,
@@ -65,6 +66,7 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
         setCurrentStep={setCurrentStep}
         currentStep={currentStep}
         transition={transition}
+        isHighlightingObserved={isHighlightingObserved}
         setIsOpen={setIsOpen}
       />
       {showNavigation ? (

@@ -46,6 +46,7 @@ export type PopoverContentProps = {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
   transition?: boolean
+  isHighlightingObserved?: boolean
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   steps: StepType[]
   showNavigation?: boolean

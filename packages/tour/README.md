@@ -95,7 +95,7 @@ required: `true`
 
 A string containing one [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) to match and highlight the at the time of this step.
 
-#### `content: string | ({ setCurrentStep, transition, currentStep, setIsOpen }) => void`
+#### `content: string | ({ setCurrentStep, transition, isHighlightingObserved, currentStep, setIsOpen }) => void`
 
 The content to show inside the _Popover_ at the time of this step. Using a `function` have parameters to use inside content.
 
@@ -155,7 +155,7 @@ Prop to customize granurally each Component inside the _Popover_.
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Badge`      | `styles`                                                                                                                                                            |
 | `Close`      | `styles`, `onClick`, `disabled`                                                                                                                                     |
-| `Content`    | `content`,`setCurrentStep`,`transition`,`currentStep`,`setIsOpen`                                                                                                   |
+| `Content`    | `content`,`setCurrentStep`,`transition`, `isHighlightingObserved`,`currentStep`,`setIsOpen`                                                                         |
 | `Navigation` | `styles`,`setCurrentStep`, `steps`, `currentStep`, `disableDots`, `nextButton`, `prevButton`, `setIsOpen`, `hideButtons`, `hideDots`, `disableAll`, `rtl`, `Arrow`, |
 | `Arrow`      | `styles`, `inverted`, `disabled`                                                                                                                                    |
 
@@ -515,6 +515,7 @@ type PopoverContentProps = {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
   transition?: boolean
+  isHighlightingObserved?: boolean
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   steps: StepType[]
   showNavigation?: boolean
