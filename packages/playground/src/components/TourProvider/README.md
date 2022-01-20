@@ -762,11 +762,13 @@ const steps = [
   {
     selector: '[data-tour="disabled-1"]',
     content: 'Lorem ipsum dolor sit amet',
+    disableActions: false,
   },
   {
     selector: '[data-tour="disabled-2"]',
     content: 'You are the only one that could let the Tour continue.',
     disableActions: true,
+    stepInteraction: true,
     highlightedSelectors: ['.step-wrapper'],
     mutationObservables: ['.to-observe'],
   },
@@ -774,8 +776,12 @@ const steps = [
 ]
 
 function DemoHome() {
-  const { setIsOpen, setCurrentStep, setDisabledActions } = useTour()
-  const [showMore, setShowMore] = useState(false)
+  const {
+    setIsOpen,
+    setCurrentStep,
+    setDisabledActions,
+    disabledActions,
+  } = useTour()
 
   return (
     <div style={{ textAlign: 'center', padding: 50 }}>
@@ -794,22 +800,27 @@ function DemoHome() {
         at ante nunc. Maecenas ut leo eu erat porta fermentum.
       </p>{' '}
       <p className="step-wrapper">
+        <button
+          onClick={() => {
+            setIsOpen(false)
+            setCurrentStep(2)
+          }}
+        >
+          Close and back to step 1
+        </button>{' '}
+        <br />
         At this point you need to make an action to continue the Tour. Please
         <button
           to="/"
           data-tour="disabled-2"
-          onClick={() => {
-            setShowMore(s => !s)
-            setDisabledActions(false)
-          }}
+          onClick={() => setDisabledActions(false)}
         >
           Enable actions
-        </button> {showMore && (
+        </button>{' '}
+        {!disabledActions && (
           <>
             <br />
-            <strong className="to-observe">
-              Great! Now you could continue the Tour.
-            </strong>
+            <strong className="to-observe">Great! Actions are enabled.</strong>
           </>
         )}
       </p>

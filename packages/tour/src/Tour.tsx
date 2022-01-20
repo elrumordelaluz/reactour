@@ -85,8 +85,8 @@ const Tour: React.FC<TourProps> = ({
       step?.action(target)
     }
 
-    if (step?.disableActions) {
-      setDisabledActions(true)
+    if (step?.disableActions !== undefined) {
+      setDisabledActions(step?.disableActions)
     }
   }, [step])
 
