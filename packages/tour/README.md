@@ -86,8 +86,6 @@ The [Playground](../playground) is the perfect place to play aroud with all `@re
 
 Array of elements to highlight with special info and props.
 
-required: `true`
-
 <details>
   <summary><code>StepType</code></summary>
   
