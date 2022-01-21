@@ -97,7 +97,7 @@ Prop to customize styles for the different parts of the _Mask_ using a function 
 
 | key               | props                                   |
 | ----------------- | --------------------------------------- |
-| `maskWrapper`     | `x`, `y`, `width`, `height`             |
+| `maskWrapper`     |            |
 | `maskArea`        | `x`, `y`, `width`, `height`             |
 | `maskRect`        | `windowWidth`, `windowHeight`, `maskID` |
 | `clickArea`       | `windowWidth`, `windowHeight`, `clipID` |
