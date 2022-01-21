@@ -82,7 +82,7 @@ The [Playground](../playground) is the perfect place to play aroud with all `@re
 
 ## `TourProvider`
 
-### `steps: StepType[]`
+### `steps?: StepType[]`
 
 Array of elements to highlight with special info and props.
 
@@ -387,6 +387,7 @@ type ClickProps = {
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
+  steps: StepType[]
 }
 ```
 
