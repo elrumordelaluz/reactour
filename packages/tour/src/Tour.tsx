@@ -69,7 +69,7 @@ const Tour: React.FC<TourProps> = ({
   function maskClickHandler() {
     if (!disabledActions) {
       if (onClickMask && typeof onClickMask === 'function') {
-        onClickMask({ setCurrentStep, setIsOpen, currentStep })
+        onClickMask({ setCurrentStep, setIsOpen, currentStep, steps })
       } else {
         setIsOpen(false)
       }
