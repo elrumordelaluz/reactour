@@ -88,7 +88,7 @@
     "lodash.pick": "4.4.0",
     "prop-types": "15.7.2",
     "react-focus-lock": "2.5.2",
-    "scroll-smooth": "1.1.0",
+    "scroll-smooth": "1.1.1",
     "scrollparent": "2.0.1"
   }
 }
