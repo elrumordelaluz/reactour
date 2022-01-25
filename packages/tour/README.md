@@ -86,8 +86,6 @@ The [Playground](https://github.com/elrumordelaluz/reactour/tree/master/packages
 
 Array of elements to highlight with special info and props.
 
-required: `true`
-
 <details>
   <summary><code>StepType</code></summary>
   
