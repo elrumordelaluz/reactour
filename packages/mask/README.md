@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Reactour" title="Reactour" src="logo.svg" width="400">
+  <img alt="Reactour" title="Reactour" src="https://raw.githubusercontent.com/elrumordelaluz/reactour/master/packages/mask/logo.svg" width="400">
 </p>
 <p align="center">
   An SVG mask that cover all the window contents except the one specified by certain position and sizes values
@@ -97,7 +97,7 @@ Prop to customize styles for the different parts of the _Mask_ using a function 
 
 | key               | props                                   |
 | ----------------- | --------------------------------------- |
-| `maskWrapper`     |            |
+| `maskWrapper`     |                                         |
 | `maskArea`        | `x`, `y`, `width`, `height`             |
 | `maskRect`        | `windowWidth`, `windowHeight`, `maskID` |
 | `clickArea`       | `windowWidth`, `windowHeight`, `clipID` |

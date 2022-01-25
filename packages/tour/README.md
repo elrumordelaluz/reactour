@@ -1,6 +1,6 @@
 <p align="center">
 <a href="reactour.js.org">
-  <img alt="Reactour" title="Reactour" src="../../logo.svg" width="250"></a>
+  <img alt="Reactour" title="Reactour" src="https://raw.githubusercontent.com/elrumordelaluz/reactour/master/logo.svg" width="250"></a>
 </p>
 <p align="center" style="margin-top: 40px;margin-bottom: 40px;">
   <strong>Tourist Guide</strong> into your React Components
@@ -66,7 +66,7 @@ function App() {
 
 #### Playground
 
-The [Playground](../playground) is the perfect place to play aroud with all `@reactour` _Components_. [Here](https://reactour.vercel.app) is an online version.
+The [Playground](https://github.com/elrumordelaluz/reactour/tree/master/packages/playground) is the perfect place to play aroud with all `@reactour` _Components_. [Here](https://reactour.vercel.app) is an online version.
 
 #### Sandboxes
 
@@ -207,7 +207,7 @@ Prop to customize styles for the different parts of the _Mask_, _Popover_ and _T
 
 #### Style keys and props available
 
-Refer to [Mask docs](../mask/README.md) and [Popover docs](../popover/README.md) for its specific Components
+Refer to [Mask docs](https://github.com/elrumordelaluz/reactour/tree/master/packages/mask) and [Popover docs](https://github.com/elrumordelaluz/reactour/tree/master/packages/popover) for its specific Components
 
 ##### Tour Components
 
@@ -295,13 +295,13 @@ Function to control the _Tour_ current step state.
 
 Custom _Tour_ current `step` state.
 
-This option could be overrided on specific steps using [`stepInteraction`]() prop.
+This option could be overrided on specific steps using [`stepInteraction`](#stepinteraction-boolean) prop.
 
 ### `disableInteraction?: boolean`
 
 Disables the ability to click or interact in any way with the Highlighted element on every step.
 
-This option could be overrided on specific steps using [`stepInteraction`]() prop.
+This option could be overrided on specific steps using [`stepInteraction`](#stepinteraction-boolean) prop.
 
 ### `disableFocusLock?: boolean`
 
@@ -340,7 +340,7 @@ default: `reactour__mask`
 
 ### `highlightedMaskClassName?: string`
 
-[Class](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) assigned to highlighted part of _Mask_. Useful when using [`disableInteraction`]().
+[Class](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) assigned to highlighted part of _Mask_. Useful when using [`disableInteraction`](#disableinteraction-boolean).
 
 ### `nextButton?: (props: BtnFnProps) => void`
 

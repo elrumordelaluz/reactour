@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Reactour" title="Reactour" src="logo.svg" width="400">
+  <img alt="Reactour" title="Reactour" src="https://raw.githubusercontent.com/elrumordelaluz/reactour/master/packages/playground/logo.svg" width="400">
 </p>
 <p align="center">
   The playground where to play with the Tour and its parts
