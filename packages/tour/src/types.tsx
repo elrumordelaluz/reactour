@@ -5,7 +5,7 @@ import { PopoverComponentsType } from './components/index'
 import { StylesObj } from './styles'
 
 type SharedProps = {
-  steps?: StepType[]
+  steps: StepType[]
   styles?: StylesObj & PopoverStylesObj & MaskStylesObj
   padding?: Padding
   position?: Position
@@ -76,7 +76,7 @@ type ClickProps = {
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
-  steps: StepType[]
+  steps?: StepType[]
 }
 
 export type TourProps = SharedProps &
