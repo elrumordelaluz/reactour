@@ -50,3 +50,33 @@
 .open-button:hover {
   background-color: #92a8b4;
 }
+
+.big-target {
+  font-family: sans-serif;
+  text-align: center;
+
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 0.3fr 0.1fr 1fr;
+}
+
+.left {
+  border: 1px solid red;
+  align-self: flex-start;
+  height: 600px;
+  flex-basis: 30%;
+}
+
+.separador {
+  border: 1px solid green;
+  align-self: flex-start;
+  height: 600px;
+  flex-basis: 10%;
+}
+
+.izquierda {
+  border: 1px solid blue;
+  align-self: flex-start;
+  height: 1200px;
+  flex-grow: 1;
+}

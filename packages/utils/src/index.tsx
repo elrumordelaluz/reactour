@@ -27,12 +27,12 @@ export function inView({
   threshold = 0,
 }: InViewArgs): boolean {
   const { w: windowWidth, h: windowHeight } = getWindow()
-  return (
-    top >= 0 + threshold &&
-    left >= 0 + threshold &&
-    bottom <= windowHeight - threshold &&
-    right <= windowWidth - threshold
-  )
+  return top < 0 && bottom - top > windowHeight
+    ? true
+    : top >= 0 + threshold &&
+        left >= 0 + threshold &&
+        bottom <= windowHeight - threshold &&
+        right <= windowWidth - threshold
 }
 
 type InViewArgs = RectResult & {

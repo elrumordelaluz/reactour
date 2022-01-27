@@ -49,7 +49,6 @@ export function useSizes(
       ...dimensions,
       threshold: scrollOptions.inViewThreshold,
     })
-    // TODO: - Solve cases when target elemente exceeds viewport
     // TODO: - Solve cases when no target but highlightedSelectors
     if (!isInView && target) {
       setTransition(true)

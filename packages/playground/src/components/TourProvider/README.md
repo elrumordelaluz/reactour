@@ -1210,3 +1210,57 @@ const [curr, set] = useState(2)
   <Placeholder demoId={demoId} />
 </TourProvider>
 ```
+
+### Big Target
+
+Big target
+
+```jsx
+import { useEffect, useState } from 'react'
+import { useTour } from '@reactour/tour'
+
+const steps = [
+  {
+    selector: '.left',
+    content: 'Baúl de Recompensas',
+  },
+  {
+    selector: '.izquierda',
+    content: 'Tu carnet de explorador',
+  },
+  {
+    selector: '.separador',
+    content: '¡Misiones para ti!',
+  },
+]
+
+function DemoBigTarget() {
+  const {
+    setIsOpen,
+    setCurrentStep,
+    setDisabledActions,
+    disabledActions,
+  } = useTour()
+
+  return (
+    <div className="big-target">
+      <button
+        onClick={() => {
+          setIsOpen(true)
+        }}
+      >
+        Open
+      </button>
+      <div className="left"></div>
+      <div className="separador"></div>
+      <div className="izquierda"></div>
+    </div>
+  )
+}
+
+;<TourProvider steps={steps}>
+  <div className="disabled-wrapper">
+    <DemoBigTarget />
+  </div>
+</TourProvider>
+```
