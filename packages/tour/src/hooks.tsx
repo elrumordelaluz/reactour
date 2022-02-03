@@ -15,7 +15,9 @@ let initialState = {
 
 export function useSizes(
   step: StepType,
-  scrollOptions: ScrollIntoViewOptions & { inViewThreshold?: number } = {
+  scrollOptions: ScrollIntoViewOptions & {
+    inViewThreshold?: number | { x?: number; y?: number }
+  } = {
     block: 'center',
     behavior: 'smooth',
     inViewThreshold: 0,

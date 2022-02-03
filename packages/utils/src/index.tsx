@@ -7,6 +7,19 @@ export function safe(sum: number): number {
   return sum < 0 ? 0 : sum
 }
 
+function getInViewThreshold(threshold: InViewArgs['threshold']) {
+  if (typeof threshold === 'object' && threshold !== null) {
+    return {
+      thresholdX: threshold.x || 0,
+      thresholdY: threshold.y || 0,
+    }
+  }
+  return {
+    thresholdX: threshold || 0,
+    thresholdY: threshold || 0,
+  }
+}
+
 export function getWindow(): { w: number; h: number } {
   const w = Math.max(
     document.documentElement.clientWidth,
@@ -24,19 +37,21 @@ export function inView({
   right,
   bottom,
   left,
-  threshold = 0,
+  threshold,
 }: InViewArgs): boolean {
   const { w: windowWidth, h: windowHeight } = getWindow()
+  const { thresholdX, thresholdY } = getInViewThreshold(threshold)
+
   return top < 0 && bottom - top > windowHeight
     ? true
-    : top >= 0 + threshold &&
-        left >= 0 + threshold &&
-        bottom <= windowHeight - threshold &&
-        right <= windowWidth - threshold
+    : top >= 0 + thresholdY &&
+        left >= 0 + thresholdX &&
+        bottom <= windowHeight - thresholdY &&
+        right <= windowWidth - thresholdX
 }
 
 type InViewArgs = RectResult & {
-  threshold?: number
+  threshold?: { x?: number; y?: number } | number
 }
 
 export const isHoriz = (pos: string) => /(left|right)/.test(pos)

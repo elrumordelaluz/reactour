@@ -1264,3 +1264,78 @@ function DemoBigTarget() {
   </div>
 </TourProvider>
 ```
+
+### Threshold
+
+Threshold
+
+```jsx
+import { useEffect, useState, useRef } from 'react'
+import { useTour } from '@reactour/tour'
+import { useIntersectionObserver } from '../hooks'
+
+const steps = [
+  {
+    selector: '#first',
+    content: 'This is my first Step',
+  },
+  {
+    selector: '#second',
+    content: 'This is my second Step',
+  },
+  {
+    selector: '#third',
+    content: 'This is my third Step',
+  },
+]
+
+function DemoThreshold() {
+  const ref = useRef(null)
+  const { setIsOpen, setCurrentStep } = useTour()
+  const entry = useIntersectionObserver(ref, { threshold: 0.5 })
+
+  const isVisible = entry && !!entry.isIntersecting
+
+  const openTourFirstStep = () => {
+    setIsOpen(true)
+    setCurrentStep(0)
+    console.log('open')
+  }
+
+  return (
+    <div className="threshold" ref={ref}>
+      <header className="App-header">
+        <div
+          style={{
+            position: 'fixed',
+            backgroundColor: 'yellow',
+            height: '100px',
+            width: '100%',
+            top: '0',
+            display: isVisible ? 'block' : 'none',
+          }}
+        />
+      </header>
+      <section>
+        <div id="first" style={{ backgroundColor: 'blue', marginTop: '200px' }}>
+          One
+        </div>
+        <button onClick={openTourFirstStep}>Open Tour at first step</button>
+        <div id="second" style={{ backgroundColor: 'red', marginTop: '230px' }}>
+          Two
+        </div>
+        <div
+          id="third"
+          style={{ backgroundColor: 'green', marginTop: '600px' }}
+        >
+          Three
+        </div>
+      </section>
+    </div>
+  )
+}
+
+;<TourProvider steps={steps} inViewThreshold={{ y: 100 }}>
+  <DemoThreshold />
+</TourProvider>
+```
