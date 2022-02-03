@@ -10,8 +10,8 @@ export function safe(sum: number): number {
 function getInViewThreshold(threshold: InViewArgs['threshold']) {
   if (typeof threshold === 'object' && threshold !== null) {
     return {
-      thresholdX: threshold.x,
-      thresholdY: threshold.y,
+      thresholdX: threshold.x || 0,
+      thresholdY: threshold.y || 0,
     }
   }
   return {
@@ -51,7 +51,7 @@ export function inView({
 }
 
 type InViewArgs = RectResult & {
-  threshold?: { x: number; y: number } | number
+  threshold?: { x?: number; y?: number } | number
 }
 
 export const isHoriz = (pos: string) => /(left|right)/.test(pos)

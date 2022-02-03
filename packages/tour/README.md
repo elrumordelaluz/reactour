@@ -471,7 +471,7 @@ Activate `smooth` scroll behavior when steps are outside viewport.
 
 default: `false`
 
-### `inViewThreshold?: { x: number, y: number } | number`
+### `inViewThreshold?: { x?: number, y?: number } | number`
 
 Tolerance in pixels to add when calculating if the step element is outside viewport to scroll into view.
 

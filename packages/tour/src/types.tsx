@@ -29,7 +29,7 @@ type SharedProps = {
   showCloseButton?: boolean
   showBadge?: boolean
   scrollSmooth?: boolean
-  inViewThreshold?: number | { x: number, y: number }
+  inViewThreshold?: number | { x?: number; y?: number }
   accessibilityOptions?: A11yOptions
   rtl?: boolean
   components?: PopoverComponentsType
