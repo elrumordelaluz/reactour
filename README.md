@@ -15,7 +15,7 @@ The main package, which uses the other ones to highlight parts of your applicati
 
 ### [@reactour/mask](https://github.com/elrumordelaluz/reactour/tree/master/packages/mask)
 
-Acustomizable Component to highlight certain element or area of the viewport.
+A customizable Component to highlight certain element or area of the viewport.
 
 ### [@reactour/popover](https://github.com/elrumordelaluz/reactour/tree/master/packages/popover)
 
