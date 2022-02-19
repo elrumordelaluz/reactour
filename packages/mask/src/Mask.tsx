@@ -25,6 +25,13 @@ const Mask: React.FC<MaskProps> = ({
   const top = safe(sizes?.top - py)
   const left = safe(sizes?.left - px)
 
+  const maskAreaStyles = getStyles('maskArea', {
+    x: left,
+    y: top,
+    width,
+    height
+  });
+
   return (
     <div
       css={getStyles('maskWrapper', {})}
@@ -46,12 +53,9 @@ const Mask: React.FC<MaskProps> = ({
               fill="white"
             />
             <rect
-              css={getStyles('maskArea', {
-                x: left,
-                y: top,
-                width,
-                height,
-              })}
+              css={maskAreaStyles}
+              // Needs for Safari, as we pass any value, css rx will apply.
+              rx={maskAreaStyles.rx ? 1 : undefined}
             />
           </mask>
           <clipPath id={clipID}>
