@@ -68,7 +68,11 @@ type A11yOptions = {
 type ComponentPadding = number | [number, number]
 export type Padding =
   | number
-  | { mask?: ComponentPadding; popover?: ComponentPadding }
+  | {
+      mask?: ComponentPadding
+      popover?: ComponentPadding
+      wrapper?: ComponentPadding
+    }
 
 export type KeyboardParts = 'esc' | 'left' | 'right'
 

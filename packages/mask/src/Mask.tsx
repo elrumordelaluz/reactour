@@ -6,6 +6,7 @@ import { safe, getWindow, getPadding, RectResult } from '@reactour/utils'
 
 const Mask: React.FC<MaskProps> = ({
   padding = 10,
+  wrapperPadding = 0,
   onClick,
   onClickHighlighted,
   styles = {},
@@ -19,18 +20,21 @@ const Mask: React.FC<MaskProps> = ({
   const clipID = clipId || uniqueId('clip__')
   const getStyles = stylesMatcher(styles)
   const [px, py] = getPadding(padding)
-  const { w: windowWidth, h: windowHeight } = getWindow()
+  const [wpx, wpy] = getPadding(wrapperPadding)
+  const { w, h } = getWindow()
   const width = safe(sizes?.width + px * 2)
   const height = safe(sizes?.height + py * 2)
-  const top = safe(sizes?.top - py)
-  const left = safe(sizes?.left - px)
+  const top = safe(sizes?.top - py - wpy / 2)
+  const left = safe(sizes?.left - px - wpx / 2)
+  const windowWidth = w - wpx
+  const windowHeight = h - wpy
 
   const maskAreaStyles = getStyles('maskArea', {
     x: left,
     y: top,
     width,
-    height
-  });
+    height,
+  })
 
   return (
     <div
@@ -42,6 +46,12 @@ const Mask: React.FC<MaskProps> = ({
         width={windowWidth}
         height={windowHeight}
         xmlns="http://www.w3.org/2000/svg"
+        css={getStyles('svgWrapper', {
+          windowWidth,
+          windowHeight,
+          wpx,
+          wpy,
+        })}
       >
         <defs>
           <mask id={maskID}>
@@ -109,6 +119,7 @@ export type MaskProps = {
   className?: string
   highlightedAreaClassName?: string
   padding?: number | [number, number]
+  wrapperPadding?: number | [number, number]
   onClick?: MouseEventHandler<HTMLDivElement>
   onClickHighlighted?: MouseEventHandler<SVGRectElement>
   maskId?: string

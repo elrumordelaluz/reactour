@@ -14,6 +14,7 @@ export type StyleFnProps = CSSObject &
 
 export type Styles = {
   maskWrapper: StyleFn
+  svgWrapper: StyleFn
   maskArea: StyleFn
   maskRect: StyleFn
   clickArea: StyleFn
@@ -38,6 +39,13 @@ export const defaultStyles: Styles = {
     zIndex: 99999,
     pointerEvents: 'none',
     color: '#000',
+  }),
+  svgWrapper: ({ windowWidth, windowHeight, wpx, wpy }) => ({
+    width: windowWidth,
+    height: windowHeight,
+    left: Number(wpx) / 2,
+    top: Number(wpy) / 2,
+    position: 'fixed',
   }),
   maskArea: ({ x, y, width, height }) => ({
     x,

@@ -155,7 +155,9 @@ useEffect(() => {
   >
     Element to be highlighted
   </motion.div>
-  {isOpen ? <Mask sizes={sizes} onClick={() => setIsOpen(false)} /> : null}
+  {isOpen ? (
+    <Mask sizes={sizes} wrapperPadding={20} onClick={() => setIsOpen(false)} />
+  ) : null}
 </>
 ```
 

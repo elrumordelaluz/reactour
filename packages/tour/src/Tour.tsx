@@ -64,7 +64,9 @@ const Tour: React.FC<TourProps> = ({
     }
   }, [])
 
-  const { maskPadding, popoverPadding } = getPadding(step?.padding || padding)
+  const { maskPadding, popoverPadding, wrapperPadding } = getPadding(
+    step?.padding || padding
+  )
 
   function maskClickHandler() {
     if (!disabledActions) {
@@ -128,6 +130,7 @@ const Tour: React.FC<TourProps> = ({
           highlightedAreaClassName={highlightedMaskClassName}
           className={maskClassName}
           onClickHighlighted={onClickHighlighted}
+          wrapperPadding={wrapperPadding}
         />
 
         <Popover
@@ -199,10 +202,12 @@ function getPadding(padding?: Padding) {
     return {
       maskPadding: padding.mask,
       popoverPadding: padding.popover,
+      wrapperPadding: padding.wrapper,
     }
   }
   return {
     maskPadding: padding,
     popoverPadding: padding,
+    wrapperPadding: 0,
   }
 }

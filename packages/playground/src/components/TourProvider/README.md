@@ -221,7 +221,10 @@ import { Placeholder, doSteps } from '../utils'
 const demoId = 'padding'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} padding={{ mask: 0, popover: [1, 5] }}>
+;<TourProvider
+  steps={steps}
+  padding={{ mask: 14, popover: [5, 10], wrapper: 20 }}
+>
   <Placeholder demoId={demoId} />
 </TourProvider>
 ```
