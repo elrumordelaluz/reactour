@@ -244,7 +244,13 @@ const styles = {
   <summary><small>Type details</small></summary>
 
 ```ts
-type Padding = number | { mask?: ComponentPadding; popover?: ComponentPadding }
+type Padding =
+  | number
+  | {
+      mask?: ComponentPadding
+      popover?: ComponentPadding
+      wrapper?: ComponentPadding
+    }
 
 // x and y same value or [x, y] handled separated
 type ComponentPadding = number | [number, number]

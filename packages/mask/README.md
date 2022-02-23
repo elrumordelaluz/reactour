@@ -73,6 +73,12 @@ Extra space to add in _Mask_ calculations. Useful when calculating space from `E
 
 Single number sets sema space for `x` and `y`, otherwise, an Array sets `[x, y]`.
 
+### `wrapperPadding?: number | [number, number]`
+
+Extra space to add between viewport with and height.
+
+Single number sets sema space for `x` and `y`, otherwise, an Array sets `[x, y]`.
+
 ### `onClick?: MouseEventHandler<HTMLDivElement>`
 
 Click handler for the _Mask_ except the highlighted area.
