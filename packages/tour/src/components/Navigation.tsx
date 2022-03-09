@@ -135,8 +135,8 @@ export type NavigationProps = BaseProps & {
   steps: StepType[]
   currentStep: number
   disableDots?: boolean
-  nextButton?: (props: BtnFnProps) => void
-  prevButton?: (props: BtnFnProps) => void
+  nextButton?: (props: BtnFnProps) => JSX.Element
+  prevButton?: (props: BtnFnProps) => JSX.Element
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   hideButtons?: boolean
   hideDots?: boolean
