@@ -121,6 +121,14 @@ function getHighlightedRect(
       continue
     }
 
+    const computedStyle = getComputedStyle(element)
+    if (
+      computedStyle.display === 'none' ||
+      computedStyle.visibility === 'hidden'
+    ) {
+      continue
+    }
+
     const rect = getRect(element)
     hasHighligtedElems = true
     if (bypassElem || !node) {
