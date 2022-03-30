@@ -1209,7 +1209,12 @@ const steps = doSteps(demoId)
 
 const [curr, set] = useState(2)
 
-;<TourProvider steps={steps} setCurrentStep={set} currentStep={curr}>
+function sett(s) {
+  console.log({ s })
+  return set(s)
+}
+
+;<TourProvider steps={steps} setCurrentStep={sett} currentStep={curr}>
   <Placeholder demoId={demoId} />
 </TourProvider>
 ```

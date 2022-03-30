@@ -36,7 +36,10 @@ const TourProvider: React.FC<ProviderProps> = ({
     isOpen,
     setIsOpen,
     currentStep: customCurrentStep || currentStep,
-    setCurrentStep: customSetCurrentStep || setCurrentStep,
+    setCurrentStep:
+      customSetCurrentStep && typeof customSetCurrentStep === 'function'
+        ? customSetCurrentStep
+        : setCurrentStep,
     steps,
     setSteps,
     disabledActions,
