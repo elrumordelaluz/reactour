@@ -28,5 +28,6 @@
   "devDependencies": {
     "eslint-config-prettier": "8.3.0",
     "launchit": "1.1.2"
-  }
+  },
+  "version": "0.0.1"
 }
