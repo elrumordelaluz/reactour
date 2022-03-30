@@ -4,6 +4,7 @@ import { KeyboardParts } from './types'
 const Keyboard: React.FC<KeyboardProps> = ({
   disableKeyboardNavigation,
   setCurrentStep,
+  currentStep,
   setIsOpen,
   stepsLength,
   disable,
@@ -21,13 +22,15 @@ const Keyboard: React.FC<KeyboardProps> = ({
       isRightDisabled = disableKeyboardNavigation.includes('right')
       isLeftDisabled = disableKeyboardNavigation.includes('left')
     }
+
     function next() {
-      setCurrentStep(c => Math.min(c + 1, stepsLength - 1))
+      setCurrentStep(Math.min(currentStep + 1, stepsLength - 1))
     }
 
     function prev() {
-      setCurrentStep(c => Math.max(c - 1, 0))
+      setCurrentStep(Math.max(currentStep - 1, 0))
     }
+
     if (e.keyCode === 27 && !isEscDisabled) {
       e.preventDefault()
       setIsOpen(false)
@@ -55,7 +58,7 @@ const Keyboard: React.FC<KeyboardProps> = ({
     return () => {
       window.removeEventListener('keydown', keyDownHandler)
     }
-  }, [disable])
+  }, [disable, setCurrentStep, currentStep])
 
   return null
 }
@@ -63,6 +66,7 @@ const Keyboard: React.FC<KeyboardProps> = ({
 export type KeyboardProps = {
   disableKeyboardNavigation?: boolean | KeyboardParts[]
   setCurrentStep: Dispatch<React.SetStateAction<number>>
+  currentStep: number
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   stepsLength: number
   disable?: boolean

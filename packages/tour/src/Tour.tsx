@@ -109,6 +109,7 @@ const Tour: React.FC<TourProps> = ({
 
         <Keyboard
           setCurrentStep={setCurrentStep}
+          currentStep={currentStep}
           setIsOpen={setIsOpen}
           stepsLength={steps.length}
           disableKeyboardNavigation={disableKeyboardNavigation}
