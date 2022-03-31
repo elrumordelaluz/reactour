@@ -71,6 +71,7 @@ The [Playground](https://github.com/elrumordelaluz/reactour/tree/master/packages
 #### Sandboxes
 
 - [Using React Router](https://codesandbox.io/s/reactour-tour-demo-using-react-router-dom-kujql)
+- [Using React Router with automatic route switching](https://codesandbox.io/s/tour-demo-using-react-router-dom-with-automatic-route-switching-fhdnxb?file=/src/App.js)
 - [Using React Modal](https://codesandbox.io/s/reactour-tour-demo-using-react-modal-8v0eo)
 - [Using Semantic UI Modal](https://codesandbox.io/s/reactour-tour-demo-using-semantic-ui-modal-xmqee)
 - [Using React Bootstrap Modal](https://codesandbox.io/s/reactour-tour-demo-using-react-bootstrap-modal-qjws4)
