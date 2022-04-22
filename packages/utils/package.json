@@ -20,7 +20,7 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "react": "16.x || 17.x"
+    "react": "16.x || 17.x || 18.x"
   },
   "husky": {
     "hooks": {
