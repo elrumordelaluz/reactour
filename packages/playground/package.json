@@ -15,7 +15,7 @@
     "@types/react": "17.0.39",
     "body-scroll-lock": "4.0.0-beta.0",
     "framer-motion": "4.1.17",
-    "modaaals": "0.13.0",
+    "modaaals": "0.14.0",
     "react": "^18.0.0",
     "react-docgen-typescript": "2.2.2",
     "react-dom": "^18.0.0",

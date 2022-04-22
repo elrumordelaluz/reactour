@@ -22,9 +22,7 @@
     "playground": "yarn workspace @reactour/playground start",
     "start": "node index"
   },
-  "dependencies": {
-    "concurrently": "7.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint-config-prettier": "8.5.0",
     "launchit": "1.1.2"
