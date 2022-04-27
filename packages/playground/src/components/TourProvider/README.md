@@ -1158,10 +1158,10 @@ import { components } from '@reactour/tour'
 import { motion } from 'framer-motion'
 import { Placeholder, doSteps } from '../utils'
 const demoId = 'custom-popover-content'
-const steps = doSteps(demoId)
 
 function ContentComponent(props) {
   const isLastStep = props.currentStep === props.steps.length - 1
+  const content = props.steps[props.currentStep].content
   return (
     <motion.div
       animate={{
@@ -1171,7 +1171,9 @@ function ContentComponent(props) {
       custom={props.currentStep + 1}
       style={{ border: '5px solid red', padding: 10, background: 'white' }}
     >
-      {props.steps[props.currentStep].content}
+      {typeof content === 'function'
+        ? content({ customText: 'Custom: ' })
+        : content}
       <components.Badge>{props.currentStep + 1}</components.Badge>
       <button
         onClick={() => {
@@ -1187,6 +1189,23 @@ function ContentComponent(props) {
     </motion.div>
   )
 }
+
+const steps = [
+  {
+    selector: `[data-tour="step-1-${demoId}"]`,
+    content: props => {
+      return <p>{props.customText ? props.customText : ''}Vamos a la playa!</p>
+    },
+  },
+  {
+    selector: `[data-tour="step-2-${demoId}"]`,
+    content: <p>Play beach ball all day long!</p>,
+  },
+  {
+    selector: `[data-tour="step-3-${demoId}"]`,
+    content: <p>Then, a deliciuos ice cream!</p>,
+  },
+]
 
 ;<TourProvider
   steps={steps}

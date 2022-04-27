@@ -543,9 +543,13 @@ type PopoverContentProps = {
 ```js
 function ContentComponent(props) {
   const isLastStep = props.currentStep === props.steps.length - 1
+  const content = props.steps[props.currentStep].content
   return (
     <div style={{ border: '5px solid red', padding: 10, background: 'white' }}>
-      {props.steps[props.currentStep].content}
+      {/* Check if the step.content is a function or a string */}
+      {typeof content === 'function'
+        ? content({ ...props, someOtherStuff: 'Custom Text' })
+        : content}
       <button
         onClick={() => {
           if (isLastStep) {
