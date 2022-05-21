@@ -639,7 +639,9 @@ The `Array` of steps set currently
 
 ### `setSteps: Dispatch<React.SetStateAction<StepType[]>>`
 
-`SetState` function to update the `Array` of steps
+`SetState` function to update the `Array` of steps.
+
+> **Warning**: Make sure you reset the `currentStep` value using the `setCurrentStep` function to ensure the tour will be opened to the correct step after update. Otherwise, in case where a person has already interacted with the tour steps and closed the tours on step 5 for example, they might open to the incorrect step, or similarly if the new set of steps only has 3 steps nothing will open.
 
 <!-- disabledActions: false,
   setDisabledActions: () => false, -->
