@@ -646,7 +646,7 @@ The `Array` of steps set currently
 
 ## `withTour`
 
-In case you needed there is an enhacer that allows you to have all `useTour` functionalities through a Higher Order Component.
+In case you needed there is an enhancer that allows you to have all `useTour` functionalities through a Higher Order Component.
 
 ```jsx
 import { Component } from 'react'
@@ -663,5 +663,5 @@ class MyComponent extends Component {
   }
 }
 
-export defatult withTour(MyCompnent)
+export default withTour(MyCompnent)
 ```
