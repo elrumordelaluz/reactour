@@ -29,10 +29,10 @@ export function useRect<T extends Element>(
   ref: React.RefObject<T> | undefined,
   refresher?: any
 ): RectResult {
-  const [dimensions, setdDimensions] = useState(initialState)
+  const [dimensions, setDimensions] = useState(initialState)
   const handleResize = useCallback(() => {
     if (!ref?.current) return
-    setdDimensions(getRect(ref?.current))
+    setDimensions(getRect(ref?.current))
   }, [ref?.current])
 
   useEffect(() => {
@@ -48,10 +48,10 @@ export function useElemRect(
   elem: Element | undefined,
   refresher?: any
 ): RectResult {
-  const [dimensions, setdDimensions] = useState(initialState)
+  const [dimensions, setDimensions] = useState(initialState)
   const handleResize = useCallback(() => {
     if (!elem) return
-    setdDimensions(getRect(elem))
+    setDimensions(getRect(elem))
   }, [elem])
 
   useEffect(() => {

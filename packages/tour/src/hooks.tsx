@@ -27,18 +27,26 @@ export function useSizes(
   const [observing, setObserving] = useState(false)
   const [isHighlightingObserved, setIsHighlightingObserved] = useState(false)
   const [refresher, setRefresher] = useState(null as any)
-  const [dimensions, setdDimensions] = useState(initialState)
+  const [dimensions, setDimensions] = useState(initialState)
   const target =
     step?.selector instanceof Element
       ? step?.selector
       : document.querySelector(step?.selector)
 
   const handleResize = useCallback(() => {
-    // if (!target && !step?.highlightedSelectors) return
-    setdDimensions(
-      getHighlightedRect(target, step?.highlightedSelectors, step?.bypassElem)
+    const newDimensions: any = getHighlightedRect(
+      target,
+      step?.highlightedSelectors,
+      step?.bypassElem
     )
-  }, [target, step?.highlightedSelectors])
+    if (
+      Object.entries(dimensions).some(
+        ([key, value]) => newDimensions[key] !== value
+      )
+    ) {
+      setDimensions(newDimensions)
+    }
+  }, [target, step?.highlightedSelectors, dimensions])
 
   useEffect(() => {
     handleResize()
@@ -72,7 +80,7 @@ export function useSizes(
       step?.bypassElem
     )
     setIsHighlightingObserved(hasHighligtedElems)
-    setdDimensions(dimesions)
+    setDimensions(dimesions)
     setObserving(false)
   }
 

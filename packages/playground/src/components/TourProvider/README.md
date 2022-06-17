@@ -1366,3 +1366,81 @@ function DemoThreshold() {
   <DemoThreshold />
 </TourProvider>
 ```
+
+### Debug #462
+
+[#462](https://github.com/elrumordelaluz/reactour/issues/462)
+
+```jsx
+import { useEffect, useState, useRef } from 'react'
+import { useTour } from '@reactour/tour'
+import { useIntersectionObserver } from '../hooks'
+
+const steps = [
+  {
+    selector: '#first',
+    content: 'This is my first Step',
+  },
+  {
+    selector: '#second',
+    content: 'This is my second Step',
+  },
+  {
+    selector: '#third',
+    content: 'This is my third Step',
+  },
+]
+
+const Temp = () => {
+  const { setIsOpen } = useTour()
+  // useEffect(() => {
+  //   setIsOpen(true)
+  // }, [setIsOpen])
+  return null
+}
+
+function Debug462() {
+  const [v, setV] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setV(true)
+    }, 2000)
+  }, [])
+
+  return (
+    <div className="App">
+      <div
+        style={{
+          height: '600px',
+        }}
+      ></div>
+      <div class="a">aaa</div>
+      {true && <div class="b">bbb</div>}
+      <TourProvider
+        currentStep={0}
+        disableKeyboardNavigation={true}
+        steps={[
+          {
+            selector: '.a',
+            content: 'infinitely scroll',
+            highlightedSelectors: ['.a', '.b'],
+            mutationObservables: ['.a', '.b'],
+          },
+        ]}
+        scrollSmooth={true}
+        styles={{
+          popover: base => ({
+            ...base,
+            width: '320px',
+          }),
+        }}
+      >
+        <Temp />
+      </TourProvider>
+    </div>
+  )
+}
+
+;<Debug462 />
+```

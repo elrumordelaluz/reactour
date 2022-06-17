@@ -80,3 +80,16 @@
   height: 1200px;
   flex-grow: 1;
 }
+
+.a {
+  /* display: none; */
+  background-color: blue;
+}
+.b {
+  position: relative;
+  left: 200px;
+  top: 200px;
+  width: 500px;
+  background-color: red;
+  height: 2000px;
+}
