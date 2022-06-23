@@ -472,6 +472,10 @@ Show or hide the _Close_ button inside _Popover_.
 
 Show or hide the _Badge_ inside _Popover_.
 
+### `showDots?: boolean`
+
+Show or hide _dots_ navigation inside _Popover_.
+
 ### `scrollSmooth?: boolean`
 
 Activate `smooth` scroll behavior when steps are outside viewport.

@@ -53,6 +53,7 @@ export type PopoverContentProps = {
   showPrevNextButtons?: boolean
   showCloseButton?: boolean
   showBadge?: boolean
+  showDots?: boolean
   nextButton?: (props: BtnFnProps) => void
   prevButton?: (props: BtnFnProps) => void
   disableDotsNavigation?: boolean

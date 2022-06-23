@@ -429,6 +429,7 @@ const [values, setValues] = useState({
   close: true,
   nav: true,
   prevNext: true,
+  dots: true,
 })
 
 function toggleKeys(key) {
@@ -446,6 +447,7 @@ function toggleKeys(key) {
   showCloseButton={values.close}
   showNavigation={values.nav}
   showPrevNextButtons={values.prevNext}
+  showDots={values.dots}
 >
   <Placeholder demoId={demoId}>
     {' '}
@@ -480,6 +482,14 @@ function toggleKeys(key) {
         checked={values.prevNext}
       />
       Prev and Next buttons
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        onChange={e => toggleKeys('dots')}
+        checked={values.dots}
+      />
+      Dots
     </label>
   </Placeholder>
 </TourProvider>
