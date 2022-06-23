@@ -14,6 +14,7 @@ const Navigation: React.FC<NavigationProps> = ({
   nextButton,
   prevButton,
   disableDots,
+  hideDots,
   hideButtons,
   disableAll,
   rtl,
@@ -88,25 +89,27 @@ const Navigation: React.FC<NavigationProps> = ({
           <Button kind="prev" />
         )
       ) : null}
-      <div css={getStyles('navigation', {})}>
-        {Array.from({ length: stepsLength }, (_, i) => i).map(index => {
-          return (
-            <button
-              css={getStyles('dot', {
-                current: index === currentStep,
-                disabled: disableDots || disableAll,
-              })}
-              onClick={() => {
-                if (!disableDots && !disableAll) setCurrentStep(index)
-              }}
-              key={`navigation_dot_${index}`}
-              aria-label={
-                steps[index]?.navDotAriaLabel || `Go to step ${index + 1}`
-              }
-            />
-          )
-        })}
-      </div>
+      {!hideDots ? (
+        <div css={getStyles('navigation', {})}>
+          {Array.from({ length: stepsLength }, (_, i) => i).map(index => {
+            return (
+              <button
+                css={getStyles('dot', {
+                  current: index === currentStep,
+                  disabled: disableDots || disableAll,
+                })}
+                onClick={() => {
+                  if (!disableDots && !disableAll) setCurrentStep(index)
+                }}
+                key={`navigation_dot_${index}`}
+                aria-label={
+                  steps[index]?.navDotAriaLabel || `Go to step ${index + 1}`
+                }
+              />
+            )
+          })}
+        </div>
+      ) : null}
       {!hideButtons ? (
         nextButton && typeof nextButton === 'function' ? (
           nextButton({
