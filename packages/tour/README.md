@@ -126,6 +126,10 @@ Allow to reenable the interaction for this specific step, when `disableInteracti
 
 Action fired when the _Tour_ arrives in this step.
 
+#### `actionAfter?: (elem: Element | null) => void`
+
+Action fired when the _Tour_ leaves this step.
+
 #### `disableActions?: boolean`
 
 Allow to disable all possible actions (interaction with _Mask_, _Navigation Arrows_, _Navigation Dots_, _Close_ button and keyboard events) when the _Tour_ is in this step.

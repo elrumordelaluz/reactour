@@ -1454,3 +1454,52 @@ function Debug462() {
 
 ;<Debug462 />
 ```
+
+### ActionAfter #102
+
+[#462](https://github.com/elrumordelaluz/reactour/issues/102)
+
+```jsx
+import { useEffect, useState, useRef } from 'react'
+import { useTour } from '@reactour/tour'
+import { useIntersectionObserver } from '../hooks'
+import { Placeholder } from '../utils'
+
+const demoId = 'actionAfter'
+const steps = [
+  {
+    selector: `[data-tour="step-1-${demoId}"]`,
+    action: target => {
+      target.classList.add('active')
+    },
+    actionAfter: target => {
+      target.classList.remove('active')
+    },
+    content: 'This is my first Step',
+  },
+  {
+    selector: `[data-tour="step-2-${demoId}"]`,
+    action: target => {
+      target.classList.add('active')
+    },
+    actionAfter: target => {
+      target.classList.remove('active')
+    },
+    content: <p>Play beach ball all day long!</p>,
+  },
+  {
+    selector: `[data-tour="step-3-${demoId}"]`,
+    action: target => {
+      target.classList.add('active')
+    },
+    actionAfter: target => {
+      target.classList.remove('active')
+    },
+    content: <p>Then, a deliciuos ice cream!</p>,
+  },
+]
+
+;<TourProvider steps={steps}>
+  <Placeholder demoId={demoId} />
+</TourProvider>
+```

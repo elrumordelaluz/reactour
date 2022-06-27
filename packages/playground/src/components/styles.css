@@ -93,3 +93,9 @@
   background-color: red;
   height: 2000px;
 }
+
+.active * {
+  stroke: rgb(188, 232, 12);
+  fill: none;
+  stroke-width: 3px;
+}

@@ -90,6 +90,12 @@ const Tour: React.FC<TourProps> = ({
     if (step?.disableActions !== undefined) {
       setDisabledActions(step?.disableActions)
     }
+
+    return () => {
+      if (step?.actionAfter && typeof step?.actionAfter === 'function') {
+        step?.actionAfter(target)
+      }
+    }
   }, [step])
 
   const popoverPosition = transition

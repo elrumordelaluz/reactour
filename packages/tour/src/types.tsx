@@ -123,6 +123,7 @@ export type StepType = {
   navDotAriaLabel?: string
   stepInteraction?: boolean
   action?: (elem: Element | null) => void
+  actionAfter?: (elem: Element | null) => void
   disableActions?: boolean
   padding?: Padding
   bypassElem?: boolean
