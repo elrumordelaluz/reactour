@@ -10,7 +10,7 @@ const sizes = {
   left: 0,
 }
 ;<>
-  <button onClick={() => setIsOpen((o) => !o)}>
+  <button onClick={() => setIsOpen(o => !o)}>
     {isOpen ? 'Hide' : 'Show'} Popover
   </button>
   {isOpen ? (
@@ -34,7 +34,7 @@ import { useState } from 'react'
 const [isOpen, setIsOpen] = useState(false)
 
 ;<>
-  <button onClick={() => setIsOpen((o) => !o)}>
+  <button onClick={() => setIsOpen(o => !o)}>
     {isOpen ? 'Hide' : 'Show'} Popover
   </button>
   {isOpen ? (
@@ -64,7 +64,7 @@ const { w: windowWidth, h: windowHeight } = getWindow()
 const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState({ x: null, y: null })
 
-  const updateMousePosition = (ev) => {
+  const updateMousePosition = ev => {
     setMousePosition({ x: ev.clientX, y: ev.clientY })
   }
 
@@ -80,7 +80,7 @@ const useMousePosition = () => {
 const { x, y } = useMousePosition()
 
 ;<>
-  <button onClick={() => setIsOpen((o) => !o)}>
+  <button onClick={() => setIsOpen(o => !o)}>
     {isOpen ? 'Hide' : 'Show'} Popover
   </button>
   {isOpen ? (
@@ -147,7 +147,7 @@ useEffect(() => {
   >
     Element followed by a Popover. Drag me!
     <hr style={{ border: 0, borderBottom: '1px solid rgba(0,0,0,.3)' }} />
-    <button onClick={() => setIsOpen((o) => !o)}>
+    <button onClick={() => setIsOpen(o => !o)}>
       {isOpen ? 'Hide' : 'Show'} Popover
     </button>
   </motion.div>
@@ -186,7 +186,7 @@ useEffect(() => {
   }
 }, [setUpdater])
 ;<>
-  <button onClick={() => setIsOpen((o) => !o)} style={{ marginBottom: '1em' }}>
+  <button onClick={() => setIsOpen(o => !o)} style={{ marginBottom: '1em' }}>
     {isOpen ? 'Hide' : 'Show'} Popovers
   </button>{' '}
   <br />
@@ -251,12 +251,10 @@ function doArrow(position, verticalAlign, horizontalAlign) {
   const isVertical = position === 'top' || position === 'bottom'
   const spaceFromSide = 10
   const obj = {
-    [isVertical ? 'borderLeft' : 'borderTop']: `${
-      width / 2
-    }px solid transparent`, // CSS Triangle width
-    [isVertical ? 'borderRight' : 'borderBottom']: `${
-      width / 2
-    }px solid transparent`, // CSS Triangle width
+    [isVertical ? 'borderLeft' : 'borderTop']: `${width /
+      2}px solid transparent`, // CSS Triangle width
+    [isVertical ? 'borderRight' : 'borderBottom']: `${width /
+      2}px solid transparent`, // CSS Triangle width
     [`border${position[0].toUpperCase()}${position.substring(
       1
     )}`]: `${height}px solid ${color}`, // CSS Triangle height
@@ -308,7 +306,7 @@ useEffect(() => {
   >
     Element followed by a Popover. Drag me!
     <hr style={{ border: 0, borderBottom: '1px solid rgba(0,0,0,.3)' }} />
-    <button onClick={() => setIsOpen((o) => !o)}>
+    <button onClick={() => setIsOpen(o => !o)}>
       {isOpen ? 'Hide' : 'Show'} Popover
     </button>
   </motion.div>
@@ -355,7 +353,7 @@ const entry = useIntersectionObserver(ref, {})
 const isVisible = entry && !!entry.isIntersecting
 
 ;<div ref={wrapperRef}>
-  <button onClick={() => setIsOpen((o) => !o)}>
+  <button onClick={() => setIsOpen(o => !o)}>
     {isOpen ? 'Hide' : 'Show'} Popover
   </button>
 
@@ -384,7 +382,7 @@ const isVisible = entry && !!entry.isIntersecting
       >
         <Mask
           sizes={sizes}
-          styles={{ maskWrapper: (base) => ({ ...base, zIndex: 99999 }) }}
+          styles={{ maskWrapper: base => ({ ...base, zIndex: 99999 }) }}
           onClick={() => {
             setIsOpen(false)
           }}

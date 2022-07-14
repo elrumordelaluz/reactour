@@ -11,6 +11,8 @@ let initialState = {
   width: 0,
   windowWidth: 0,
   windowHeight: 0,
+  x: 0,
+  y: 0,
 }
 
 export function useSizes(
@@ -185,5 +187,7 @@ function getHighlightedRect(
     windowWidth,
     windowHeight,
     hasHighligtedElems,
+    x: attrs.x,
+    y: attrs.y,
   }
 }

@@ -1,6 +1,7 @@
 import { Dispatch, MouseEventHandler, ReactElement, ComponentType } from 'react'
-import { Position, PopoverStylesObj } from '@reactour/popover'
+import { Position, PopoverStylesObj, PositionProps } from '@reactour/popover'
 import { MaskStylesObj } from '@reactour/mask'
+import { RectResult } from '@reactour/utils'
 import { PopoverComponentsType } from './components/index'
 import { StylesObj } from './styles'
 
@@ -90,6 +91,10 @@ export type TourProps = SharedProps &
     setSteps: Dispatch<React.SetStateAction<StepType[]>>
     disabledActions: boolean
     setDisabledActions: Dispatch<React.SetStateAction<boolean>>
+    onTransition?: (
+      postionsProps: PositionProps,
+      prev: RectResult
+    ) => 'top' | 'right' | 'bottom' | 'left' | 'center' | [number, number]
   }
 
 type BadgeProps = {

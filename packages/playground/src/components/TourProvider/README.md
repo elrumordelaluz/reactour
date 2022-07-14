@@ -188,7 +188,13 @@ import { Placeholder, doSteps } from '../utils'
 const demoId = 'scroll-smooth'
 const steps = doSteps(demoId)
 
-;<TourProvider steps={steps} scrollSmooth>
+;<TourProvider
+  steps={steps}
+  scrollSmooth
+  onTransition={(pos, prev) => {
+    return [prev.x, prev.y]
+  }}
+>
   <Placeholder demoId={demoId} className="scroll-demo" />
 </TourProvider>
 ```

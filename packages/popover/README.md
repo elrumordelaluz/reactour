@@ -70,7 +70,7 @@ type Position =
   | 'left'
   | 'center'
   | [number, number]
-  | ((postionsProps: PositionProps) => Position)
+  | ((postionsProps: PositionProps, prevRect: RectResult) => Position)
 
 type PositionProps = {
   bottom: number

@@ -36,6 +36,10 @@ const Tour: React.FC<TourProps> = ({
     showNavigationScreenReaders: true,
   },
   ContentComponent,
+  onTransition = () => {
+    // const arr: [number, number] = [prev.x, prev.y]
+    return 'center'
+  },
   ...popoverProps
 }) => {
   const step = steps[currentStep]
@@ -99,7 +103,7 @@ const Tour: React.FC<TourProps> = ({
   }, [step])
 
   const popoverPosition = transition
-    ? 'center'
+    ? onTransition
     : step?.position
     ? step?.position
     : position
@@ -124,7 +128,7 @@ const Tour: React.FC<TourProps> = ({
         />
 
         <Mask
-          sizes={sizes}
+          sizes={transition ? initialState : sizes}
           onClick={maskClickHandler}
           styles={{
             highlightedArea: (base: any) => ({
@@ -133,7 +137,7 @@ const Tour: React.FC<TourProps> = ({
             }),
             ...styles,
           }}
-          padding={maskPadding}
+          padding={transition ? 0 : maskPadding}
           highlightedAreaClassName={highlightedMaskClassName}
           className={maskClassName}
           onClickHighlighted={onClickHighlighted}
@@ -217,4 +221,15 @@ function getPadding(padding?: Padding) {
     popoverPadding: padding,
     wrapperPadding: 0,
   }
+}
+
+const initialState = {
+  bottom: 0,
+  height: 0,
+  left: 0,
+  right: 0,
+  top: 0,
+  width: 0,
+  x: 0,
+  y: 0,
 }

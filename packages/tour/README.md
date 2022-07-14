@@ -511,6 +511,22 @@ Configure generic accessibility related attributes like [aria-labelledby](https:
 
 Option to navigate and show _Navigation_ in right-to-left mode
 
+### `onTransition?: PositionType`
+
+Function to control the behavior of _Popover_ when is transitioning/scrolling from one step to another, calculating with _Popover_ next position and previous one
+
+<details>
+  <summary><small>Type details</small></summary>
+
+```ts
+type PositionType = (
+  postionsProps: PositionProps,
+  prev: RectResult
+) => 'top' | 'right' | 'bottom' | 'left' | 'center' | [number, number]
+```
+
+</details>
+
 ### `ContentComponent?: ComponentType<PopoverContentProps>`
 
 Completelly custom component to rendere inside the _Popover_.

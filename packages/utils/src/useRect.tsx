@@ -3,24 +3,10 @@ import { useEffect, useCallback, useState } from 'react'
 export function getRect<T extends Element>(
   element?: T | undefined | null
 ): RectResult {
-  let rect: RectResult = {
-    bottom: 0,
-    height: 0,
-    left: 0,
-    right: 0,
-    top: 0,
-    width: 0,
-  }
+  let rect: RectResult = initialState
   if (element) {
     const domRect: DOMRect = element.getBoundingClientRect()
-    rect = {
-      bottom: domRect.bottom,
-      height: domRect.height,
-      left: domRect.left,
-      right: domRect.right,
-      top: domRect.top,
-      width: domRect.width,
-    }
+    rect = domRect
   }
   return rect
 }
@@ -70,6 +56,8 @@ const initialState = {
   right: 0,
   top: 0,
   width: 0,
+  x: 0,
+  y: 0,
 }
 
 export type RectResult = {
@@ -79,4 +67,6 @@ export type RectResult = {
   right: number
   top: number
   width: number
+  x: number
+  y: number
 }

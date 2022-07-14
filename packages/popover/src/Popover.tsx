@@ -34,10 +34,8 @@ const Popover: React.FC<PopoverProps> = ({
   const { w: windowWidth, h: windowHeight } = getWindow()
   const getStyles = stylesMatcher(styles)
 
-  const { width: helperWidth, height: helperHeight } = useRect(
-    helperRef,
-    refresher
-  )
+  const helperRect = useRect(helperRef, refresher)
+  const { width: helperWidth, height: helperHeight } = helperRect
 
   const targetLeft = sizes?.left
   const targetTop = sizes?.top
@@ -46,16 +44,21 @@ const Popover: React.FC<PopoverProps> = ({
 
   const position =
     providedPosition && typeof providedPosition === 'function'
-      ? providedPosition({
-          width: helperWidth,
-          height: helperHeight,
-          windowWidth,
-          windowHeight,
-          top: targetTop,
-          left: targetLeft,
-          right: targetRight,
-          bottom: targetBottom,
-        })
+      ? providedPosition(
+          {
+            width: helperWidth,
+            height: helperHeight,
+            windowWidth,
+            windowHeight,
+            top: targetTop,
+            left: targetLeft,
+            right: targetRight,
+            bottom: targetBottom,
+            x: sizes.x,
+            y: sizes.y,
+          },
+          helperRect
+        )
       : providedPosition
 
   const available: PositionsObjectType = {
@@ -171,7 +174,7 @@ export type PopoverProps = {
 
 export type PositionType =
   | Position
-  | ((postionsProps: PositionProps) => Position)
+  | ((postionsProps: PositionProps, prevRect: RectResult) => Position)
 
 export type PositionProps = RectResult & {
   windowWidth: number

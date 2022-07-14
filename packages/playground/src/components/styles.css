@@ -10,11 +10,15 @@
 }
 
 .scroll-demo {
-  width: 100px;
+  width: 100%;
+  flex-direction: column;
 }
 
 .scroll-demo .icon {
   margin-bottom: 200px;
+}
+.scroll-demo .icon:nth-child(3) {
+  align-self: flex-end;
 }
 
 .custom-btn {
