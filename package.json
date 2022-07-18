@@ -81,14 +81,14 @@
     "styled-components": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
-    "@rooks/use-mutation-observer": "4.11.2",
-    "classnames": "2.3.1",
+    "@rooks/use-mutation-observer": "^4.11.2",
+    "classnames": "^2.3.1",
     "focus-outline-manager": "^1.0.2",
-    "lodash.debounce": "4.0.8",
-    "lodash.pick": "4.4.0",
-    "prop-types": "15.7.2",
-    "react-focus-lock": "2.5.2",
-    "scroll-smooth": "1.1.1",
-    "scrollparent": "2.0.1"
+    "lodash.debounce": "^4.0.8",
+    "lodash.pick": "^4.4.0",
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^2.5.2",
+    "scroll-smooth": "^1.1.1",
+    "scrollparent": "^2.0.1"
   }
 }
