@@ -1431,8 +1431,8 @@ function Debug462() {
           height: '600px',
         }}
       ></div>
-      <div class="a">aaa</div>
-      {true && <div class="b">bbb</div>}
+      <div className="a">aaa</div>
+      {true && <div className="b">bbb</div>}
       <TourProvider
         currentStep={0}
         disableKeyboardNavigation={true}
