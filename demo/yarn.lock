@@ -2530,10 +2530,10 @@
     "@emotion/react" "11.4.1"
     "@reactour/utils" "*"
 
-"@reactour/tour@2.13.0":
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/@reactour/tour/-/tour-2.13.0.tgz#fb3725708fbca2f76ce6c1037aed59b15a511395"
-  integrity sha512-M4CmOKdNfEzc3qhmJWOUZI3yk3iwEocQWAka2yka0okVsAXIgX4JoCCOQUBI0Qx+xxi0LbXKxznugPf3sYXjoA==
+"@reactour/tour@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@reactour/tour/-/tour-3.0.0.tgz#771490bb0ac585520e0de13488a454efe32120f4"
+  integrity sha512-brmtrQCi1TIyjfVdFqTI+gW53Tv4uXWPKN/bLYVYaHgKP7sR6vyIs2pC1Hf6XFgKSrsh4wldFPZIsw3k6zWn/w==
   dependencies:
     "@react-aria/focus" "3.6.1"
     "@reactour/mask" "*"
@@ -4006,12 +4006,7 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001181:
-  version "1.0.30001191"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001191.tgz#bacb432b6701f690c8c5f7c680166b9a9f0843d9"
-  integrity sha512-xJJqzyd+7GCJXkcoBiQ1GuxEiOBCLQ0aVW9HMekifZsAVGdj5eJ4mFB9fEhSHipq9IOk/QXFJUiIr9lZT+EsGw==
-
-caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001181, caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001373:
   version "1.0.30001375"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001375.tgz#8e73bc3d1a4c800beb39f3163bf0190d7e5d7672"
   integrity sha512-kWIMkNzLYxSvnjy0hL8w1NOaWNr2rn39RTAVyIwcw8juu60bZDWiF1/loOYANzjtJmy6qPgNmn38ro5Pygagdw==
