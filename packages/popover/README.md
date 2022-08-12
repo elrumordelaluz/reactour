@@ -8,12 +8,10 @@
 ## Install
 
 ```zsh
-npm i -S @reactour/popover @emotion/react
+npm i -S @reactour/popover
 # or
-yarn add @reacmask/popover @emotion/react
+yarn add @reacmask/popover
 ```
-
-> From `v0.3.0` `@emotion/react` is a Peer Dependency
 
 ## Usage
 

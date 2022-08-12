@@ -1,16 +1,7 @@
-import { CSSObject } from '@emotion/react'
-
-export type StyleFn = (props: StyleFnProps, state?: StyleFnProps) => CSSObject
-
-export type StyleFnProps = CSSObject &
-  Partial<{
-    x: number
-    y: number
-    windowWidth: number
-    windowHeight: number
-    maskID: string
-    clipID: string
-  }>
+export type StyleFn = (
+  props: { [key: string]: any },
+  state?: { [key: string]: any }
+) => React.CSSProperties
 
 export type Styles = {
   maskWrapper: StyleFn
@@ -86,7 +77,7 @@ export const defaultStyles: Styles = {
 export type getStylesType = (key: StylesKeys, extra?: any) => {}
 
 export function stylesMatcher(styles: StylesObj) {
-  return (key: StyleKey, state: {}): CSSObject => {
+  return (key: StyleKey, state: {}): any => {
     const base = defaultStyles[key](state)
     const custom = styles[key]
     return custom ? custom(base, state) : base

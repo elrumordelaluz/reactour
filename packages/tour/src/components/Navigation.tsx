@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React, { Dispatch, ComponentType } from 'react'
 import { StylesObj, stylesMatcher } from '../styles'
 import { StepType, BtnFnProps, NavButtonProps } from '../types'
@@ -45,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
     return (
       <button
-        css={getStyles('button', {
+        style={getStyles('button', {
           kind,
           disabled: disableAll
             ? disableAll
@@ -75,7 +72,7 @@ const Navigation: React.FC<NavigationProps> = ({
   }
 
   return (
-    <div css={getStyles('controls', {})} dir={rtl ? 'rtl' : 'ltr'}>
+    <div style={getStyles('controls', {})} dir={rtl ? 'rtl' : 'ltr'}>
       {!hideButtons ? (
         prevButton && typeof prevButton === 'function' ? (
           prevButton({
@@ -90,11 +87,11 @@ const Navigation: React.FC<NavigationProps> = ({
         )
       ) : null}
       {!hideDots ? (
-        <div css={getStyles('navigation', {})}>
+        <div style={getStyles('navigation', {})}>
           {Array.from({ length: stepsLength }, (_, i) => i).map(index => {
             return (
               <button
-                css={getStyles('dot', {
+                style={getStyles('dot', {
                   current: index === currentStep,
                   disabled: disableDots || disableAll,
                 })}
@@ -162,7 +159,7 @@ export const DefaultArrow: React.FC<ArrowProps> = ({
   return (
     <svg
       viewBox="0 0 18.4 14.4"
-      css={getStyles('arrow', { inverted, disabled })}
+      style={getStyles('arrow', { inverted, disabled })}
     >
       <path
         d={

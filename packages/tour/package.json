@@ -20,7 +20,6 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "@emotion/react": "^11",
     "react": "16.x || 17.x || 18.x"
   },
   "husky": {
@@ -72,7 +71,6 @@
     "joyride",
     "tourist-guide",
     "product-intro",
-    "presentation",
-    "emotion"
+    "presentation"
   ]
 }

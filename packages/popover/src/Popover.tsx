@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React, { useRef } from 'react'
 import {
   useRect,
@@ -144,7 +141,7 @@ const Popover: React.FC<PopoverProps> = ({
 
   return (
     <div
-      css={{
+      style={{
         ...getStyles('popover', {
           position: positionRef.current,
           verticalAlign: verticalAlignRef.current,

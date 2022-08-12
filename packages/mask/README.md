@@ -8,12 +8,10 @@
 ## Install
 
 ```zsh
-npm i -S @reactour/mask @emotion/react
+npm i -S @reactour/mask
 # or
-yarn add @reactour/mask @emotion/react
+yarn add @reactour/mask
 ```
-
-> From `v0.3.0` `@emotion/react` is a Peer Dependency
 
 ## Usage
 

@@ -11,12 +11,10 @@
 ## Install
 
 ```zsh
-npm i -S @reactour/tour @emotion/react
+npm i -S @reactour/tour
 # or
-yarn add @reactour/tour @emotion/react
+yarn add @reactour/tour
 ```
-
-> From `v2.3.0` `@emotion/react` is a Peer Dependency
 
 ## Usage
 

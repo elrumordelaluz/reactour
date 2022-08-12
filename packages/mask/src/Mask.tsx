@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React, { MouseEventHandler } from 'react'
 import { StylesObj, stylesMatcher } from './styles'
 import { safe, getWindow, getPadding, RectResult } from '@reactour/utils'
@@ -39,7 +36,7 @@ const Mask: React.FC<MaskProps> = ({
 
   return (
     <div
-      css={getStyles('maskWrapper', {})}
+      style={getStyles('maskWrapper', {})}
       onClick={onClick}
       className={className}
     >
@@ -47,7 +44,7 @@ const Mask: React.FC<MaskProps> = ({
         width={windowWidth}
         height={windowHeight}
         xmlns="http://www.w3.org/2000/svg"
-        css={getStyles('svgWrapper', {
+        style={getStyles('svgWrapper', {
           windowWidth,
           windowHeight,
           wpx,
@@ -64,7 +61,7 @@ const Mask: React.FC<MaskProps> = ({
               fill="white"
             />
             <rect
-              css={maskAreaStyles}
+              style={maskAreaStyles}
               // Needs for Safari, as we pass any value, css rx will apply.
               rx={maskAreaStyles.rx ? 1 : undefined}
             />
@@ -80,7 +77,7 @@ const Mask: React.FC<MaskProps> = ({
 
         {/* The actual Mask */}
         <rect
-          css={getStyles('maskRect', {
+          style={getStyles('maskRect', {
             windowWidth,
             windowHeight,
             maskID,
@@ -88,7 +85,7 @@ const Mask: React.FC<MaskProps> = ({
         />
         {/* The clickable area */}
         <rect
-          css={getStyles('clickArea', {
+          style={getStyles('clickArea', {
             windowWidth,
             windowHeight,
             top,
@@ -99,7 +96,7 @@ const Mask: React.FC<MaskProps> = ({
           })}
         />
         <rect
-          css={getStyles('highlightedArea', {
+          style={getStyles('highlightedArea', {
             x: left,
             y: top,
             width,

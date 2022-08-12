@@ -20,7 +20,6 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
-    "@emotion/react": "^11",
     "react": "16.x || 17.x || 18.x"
   },
   "husky": {
@@ -61,7 +60,6 @@
     "react",
     "mask",
     "svg",
-    "emotion",
     "highligted area"
   ]
 }

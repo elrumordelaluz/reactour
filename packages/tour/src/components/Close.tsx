@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from '@emotion/react'
 import React from 'react'
 import { StylesObj, stylesMatcher } from '../styles'
 
@@ -13,7 +10,10 @@ const Close: React.FC<CloseProps> = ({
   const getStyles = stylesMatcher(styles)
   return (
     <button
-      css={{ ...getStyles('button', {}), ...getStyles('close', { disabled }) }}
+      style={{
+        ...getStyles('button', {}),
+        ...getStyles('close', { disabled }),
+      }}
       onClick={onClick}
       {...props}
     >
