@@ -253,6 +253,21 @@ export default function Demo({ isShowingMore, toggleShowMore }) {
 
         {isShowingMore && (
           <Row data-tut="reactour__highlighted-absolute-child_2">
+            <link
+              rel="preload"
+              as="image"
+              href="https://cdn.dribbble.com/users/235991/screenshots/1931264/house8.png"
+            />
+            <link
+              rel="preload"
+              as="image"
+              href="https://cdn.dribbble.com/users/235991/screenshots/1972953/greekhouse.png"
+            />
+            <link
+              rel="preload"
+              as="image"
+              href="https://cdn.dribbble.com/users/235991/screenshots/1919911/house_french.png"
+            />
             <Box>
               <Link
                 href="https://dribbble.com/shots/1931264-Lean-Green"
