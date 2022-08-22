@@ -2530,10 +2530,10 @@
     "@emotion/react" "11.4.1"
     "@reactour/utils" "*"
 
-"@reactour/tour@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@reactour/tour/-/tour-3.0.0.tgz#771490bb0ac585520e0de13488a454efe32120f4"
-  integrity sha512-brmtrQCi1TIyjfVdFqTI+gW53Tv4uXWPKN/bLYVYaHgKP7sR6vyIs2pC1Hf6XFgKSrsh4wldFPZIsw3k6zWn/w==
+"@reactour/tour@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@reactour/tour/-/tour-3.0.1.tgz#99d0caeacd2d58575b803f29f320a9c3bb43171a"
+  integrity sha512-aCVJ8EOPpv/GuzETmhAmF183w7WPCFDJdyDr4qR0kPxXOf6ajNRiQqNkpF++4TuNT1kRFhX8bObqBqxC2ZLHZQ==
   dependencies:
     "@react-aria/focus" "3.6.1"
     "@reactour/mask" "*"
