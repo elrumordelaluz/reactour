@@ -6,6 +6,7 @@ export type StylesKeys =
   | 'arrow'
   | 'dot'
   | 'close'
+  | 'svg'
 
 export type StylesObj = {
   [key in StylesKeys]?: StyleFn
@@ -24,6 +25,7 @@ export type Styles = {
   arrow: StyleFn
   dot: StyleFn
   close: StyleFn
+  svg: StyleFn
 }
 
 export type StyleKey = keyof Styles
@@ -65,16 +67,19 @@ export const defaultStyles: Styles = {
     background: 'none',
     cursor: disabled ? 'not-allowed' : 'pointer',
   }),
+  svg: () => ({
+    display: 'block',
+  }),
   arrow: ({ disabled }) => ({
     color: disabled ? '#caccce' : '#646464',
     width: 16,
     height: 12,
     flex: '0 0 16px',
-    '&:hover': {
-      color: disabled ? '#caccce' : '#000',
-    },
+    // '&:hover': {
+    //   color: disabled ? '#caccce' : '#000',
+    // },
   }),
-  dot: ({ current, disabled, showNumber }) => ({
+  dot: ({ current, disabled }) => ({
     counterIncrement: 'dot',
     width: 8,
     height: 8,
@@ -88,23 +93,23 @@ export const defaultStyles: Styles = {
     transform: `scale(${current ? 1.25 : 1})`,
     color: current ? 'var(--reactour-accent, #007aff)' : '#caccce',
     background: current ? 'var(--reactour-accent, #007aff)' : 'none',
-    '&:before': {
-      content: 'counter(dot)',
-      position: 'absolute',
-      bottom: 'calc(100% + 0.25em)',
-      left: '50%',
-      opacity: 0,
-      transform: 'translate(-50%, 1em)',
-      transition: '0.3s',
-      display: showNumber ? 'block' : 'none',
-    },
-    '&:hover': {
-      backgroundColor: 'currentColor',
-      '&:before': {
-        opacity: 0.5,
-        transform: 'translate(-50%, -2px)',
-      },
-    },
+    // '&:before': {
+    //   content: 'counter(dot)',
+    //   position: 'absolute',
+    //   bottom: 'calc(100% + 0.25em)',
+    //   left: '50%',
+    //   opacity: 0,
+    //   transform: 'translate(-50%, 1em)',
+    //   transition: '0.3s',
+    //   display: showNumber ? 'block' : 'none',
+    // },
+    // '&:hover': {
+    //   backgroundColor: 'currentColor',
+    //   '&:before': {
+    //     opacity: 0.5,
+    //     transform: 'translate(-50%, -2px)',
+    //   },
+    // },
   }),
   close: ({ disabled }) => ({
     position: 'absolute',
@@ -113,9 +118,9 @@ export const defaultStyles: Styles = {
     width: 9,
     height: 9,
     color: disabled ? '#caccce' : '#5e5e5e',
-    '&:hover': {
-      color: disabled ? '#caccce' : '#000',
-    },
+    // '&:hover': {
+    //   color: disabled ? '#caccce' : '#000',
+    // },
   }),
 }
 
