@@ -1,0 +1,9 @@
+.reactour__close-button {
+  color: var(--rt-close-btn);
+}
+.reactour__close-button:hover {
+  color: var(--rt-close-btn-disabled);
+}
+.reactour__close-button svg {
+  display: block;
+}

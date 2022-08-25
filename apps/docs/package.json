@@ -1,0 +1,27 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3201",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reactour/utils": "*",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "ui": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.13",
+    "@types/react": "18.0.17",
+    "config": "*",
+    "eslint": "8.22.0",
+    "next-transpile-modules": "9.0.0",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
+  }
+}

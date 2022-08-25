@@ -1,63 +1,24 @@
 {
+  "name": "@reactour/tour",
   "version": "3.0.1",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "engines": {
-    "node": ">=10"
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "config": "*",
+    "tsconfig": "*",
+    "typescript": "^4.7.4"
   },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+  "dependencies": {
+    "@react-aria/focus": "3.7.0",
+    "@reactour/mask": "*",
+    "@reactour/popover": "*",
+    "@reactour/utils": "*"
   },
   "peerDependencies": {
     "react": "16.x || 17.x || 18.x"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "name": "@reactour/tour",
-  "author": "Lionel Tzatzkin",
-  "module": "dist/tour.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/tour.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/tour.esm.js",
-      "limit": "10 KB"
-    }
-  ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "7.0.8",
-    "@types/react": "18.0.6",
-    "@types/react-dom": "18.0.2",
-    "husky": "7.0.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "size-limit": "7.0.8",
-    "tsdx": "0.14.1",
-    "tslib": "2.4.0",
-    "typescript": "4.7.4"
-  },
-  "dependencies": {
-    "@react-aria/focus": "3.6.1",
-    "@reactour/mask": "*",
-    "@reactour/popover": "*",
-    "@reactour/utils": "*",
-    "@types/react": "17.0.39"
   },
   "keywords": [
     "react",
