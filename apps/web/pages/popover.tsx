@@ -42,7 +42,7 @@ function StaticPopover() {
   const sizes = initialSizes
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Hide' : 'Show'} Popover
       </button>
       {isOpen ? (
@@ -67,7 +67,7 @@ function CenterPopover() {
   }
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Hide' : 'Show'} Popover
       </button>
       {isOpen ? (
@@ -88,7 +88,7 @@ function DynamicPopoverPosition() {
   const { x, y } = useMousePosition()
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Hide' : 'Show'} Popover
       </button>
       {isOpen ? (
@@ -147,7 +147,7 @@ function AttachingDOMElem() {
       >
         Element followed by a Popover. Drag me!
         <hr style={{ border: 0, borderBottom: '1px solid rgba(0,0,0,.3)' }} />
-        <button onClick={() => setIsOpen((o) => !o)}>
+        <button onClick={() => setIsOpen(o => !o)}>
           {isOpen ? 'Hide' : 'Show'} Popover
         </button>
       </motion.div>
@@ -178,7 +178,7 @@ function MultiplePopovers() {
   return (
     <>
       <button
-        onClick={() => setIsOpen((o) => !o)}
+        onClick={() => setIsOpen(o => !o)}
         style={{ marginBottom: '1em' }}
       >
         {isOpen ? 'Hide' : 'Show'} Popovers
@@ -234,12 +234,10 @@ function doArrow(
       isVertical ? opositeSide[horizontalAlign] : verticalAlign
     }`]: height + spaceFromSide + 'px',
     [`--rtp-arrow-${opositeSide[position]}`]: -height + 2 + 'px',
-    [`--rtp-arrow-border-${isVertical ? 'left' : 'top'}`]: `${
-      width / 2
-    }px solid transparent`,
-    [`--rtp-arrow-border-${isVertical ? 'right' : 'bottom'}`]: `${
-      width / 2
-    }px solid transparent`,
+    [`--rtp-arrow-border-${isVertical ? 'left' : 'top'}`]: `${width /
+      2}px solid transparent`,
+    [`--rtp-arrow-border-${isVertical ? 'right' : 'bottom'}`]: `${width /
+      2}px solid transparent`,
     [`--rtp-arrow-border-${position}`]: `${height}px solid ${color}`,
   }
   return obj
@@ -290,7 +288,7 @@ function CustomPopoverStyles() {
       >
         Element followed by a Popover. Drag me!
         <hr style={{ border: 0, borderBottom: '1px solid rgba(0,0,0,.3)' }} />
-        <button onClick={() => setIsOpen((o) => !o)}>
+        <button onClick={() => setIsOpen(o => !o)}>
           {isOpen ? 'Hide' : 'Show'} Popover
         </button>
       </motion.div>
@@ -324,7 +322,7 @@ function CombinedWithMask() {
 
   return (
     <div ref={wrapperRef}>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Hide' : 'Show'} Popover
       </button>
 
@@ -354,7 +352,7 @@ function CombinedWithMask() {
           >
             <Mask
               sizes={sizes}
-              styles={{ maskWrapper: (base) => ({ ...base, zIndex: 99999 }) }}
+              styles={{ maskWrapper: base => ({ ...base, zIndex: 99999 }) }}
               onClick={() => {
                 setIsOpen(false)
               }}

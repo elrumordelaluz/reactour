@@ -42,7 +42,7 @@ function StaticMask() {
   }
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Close' : 'Open'} Mask
       </button>
       {isOpen ? <Mask sizes={sizes} onClick={() => setIsOpen(false)} /> : null}
@@ -84,7 +84,7 @@ function MoreMasks() {
   }
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Close' : 'Open'} Mask
       </button>
       {isOpen ? (
@@ -109,7 +109,7 @@ function DynamicMask() {
   const { x, y } = useMousePosition()
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Close' : 'Open'} Mask
       </button>
       {isOpen ? (
@@ -149,14 +149,14 @@ function MaskDOMElem() {
   return (
     <>
       <button
-        onClick={() => setIsOpen((o) => !o)}
+        onClick={() => setIsOpen(o => !o)}
         style={{ marginBottom: '1em' }}
       >
         {isOpen ? 'Close' : 'Open'} Mask to Highlight{' '}
         {elem === 'box' ? 'Box' : 'Paragraph'}
       </button>{' '}
       <br />
-      <button onClick={() => setElem((e) => (e === 'box' ? 'p' : 'box'))}>
+      <button onClick={() => setElem(e => (e === 'box' ? 'p' : 'box'))}>
         Switch to Highlight {elem === 'box' ? 'Paragraph' : 'Box'}
       </button>
       <p ref={refParagraph}>
@@ -196,7 +196,7 @@ function CustomStyles() {
 
   return (
     <>
-      <button onClick={() => setIsOpen((o) => !o)} ref={ref}>
+      <button onClick={() => setIsOpen(o => !o)} ref={ref}>
         {isOpen ? 'Close' : 'Open'} Mask
       </button>
       {isOpen ? (
@@ -218,8 +218,8 @@ function CustomStyles() {
             sizes={sizes}
             onClick={() => setIsOpen(false)}
             styles={{
-              maskWrapper: (base) => ({ ...base, color, opacity: 0.99 }),
-              maskArea: (base) => ({ ...base, rx: 10 }),
+              maskWrapper: base => ({ ...base, color, opacity: 0.99 }),
+              maskArea: base => ({ ...base, rx: 10 }),
               // @ts-ignore
               clickArea: (base, { top, left, width }) => {
                 console.log({ top, left, width })
@@ -311,7 +311,7 @@ function MultipleMasks() {
     const selectors = steps.map(({ selector }) =>
       document.querySelector(selector)
     )
-    setSizes(selectors.map((s) => getRect(s)))
+    setSizes(selectors.map(s => getRect(s)))
   }, [])
 
   useEffect(() => {
@@ -329,7 +329,7 @@ function MultipleMasks() {
   const isVisible = entry && !!entry.isIntersecting
   return (
     <div ref={ref}>
-      <button onClick={() => setIsOpen((o) => !o)}>
+      <button onClick={() => setIsOpen(o => !o)}>
         {isOpen ? 'Hide' : 'Show'} Dots
       </button>
       <p>

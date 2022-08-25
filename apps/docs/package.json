@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3201",
@@ -21,7 +21,7 @@
     "config": "*",
     "eslint": "8.22.0",
     "next-transpile-modules": "9.0.0",
-    "tsconfig": "*",
+    "@reactour/tsconfig": "*",
     "typescript": "^4.7.4"
   }
 }

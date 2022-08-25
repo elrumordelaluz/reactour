@@ -1,17 +1,15 @@
 import { Text, Spacer, Snippet, StyledSnippetPre } from '@nextui-org/react'
 import { TourProvider, ProviderProps, StepType } from '@reactour/tour'
 
-const Demo: React.FC<
-  React.PropsWithChildren<{
-    title?: string
-    description?: string
-    demoId: string
-    length?: number
-    customSteps?: StepType[]
-    providerProps?: Omit<ProviderProps, 'steps' | 'children'>
-    code?: string
-  }>
-> = ({
+const Demo: React.FC<React.PropsWithChildren<{
+  title?: string
+  description?: string
+  demoId: string
+  length?: number
+  customSteps?: StepType[]
+  providerProps?: Omit<ProviderProps, 'steps' | 'children'>
+  code?: string
+}>> = ({
   title,
   description,
   demoId,
@@ -64,7 +62,7 @@ const stepsContent = [
   <p>Play beach ball all day long!</p>,
   <p>Then, a deliciuos ice cream!</p>,
   <p>What about going to fish?</p>,
-  <p>Let's stay traveling!</p>,
+  <p>Let`&apos;s stay traveling!</p>,
 ]
 
 const Code: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {

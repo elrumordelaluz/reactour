@@ -173,7 +173,7 @@ type InViewArgs = {
   left: number
   bottom?: number
   right?: number
-  threshold?: { x: number, y: number } | number
+  threshold?: { x: number; y: number } | number
 }
 ```
 

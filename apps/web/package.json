@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3200",
@@ -25,8 +25,9 @@
     "@types/react": "18.0.17",
     "config": "*",
     "eslint": "8.22.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "next-transpile-modules": "9.0.0",
-    "tsconfig": "*",
+    "@reactour/tsconfig": "*",
     "typescript": "^4.7.4"
   }
 }

@@ -540,7 +540,7 @@ function AutoplayPlaceholder() {
     return () => {
       clearTimeout(timer)
     }
-  }, [isOpen, currentStep])
+  }, [isOpen, currentStep, setCurrentStep, steps.length])
 
   return (
     <Placeholder demoId="autoplay" length={5}>

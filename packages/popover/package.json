@@ -1,14 +1,16 @@
 {
   "name": "@reactour/popover",
-  "version": "1.0.1",
-  "main": "./index.tsx",
-  "types": "./index.tsx",
+  "version": "1.0.2",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "license": "MIT",
   "devDependencies": {
+    "@reactour/tsconfig": "*",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "config": "*",
-    "tsconfig": "*",
+    "tsup": "^6.2.2",
     "typescript": "^4.7.4"
   },
   "dependencies": {
@@ -17,6 +19,18 @@
   "peerDependencies": {
     "react": "16.x || 17.x || 18.x"
   },
+  "scripts": {
+    "build": "tsup index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup index.tsx --format esm,cjs --watch --dts --external react",
+    "lint": "TIMING=1 eslint **/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**"
+  ],
   "keywords": [
     "react",
     "popover",

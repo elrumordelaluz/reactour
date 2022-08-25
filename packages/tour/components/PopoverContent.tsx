@@ -26,8 +26,9 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
   showDots = true,
 }) => {
   const step = steps[currentStep]
-  const { Badge, Close, Content, Navigation, Arrow } =
-    defaultComponents(components)
+  const { Badge, Close, Content, Navigation, Arrow } = defaultComponents(
+    components
+  )
 
   const badge =
     badgeContent && typeof badgeContent === 'function'

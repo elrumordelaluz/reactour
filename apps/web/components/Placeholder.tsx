@@ -3,9 +3,10 @@ import { useTour } from '@reactour/tour'
 import * as Icon from '../icons'
 import MockItem from './Mock'
 
-const Placeholder: React.FC<
-  GridContainerProps & { demoId: string; length: number }
-> = ({ demoId, length = 3, children, ...props }) => {
+const Placeholder: React.FC<GridContainerProps & {
+  demoId: string
+  length: number
+}> = ({ demoId, length = 3, children, ...props }) => {
   const { setIsOpen } = useTour()
   return (
     <>
@@ -20,9 +21,10 @@ const Placeholder: React.FC<
 
 export default Placeholder
 
-export const PlaceholderGrid: React.FC<
-  GridContainerProps & { demoId: string; length: number }
-> = ({ demoId, length = 3, ...props }) => {
+export const PlaceholderGrid: React.FC<GridContainerProps & {
+  demoId: string
+  length: number
+}> = ({ demoId, length = 3, ...props }) => {
   return (
     <Grid.Container gap={2} {...props}>
       {Array.from({ length }, (_, i) => (

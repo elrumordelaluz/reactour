@@ -1,11 +1,15 @@
 {
-  "name": "tsconfig",
-  "version": "0.0.0",
+  "name": "@reactour/tsconfig",
+  "version": "0.0.1",
   "private": true,
   "main": "index.js",
   "files": [
     "base.json",
+    "node16.json",
     "nextjs.json",
     "react-library.json"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

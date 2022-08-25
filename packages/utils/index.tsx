@@ -65,14 +65,14 @@ export const isOutsideY = (val: number, windowHeight: number): boolean => {
 
 export function bestPositionOf(positions: PositionsObjectType): string[] {
   return Object.keys(positions)
-    .map((p) => {
+    .map(p => {
       return {
         position: p,
         value: positions[p],
       }
     })
     .sort((a, b) => b.value - a.value)
-    .map((p) => p.position)
+    .map(p => p.position)
 }
 
 const defaultPadding = 10
