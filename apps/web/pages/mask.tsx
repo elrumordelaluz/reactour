@@ -35,9 +35,10 @@ function StaticMask() {
     height: 100,
     top: 100,
     left: 100,
-
     right: 0,
     bottom: 0,
+    x: 0,
+    y: 0,
   }
   return (
     <>
@@ -58,6 +59,8 @@ function MoreMasks() {
     left: 100,
     right: 0,
     bottom: 0,
+    x: 100,
+    y: 100,
   }
   const sizes2 = {
     width: 50,
@@ -66,6 +69,8 @@ function MoreMasks() {
     left: 50,
     right: 0,
     bottom: 0,
+    x: 50,
+    y: 50,
   }
   const sizes3 = {
     width: 250,
@@ -74,6 +79,8 @@ function MoreMasks() {
     left: 250,
     right: 0,
     bottom: 0,
+    x: 250,
+    y: 250,
   }
   return (
     <>
@@ -114,6 +121,8 @@ function DynamicMask() {
             left: x - 50,
             right: 0,
             bottom: 0,
+            x: x - 50,
+            y: y - 50,
           }}
           onClick={() => setIsOpen(false)}
         />
@@ -211,20 +220,25 @@ function CustomStyles() {
             styles={{
               maskWrapper: (base) => ({ ...base, color, opacity: 0.99 }),
               maskArea: (base) => ({ ...base, rx: 10 }),
-              clickArea: (base, { top, left, width }) => ({
-                ...base,
-                width: 20,
-                height: 20,
-                x: left + width + 5,
-                y: top - 27,
-                fill: '#af2f60',
-                clipPath:
-                  'polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)',
-                cursor: 'pointer',
-                '&:hover': {
-                  fill: '#f60af2',
-                },
-              }),
+              // @ts-ignore
+              clickArea: (base, { top, left, width }) => {
+                console.log({ top, left, width })
+                return {
+                  ...base,
+                  width: 20,
+                  height: 20,
+                  x: left + width + 5,
+                  y: top - 27,
+                  fill: '#af2f60',
+                  clipPath:
+                    'polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)',
+                  cursor: 'pointer',
+                  // '&:hover': {
+                  //   fill: '#f60af2',
+                  // },
+                }
+              },
+              // @ts-ignore
               highlightedArea: (base, { x, y, width, height }) => ({
                 ...base,
                 display: 'block',
@@ -267,14 +281,14 @@ const multipleDemoStyles = {
     rx: 100,
     x: props.x + 10,
     y: props.y + 10,
-    animationDuration: '3s',
-    animationName: keyframesRotate,
-    animationIterationCount: 'infinite',
-    '&:hover': {
-      strokeWidth: 20,
-      stroke: '#ea5',
-      fill: '#ea5',
-    },
+    // animationDuration: '3s',
+    // animationName: keyframesRotate,
+    // animationIterationCount: 'infinite',
+    // '&:hover': {
+    //   strokeWidth: 20,
+    //   stroke: '#ea5',
+    //   fill: '#ea5',
+    // },
   }),
 }
 
@@ -354,6 +368,7 @@ function MultipleMasks() {
               <Mask
                 key={`${size.left}_${index}`}
                 sizes={size}
+                // @ts-ignore
                 styles={multipleDemoStyles}
                 onClickHighlighted={() =>
                   alert(`Highlighted Item ${index + 1}`)

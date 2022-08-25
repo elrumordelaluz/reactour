@@ -26,16 +26,20 @@ export default function Docs() {
   )
 }
 
+const initialSizes = {
+  width: 100,
+  height: 100,
+  top: 100,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  x: 0,
+  y: 0,
+}
+
 function StaticPopover() {
   const [isOpen, setIsOpen] = useState(false)
-  const sizes = {
-    width: 100,
-    height: 100,
-    top: 100,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  }
+  const sizes = initialSizes
   return (
     <>
       <button onClick={() => setIsOpen((o) => !o)}>
@@ -57,12 +61,9 @@ function StaticPopover() {
 function CenterPopover() {
   const [isOpen, setIsOpen] = useState(false)
   const sizes = {
+    ...initialSizes,
     width: 0,
     height: 0,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
   }
   return (
     <>
@@ -93,6 +94,7 @@ function DynamicPopoverPosition() {
       {isOpen ? (
         <Popover
           sizes={{
+            ...initialSizes,
             top: y,
             bottom: y,
             left: x,
@@ -226,30 +228,21 @@ function doArrow(
   const color = 'white'
   const isVertical = position === 'top' || position === 'bottom'
   const spaceFromSide = 10
-  const obj = {
-    [isVertical ? 'borderLeft' : 'borderTop']: `${
-      width / 2
-    }px solid transparent`, // CSS Triangle width
-    [isVertical ? 'borderRight' : 'borderBottom']: `${
-      width / 2
-    }px solid transparent`, // CSS Triangle width
-    [`border${position[0].toUpperCase()}${position.substring(
-      1
-    )}`]: `${height}px solid ${color}`, // CSS Triangle height
-    [isVertical ? opositeSide[horizontalAlign] : verticalAlign]:
-      height + spaceFromSide, // space from side
-    [opositeSide[position]]: -height + 2,
-  }
 
-  return {
-    '&::after': {
-      content: "''",
-      width: 0,
-      height: 0,
-      position: 'absolute',
-      ...obj,
-    },
+  const obj = {
+    [`--rtp-arrow-${
+      isVertical ? opositeSide[horizontalAlign] : verticalAlign
+    }`]: height + spaceFromSide + 'px',
+    [`--rtp-arrow-${opositeSide[position]}`]: -height + 2 + 'px',
+    [`--rtp-arrow-border-${isVertical ? 'left' : 'top'}`]: `${
+      width / 2
+    }px solid transparent`,
+    [`--rtp-arrow-border-${isVertical ? 'right' : 'bottom'}`]: `${
+      width / 2
+    }px solid transparent`,
+    [`--rtp-arrow-border-${position}`]: `${height}px solid ${color}`,
   }
+  return obj
 }
 
 function CustomPopoverStyles() {
@@ -265,7 +258,7 @@ function CustomPopoverStyles() {
   }, [])
 
   const styles = {
-    popover: (base: CSSObject, state: any) => {
+    popover: (base: any, state: any) => {
       return {
         ...base,
         borderRadius: 10,

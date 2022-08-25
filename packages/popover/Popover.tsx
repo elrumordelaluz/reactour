@@ -141,6 +141,7 @@ const Popover: React.FC<PopoverProps> = ({
 
   return (
     <div
+      className="reactour__popover"
       style={{
         ...getStyles('popover', {
           position: positionRef.current,

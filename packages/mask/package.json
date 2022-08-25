@@ -1,6 +1,6 @@
 {
   "name": "@reactour/mask",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",

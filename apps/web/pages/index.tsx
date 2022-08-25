@@ -15,7 +15,7 @@ export default function Docs() {
   }, [rect])
 
   async function onClickScroll() {
-    await smoothScroll(ref.current)
+    await smoothScroll(ref.current, {})
     setScrolled(true)
   }
 

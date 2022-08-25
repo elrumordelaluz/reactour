@@ -1,7 +1,11 @@
+import { PropsWithChildren } from 'react'
 import { Spacer, Button, Text } from '@nextui-org/react'
 import { useTour } from '@reactour/tour'
 
-const Paragraphs: React.FC<{ demoId: string }> = ({ demoId, children }) => {
+const Paragraphs: React.FC<PropsWithChildren<{ demoId: string }>> = ({
+  demoId,
+  children,
+}) => {
   const { setIsOpen } = useTour()
   return (
     <>

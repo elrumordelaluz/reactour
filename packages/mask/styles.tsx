@@ -1,7 +1,7 @@
 export type StyleFn = (
   props: { [key: string]: any },
   state?: { [key: string]: any }
-) => React.CSSProperties | { rx: number }
+) => React.CSSProperties & { rx?: number }
 
 export type Styles = {
   maskWrapper: StyleFn
@@ -12,7 +12,9 @@ export type Styles = {
   highlightedArea: StyleFn
 }
 
-export type StylesObj = Partial<Styles>
+export type StylesObj = {
+  [key in StyleKey]?: StyleFn
+}
 
 export type StyleKey = keyof Styles
 
@@ -74,10 +76,13 @@ export const defaultStyles: Styles = {
   }),
 }
 
-export type getStylesType = (key: StylesKeys, extra?: any) => {}
+export type getStylesType = (
+  key: StyleKey,
+  extra?: { [key: string]: any }
+) => {}
 
 export function stylesMatcher(styles: StylesObj) {
-  return (key: StyleKey, state: {}): any => {
+  return (key: StyleKey, state: {}): React.CSSProperties & { rx?: number } => {
     const base = defaultStyles[key](state)
     const custom = styles[key]
     return custom ? custom(base, state) : base
