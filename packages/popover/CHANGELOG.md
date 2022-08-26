@@ -1,5 +1,13 @@
 # @reactour/popover
 
+## 1.0.4
+
+### Patch Changes
+
+- 57bc37f: Fix export
+- Updated dependencies [57bc37f]
+  - @reactour/utils@0.4.3
+
 ## 1.0.3
 
 ### Patch Changes

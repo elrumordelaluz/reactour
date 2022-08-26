@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.4.3
+
+### Patch Changes
+
+- 57bc37f: Fix export
+
 ## 0.4.2
 
 ### Patch Changes

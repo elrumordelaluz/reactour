@@ -1,5 +1,15 @@
 # @reactour/tour
 
+## 3.0.5
+
+### Patch Changes
+
+- 57bc37f: Fix export
+- Updated dependencies [57bc37f]
+  - @reactour/mask@1.0.4
+  - @reactour/popover@1.0.4
+  - @reactour/utils@0.4.3
+
 ## 3.0.4
 
 ### Patch Changes
