@@ -1,6 +1,6 @@
 {
   "extends": "@reactour/tsconfig/react-library.json",
-  "include": ["src/**/*"],
-  "exclude": ["build", "node_modules"],
-  "compilerOptions": { "lib": ["DOM"], "allowJs": true, "checkJs": false }
+  "include": ["src"],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": { "lib": ["DOM"] }
 }

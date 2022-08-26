@@ -71,7 +71,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
         <Row>
           <Box data-tut="reactour__goTo">
             <Link href="https://dribbble.com/shots/2524506-Tweet" nospaces>
-              <Image src="https://cdn.dribbble.com/users/235991/screenshots/2524506/cockatoodr.png" />
+              <Image
+                alt="cockatoodr"
+                src="https://cdn.dribbble.com/users/235991/screenshots/2524506/cockatoodr.png"
+              />
             </Link>
             <Text size=".7em">
               Image by{' '}
@@ -110,7 +113,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
               href="https://dribbble.com/shots/2696833-I-m-bringin-silver-back"
               nospaces
             >
-              <Image src="https://cdn.dribbble.com/users/235991/screenshots/2696833/giril-01.png" />
+              <Image
+                alt="giril"
+                src="https://cdn.dribbble.com/users/235991/screenshots/2696833/giril-01.png"
+              />
             </Link>
             <Text size=".7em">
               Image by{' '}
@@ -124,7 +130,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
         <Row>
           <Box>
             <Link href="https://dribbble.com/shots/3380738-Little-dog" nospaces>
-              <Image src="https://cdn.dribbble.com/users/235991/screenshots/3380738/dog.png" />
+              <Image
+                alt="dog"
+                src="https://cdn.dribbble.com/users/235991/screenshots/3380738/dog.png"
+              />
             </Link>
             <Text size=".7em">
               Image by{' '}
@@ -164,7 +173,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
               href="https://dribbble.com/shots/2788237-Tilford-Street"
               nospaces
             >
-              <Image src="https://cdn.dribbble.com/users/235991/screenshots/2788237/tilforddr-01.png" />
+              <Image
+                alt="tilforddr"
+                src="https://cdn.dribbble.com/users/235991/screenshots/2788237/tilforddr-01.png"
+              />
             </Link>
             <Text size=".7em">
               Image by{' '}
@@ -239,7 +251,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
               href="https://dribbble.com/shots/2757736-109-Baptist-St"
               nospaces
             >
-              <Image src="https://cdn.dribbble.com/users/235991/screenshots/2757736/terrace3-04.png" />
+              <Image
+                alt="terrace3"
+                src="https://cdn.dribbble.com/users/235991/screenshots/2757736/terrace3-04.png"
+              />
             </Link>
             <Text size=".7em">
               Image by{' '}
@@ -278,7 +293,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
                 href="https://dribbble.com/shots/1931264-Lean-Green"
                 nospaces
               >
-                <Image src="https://cdn.dribbble.com/users/235991/screenshots/1931264/house8.png" />
+                <Image
+                  alt="house8"
+                  src="https://cdn.dribbble.com/users/235991/screenshots/1931264/house8.png"
+                />
               </Link>
               <Text size=".7em">
                 Image by{' '}
@@ -292,7 +310,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
                 href="https://dribbble.com/shots/1972953-Greek-House"
                 nospaces
               >
-                <Image src="https://cdn.dribbble.com/users/235991/screenshots/1972953/greekhouse.png" />
+                <Image
+                  alt="greekhouse"
+                  src="https://cdn.dribbble.com/users/235991/screenshots/1972953/greekhouse.png"
+                />
               </Link>
               <Text size=".7em">
                 Image by{' '}
@@ -306,7 +327,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
                 href="https://dribbble.com/shots/1919911-House-Fancy"
                 nospaces
               >
-                <Image src="https://cdn.dribbble.com/users/235991/screenshots/1919911/house_french.png" />
+                <Image
+                  alt="house french"
+                  src="https://cdn.dribbble.com/users/235991/screenshots/1919911/house_french.png"
+                />
               </Link>
               <Text size=".7em">
                 Image by{' '}
@@ -337,7 +361,10 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
           href="https://dribbble.com/shots/2783174-Funny-little-bird"
           nospaces
         >
-          <Image src="https://cdn.dribbble.com/users/235991/screenshots/2783174/tweetydr-01.png" />
+          <Image
+            alt="htweetydr"
+            src="https://cdn.dribbble.com/users/235991/screenshots/2783174/tweetydr-01.png"
+          />
         </Link>
       </Scrollable>
 
