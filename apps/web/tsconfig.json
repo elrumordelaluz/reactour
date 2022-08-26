@@ -6,7 +6,8 @@
     "**/*.tsx",
     "pages/_app.js",
     "pages/_document.tsx",
-    "pages/index.tsx"
+    "pages/*.tsx",
+    "components/*.tsx"
   ],
   "exclude": ["node_modules"]
 }
