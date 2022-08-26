@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.4.2
+
+### Patch Changes
+
+- b3301d2: Attemp to solve react external issue, using tsdx
+
 ## 0.4.1
 
 ### Patch Changes

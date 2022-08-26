@@ -1,5 +1,13 @@
 # @reactour/mask
 
+## 1.0.3
+
+### Patch Changes
+
+- b3301d2: Attemp to solve react external issue, using tsdx
+- Updated dependencies [b3301d2]
+  - @reactour/utils@0.4.2
+
 ## 1.0.2
 
 ### Patch Changes

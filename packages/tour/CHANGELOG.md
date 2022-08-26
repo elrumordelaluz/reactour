@@ -1,5 +1,15 @@
 # @reactour/tour
 
+## 3.0.4
+
+### Patch Changes
+
+- b3301d2: Attemp to solve react external issue, using tsdx
+- Updated dependencies [b3301d2]
+  - @reactour/mask@1.0.3
+  - @reactour/popover@1.0.3
+  - @reactour/utils@0.4.2
+
 ## 3.0.3
 
 ### Patch Changes
