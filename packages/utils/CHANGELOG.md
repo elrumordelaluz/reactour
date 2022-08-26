@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.4.5
+
+### Patch Changes
+
+- Change exported files
+
 ## 0.4.4
 
 ### Patch Changes

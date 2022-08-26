@@ -1,8 +1,9 @@
 {
   "name": "@reactour/utils",
-  "version": "0.4.4",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "version": "0.4.5",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
