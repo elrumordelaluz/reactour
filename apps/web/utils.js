@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTour } from '@reactour/tour'
 
 export function Placeholder({ demoId = 'basic', ...props }) {

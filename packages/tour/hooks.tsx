@@ -15,6 +15,15 @@ let initialState = {
   y: 0,
 }
 
+type ScrollLogicalPosition = 'center' | 'end' | 'nearest' | 'start'
+type ScrollBehavior = 'auto' | 'smooth'
+
+type ScrollIntoViewOptions = {
+  behavior?: ScrollBehavior
+  block?: ScrollLogicalPosition
+  inline?: ScrollLogicalPosition
+}
+
 export function useSizes(
   step: StepType,
   scrollOptions: ScrollIntoViewOptions & {

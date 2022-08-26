@@ -1,4 +1,4 @@
-import { useState, useEffect, Component, useRef } from 'react'
+import { useState, useEffect, Component } from 'react'
 import {
   Text,
   Container,

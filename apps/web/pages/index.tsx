@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TourProvider } from '@reactour/tour'
 import { ModalProvider } from 'modaaals'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'

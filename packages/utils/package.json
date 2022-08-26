@@ -4,12 +4,18 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist"
+  },
+  "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "config": "*",
+    "react": "^18.2.0",
     "tsconfig": "*",
+    "tsdx": "^0.14.1",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4"
   },
@@ -17,9 +23,12 @@
     "@rooks/use-mutation-observer": "^4.11.2",
     "resize-observer-polyfill": "^1.5.1"
   },
+  "peerDependencies": {
+    "react": "16.x || 17.x || 18.x"
+  },
   "scripts": {
-    "build": "tsup index.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup index.tsx --format esm,cjs --watch --dts --external react",
+    "dev": "tsdx watch",
+    "build": "tsdx build",
     "lint": "TIMING=1 eslint **/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },

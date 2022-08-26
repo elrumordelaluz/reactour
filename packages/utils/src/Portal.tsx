@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef, ReactChild } from 'react'
+import React, { useEffect, useState, useRef, PropsWithChildren } from 'react'
 import { createPortal } from 'react-dom'
 
-const Portal: React.FC<PortalProps> = ({
+const Portal: React.FC<PropsWithChildren<PortalProps>> = ({
   children,
   type = 'reactour-portal',
 }) => {
@@ -32,7 +32,6 @@ const Portal: React.FC<PortalProps> = ({
 }
 
 export type PortalProps = {
-  children?: ReactChild
   type?: string
 }
 

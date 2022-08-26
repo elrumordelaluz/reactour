@@ -11,13 +11,13 @@ export function useIntersectionObserver(
     root = null,
     rootMargin = '0%',
     freezeOnceVisible = false,
-  }: Args
-): IntersectionObserverEntry | undefined {
-  const [entry, setEntry] = useState<IntersectionObserverEntry>()
+  }: any
+): any | undefined {
+  const [entry, setEntry] = useState<any>()
 
   const frozen = entry?.isIntersecting && freezeOnceVisible
 
-  const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
+  const updateEntry = ([entry]: any[]): void => {
     setEntry(entry)
   }
 
