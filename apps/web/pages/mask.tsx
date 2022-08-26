@@ -1,7 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { Mask } from '@reactour/mask'
-import { useRect, getRect, useIntersectionObserver } from '@reactour/utils'
-import { RectResult } from '@reactour/utils/dist/index'
+import {
+  useRect,
+  getRect,
+  useIntersectionObserver,
+  RectResult,
+} from '@reactour/utils/dist/index'
 import { motion } from 'framer-motion'
 import { keyframes, CSSObject } from '@emotion/react'
 import { useMousePosition } from '../hooks'
