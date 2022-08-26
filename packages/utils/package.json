@@ -6,10 +6,15 @@
   "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
+    "@open-wc/building-rollup": "^2.0.2",
+    "@rollup/plugin-typescript": "^8.4.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "config": "*",
+    "deepmerge": "^4.2.2",
     "react": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.78.1",
     "tsconfig": "*",
     "tsdx": "^0.14.1",
     "tsup": "^6.2.2",
@@ -23,8 +28,8 @@
     "react": "16.x || 17.x || 18.x"
   },
   "scripts": {
-    "dev": "tsdx watch",
-    "build": "tsdx build",
+    "dev": "tsc --watch",
+    "build": "tsc && rollup -c rollup.config.js",
     "lint": "TIMING=1 eslint **/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
