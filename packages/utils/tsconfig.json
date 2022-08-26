@@ -1,6 +1,24 @@
 {
   "extends": "@reactour/tsconfig/react-library.json",
-  "include": ["src"],
+  "include": ["src", "types"],
   "exclude": ["dist", "build", "node_modules"],
-  "compilerOptions": { "lib": ["DOM"] }
+  "compilerOptions": {
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
+  }
 }
