@@ -8707,11 +8707,6 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-std@0.1.x:
-  version "0.1.40"
-  resolved "https://registry.yarnpkg.com/std/-/std-0.1.40.tgz#3678a5f65094d9e1b6b5e26edbfc0212b8342b71"
-  integrity sha1-Nnil9lCU2eG2teJu2/wCErg0K3E=
-
 stealthy-require@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
@@ -9468,13 +9463,6 @@ typescript@^4.7.4, typescript@^4.8.2:
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
   integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
-
-ui@*:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/ui/-/ui-0.2.4.tgz#39b7c8086b2b1b64a72c6437c38ddc7c4e4e836d"
-  integrity sha1-ObfICGsrG2SnLGQ3w43cfE5Og20=
-  dependencies:
-    std "0.1.x"
 
 unbox-primitive@^1.0.1, unbox-primitive@^1.0.2:
   version "1.0.2"
