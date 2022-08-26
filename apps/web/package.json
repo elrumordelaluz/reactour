@@ -17,7 +17,11 @@
     "modaaals": "^0.14.1",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@reactour/utils": "*",
+    "@reactour/mask": "*",
+    "@reactour/popover": "*",
+    "@reactour/tour": "*"
   },
   "devDependencies": {
     "@reactour/tsconfig": "*",
