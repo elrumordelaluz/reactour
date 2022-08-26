@@ -68,9 +68,11 @@ const Mask: React.FC<MaskProps> = ({
           </mask>
           <clipPath id={clipID}>
             <polygon
-              points={`0 0, 0 ${windowHeight}, ${left} ${windowHeight}, ${left} ${top}, ${left +
-                width} ${top}, ${left + width} ${top + height}, ${left} ${top +
-                height}, ${left} ${windowHeight}, ${windowWidth} ${windowHeight}, ${windowWidth} 0`}
+              points={`0 0, 0 ${windowHeight}, ${left} ${windowHeight}, ${left} ${top}, ${
+                left + width
+              } ${top}, ${left + width} ${top + height}, ${left} ${
+                top + height
+              }, ${left} ${windowHeight}, ${windowWidth} ${windowHeight}, ${windowWidth} 0`}
             />
           </clipPath>
         </defs>
@@ -127,10 +129,5 @@ export type MaskProps = {
 export default Mask
 
 function uniqueId(prefix: string) {
-  return (
-    prefix +
-    Math.random()
-      .toString(36)
-      .substring(2, 16)
-  )
+  return prefix + Math.random().toString(36).substring(2, 16)
 }
