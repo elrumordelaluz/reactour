@@ -57,7 +57,7 @@ export default function Docs() {
               if (currentStep === steps.length - 1) {
                 setIsOpen(false)
               }
-              setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
+              setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
             }
           },
         }}
@@ -82,7 +82,7 @@ export default function Docs() {
               if (currentStep === steps.length - 1) {
                 setIsOpen(false)
               }
-              setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1))
+              setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
             }
           },
         }}
@@ -144,17 +144,17 @@ export default function Docs() {
         demoId="custom-styles"
         providerProps={{
           styles: {
-            popover: base => ({
+            popover: (base) => ({
               ...base,
               '--reactour-accent': '#ef5a3d',
               borderRadius: radius,
             }),
-            maskArea: base => ({ ...base, rx: radius }),
-            maskWrapper: base => ({ ...base, color: '#ef5a3d' }),
-            badge: base => ({ ...base, left: 'auto', right: '-0.8125em' }),
-            controls: base => ({ ...base, marginTop: 100 }),
-            close: base => ({ ...base, right: 'auto', left: 8, top: 8 }),
-            dot: base => ({
+            maskArea: (base) => ({ ...base, rx: radius }),
+            maskWrapper: (base) => ({ ...base, color: '#ef5a3d' }),
+            badge: (base) => ({ ...base, left: 'auto', right: '-0.8125em' }),
+            controls: (base) => ({ ...base, marginTop: 100 }),
+            close: (base) => ({ ...base, right: 'auto', left: 8, top: 8 }),
+            dot: (base) => ({
               ...base,
               animationDuration: '1s',
               animationName: keyframesRotate,
@@ -195,7 +195,7 @@ export default function Docs() {
         title="Disable interaction"
         demoId="disable-interaction"
         providerProps={{
-          onClickHighlighted: e => {
+          onClickHighlighted: (e) => {
             e.stopPropagation()
             console.log('No interaction')
           },
@@ -247,7 +247,7 @@ function DisableKeyboardDemo() {
       >
         <Checkbox
           value="all"
-          onChange={checked => {
+          onChange={(checked) => {
             if (checked) {
               // @ts-ignore
               setDisable(['all', 'left', 'right', 'esc'])
@@ -290,7 +290,7 @@ function PrevNextDemo() {
                   setIsOpen(false)
                 } else {
                   if (steps) {
-                    setCurrentStep(s => (s === steps?.length - 1 ? 0 : s + 1))
+                    setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))
                   }
                 }
               }}
@@ -309,9 +309,9 @@ function PrevNextDemo() {
               onClick={() => {
                 if (steps) {
                   if (first) {
-                    setCurrentStep(s => steps.length - 1)
+                    setCurrentStep((s) => steps.length - 1)
                   } else {
-                    setCurrentStep(s => s - 1)
+                    setCurrentStep((s) => s - 1)
                   }
                 }
               }}
@@ -445,7 +445,7 @@ function ModalsDemo() {
       <ModalProvider
         modals={modals}
         styles={{
-          contentInner: base => ({ ...base, margin: 50 }),
+          contentInner: (base) => ({ ...base, margin: 50 }),
         }}
         className="modaaals-modal"
         skipMotion
@@ -533,7 +533,7 @@ function AutoplayPlaceholder() {
     let timer: NodeJS.Timeout
     if (isOpen) {
       timer = setTimeout(
-        () => setCurrentStep(s => (s === steps.length - 1 ? 0 : s + 1)),
+        () => setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1)),
         delay
       )
     }
@@ -640,12 +640,8 @@ function DisableActionsDemo() {
 }
 
 function DisableActionsDemoContent() {
-  const {
-    setIsOpen,
-    setCurrentStep,
-    setDisabledActions,
-    disabledActions,
-  } = useTour()
+  const { setIsOpen, setCurrentStep, setDisabledActions, disabledActions } =
+    useTour()
 
   return (
     <div style={{ textAlign: 'center', padding: 50 }}>

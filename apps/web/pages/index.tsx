@@ -23,13 +23,13 @@ function App() {
         // @ts-ignore
         beforeClose={enableBody}
         styles={{
-          badge: base => ({ ...base, background: '#ef5a3d' }),
+          badge: (base) => ({ ...base, background: '#ef5a3d' }),
           // @ts-ignore
           dot: (base, { current }) => ({
             ...base,
             background: current ? '#ef5a3d' : '#ccc',
           }),
-          popover: base => ({
+          popover: (base) => ({
             ...base,
             background: '#dedede',
             borderRadius: 10,
@@ -40,7 +40,7 @@ function App() {
         <ModalProvider
           modals={modals}
           styles={{
-            contentInner: base => ({ ...base, margin: 50 }),
+            contentInner: (base) => ({ ...base, margin: 50 }),
           }}
           className="modaaals-modal"
           skipMotion

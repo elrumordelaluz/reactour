@@ -32,28 +32,28 @@ const Link = styled.a<ButtonProps>`
 `
 
 const StyledButton = styled(Button)`
-  font-size: ${props =>
+  font-size: ${(props) =>
     props.h
       ? props.h
         ? headingSizes[Number(props.h) - 1]
         : 'inherit'
       : 'inherit'};
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.color ? themeColors[props.color] : themeColors.dark};
 `
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  font-size: ${props =>
+  font-size: ${(props) =>
     props.h ? headingSizes[Number(props.h) - 1] : 'inherit'};
-  background: ${props => (props.bg ? themeColors[props.bg] : 'none')};
-  color: ${props =>
+  background: ${(props) => (props.bg ? themeColors[props.bg] : 'none')};
+  color: ${(props) =>
     props.bg
       ? 'white'
       : props.color
       ? themeColors[props.color]
       : themeColors.black};
-  ${props =>
+  ${(props) =>
     props.nospaces &&
     `
     display: inline-block;

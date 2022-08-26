@@ -5,7 +5,7 @@ import {
   getRect,
   useIntersectionObserver,
   RectResult,
-} from '@reactour/utils/dist/index'
+} from '@reactour/utils'
 import { motion } from 'framer-motion'
 import { keyframes, CSSObject } from '@emotion/react'
 import { useMousePosition } from '../hooks'
