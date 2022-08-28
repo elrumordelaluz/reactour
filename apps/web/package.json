@@ -13,7 +13,7 @@
     "@emotion/styled": "^11.10.0",
     "@nextui-org/react": "^1.0.0-beta.10",
     "@reactour/mask": "*",
-    "@reactour/popover": "*",
+    "@reactour/popover": "^1.0.5",
     "@reactour/tour": "*",
     "@reactour/utils": "*",
     "body-scroll-lock": "^4.0.0-beta.0",
