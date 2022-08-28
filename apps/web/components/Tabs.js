@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { themeColors } from './settings'
@@ -44,5 +44,7 @@ Tabs.Tab.propTypes = {
   children: PropTypes.node.isRequired,
   active: PropTypes.bool,
 }
+
+Tabs.Tab.displayName = 'Tabs'
 
 export default Tabs

@@ -169,7 +169,7 @@ import { components } from '@reactour/tour'
 function Badge({ children }) {
   return (
     <components.Badge
-      styles={{ badge: base => ({ ...base, backgroundColor: 'red' }) }}
+      styles={{ badge: (base) => ({ ...base, backgroundColor: 'red' }) }}
     >
       👉 {children} 👈
     </components.Badge>
@@ -226,7 +226,7 @@ Refer to [Mask docs](https://github.com/elrumordelaluz/reactour/tree/master/pack
 
 ```js
 const styles = {
-  maskWrapper: base => ({
+  maskWrapper: (base) => ({
     ...base,
     color: 'red',
   }),
@@ -235,7 +235,7 @@ const styles = {
     x: x + 10,
     y: y + 10,
   }),
-  badge: base => ({ ...base, color: 'blue' }),
+  badge: (base) => ({ ...base, color: 'blue' }),
 }
 ```
 
@@ -430,7 +430,7 @@ Click handler for highlighted area. Only works when `disableInteraction` is acti
 <TourProvider
   steps={steps}
   disableInteraction
-  onClickHighlighted={e => {
+  onClickHighlighted={(e) => {
     e.stopPropagation()
     console.log('No interaction at all')
   }}
@@ -527,7 +527,7 @@ type PositionType = (
 
 ### `ContentComponent?: ComponentType<PopoverContentProps>`
 
-Completelly custom component to rendere inside the _Popover_.
+Completelly custom component to render inside the _Popover_.
 
 <details>
   <summary><small>Type details</small></summary>
@@ -577,7 +577,7 @@ function ContentComponent(props) {
           if (isLastStep) {
             props.setIsOpen(false)
           } else {
-            props.setCurrentStep(s => s + 1)
+            props.setCurrentStep((s) => s + 1)
           }
         }}
       >
@@ -596,7 +596,7 @@ function App() {
     <TourProvider
       steps={steps}
       ContentComponent={ContentComponent}
-      styles={{ popover: base => ({ ...base, padding: 0 }) }}
+      styles={{ popover: (base) => ({ ...base, padding: 0 }) }}
     >
       {/* ... */}
     </TourProvider>
@@ -605,6 +605,10 @@ function App() {
 ```
 
 </details>
+
+### `Wrapper?: ComponentType`
+
+Element which wraps the Tour, useful in case is needed to port the Tour into a [Portal](https://reactjs.org/docs/portals.html). Defaults to `React.Fragment`
 
 ## `useTour`
 

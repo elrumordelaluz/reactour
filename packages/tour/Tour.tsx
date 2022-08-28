@@ -1,8 +1,7 @@
-import React, { useEffect, PropsWithChildren } from 'react'
-import { Portal, Observables } from '@reactour/utils'
+import React, { useEffect } from 'react'
+import { Observables } from '@reactour/utils'
 import { Mask } from '@reactour/mask'
 import { Popover } from '@reactour/popover'
-import { FocusScope } from '@react-aria/focus'
 import { useSizes } from './hooks'
 import { TourProps, Padding } from './types'
 import Keyboard from './Keyboard'
@@ -25,7 +24,7 @@ const Tour: React.FC<TourProps> = ({
   maskClassName = 'reactour__mask',
   highlightedMaskClassName,
   disableInteraction,
-  disableFocusLock,
+  // disableFocusLock,
   disableKeyboardNavigation,
   inViewThreshold,
   disabledActions,
@@ -36,6 +35,7 @@ const Tour: React.FC<TourProps> = ({
     showNavigationScreenReaders: true,
   },
   ContentComponent,
+  Wrapper,
   onTransition = () => {
     // const arr: [number, number] = [prev.x, prev.y]
     return 'center'
@@ -108,83 +108,83 @@ const Tour: React.FC<TourProps> = ({
     ? step?.position
     : position
 
+  const TourWrapper = Wrapper ? Wrapper : React.Fragment
+
   return step ? (
-    <Portal>
-      <FocusManager disabled={disableFocusLock}>
-        <Observables
-          mutationObservables={step?.mutationObservables}
-          resizeObservables={step?.resizeObservables}
-          refresh={observableRefresher}
-        />
+    <TourWrapper>
+      <Observables
+        mutationObservables={step?.mutationObservables}
+        resizeObservables={step?.resizeObservables}
+        refresh={observableRefresher}
+      />
 
-        <Keyboard
-          setCurrentStep={setCurrentStep}
-          currentStep={currentStep}
-          setIsOpen={setIsOpen}
-          stepsLength={steps.length}
-          disableKeyboardNavigation={disableKeyboardNavigation}
-          disable={disabledActions}
-          rtl={rtl}
-        />
+      <Keyboard
+        setCurrentStep={setCurrentStep}
+        currentStep={currentStep}
+        setIsOpen={setIsOpen}
+        stepsLength={steps.length}
+        disableKeyboardNavigation={disableKeyboardNavigation}
+        disable={disabledActions}
+        rtl={rtl}
+      />
 
-        <Mask
-          sizes={transition ? initialState : sizes}
-          onClick={maskClickHandler}
-          styles={{
-            highlightedArea: (base: any) => ({
-              ...base,
-              display: doDisableInteraction ? 'block' : 'none',
-            }),
-            ...styles,
-          }}
-          padding={transition ? 0 : maskPadding}
-          highlightedAreaClassName={highlightedMaskClassName}
-          className={maskClassName}
-          onClickHighlighted={onClickHighlighted}
-          wrapperPadding={wrapperPadding}
-        />
+      <Mask
+        sizes={transition ? initialState : sizes}
+        onClick={maskClickHandler}
+        styles={{
+          highlightedArea: (base: any) => ({
+            ...base,
+            display: doDisableInteraction ? 'block' : 'none',
+          }),
+          ...styles,
+        }}
+        padding={transition ? 0 : maskPadding}
+        highlightedAreaClassName={highlightedMaskClassName}
+        className={maskClassName}
+        onClickHighlighted={onClickHighlighted}
+        wrapperPadding={wrapperPadding}
+      />
 
-        <Popover
-          sizes={sizes}
-          styles={styles}
-          position={popoverPosition}
-          padding={popoverPadding}
-          aria-labelledby={accessibilityOptions?.ariaLabelledBy}
-          className={className}
-          refresher={currentStep}
-        >
-          {ContentComponent ? (
-            <ContentComponent
-              styles={styles}
-              setCurrentStep={setCurrentStep}
-              currentStep={currentStep}
-              setIsOpen={setIsOpen}
-              steps={steps}
-              accessibilityOptions={accessibilityOptions}
-              disabledActions={disabledActions}
-              transition={transition}
-              isHighlightingObserved={isHighlightingObserved}
-              rtl={rtl}
-              {...popoverProps}
-            />
-          ) : (
-            <PopoverContent
-              styles={styles}
-              setCurrentStep={setCurrentStep}
-              currentStep={currentStep}
-              setIsOpen={setIsOpen}
-              steps={steps}
-              accessibilityOptions={accessibilityOptions}
-              disabledActions={disabledActions}
-              transition={transition}
-              isHighlightingObserved={isHighlightingObserved}
-              rtl={rtl}
-              {...popoverProps}
-            />
-          )}
-        </Popover>
-      </FocusManager>
-    </Portal>
+      <Popover
+        sizes={sizes}
+        styles={styles}
+        position={popoverPosition}
+        padding={popoverPadding}
+        aria-labelledby={accessibilityOptions?.ariaLabelledBy}
+        className={className}
+        refresher={currentStep}
+      >
+        {ContentComponent ? (
+          <ContentComponent
+            styles={styles}
+            setCurrentStep={setCurrentStep}
+            currentStep={currentStep}
+            setIsOpen={setIsOpen}
+            steps={steps}
+            accessibilityOptions={accessibilityOptions}
+            disabledActions={disabledActions}
+            transition={transition}
+            isHighlightingObserved={isHighlightingObserved}
+            rtl={rtl}
+            {...popoverProps}
+          />
+        ) : (
+          <PopoverContent
+            styles={styles}
+            setCurrentStep={setCurrentStep}
+            currentStep={currentStep}
+            setIsOpen={setIsOpen}
+            steps={steps}
+            accessibilityOptions={accessibilityOptions}
+            disabledActions={disabledActions}
+            transition={transition}
+            isHighlightingObserved={isHighlightingObserved}
+            rtl={rtl}
+            {...popoverProps}
+          />
+        )}
+      </Popover>
+    </TourWrapper>
   ) : null
 }
 
@@ -192,23 +192,6 @@ export default Tour
 
 export interface CustomCSS extends React.CSSProperties {
   rx: number
-}
-
-const FocusManager: React.FC<PropsWithChildren<FocusProps>> = ({
-  disabled,
-  children,
-}) => {
-  return disabled ? (
-    <>{children}</>
-  ) : (
-    <FocusScope contain autoFocus restoreFocus>
-      {children}
-    </FocusScope>
-  )
-}
-
-type FocusProps = {
-  disabled?: boolean
 }
 
 function getPadding(padding?: Padding) {

@@ -41,6 +41,7 @@ type SharedProps = {
   rtl?: boolean
   components?: PopoverComponentsType
   ContentComponent?: ComponentType<PopoverContentProps>
+  Wrapper?: ComponentType
 }
 
 export type PopoverContentProps = {

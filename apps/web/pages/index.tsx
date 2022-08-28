@@ -5,6 +5,8 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import Demo from '../components/Home'
 import Text from '../components/Text'
 import Tooltip from '../components/Tooltip'
+import Portal from '../components/Portal'
+
 import { Link } from '../components/Button'
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
             borderRadius: 10,
           }),
         }}
+        Wrapper={Wrapper}
         scrollSmooth
       >
         <ModalProvider
@@ -57,6 +60,10 @@ function App() {
 
 const modals = {
   test: TestModal,
+}
+
+function Wrapper({ children }) {
+  return <Portal>{children}</Portal>
 }
 
 function TestModal() {

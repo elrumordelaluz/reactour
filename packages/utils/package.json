@@ -1,23 +1,17 @@
 {
   "name": "@reactour/utils",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
-    "@open-wc/building-rollup": "^2.0.2",
-    "@rollup/plugin-typescript": "^8.4.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
-    "config": "*",
-    "deepmerge": "^4.2.2",
     "react": "^18.2.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.78.1",
-    "tsconfig": "*",
-    "tsdx": "^0.14.1",
+    "config": "*",
+    "@reactour/tsconfig": "*",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4"
   },
@@ -29,8 +23,8 @@
     "react": "16.x || 17.x || 18.x"
   },
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc && rollup -c rollup.config.js",
+    "build": "tsup index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup index.tsx --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint **/*.ts* --fix",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },

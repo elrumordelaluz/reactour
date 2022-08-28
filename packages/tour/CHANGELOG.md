@@ -1,5 +1,17 @@
 # @reactour/tour
 
+## 3.1.0
+
+### Minor Changes
+
+- Not renders inside a Portal as default, allowing to pass a `Wrapper` to end user.
+
+### Patch Changes
+
+- Updated dependencies
+  - @reactour/popover@1.0.5
+  - @reactour/utils@0.4.6
+
 ## 3.0.5
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@reactour/tour",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,6 @@
     "typescript": "^4.8.2"
   },
   "dependencies": {
-    "@react-aria/focus": "3.7.0",
     "@reactour/mask": "*",
     "@reactour/popover": "*",
     "@reactour/utils": "*"

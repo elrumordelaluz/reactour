@@ -1,7 +1,8 @@
 // https://stackoverflow.com/questions/46795955/how-to-know-scroll-to-element-is-done-in-javascript
 export function smoothScroll(
   elem: Element | null,
-  options: ScrollIntoViewOptions
+  // @ts-ignore
+  options: any
 ) {
   return new Promise(resolve => {
     if (!(elem instanceof Element)) {

@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.4.6
+
+### Patch Changes
+
+- Not renders inside a Portal as default, allowing to pass a `Wrapper` to end user.
+
 ## 0.4.5
 
 ### Patch Changes
