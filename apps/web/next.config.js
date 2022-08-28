@@ -10,9 +10,9 @@ module.exports = withTM({
   images: {
     domains: ['cdn.dribbble.com'],
   },
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 })
 
 // module.exports = {
