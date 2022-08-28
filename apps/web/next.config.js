@@ -1,23 +1,23 @@
-// const withTM = require('next-transpile-modules')([
-//   '@reactour/utils',
-//   '@reactour/mask',
-//   '@reactour/popover',
-//   '@reactour/tour',
-// ])
+const withTM = require('next-transpile-modules')([
+  '@reactour/utils',
+  '@reactour/mask',
+  '@reactour/popover',
+  '@reactour/tour',
+])
 
-// module.exports = withTM({
+module.exports = withTM({
+  reactStrictMode: true,
+  images: {
+    domains: ['cdn.dribbble.com'],
+  },
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
+})
+
+// module.exports = {
 //   reactStrictMode: true,
-//   images: {
-//     domains: ['cdn.dribbble.com'],
-//   },
 //   typescript: {
 //     ignoreBuildErrors: true,
 //   },
-// })
-
-module.exports = {
-  reactStrictMode: true,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-}
+// }
