@@ -1,6 +1,6 @@
 <p align="center">
 <a href="reactour.js.org">
-  <img alt="Reactour" title="Reactour" src="https://raw.githubusercontent.com/elrumordelaluz/reactour/master/logo.svg" width="250"></a>
+  <img alt="Reactour" title="Reactour" src="https://raw.githubusercontent.com/elrumordelaluz/reactour/main/logo.svg" width="250"></a>
 </p>
 <p align="center" style="margin-top: 40px;margin-bottom: 40px;">
   <strong>Tourist Guide</strong> into your React Components
@@ -64,7 +64,7 @@ function App() {
 
 #### Playground
 
-The [Playground](https://github.com/elrumordelaluz/reactour/tree/master/packages/playground) is the perfect place to play aroud with all `@reactour` _Components_. [Here](https://reactour.vercel.app) is an online version.
+The [Playground](https://github.com/elrumordelaluz/reactour/tree/main/packages/playground) is the perfect place to play aroud with all `@reactour` _Components_. [Here](https://reactour.vercel.app) is an online version.
 
 #### Sandboxes
 
@@ -208,7 +208,7 @@ Prop to customize styles for the different parts of the _Mask_, _Popover_ and _T
 
 #### Style keys and props available
 
-Refer to [Mask docs](https://github.com/elrumordelaluz/reactour/tree/master/packages/mask) and [Popover docs](https://github.com/elrumordelaluz/reactour/tree/master/packages/popover) for its specific Components
+Refer to [Mask docs](https://github.com/elrumordelaluz/reactour/tree/main/packages/mask) and [Popover docs](https://github.com/elrumordelaluz/reactour/tree/main/packages/popover) for its specific Components
 
 ##### Tour Components
 
