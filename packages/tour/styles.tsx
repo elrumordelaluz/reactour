@@ -6,6 +6,7 @@ export type StylesKeys =
   | 'arrow'
   | 'dot'
   | 'close'
+  | 'svg'
 
 export type StylesObj = {
   [key in StylesKeys]?: StyleFn
@@ -24,6 +25,7 @@ export type Styles = {
   arrow: StyleFn
   dot: StyleFn
   close: StyleFn
+  svg: StyleFn
 }
 
 export type StyleKey = keyof Styles
@@ -114,6 +116,9 @@ export const defaultStyles: Styles = {
     height: 9,
     '--rt-close-btn': disabled ? '#caccce' : '#5e5e5e',
     '--rt-close-btn-disabled': disabled ? '#caccce' : '#000',
+  }),
+  svg: () => ({
+    display: 'block',
   }),
 }
 
