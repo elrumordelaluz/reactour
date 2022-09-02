@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.2
+
+### Patch Changes
+
+- Add missing dependency in Observables #500 by @utkarsh-dixit
+
 ## 3.1.1
 
 ### Patch Changes
