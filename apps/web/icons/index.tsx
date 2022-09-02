@@ -1,0 +1,5 @@
+export { default as Ball } from './Ball'
+export { default as Beach } from './Beach'
+export { default as Boat } from './Boat'
+export { default as Guide } from './Guide'
+export { default as Icecream } from './Icecream'

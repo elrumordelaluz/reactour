@@ -1,62 +1,39 @@
 {
-  "version": "0.4.0",
+  "name": "@reactour/utils",
+  "version": "0.4.6",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "src",
-    "dist"
-  ],
-  "engines": {
-    "node": ">=10"
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "config": "*",
+    "@reactour/tsconfig": "*",
+    "tsup": "^6.2.2",
+    "typescript": "^4.7.4"
   },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+  "dependencies": {
+    "@rooks/use-mutation-observer": "^4.11.2",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {
     "react": "16.x || 17.x || 18.x"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
+  "scripts": {
+    "build": "tsup index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup index.tsx --format esm,cjs --watch --dts --external react",
+    "lint": "TIMING=1 eslint **/*.ts* --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
-  "name": "@reactour/utils",
-  "author": "Lionel Tzatzkin",
-  "module": "dist/utils.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/utils.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/utils.esm.js",
-      "limit": "10 KB"
-    }
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**"
   ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "7.0.8",
-    "@types/react": "18.0.6",
-    "@types/react-dom": "18.0.2",
-    "husky": "7.0.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "size-limit": "7.0.8",
-    "tsdx": "0.14.1",
-    "tslib": "2.4.0",
-    "typescript": "4.7.4"
-  },
-  "dependencies": {
-    "@rooks/use-mutation-observer": "4.11.2",
-    "@types/react": "17.0.39",
-    "resize-observer-polyfill": "1.5.1"
-  },
   "keywords": [
     "react",
     "portal",

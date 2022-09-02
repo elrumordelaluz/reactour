@@ -1,0 +1,13 @@
+{
+  "extends": "@reactour/tsconfig/nextjs.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/_app.js",
+    "pages/_document.tsx",
+    "pages/*.tsx",
+    "components/*.tsx"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,14 @@
+.reactour__popover:after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: var(--rtp-arrow-top, auto);
+  right: var(--rtp-arrow-right, auto);
+  bottom: var(--rtp-arrow-bottom, auto);
+  left: var(--rtp-arrow-left, auto);
+  border-top: var(--rtp-arrow-border-top);
+  border-right: var(--rtp-arrow-border-right);
+  border-bottom: var(--rtp-arrow-border-bottom);
+  border-left: var(--rtp-arrow-border-left);
+}
