@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build && next export  -o ../../docs"
+    "export": "rm -rf ../../docs && next build && next export  -o ../../docs"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
