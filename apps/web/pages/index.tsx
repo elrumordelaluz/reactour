@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { TourProvider } from '@reactour/tour'
 import { ModalProvider } from 'modaaals'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { isMobile } from 'react-device-detect'
 import Demo from '../components/Home'
 import Text from '../components/Text'
 import Tooltip from '../components/Tooltip'
@@ -21,9 +22,9 @@ function App() {
         // @ts-ignore
         steps={tourConfig}
         // @ts-ignore
-        afterOpen={disableBody}
+        afterOpen={isMobile ? () => {} : disableBody}
         // @ts-ignore
-        beforeClose={enableBody}
+        beforeClose={isMobile ? () => {} : enableBody}
         styles={{
           badge: (base) => ({ ...base, background: '#ef5a3d' }),
           // @ts-ignore

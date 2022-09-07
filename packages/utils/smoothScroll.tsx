@@ -4,7 +4,7 @@ export function smoothScroll(
   // @ts-ignore
   options: any
 ) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (!(elem instanceof Element)) {
       throw new TypeError('Argument 1 must be an Element')
     }

@@ -36,11 +36,13 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
 
   return (
     <>
-      <Section center>
+      <Section center classic>
         <Logo />
         <Heading h="3" data-tut="reactour__copy">
           Tourist Guide into your React Components
         </Heading>
+      </Section>
+      <Section center classic sticky>
         <Button h="4" onClick={() => setIsOpen(true)}>
           Try it
         </Button>
