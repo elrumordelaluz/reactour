@@ -8,7 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@reactour/tsconfig": "*",
-    "@types/react": "^18.0.17",
+    "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "config": "*",
     "react": "^18.2.0",

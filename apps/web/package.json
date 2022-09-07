@@ -6,11 +6,12 @@
     "dev": "next dev --port 3200",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export  -o ../../docs"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@nextui-org/react": "^1.0.0-beta.10",
     "@reactour/mask": "*",
     "@reactour/popover": "*",
@@ -26,8 +27,8 @@
   "devDependencies": {
     "@reactour/tsconfig": "*",
     "@types/body-scroll-lock": "^3.1.0",
-    "@types/node": "^18.7.13",
-    "@types/react": "18.0.17",
+    "@types/node": "^18.7.15",
+    "@types/react": "18.0.18",
     "config": "*",
     "eslint": "8.23.0",
     "eslint-plugin-prettier": "^4.2.1",
