@@ -395,6 +395,7 @@ function ToggleNavPartsDemo() {
     'close',
     'nav',
     'prevNext',
+    'dots',
   ])
 
   return (
@@ -406,6 +407,7 @@ function ToggleNavPartsDemo() {
         showCloseButton: navParts.includes('close'),
         showNavigation: navParts.includes('nav'),
         showPrevNextButtons: navParts.includes('prevNext'),
+        showDots: navParts.includes('dots'),
       }}
     >
       <Checkbox.Group
@@ -419,6 +421,7 @@ function ToggleNavPartsDemo() {
         <Checkbox value="close">Close button </Checkbox>
         <Checkbox value="nav">Navigation</Checkbox>
         <Checkbox value="prevNext">Prev Next Buttons</Checkbox>
+        <Checkbox value="dots">Dots</Checkbox>
       </Checkbox.Group>
       <Placeholder demoId="toggle-nav-parts" length={3} />
     </Demo>

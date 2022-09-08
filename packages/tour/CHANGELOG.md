@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.3
+
+### Patch Changes
+
+- Add missing type
+
 ## 3.1.2
 
 ### Patch Changes

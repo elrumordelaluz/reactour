@@ -35,6 +35,7 @@ type SharedProps = {
   showPrevNextButtons?: boolean
   showCloseButton?: boolean
   showBadge?: boolean
+  showDots?: boolean
   scrollSmooth?: boolean
   inViewThreshold?: number | { x?: number; y?: number }
   accessibilityOptions?: A11yOptions
