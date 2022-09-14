@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.4.7
+
+### Patch Changes
+
+- Fix Observable issue
+
 ## 0.4.6
 
 ### Patch Changes

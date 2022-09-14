@@ -217,7 +217,26 @@ export default function Docs() {
       <DisableActionsDemo />
       <HOC />
       {/* <FollowScrollDemo /> */}
+
+      <Demo
+        title="Content Component"
+        demoId="content-component"
+        providerProps={{
+          ContentComponent,
+          styles: { popover: (base) => ({ ...base, padding: 0 }) },
+        }}
+      >
+        <Placeholder demoId="content-component" length={3} />
+      </Demo>
     </Container>
+  )
+}
+
+function ContentComponent() {
+  return (
+    <div style={{ border: '5px solid red', padding: 10, background: 'white' }}>
+      Lorem ipsum
+    </div>
   )
 }
 

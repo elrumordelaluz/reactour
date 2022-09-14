@@ -94,7 +94,7 @@ const Navigation: React.FC<NavigationProps> = ({
       ) : null}
       {!hideDots ? (
         <div style={getStyles('navigation', {})}>
-          {Array.from({ length: stepsLength }, (_, i) => i).map(index => {
+          {Array.from({ length: stepsLength }, (_, i) => i).map((index) => {
             return (
               <button
                 style={getStyles('dot', {

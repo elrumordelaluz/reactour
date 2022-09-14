@@ -45,7 +45,7 @@ export function useSizes(
       : document.querySelector(step?.selector)
 
   const handleResize = useCallback(() => {
-    const newDimensions: any = getHighlightedRect(
+    const { hasHighligtedElems, ...newDimensions }: any = getHighlightedRect(
       target,
       step?.highlightedSelectors,
       step?.bypassElem
@@ -83,7 +83,7 @@ export function useSizes(
     }
   }, [dimensions])
 
-  function observableRefresher() {
+  const observableRefresher = useCallback(() => {
     setObserving(true)
     const { hasHighligtedElems, ...dimesions } = getHighlightedRect(
       target,
@@ -93,7 +93,7 @@ export function useSizes(
     setIsHighlightingObserved(hasHighligtedElems)
     setDimensions(dimesions)
     setObserving(false)
-  }
+  }, [target, step?.highlightedSelectors, dimensions])
 
   return {
     sizes: dimensions,

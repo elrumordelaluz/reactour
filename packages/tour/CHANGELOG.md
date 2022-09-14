@@ -1,5 +1,13 @@
 # @reactour/tour
 
+## 3.1.4
+
+### Patch Changes
+
+- Fix Observable issue
+- Updated dependencies
+  - @reactour/utils@0.4.7
+
 ## 3.1.3
 
 ### Patch Changes

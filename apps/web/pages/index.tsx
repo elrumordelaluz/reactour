@@ -3,7 +3,7 @@ import { TourProvider } from '@reactour/tour'
 import { ModalProvider } from 'modaaals'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { isMobile } from 'react-device-detect'
-import Demo from '../components/Home'
+import Home from '../components/Home'
 import Text from '../components/Text'
 import Tooltip from '../components/Tooltip'
 import Portal from '../components/Portal'
@@ -39,6 +39,7 @@ function App() {
           }),
         }}
         Wrapper={Wrapper}
+        // inViewThreshold={40}
         scrollSmooth
       >
         <ModalProvider
@@ -49,7 +50,7 @@ function App() {
           className="modaaals-modal"
           skipMotion
         >
-          <Demo
+          <Home
             toggleShowMore={() => setShowingMore(!isShowingMore)}
             isShowingMore={isShowingMore}
           />
@@ -199,13 +200,8 @@ const tourConfig = [
     selector: '[data-tut="reactour__state"]',
     content:
       'And the Tour could be observing changes to update the view, try clicking the button…',
-
-    highlightedSelectors: [
-      '[data-tut="reactour__highlighted-absolute-child_2"]',
-    ],
-    mutationObservables: [
-      '[data-tut="reactour__highlighted-absolute-child_2"]',
-    ],
+    highlightedSelectors: ['[data-tut="reactour__state-absolute-child"]'],
+    mutationObservables: ['[data-tut="reactour__state-absolute-child"]'],
 
     action: (node: HTMLElement) => node.focus(),
   },

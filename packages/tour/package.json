@@ -1,6 +1,6 @@
 {
   "name": "@reactour/tour",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -9,7 +9,7 @@
   "devDependencies": {
     "@reactour/config": "*",
     "@reactour/tsconfig": "*",
-    "@types/react": "^18.0.18",
+    "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "react": "^18.2.0",
     "tsup": "^6.2.3",

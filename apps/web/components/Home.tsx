@@ -12,6 +12,7 @@ import Footer from './Footer'
 import Image from './Image'
 import { Button, Link } from './Button'
 import Dropdown from './Dropdown'
+import ImagesRow from './ImagesRow'
 import Tabs from './Tabs'
 
 type DemoProps = {
@@ -19,7 +20,7 @@ type DemoProps = {
   toggleShowMore: () => void
 }
 
-export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
+export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
   const { setIsOpen } = useTour()
   const { openModal } = useContext(ModalContext)
 
@@ -267,82 +268,56 @@ export default function Demo({ isShowingMore, toggleShowMore }: DemoProps) {
           </Box>
         </Row>
 
-        <Box center width="100%">
-          <Button onClick={toggleShowMore} data-tut="reactour__state">
-            {isShowingMore ? 'Hide' : 'Show'} extra Buildings
-          </Button>
-        </Box>
-
-        {isShowingMore && (
-          <Row data-tut="reactour__highlighted-absolute-child_2">
-            <link
-              rel="preload"
-              as="image"
-              href="https://cdn.dribbble.com/users/235991/screenshots/1931264/house8.png"
-            />
-            <link
-              rel="preload"
-              as="image"
-              href="https://cdn.dribbble.com/users/235991/screenshots/1972953/greekhouse.png"
-            />
-            <link
-              rel="preload"
-              as="image"
-              href="https://cdn.dribbble.com/users/235991/screenshots/1919911/house_french.png"
-            />
-            <Box>
-              <Link
-                href="https://dribbble.com/shots/1931264-Lean-Green"
-                nospaces
-              >
-                <Image
-                  alt="house8"
-                  src="https://cdn.dribbble.com/users/235991/screenshots/1931264/house8.png"
-                />
+        <ImagesRow>
+          <Box>
+            <Link href="https://dribbble.com/shots/1931264-Lean-Green" nospaces>
+              <Image
+                alt="house8"
+                src="https://cdn.dribbble.com/users/235991/screenshots/1931264/house8.png"
+              />
+            </Link>
+            <Text size=".7em">
+              Image by{' '}
+              <Link href="https://twitter.com/hoolahk" color="dark" nospaces>
+                Kate Hoolahan
               </Link>
-              <Text size=".7em">
-                Image by{' '}
-                <Link href="https://twitter.com/hoolahk" color="dark" nospaces>
-                  Kate Hoolahan
-                </Link>
-              </Text>
-            </Box>
-            <Box>
-              <Link
-                href="https://dribbble.com/shots/1972953-Greek-House"
-                nospaces
-              >
-                <Image
-                  alt="greekhouse"
-                  src="https://cdn.dribbble.com/users/235991/screenshots/1972953/greekhouse.png"
-                />
+            </Text>
+          </Box>
+          <Box>
+            <Link
+              href="https://dribbble.com/shots/1972953-Greek-House"
+              nospaces
+            >
+              <Image
+                alt="greekhouse"
+                src="https://cdn.dribbble.com/users/235991/screenshots/1972953/greekhouse.png"
+              />
+            </Link>
+            <Text size=".7em">
+              Image by{' '}
+              <Link href="https://twitter.com/hoolahk" color="dark" nospaces>
+                Kate Hoolahan
               </Link>
-              <Text size=".7em">
-                Image by{' '}
-                <Link href="https://twitter.com/hoolahk" color="dark" nospaces>
-                  Kate Hoolahan
-                </Link>
-              </Text>
-            </Box>
-            <Box>
-              <Link
-                href="https://dribbble.com/shots/1919911-House-Fancy"
-                nospaces
-              >
-                <Image
-                  alt="house french"
-                  src="https://cdn.dribbble.com/users/235991/screenshots/1919911/house_french.png"
-                />
+            </Text>
+          </Box>
+          <Box>
+            <Link
+              href="https://dribbble.com/shots/1919911-House-Fancy"
+              nospaces
+            >
+              <Image
+                alt="house french"
+                src="https://cdn.dribbble.com/users/235991/screenshots/1919911/house_french.png"
+              />
+            </Link>
+            <Text size=".7em">
+              Image by{' '}
+              <Link href="https://twitter.com/hoolahk" color="dark" nospaces>
+                Kate Hoolahan
               </Link>
-              <Text size=".7em">
-                Image by{' '}
-                <Link href="https://twitter.com/hoolahk" color="dark" nospaces>
-                  Kate Hoolahan
-                </Link>
-              </Text>
-            </Box>
-          </Row>
-        )}
+            </Text>
+          </Box>
+        </ImagesRow>
 
         <Box center width="100%">
           <Button data-tour="open_modal" onClick={() => openModal('test')}>

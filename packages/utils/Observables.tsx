@@ -81,7 +81,7 @@ const Observables: React.FC<ObservablesProps> = ({
     return () => {
       resizeObserver.disconnect()
     }
-  }, [resizeObservables, refresh, mutationsCounter])
+  }, [resizeObservables, mutationsCounter])
 
   return null
 }
