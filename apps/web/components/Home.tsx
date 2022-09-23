@@ -1,5 +1,6 @@
 import { useEffect, useContext } from 'react'
 import { useTour } from '@reactour/tour'
+import NextLink from 'next/link'
 import { ModalContext } from 'modaaals'
 import Section from './Section'
 import Logo from './Logo'
@@ -54,6 +55,22 @@ export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
         >
           Github
         </Link>
+
+        <NextLink href="/tour">
+          <Link color="dark" h="5">
+            /tour
+          </Link>
+        </NextLink>
+        <NextLink href="/mask">
+          <Link color="dark" h="5">
+            /mask
+          </Link>
+        </NextLink>
+        <NextLink href="/popover">
+          <Link color="dark" h="5">
+            /popover
+          </Link>
+        </NextLink>
       </Section>
       <Section>
         <Row>
