@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.5
+
+### Patch Changes
+
+- Attemp to improve performance
+
 ## 3.1.4
 
 ### Patch Changes

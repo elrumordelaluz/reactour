@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useMemo } from 'react'
 // import { useControllableState } from '@chakra-ui/hooks'
 
 import Tour from './Tour'
@@ -60,5 +60,5 @@ export { TourProvider }
 export default TourContext
 
 export function useTour() {
-  return useContext(TourContext)
+  return useMemo(() => useContext(TourContext), [TourContext])
 }

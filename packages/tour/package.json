@@ -1,6 +1,6 @@
 {
   "name": "@reactour/tour",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
