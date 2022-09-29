@@ -9,7 +9,8 @@ import {
 } from '@nextui-org/react'
 import Placeholder, { PlaceholderGrid } from '../components/Placeholder'
 import Paragraphs from '../components/Paragraphs'
-import Demo from '../components/Demo'
+import TourDemos from '../components/demos/TourDemos'
+import Demo from '../components/demos/index'
 import {
   useTour,
   KeyboardParts,
@@ -30,421 +31,400 @@ const keyframesRotate = keyframes`
   }
 }`
 
-export default function Docs() {
-  return (
-    <Container justify="center">
-      <Text
-        h1
-        size={60}
-        css={{ textGradient: '45deg, $blue500 -20%, $pink500 50%' }}
-        weight="bold"
-      >
-        Tour
-      </Text>
-      <Text>Here are the examples for the Tour package</Text>
-      <Spacer y={3} />
+export default function Tour() {
+  return <TourDemos />
+  //   return (
+  //     <Container justify="center">
+  //       <Text
+  //         h1
+  //         size={60}
+  //         css={{ textGradient: '45deg, $blue500 -20%, $pink500 50%' }}
+  //         weight="bold"
+  //       >
+  //         Tour
+  //       </Text>
+  //       <Text>Here are the examples for the Tour package</Text>
+  //       <Spacer y={3} />
 
-      <Demo title="Basic example" demoId="basic" providerProps={{}}>
-        <Paragraphs demoId="basic" />
-      </Demo>
+  //       <Demo
+  //         title="Basic example"
+  //         description="This is the minimal example"
+  //         demoId="basic"
+  //       />
 
-      <Demo
-        title="Mask click"
-        demoId="mask-click"
-        providerProps={{
-          onClickMask: ({ setCurrentStep, currentStep, steps, setIsOpen }) => {
-            if (steps) {
-              if (currentStep === steps.length - 1) {
-                setIsOpen(false)
-              }
-              setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
-            }
-          },
-        }}
-        code={`<TourProvider 
-  onClickMask={({ setCurrentStep, currentStep, steps, setIsOpen }) => {
-    if (currentStep === steps.length - 1) {
-      setIsOpen(false)  
-    }
-    setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
-  }}
-/>`}
-      >
-        <Placeholder demoId="mask-click" length={3} />
-      </Demo>
+  //       <Demo
+  //         title="Mask click"
+  //         demoId="mask-click"
+  //         providerProps={{
+  //           onClickMask: ({ setCurrentStep, currentStep, steps, setIsOpen }) => {
+  //             if (steps) {
+  //               if (currentStep === steps.length - 1) {
+  //                 setIsOpen(false)
+  //               }
+  //               setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
+  //             }
+  //           },
+  //         }}
+  //       />
 
-      <Demo
-        title="Close click"
-        demoId="close-click"
-        providerProps={{
-          onClickClose: ({ setCurrentStep, currentStep, steps, setIsOpen }) => {
-            if (steps) {
-              if (currentStep === steps.length - 1) {
-                setIsOpen(false)
-              }
-              setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
-            }
-          },
-        }}
-        code={`<TourProvider 
-  onClickClose={({ setCurrentStep, currentStep, steps, setIsOpen }) => {
-    if (currentStep === steps.length - 1) {
-      setIsOpen(false)  
-    }
-    setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
-  }}
-/>`}
-      >
-        <Placeholder demoId="close-click" length={3} />
-      </Demo>
+  //       <Demo
+  //         title="Close click"
+  //         demoId="close-click"
+  //         providerProps={{
+  //           onClickClose: ({ setCurrentStep, currentStep, steps, setIsOpen }) => {
+  //             if (steps) {
+  //               if (currentStep === steps.length - 1) {
+  //                 setIsOpen(false)
+  //               }
+  //               setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1))
+  //             }
+  //           },
+  //         }}
+  //       />
 
-      <DisableKeyboardDemo />
+  //       <DisableKeyboardDemo />
 
-      <Demo
-        title="Scroll smooth"
-        demoId="scroll-smooth"
-        length={5}
-        providerProps={{
-          scrollSmooth: true,
-        }}
-        code={`<TourProvider scrollSmooth />`}
-      >
-        <Placeholder
-          demoId="scroll-smooth"
-          length={5}
-          direction="column"
-          gap={12}
-        />
-      </Demo>
+  //       <Demo
+  //         title="Scroll smooth"
+  //         demoId="scroll-smooth"
+  //         length={5}
+  //         providerProps={{
+  //           scrollSmooth: true,
+  //         }}
+  //       >
+  //         <Placeholder
+  //           demoId="scroll-smooth"
+  //           length={5}
+  //           direction="column"
+  //           gap={12}
+  //         />
+  //       </Demo>
 
-      <Demo
-        title="Padding"
-        demoId="padding"
-        providerProps={{
-          padding: { mask: 14, popover: [5, 10], wrapper: 20 },
-        }}
-        code={`<TourProvider padding={{ mask: 14, popover: [5, 10], wrapper: 20 }} />`}
-      >
-        <Placeholder demoId="padding" length={3} />
-      </Demo>
+  //       <Demo
+  //         title="Padding"
+  //         demoId="padding"
+  //         providerProps={{
+  //           padding: { mask: 14, popover: [5, 10], wrapper: 20 },
+  //         }}
+  //         code={`<TourProvider padding={{ mask: 14, popover: [5, 10], wrapper: 20 }} />`}
+  //       >
+  //         <Placeholder demoId="padding" length={3} />
+  //       </Demo>
 
-      <PrevNextDemo />
+  //       <PrevNextDemo />
 
-      <Demo
-        title="RTL"
-        demoId="rtl"
-        providerProps={{
-          rtl: true,
-        }}
-      >
-        <Placeholder demoId="rtl" length={3} />
-      </Demo>
-      <Demo
-        title="Custom styles"
-        demoId="custom-styles"
-        providerProps={{
-          styles: {
-            popover: (base) => ({
-              ...base,
-              '--reactour-accent': '#ef5a3d',
-              borderRadius: radius,
-            }),
-            maskArea: (base) => ({ ...base, rx: radius }),
-            maskWrapper: (base) => ({ ...base, color: '#ef5a3d' }),
-            badge: (base) => ({ ...base, left: 'auto', right: '-0.8125em' }),
-            controls: (base) => ({ ...base, marginTop: 100 }),
-            close: (base) => ({ ...base, right: 'auto', left: 8, top: 8 }),
-            dot: (base) => ({
-              ...base,
-              animationDuration: '1s',
-              animationName: keyframesRotate,
-              animationIterationCount: 'infinite',
-              '&:nth-of-type(1)': {
-                animationDelay: '.3s',
-              },
-              '&:nth-of-type(2)': {
-                animationDelay: '.6s',
-              },
-            }),
-          },
-        }}
-      >
-        <Placeholder demoId="custom-styles" length={3} />
-      </Demo>
-      <DisableScrollDemo />
-      <Demo
-        title="Custom Badge"
-        demoId="custom-badge"
-        providerProps={{
-          badgeContent: ({ totalSteps, currentStep }) =>
-            `${currentStep + 1}/${totalSteps}`,
-        }}
-      >
-        <Placeholder demoId="custom-badge" length={3} />
-      </Demo>
-      <Demo
-        title="Disable dots navigation"
-        demoId="disable-dots-nav"
-        providerProps={{
-          disableDotsNavigation: true,
-        }}
-      >
-        <Placeholder demoId="disable-dots-nav" length={3} />
-      </Demo>
-      <Demo
-        title="Disable interaction"
-        demoId="disable-interaction"
-        providerProps={{
-          onClickHighlighted: (e) => {
-            e.stopPropagation()
-            console.log('No interaction')
-          },
-          disableInteraction: true,
-        }}
-      >
-        <Placeholder demoId="disable-interaction" length={3} />
-      </Demo>
-      <ToggleNavPartsDemo />
-      <Demo
-        title="Starts at specific step"
-        demoId="start-at"
-        providerProps={{ startAt: 1 }}
-      >
-        <Placeholder demoId="start-at" length={3} />
-      </Demo>
-      <ModalsDemo />
-      <AutoplayDemo />
-      <DisableActionsDemo />
-      <HOC />
-      {/* <FollowScrollDemo /> */}
+  //       <Demo
+  //         title="RTL"
+  //         demoId="rtl"
+  //         providerProps={{
+  //           rtl: true,
+  //         }}
+  //       >
+  //         <Placeholder demoId="rtl" length={3} />
+  //       </Demo>
+  //       <Demo
+  //         title="Custom styles"
+  //         demoId="custom-styles"
+  //         providerProps={{
+  //           styles: {
+  //             popover: (base) => ({
+  //               ...base,
+  //               '--reactour-accent': '#ef5a3d',
+  //               borderRadius: radius,
+  //             }),
+  //             maskArea: (base) => ({ ...base, rx: radius }),
+  //             maskWrapper: (base) => ({ ...base, color: '#ef5a3d' }),
+  //             badge: (base) => ({ ...base, left: 'auto', right: '-0.8125em' }),
+  //             controls: (base) => ({ ...base, marginTop: 100 }),
+  //             close: (base) => ({ ...base, right: 'auto', left: 8, top: 8 }),
+  //             dot: (base) => ({
+  //               ...base,
+  //               animationDuration: '1s',
+  //               animationName: keyframesRotate,
+  //               animationIterationCount: 'infinite',
+  //               '&:nth-of-type(1)': {
+  //                 animationDelay: '.3s',
+  //               },
+  //               '&:nth-of-type(2)': {
+  //                 animationDelay: '.6s',
+  //               },
+  //             }),
+  //           },
+  //         }}
+  //       >
+  //         <Placeholder demoId="custom-styles" length={3} />
+  //       </Demo>
+  //       <DisableScrollDemo />
+  //       <Demo
+  //         title="Custom Badge"
+  //         demoId="custom-badge"
+  //         providerProps={{
+  //           badgeContent: ({ totalSteps, currentStep }) =>
+  //             `${currentStep + 1}/${totalSteps}`,
+  //         }}
+  //       >
+  //         <Placeholder demoId="custom-badge" length={3} />
+  //       </Demo>
+  //       <Demo
+  //         title="Disable dots navigation"
+  //         demoId="disable-dots-nav"
+  //         providerProps={{
+  //           disableDotsNavigation: true,
+  //         }}
+  //       >
+  //         <Placeholder demoId="disable-dots-nav" length={3} />
+  //       </Demo>
+  //       <Demo
+  //         title="Disable interaction"
+  //         demoId="disable-interaction"
+  //         providerProps={{
+  //           onClickHighlighted: (e) => {
+  //             e.stopPropagation()
+  //             console.log('No interaction')
+  //           },
+  //           disableInteraction: true,
+  //         }}
+  //       >
+  //         <Placeholder demoId="disable-interaction" length={3} />
+  //       </Demo>
+  //       <ToggleNavPartsDemo />
+  //       <Demo
+  //         title="Starts at specific step"
+  //         demoId="start-at"
+  //         providerProps={{ startAt: 1 }}
+  //       >
+  //         <Placeholder demoId="start-at" length={3} />
+  //       </Demo>
+  //       <ModalsDemo />
+  //       <AutoplayDemo />
+  //       <DisableActionsDemo />
+  //       <HOC />
+  //       {/* <FollowScrollDemo /> */}
 
-      <Demo
-        title="Content Component"
-        demoId="content-component"
-        providerProps={{
-          ContentComponent,
-          styles: { popover: (base) => ({ ...base, padding: 0 }) },
-        }}
-      >
-        <Placeholder demoId="content-component" length={3} />
-      </Demo>
-    </Container>
-  )
-}
+  //       <Demo
+  //         title="Content Component"
+  //         demoId="content-component"
+  //         providerProps={{
+  //           ContentComponent,
+  //           styles: { popover: (base) => ({ ...base, padding: 0 }) },
+  //         }}
+  //       >
+  //         <Placeholder demoId="content-component" length={3} />
+  //       </Demo>
+  //     </Container>
+  //   )
+  // }
 
-function ContentComponent() {
-  return (
-    <div style={{ border: '5px solid red', padding: 10, background: 'white' }}>
-      Lorem ipsum
-    </div>
-  )
-}
+  // function ContentComponent() {
+  //   return (
+  //     <div style={{ border: '5px solid red', padding: 10, background: 'white' }}>
+  //       Lorem ipsum
+  //     </div>
+  //   )
+  // }
 
-function DisableKeyboardDemo() {
-  const [disableKeyboardNavigation, setDisable] = useState<KeyboardParts[]>([
-    'esc',
-  ])
+  // function DisableKeyboardDemo() {
+  //   const [disableKeyboardNavigation, setDisable] = useState<KeyboardParts[]>([
+  //     'esc',
+  //   ])
 
-  return (
-    <Demo
-      title="Disable Keyboard"
-      demoId="disable-keyboard"
-      providerProps={{
-        disableKeyboardNavigation,
-      }}
-      code={`<TourProvider 
-  disableKeyboardNavigation={[${disableKeyboardNavigation}]}
-/>`}
-    >
-      <Checkbox.Group
-        label="Select keys to disable"
-        color="secondary"
-        value={disableKeyboardNavigation}
-        // @ts-ignore
-        onChange={setDisable}
-        orientation="horizontal"
-      >
-        <Checkbox
-          value="all"
-          onChange={(checked) => {
-            if (checked) {
-              // @ts-ignore
-              setDisable(['all', 'left', 'right', 'esc'])
-            } else {
-              setDisable([])
-            }
-          }}
-        >
-          All
-        </Checkbox>
-        <Checkbox value="left">Left</Checkbox>
-        <Checkbox value="right">Right</Checkbox>
-        <Checkbox value="esc">Esc</Checkbox>
-      </Checkbox.Group>
-      <Placeholder demoId="disable-keyboard" length={3} />
-    </Demo>
-  )
-}
+  //   return (
+  //     <Demo
+  //       title="Disable Keyboard"
+  //       demoId="disable-keyboard"
+  //       providerProps={{
+  //         disableKeyboardNavigation,
+  //       }}
+  //     >
+  //       <Checkbox.Group
+  //         label="Select keys to disable"
+  //         color="secondary"
+  //         value={disableKeyboardNavigation}
+  //         // @ts-ignore
+  //         onChange={setDisable}
+  //         orientation="horizontal"
+  //       >
+  //         <Checkbox
+  //           value="all"
+  //           onChange={(checked) => {
+  //             if (checked) {
+  //               // @ts-ignore
+  //               setDisable(['all', 'left', 'right', 'esc'])
+  //             } else {
+  //               setDisable([])
+  //             }
+  //           }}
+  //         >
+  //           All
+  //         </Checkbox>
+  //         <Checkbox value="left">Left</Checkbox>
+  //         <Checkbox value="right">Right</Checkbox>
+  //         <Checkbox value="esc">Esc</Checkbox>
+  //       </Checkbox.Group>
+  //       <Placeholder demoId="disable-keyboard" length={3} />
+  //     </Demo>
+  //   )
+  // }
 
-function PrevNextDemo() {
-  return (
-    <Demo
-      title="Custom Prev and Next buttons"
-      demoId="custom-prev-next"
-      providerProps={{
-        nextButton: ({
-          Button,
-          currentStep,
-          stepsLength,
-          setIsOpen,
-          setCurrentStep,
-          steps,
-        }) => {
-          const last = currentStep === stepsLength - 1
-          return (
-            <Button
-              hideArrow={last}
-              onClick={() => {
-                if (last) {
-                  setIsOpen(false)
-                } else {
-                  if (steps) {
-                    setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))
-                  }
-                }
-              }}
-            >
-              {last ? 'Close!' : null}
-            </Button>
-          )
-        },
-        prevButton: ({ currentStep, setCurrentStep, steps }) => {
-          const first = currentStep === 0
-          return (
-            <Button
-              auto
-              ghost
-              size="xs"
-              onClick={() => {
-                if (steps) {
-                  if (first) {
-                    setCurrentStep((s) => steps.length - 1)
-                  } else {
-                    setCurrentStep((s) => s - 1)
-                  }
-                }
-              }}
-            >
-              Back
-            </Button>
-          )
-        },
-      }}
-      code={`<TourProvider 
-  prevButton={({ currentStep, setCurrentStep, steps }) => {
-    const first = currentStep === 0
-    return (
-      <button
-        onClick={() => {
-          if (first) {
-            setCurrentStep((s) => steps.length - 1)
-          } else {
-            setCurrentStep((s) => s - 1)
-          }
-        }}
-      >
-        Back
-      </button>
-    )
-  }} 
-  nextButton={({
-    Button,
-    currentStep,
-    stepsLength,
-    setIsOpen,
-    setCurrentStep,
-    steps,
-  }) => {
-    const last = currentStep === stepsLength - 1
-    return (
-      <Button
-        onClick={() => {
-          if (last) {
-            setIsOpen(false)
-          } else {
-            setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))  
-          }
-        }}
-      >
-        {last ? 'Close!' : null}
-      </Button>
-    )
-  }} 
-/>`}
-    >
-      <Placeholder demoId="custom-prev-next" length={3} />
-    </Demo>
-  )
-}
+  // function PrevNextDemo() {
+  //   return (
+  //     <Demo
+  //       title="Custom Prev and Next buttons"
+  //       demoId="custom-prev-next"
+  //       providerProps={{
+  //         nextButton: ({
+  //           Button,
+  //           currentStep,
+  //           stepsLength,
+  //           setIsOpen,
+  //           setCurrentStep,
+  //           steps,
+  //         }) => {
+  //           const last = currentStep === stepsLength - 1
+  //           return (
+  //             <Button
+  //               hideArrow={last}
+  //               onClick={() => {
+  //                 if (last) {
+  //                   setIsOpen(false)
+  //                 } else {
+  //                   if (steps) {
+  //                     setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))
+  //                   }
+  //                 }
+  //               }}
+  //             >
+  //               {last ? 'Close!' : null}
+  //             </Button>
+  //           )
+  //         },
+  //         prevButton: ({ currentStep, setCurrentStep, steps }) => {
+  //           const first = currentStep === 0
+  //           return (
+  //             <Button
+  //               auto
+  //               ghost
+  //               size="xs"
+  //               onClick={() => {
+  //                 if (steps) {
+  //                   if (first) {
+  //                     setCurrentStep((s) => steps.length - 1)
+  //                   } else {
+  //                     setCurrentStep((s) => s - 1)
+  //                   }
+  //                 }
+  //               }}
+  //             >
+  //               Back
+  //             </Button>
+  //           )
+  //         },
+  //       }}
+  //       code={`<TourProvider
+  //   prevButton={({ currentStep, setCurrentStep, steps }) => {
+  //     const first = currentStep === 0
+  //     return (
+  //       <button
+  //         onClick={() => {
+  //           if (first) {
+  //             setCurrentStep((s) => steps.length - 1)
+  //           } else {
+  //             setCurrentStep((s) => s - 1)
+  //           }
+  //         }}
+  //       >
+  //         Back
+  //       </button>
+  //     )
+  //   }}
+  //   nextButton={({
+  //     Button,
+  //     currentStep,
+  //     stepsLength,
+  //     setIsOpen,
+  //     setCurrentStep,
+  //     steps,
+  //   }) => {
+  //     const last = currentStep === stepsLength - 1
+  //     return (
+  //       <Button
+  //         onClick={() => {
+  //           if (last) {
+  //             setIsOpen(false)
+  //           } else {
+  //             setCurrentStep((s) => (s === steps?.length - 1 ? 0 : s + 1))
+  //           }
+  //         }}
+  //       >
+  //         {last ? 'Close!' : null}
+  //       </Button>
+  //     )
+  //   }}
+  // />`}
+  //     >
+  //       <Placeholder demoId="custom-prev-next" length={3} />
+  //     </Demo>
+  //   )
+  // }
 
-function DisableScrollDemo() {
-  const disableBody = (target: Element | HTMLElement) =>
-    disableBodyScroll(target)
-  const enableBody = (target: Element | HTMLElement) => enableBodyScroll(target)
+  // function DisableScrollDemo() {
+  //   const disableBody = (target: Element | HTMLElement) =>
+  //     disableBodyScroll(target)
+  //   const enableBody = (target: Element | HTMLElement) => enableBodyScroll(target)
 
-  return (
-    <Demo
-      title="Disable Scroll"
-      demoId="scroll-lock"
-      providerProps={{
-        // @ts-ignore
-        afterOpen: disableBody,
-        // @ts-ignore
-        beforeClose: enableBody,
-      }}
-    >
-      <Placeholder demoId="scroll-lock" length={3} />
-    </Demo>
-  )
-}
+  //   return (
+  //     <Demo
+  //       title="Disable Scroll"
+  //       demoId="scroll-lock"
+  //       providerProps={{
+  //         // @ts-ignore
+  //         afterOpen: disableBody,
+  //         // @ts-ignore
+  //         beforeClose: enableBody,
+  //       }}
+  //     >
+  //       <Placeholder demoId="scroll-lock" length={3} />
+  //     </Demo>
+  //   )
+  // }
 
-function ToggleNavPartsDemo() {
-  const [navParts, setNavparts] = useState<string[]>([
-    'badge',
-    'close',
-    'nav',
-    'prevNext',
-    'dots',
-  ])
+  // function ToggleNavPartsDemo() {
+  //   const [navParts, setNavparts] = useState<string[]>([
+  //     'badge',
+  //     'close',
+  //     'nav',
+  //     'prevNext',
+  //     'dots',
+  //   ])
 
-  return (
-    <Demo
-      title="Toggle navigation parts"
-      demoId="toggle-nav-parts"
-      providerProps={{
-        showBadge: navParts.includes('badge'),
-        showCloseButton: navParts.includes('close'),
-        showNavigation: navParts.includes('nav'),
-        showPrevNextButtons: navParts.includes('prevNext'),
-        showDots: navParts.includes('dots'),
-      }}
-    >
-      <Checkbox.Group
-        label="Select parts to toggle"
-        color="secondary"
-        value={navParts}
-        onChange={setNavparts}
-        orientation="horizontal"
-      >
-        <Checkbox value="badge">Badge</Checkbox>
-        <Checkbox value="close">Close button </Checkbox>
-        <Checkbox value="nav">Navigation</Checkbox>
-        <Checkbox value="prevNext">Prev Next Buttons</Checkbox>
-        <Checkbox value="dots">Dots</Checkbox>
-      </Checkbox.Group>
-      <Placeholder demoId="toggle-nav-parts" length={3} />
-    </Demo>
-  )
+  //   return (
+  //     <Demo
+  //       title="Toggle navigation parts"
+  //       demoId="toggle-nav-parts"
+  //       providerProps={{
+  //         showBadge: navParts.includes('badge'),
+  //         showCloseButton: navParts.includes('close'),
+  //         showNavigation: navParts.includes('nav'),
+  //         showPrevNextButtons: navParts.includes('prevNext'),
+  //         showDots: navParts.includes('dots'),
+  //       }}
+  //     >
+  //       <Checkbox.Group
+  //         label="Select parts to toggle"
+  //         color="secondary"
+  //         value={navParts}
+  //         onChange={setNavparts}
+  //         orientation="horizontal"
+  //       >
+  //         <Checkbox value="badge">Badge</Checkbox>
+  //         <Checkbox value="close">Close button </Checkbox>
+  //         <Checkbox value="nav">Navigation</Checkbox>
+  //         <Checkbox value="prevNext">Prev Next Buttons</Checkbox>
+  //         <Checkbox value="dots">Dots</Checkbox>
+  //       </Checkbox.Group>
+  //       <Placeholder demoId="toggle-nav-parts" length={3} />
+  //     </Demo>
+  //   )
 }
 
 function ModalsDemo() {
@@ -463,7 +443,7 @@ function ModalsDemo() {
     { selector: '[data-tour="step-3-with-modals"]', content: 'text 3' },
   ]
   return (
-    <Demo title="Using Modals" demoId="with-modals" customSteps={steps}>
+    <Demo title="Using Modals" demoId="with-modals">
       <ModalProvider
         modals={modals}
         styles={{
@@ -541,7 +521,7 @@ function DemoModalContent() {
 
 function AutoplayDemo() {
   return (
-    <Demo title="Autoplay" demoId="autoplay" length={5}>
+    <Demo title="Autoplay" demoId="autoplay">
       <AutoplayPlaceholder />
     </Demo>
   )
@@ -650,12 +630,7 @@ function DisableActionsDemo() {
     },
   ]
   return (
-    <Demo
-      title="Disable Actions"
-      demoId="disable-actions"
-      length={5}
-      customSteps={disableSteps}
-    >
+    <Demo title="Disable Actions" demoId="disable-actions">
       <DisableActionsDemoContent />
     </Demo>
   )
@@ -750,7 +725,7 @@ const PlaceholderWithTour = withTour(HOCPlaceholder)
 
 function HOC() {
   return (
-    <Demo title="HOC" demoId="withTour" length={3}>
+    <Demo title="HOC" demoId="withTour">
       <PlaceholderWithTour />
     </Demo>
   )

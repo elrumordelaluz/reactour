@@ -45,7 +45,56 @@ function StaticMask() {
       <button onClick={() => setIsOpen((o) => !o)}>
         {isOpen ? 'Close' : 'Open'} Mask
       </button>
-      {isOpen ? <Mask sizes={sizes} onClick={() => setIsOpen(false)} /> : null}
+      <svg style={{ width: 0, height: 0 }} viewBox="0 0 64 64">
+        <clipPath id="cog">
+          <path d="M4.6 0l5.2 57.5 23 6.5 23-6.5L61 0zm45.2 18.8h-27l.6 7.2h25.8l-2 21.8-14.4 4h-.2l-14.5-4-.9-11.1h7l.5 5.6 7.8 2.1 7.9-2.1.9-9.1H17l-1.9-21.4h35.4z" />
+        </clipPath>
+      </svg>
+      {isOpen ? (
+        <Mask
+          sizes={sizes}
+          styles={{
+            clickArea: (
+              base,
+              { top, left, width, height, windowWidth, windowHeight }
+            ) => {
+              const l = (left * 100) / windowWidth
+              const t = (top * 100) / windowHeight
+              const r = ((left + width) * 100) / windowWidth
+              const b = ((top + height) * 100) / windowHeight
+              return {
+                ...base,
+                // clipPath: `polygon(0% 0%, 0% 100%, ${l}% 100%, ${l}% ${t}%, ${r}% ${t}%, ${r}% ${b}%, ${l}% ${b}%, ${l}% 100%, 100% 100%, 100% 0%)`,
+                // clipPath: `url(#cog)`,
+                // clipPath: `circle(80px at 50% 50%)`,
+                // clipPath: `inset(20px 20px 50px round 15px)`,
+                // width: windowWidth,
+                // clipPath: `path("M4.6 0l5.2 57.5 23 6.5 23-6.5L61 0zm45.2 18.8h-27l.6 7.2h25.8l-2 21.8-14.4 4h-.2l-14.5-4-.9-11.1h7l.5 5.6 7.8 2.1 7.9-2.1.9-9.1H17l-1.9-21.4h35.4z")`,
+                clipPath: `polygon(0px 0px, 0px ${windowHeight}px, ${left}px ${windowHeight}px, ${left}px ${top}px, ${
+                  left + width
+                }px ${top}px, ${left + width}px  ${
+                  top + height
+                }px , ${left}px  ${
+                  top + height
+                }px, ${left}px  ${windowHeight}px, ${windowWidth}px  ${windowHeight}px, ${windowWidth}px 0px)`,
+                color: 'red',
+              }
+            },
+            // maskWrapper: (base) => ({
+            //   ...base,
+            //   color: 'transparent',
+            // }),
+            // maskRect: (base, { windowWidth, windowHeight }) => ({
+            //   ...base,
+            //   width: windowWidth / 2,
+            //   height: windowHeight / 2,
+            //   color: 'blue',
+            //   mask: `url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/stampTiles.svg)`,
+            // }),
+          }}
+          onClick={() => setIsOpen(false)}
+        />
+      ) : null}
     </>
   )
 }
