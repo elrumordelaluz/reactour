@@ -6,44 +6,8 @@ import {
   StyledSnippetPre,
 } from '@nextui-org/react'
 import { Sandpack } from '@codesandbox/sandpack-react'
-import {
-  SandpackProvider,
-  ClasserProvider,
-  SandpackPreview,
-  useActiveCode,
-  SandpackLayout,
-  SandpackStack,
-  FileTabs,
-  useSandpack,
-} from '@codesandbox/sandpack-react'
-import Editor from '@monaco-editor/react'
-import { getLanguageOfFile } from './utils'
 import { monokaiPro } from '@codesandbox/sandpack-themes'
 import { configFiles } from './files/index'
-
-function MonacoEditor() {
-  const { code, updateCode } = useActiveCode()
-  const { sandpack } = useSandpack()
-
-  const language = getLanguageOfFile(sandpack.activeFile)
-
-  return (
-    <SandpackStack style={{ minHeight: 400, margin: 0 }}>
-      <FileTabs />
-      <div style={{ flex: 1, paddingTop: 8, background: '#1e1e1e' }}>
-        <Editor
-          width="100%"
-          height="100%"
-          language={language}
-          theme="vs-dark"
-          key={sandpack.activeFile}
-          defaultValue={code}
-          onChange={(value) => updateCode(value || '')}
-        />
-      </div>
-    </SandpackStack>
-  )
-}
 
 const Demo: React.FC<
   React.PropsWithChildren<{
@@ -67,7 +31,7 @@ const Demo: React.FC<
 
       <Text blockquote>{description}</Text>
       <Spacer y={1} />
-      <SandpackProvider
+      <Sandpack
         template="react"
         files={configFiles(demoId)}
         theme={monokaiPro}
@@ -76,22 +40,7 @@ const Demo: React.FC<
             '@reactour/tour': '*',
           },
         }}
-      >
-        <SandpackLayout>
-          <MonacoEditor />
-          <SandpackPreview style={{ minHeight: 400 }} />
-        </SandpackLayout>
-      </SandpackProvider>
-      {/* <Sandpack
-        template="react"
-        files={configFiles(demoId)}
-        theme={monokaiPro}
-        customSetup={{
-          dependencies: {
-            '@reactour/tour': '*',
-          },
-        }}
-      /> */}
+      />
       <Spacer y={1} />
       {docsLink ? (
         <Link

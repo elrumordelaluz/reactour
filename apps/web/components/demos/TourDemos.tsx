@@ -4,14 +4,14 @@ import Demo from './index'
 
 export default function TourDemos() {
   return (
-    <Container justify="center">
+    <Container>
       <Text
         h1
         size={60}
         css={{ textGradient: '45deg, $blue500 -20%, $pink500 50%' }}
         weight="bold"
       >
-        Tour
+        @reactour/tour
       </Text>
       <Text>Here are the examples for the Tour package</Text>
       <Spacer y={3} />
@@ -44,6 +44,46 @@ export default function TourDemos() {
         description="Example to show the customizable behavior of the Close click event. Try clicking the 'x' and the Tour will proceed to the next step."
         docsLink="https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#disablekeyboardnavigation-boolean--keyboardparts"
         prop="disableKeyboardNavigation"
+      />
+
+      <Demo
+        title="Scroll Smooth"
+        demoId="scroll-smooth"
+        description="Use smooth scroll between steps if there aren't visible in viewport"
+        docsLink="https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#scrollsmooth-boolean"
+        prop="scrollSmooth"
+      />
+
+      <Demo
+        title="Padding"
+        demoId="padding"
+        description="Custom wrapper, mask and popover paddings"
+        docsLink="https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#padding-padding-1"
+        prop="padding"
+      />
+
+      <Demo
+        title="Custom Prev and Next buttons"
+        demoId="custom-prev-next"
+        description="Custom Prev and Next button"
+        docsLink="https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#nextbutton-props-btnfnprops--void"
+        prop="prevButton | nextButton"
+      />
+
+      <Demo
+        title="RTL"
+        demoId="rtl"
+        description="RTL mode"
+        docsLink="https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#rtl-boolean"
+        prop="rtl"
+      />
+
+      <Demo
+        title="Custom styles"
+        demoId="custom-styles"
+        description="Custom Tour, Mask and Popover components and parts styles"
+        docsLink="https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#styles-stylesobj--popoverstylesobj--maskstylesobj-1"
+        prop="styles"
       />
     </Container>
   )

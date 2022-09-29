@@ -1,4 +1,4 @@
-import { DefaultMainJs, defaultStepsjs } from './defaults'
+import { defaultFiles } from './defaults'
 
 const AppJs = `import { TourProvider } from '@reactour/tour'
 import { steps } from './steps.js'
@@ -23,13 +23,8 @@ export default function App () {
 `
 
 export const closeClickFiles = {
+  ...defaultFiles,
   '/App.js': {
     code: AppJs,
-  },
-  '/Main.js': {
-    code: DefaultMainJs,
-  },
-  '/steps.js': {
-    code: defaultStepsjs,
   },
 }

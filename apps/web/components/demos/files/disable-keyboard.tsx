@@ -1,4 +1,4 @@
-import { DefaultMainJs, defaultStepsjs } from './defaults'
+import { defaultFiles } from './defaults'
 
 const AppJs = `import { TourProvider } from '@reactour/tour'
 import { useState } from 'react'
@@ -62,13 +62,8 @@ export default function App () {
 `
 
 export const disableKeyboardFiles = {
+  ...defaultFiles,
   '/App.js': {
     code: AppJs,
-  },
-  '/Main.js': {
-    code: DefaultMainJs,
-  },
-  '/steps.js': {
-    code: defaultStepsjs,
   },
 }

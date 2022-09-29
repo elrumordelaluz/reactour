@@ -12,19 +12,23 @@ export default function App () {
 `
 
 export const DefaultMainJs = `import { useTour } from '@reactour/tour'
+
 export default function Main () {
   const { setIsOpen } = useTour()
+
   return (
-    <>
+    <div className="demo">
+      <header>
+        <button onClick={() => setIsOpen(true)}>Open Tour</button>
+      </header>
       <p>
         <span className="first-step">Lorem ipsum</span> dolor sit amet, consectetur adipiscing elit. Praesent at
         finibus nulla, quis varius justo. <span className="second-step">Vestibulum lorem</span> lorem.
       </p>
       <p>
-        Viverra porta metus nec, <span className="third-step">porta luctus</span> orci.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit enim vel libero sagittis efficitur. Maecenas iaculis metus et magna mollis, sit amet dictum arcu elementum. Vestibulum non turpis at enim aliquet lobortis. Donec vel gravida tellus. Praesent nec tristique velit, at ullamcorper nibh. Suspendisse potenti. Proin ac dolor justo. <span className="third-step">Praesent nisi mauris</span>, eleifend sed iaculis a, tincidunt et tellus. Etiam vitae velit risus.  
       </p>
-      <button onClick={() => setIsOpen(true)}>Open Tour</button>
-    </>
+    </div>
   )
 }
 `
@@ -46,6 +50,37 @@ export const defaultStepsjs = `export const steps = [
 ]
 `
 
+const stylesCss = `
+body {
+  font-family: -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetical Neue', sans-serif;
+}
+.demo {
+  padding: 1em;
+}
+.demo header {
+  display: flex;
+  justify-content: flex-end;
+}
+.demo button { 
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  padding: .5em 1em;
+  font: inherit;
+  margin-left: .25em;
+  margin-right: .25em; 
+  background-color: #1c8f9e;
+}
+.demo button:hover {
+  opacity: .9;
+}
+.scroll-demo p {
+  margin-bottom: 100vh;
+}
+`
+
 export const defaultFiles = {
   '/App.js': {
     code: DefautltAppJs,
@@ -55,5 +90,9 @@ export const defaultFiles = {
   },
   '/steps.js': {
     code: defaultStepsjs,
+  },
+  '/styles.css': {
+    code: stylesCss,
+    hidden: true,
   },
 }
