@@ -19,7 +19,7 @@
   "devDependencies": {
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
-    "turbo": "1.5.4"
+    "turbo": "1.5.5"
   },
   "engines": {
     "npm": ">=7.0.0",

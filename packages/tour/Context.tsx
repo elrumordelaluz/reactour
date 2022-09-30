@@ -60,5 +60,5 @@ export { TourProvider }
 export default TourContext
 
 export function useTour() {
-  return useMemo(() => useContext(TourContext), [TourContext])
+  return useContext(TourContext)
 }

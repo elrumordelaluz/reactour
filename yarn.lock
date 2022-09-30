@@ -328,7 +328,7 @@
     "@codemirror/state" "^0.19.0"
     "@codemirror/view" "^0.19.23"
 
-"@codemirror/highlight@^0.19.0", "@codemirror/highlight@^0.19.6", "@codemirror/highlight@^0.19.7":
+"@codemirror/highlight@^0.19.6", "@codemirror/highlight@^0.19.7":
   version "0.19.8"
   resolved "https://registry.yarnpkg.com/@codemirror/highlight/-/highlight-0.19.8.tgz#a95aee8ae4389b01f820aa79c48f7b4388087d92"
   integrity sha512-v/lzuHjrYR8MN2mEJcUD6fHSTXXli9C1XGYpr+ElV6fLBIUhMTNKR3qThp611xuWfXfwDxeL7ppcbkM/MzPV3A==
@@ -359,7 +359,7 @@
     "@codemirror/state" "^0.19.0"
     "@lezer/css" "^0.15.2"
 
-"@codemirror/lang-html@^0.19.0", "@codemirror/lang-html@^0.19.4":
+"@codemirror/lang-html@^0.19.4":
   version "0.19.4"
   resolved "https://registry.yarnpkg.com/@codemirror/lang-html/-/lang-html-0.19.4.tgz#e6eec28462f18842a0e108732a214a7416b5e333"
   integrity sha512-GpiEikNuCBeFnS+/TJSeanwqaOfNm8Kkp9WpVNEPZCLyW1mAMCuFJu/3xlWYeWc778Hc3vJqGn3bn+cLNubgCA==
@@ -385,19 +385,6 @@
     "@codemirror/state" "^0.19.0"
     "@codemirror/view" "^0.19.0"
     "@lezer/javascript" "^0.15.1"
-
-"@codemirror/lang-markdown@^0.19.3":
-  version "0.19.6"
-  resolved "https://registry.yarnpkg.com/@codemirror/lang-markdown/-/lang-markdown-0.19.6.tgz#761301d276fcfbdf88440f0333785efd71c2a4f5"
-  integrity sha512-ojoHeLgv1Rfu0GNGsU0bCtXAIp5dy4VKjndHScITQdlCkS/+SAIfuoeowEx+nMAQwTxI+/9fQZ3xdZVznGFYug==
-  dependencies:
-    "@codemirror/highlight" "^0.19.0"
-    "@codemirror/lang-html" "^0.19.0"
-    "@codemirror/language" "^0.19.0"
-    "@codemirror/state" "^0.19.3"
-    "@codemirror/view" "^0.19.0"
-    "@lezer/common" "^0.15.0"
-    "@lezer/markdown" "^0.15.0"
 
 "@codemirror/language@^0.19.0", "@codemirror/language@^0.19.7":
   version "0.19.10"
@@ -487,10 +474,10 @@
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@^1.8.5":
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-1.8.5.tgz#f336f96a7f24c8054c35ba9d6147247dc0dad3ec"
-  integrity sha512-nAWdzpUEg+dn8HZG56NAOCbLIRGe8J+6eARMPGL1iy/yHijDMmtNvU0kPrwTE6yVuM7hZ6JFdmCf9zUrojljTw==
+"@codesandbox/sandpack-react@^1.8.6":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-1.8.6.tgz#1f6a6709dbfc35b93525aa5469286ba06a7002fa"
+  integrity sha512-Vga4PBXCCJVhM6MVa4oWHOMbtcFy4CVqXzqQPA8Sboy2zhIwYCn6kKEl4JKZulFTHotnBKFR8PAkoGmOAstPoA==
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"
@@ -502,7 +489,6 @@
     "@codemirror/lang-css" "^0.19.3"
     "@codemirror/lang-html" "^0.19.4"
     "@codemirror/lang-javascript" "^0.19.3"
-    "@codemirror/lang-markdown" "^0.19.3"
     "@codemirror/language" "^0.19.7"
     "@codemirror/matchbrackets" "^0.19.3"
     "@codemirror/state" "^0.19.6"
@@ -784,13 +770,6 @@
   version "0.15.8"
   resolved "https://registry.yarnpkg.com/@lezer/lr/-/lr-0.15.8.tgz#1564a911e62b0a0f75ca63794a6aa8c5dc63db21"
   integrity sha512-bM6oE6VQZ6hIFxDNKk8bKPa14hqFrV07J/vHGOeiAbJReIaQXmkVb6xQu4MR+JBTLa5arGRyAAjJe1qaQt3Uvg==
-  dependencies:
-    "@lezer/common" "^0.15.0"
-
-"@lezer/markdown@^0.15.0":
-  version "0.15.6"
-  resolved "https://registry.yarnpkg.com/@lezer/markdown/-/markdown-0.15.6.tgz#2a826a507399b32176efdc35554397f05227d2aa"
-  integrity sha512-1XXLa4q0ZthryUEfO47ipvZHxNb+sCKoQIMM9dKs5vXZOBbgF2Vah/GL3g26BFIAEc2uCv4VQnI+lSrv58BT3g==
   dependencies:
     "@lezer/common" "^0.15.0"
 
@@ -2965,10 +2944,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
-framer-motion@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.4.0.tgz#318c52a76517f9f854aa4a298c292be04941521b"
-  integrity sha512-tcvL5L1cASYjIeBG6mQHhzfndm7MdyHjOwqIdOzOetIVa1yUqeYMufAoljgqg69XFgsgZet+c4iuSuFF+Vgbjg==
+framer-motion@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.5.0.tgz#e61864f9423f8b24ee5d6539e77c5d6571ee5f31"
+  integrity sha512-uz42xPsO5VmoRrT0Q2I1UZBvQ+Px0Is2c+7mum2z/UhC9m2Q1/2DmSR82ncc5qRtO/4OerNEm473ktOEX3unRg==
   dependencies:
     "@motionone/dom" "10.13.1"
     framesync "6.1.2"
@@ -4737,47 +4716,47 @@ tty-table@^4.1.5:
     wcwidth "^1.0.1"
     yargs "^17.1.1"
 
-turbo-darwin-64@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo-darwin-64/-/turbo-darwin-64-1.5.4.tgz#a028f492d604440a5475fb4b7c2b088dba8591fe"
-  integrity sha512-Bdxnwf+m0bnRb5HsVZLe+GRer+MOUgLNjOxluwD7POETgH8CTWu99DXfIMAVDWNILVmPCZbWv8Qh2XwhmPlBqw==
+turbo-darwin-64@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo-darwin-64/-/turbo-darwin-64-1.5.5.tgz#710d4e7999066bd4f500456f7cd1c30f6e6205ed"
+  integrity sha512-HvEn6P2B+NXDekq9LRpRgUjcT9/oygLTcK47U0qsAJZXRBSq/2hvD7lx4nAwgY/4W3rhYJeWtHTzbhoN6BXqGQ==
 
-turbo-darwin-arm64@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.5.4.tgz#b58bb8aeeeea4fd2a5bb932d6934c8b6cfecb39a"
-  integrity sha512-1Jdv6bl0v9TITEYDxwNFXdWMlYOifWdnrzkTDyaUV/IM0iL1oGiuD4ZdM9VfbR1D7y573dCmVPvbzgV3GQbJZA==
+turbo-darwin-arm64@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.5.5.tgz#f7955a800e945ab110e8a6e23f60a2b9795296ab"
+  integrity sha512-Dmxr09IUy6M0nc7/xWod9galIO2DD500B75sJSkHeT+CCdJOWnlinux0ZPF8CSygNqymwYO8AO2l15/6yxcycg==
 
-turbo-linux-64@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo-linux-64/-/turbo-linux-64-1.5.4.tgz#db1b0c4dba9060264d4de5ded04556db6cc70f5b"
-  integrity sha512-FbsXHOIkFnjX4Qu7ZtoCimmy5GlnTYuy66TO2re3i+jy+a59XOAnhU8tT/+FcA73oDAnSv/SAbz1gbsknCU4PA==
+turbo-linux-64@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo-linux-64/-/turbo-linux-64-1.5.5.tgz#f31eb117a9b605f5731048c50473bff903850047"
+  integrity sha512-wd07TZ4zXXWjzZE00FcFMLmkybQQK/NV9ff66vvAV0vdiuacSMBCNLrD6Mm4ncfrUPW/rwFW5kU/7hyuEqqtDw==
 
-turbo-linux-arm64@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo-linux-arm64/-/turbo-linux-arm64-1.5.4.tgz#aae902d1d76575bd44acfa16c312bac638ed7075"
-  integrity sha512-dYX2ekvYsHGSEsLI+NdoYskr1IEmUES+rup3vc9fFziYX+qOoQuttB7VYA9z6+E4fPpLCxAShPwzxmaXhplCNg==
+turbo-linux-arm64@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo-linux-arm64/-/turbo-linux-arm64-1.5.5.tgz#b9ce6912ae6477e829355d6f012500bfef58669d"
+  integrity sha512-q3q33tuo74R7gicnfvFbnZZvqmlq7Vakcvx0eshifnJw4PR+oMnTCb4w8ElVFx070zsb8DVTibq99y8NJH8T1Q==
 
-turbo-windows-64@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo-windows-64/-/turbo-windows-64-1.5.4.tgz#ab2bc7609d545d6c0999decf1d2d09ff7c5a5cca"
-  integrity sha512-xMmmfplaPrN2Bac+tmOo7bncKhcjv2a/6UGXobNspWzwf6dEboHtxbsP0kIfqoi/22gyj66jg/K/gFJgX08pnw==
+turbo-windows-64@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo-windows-64/-/turbo-windows-64-1.5.5.tgz#609098de3bc6178f733615d21b06d5c1602637eb"
+  integrity sha512-lPp9kHonNFfqgovbaW+UAPO5cLmoAN+m3G3FzqcrRPnlzt97vXYsDhDd/4Zy3oAKoAcprtP4CGy0ddisqsKTVw==
 
-turbo-windows-arm64@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo-windows-arm64/-/turbo-windows-arm64-1.5.4.tgz#56d47d2e18c8547e5ce91d3c7b51e1ac5b0c005b"
-  integrity sha512-6/DfBdUK+FrbRavQQY9XnxW+1SHPMsuooVjrW8nSh9KFXxTccbFvslUO38usl/lZ0EMKu7MC8D7Vf/zQ9pYGyw==
+turbo-windows-arm64@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo-windows-arm64/-/turbo-windows-arm64-1.5.5.tgz#60522e1e347a54c64bdddb68089fc322ee19c3d7"
+  integrity sha512-3AfGULKNZiZVrEzsIE+W79ZRW1+f5r4nM4wLlJ1PTBHyRxBZdD6KTH1tijGfy/uTlcV5acYnKHEkDc6Q9PAXGQ==
 
-turbo@1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/turbo/-/turbo-1.5.4.tgz#d100c49fc61f149fb51d721a419311f3cee5be0b"
-  integrity sha512-8txVfU6J4H5ZkSxr6N6Qn7H+W2Cpr0Uh67VeCH4/ZIbH4u24qPFZA9emlGcss0tI1pZHKGJ0+KjoSzC7vWqN2g==
+turbo@1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/turbo/-/turbo-1.5.5.tgz#9fc3a917c914ffa113c260a4eadb4bc632eee227"
+  integrity sha512-PVQSDl0STC9WXIyHcYUWs9gXsf8JjQig/FuHfuB8N6+XlgCGB3mPbfMEE6zrChGz2hufH4/guKRX1XJuNL6XTA==
   optionalDependencies:
-    turbo-darwin-64 "1.5.4"
-    turbo-darwin-arm64 "1.5.4"
-    turbo-linux-64 "1.5.4"
-    turbo-linux-arm64 "1.5.4"
-    turbo-windows-64 "1.5.4"
-    turbo-windows-arm64 "1.5.4"
+    turbo-darwin-64 "1.5.5"
+    turbo-darwin-arm64 "1.5.5"
+    turbo-linux-64 "1.5.5"
+    turbo-linux-arm64 "1.5.5"
+    turbo-windows-64 "1.5.5"
+    turbo-windows-arm64 "1.5.5"
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

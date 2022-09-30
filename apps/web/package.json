@@ -10,7 +10,7 @@
     "export": "rm -rf ../../docs && next build && next export  -o ../../docs"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^1.8.5",
+    "@codesandbox/sandpack-react": "^1.8.6",
     "@codesandbox/sandpack-themes": "^1.6.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -20,7 +20,7 @@
     "@reactour/tour": "*",
     "@reactour/utils": "*",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "framer-motion": "^7.4.0",
+    "framer-motion": "^7.5.0",
     "modaaals": "^0.14.1",
     "next": "12.3.1",
     "react": "18.2.0",

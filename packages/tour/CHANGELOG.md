@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.6
+
+### Patch Changes
+
+- Rollback performance changes
+
 ## 3.1.5
 
 ### Patch Changes
