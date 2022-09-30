@@ -24,7 +24,7 @@ type DemoProps = {
 export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
   const { setIsOpen } = useTour()
   const { openModal } = useContext(ModalContext)
-  console.log('TEST LOG')
+
   useEffect(() => {
     function keyHandling(e: KeyboardEvent) {
       if (e.keyCode === 75) {

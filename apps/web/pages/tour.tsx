@@ -1,26 +1,11 @@
-import { useState, useEffect, Component } from 'react'
-import {
-  Text,
-  Container,
-  Checkbox,
-  Button,
-  Progress,
-  Spacer,
-} from '@nextui-org/react'
+import { useEffect, Component } from 'react'
+import { Button, Progress } from '@nextui-org/react'
 import Placeholder, { PlaceholderGrid } from '../components/Placeholder'
-import Paragraphs from '../components/Paragraphs'
 import TourDemos from '../components/demos/TourDemos'
 import Demo from '../components/demos/index'
-import {
-  useTour,
-  KeyboardParts,
-  PopoverContentProps,
-  withTour,
-} from '@reactour/tour'
+import { useTour, PopoverContentProps, withTour } from '@reactour/tour'
 // import { useIntersectionObserver } from '@reactour/utils'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { ModalProvider, useModaaals } from 'modaaals'
-import { keyframes } from '@emotion/react'
 
 function RoutesDemo() {}
 
@@ -29,47 +14,6 @@ export default function Tour() {
   //   return (
   //     <Container justify="center">
 
-  //       <DisableScrollDemo />
-  //       <Demo
-  //         title="Custom Badge"
-  //         demoId="custom-badge"
-  //         providerProps={{
-  //           badgeContent: ({ totalSteps, currentStep }) =>
-  //             `${currentStep + 1}/${totalSteps}`,
-  //         }}
-  //       >
-  //         <Placeholder demoId="custom-badge" length={3} />
-  //       </Demo>
-  //       <Demo
-  //         title="Disable dots navigation"
-  //         demoId="disable-dots-nav"
-  //         providerProps={{
-  //           disableDotsNavigation: true,
-  //         }}
-  //       >
-  //         <Placeholder demoId="disable-dots-nav" length={3} />
-  //       </Demo>
-  //       <Demo
-  //         title="Disable interaction"
-  //         demoId="disable-interaction"
-  //         providerProps={{
-  //           onClickHighlighted: (e) => {
-  //             e.stopPropagation()
-  //             console.log('No interaction')
-  //           },
-  //           disableInteraction: true,
-  //         }}
-  //       >
-  //         <Placeholder demoId="disable-interaction" length={3} />
-  //       </Demo>
-  //       <ToggleNavPartsDemo />
-  //       <Demo
-  //         title="Starts at specific step"
-  //         demoId="start-at"
-  //         providerProps={{ startAt: 1 }}
-  //       >
-  //         <Placeholder demoId="start-at" length={3} />
-  //       </Demo>
   //       <ModalsDemo />
   //       <AutoplayDemo />
   //       <DisableActionsDemo />
@@ -97,108 +41,6 @@ export default function Tour() {
   //     </div>
   //   )
   // }
-
-  // function DisableKeyboardDemo() {
-  //   const [disableKeyboardNavigation, setDisable] = useState<KeyboardParts[]>([
-  //     'esc',
-  //   ])
-
-  //   return (
-  //     <Demo
-  //       title="Disable Keyboard"
-  //       demoId="disable-keyboard"
-  //       providerProps={{
-  //         disableKeyboardNavigation,
-  //       }}
-  //     >
-  //       <Checkbox.Group
-  //         label="Select keys to disable"
-  //         color="secondary"
-  //         value={disableKeyboardNavigation}
-  //         // @ts-ignore
-  //         onChange={setDisable}
-  //         orientation="horizontal"
-  //       >
-  //         <Checkbox
-  //           value="all"
-  //           onChange={(checked) => {
-  //             if (checked) {
-  //               // @ts-ignore
-  //               setDisable(['all', 'left', 'right', 'esc'])
-  //             } else {
-  //               setDisable([])
-  //             }
-  //           }}
-  //         >
-  //           All
-  //         </Checkbox>
-  //         <Checkbox value="left">Left</Checkbox>
-  //         <Checkbox value="right">Right</Checkbox>
-  //         <Checkbox value="esc">Esc</Checkbox>
-  //       </Checkbox.Group>
-  //       <Placeholder demoId="disable-keyboard" length={3} />
-  //     </Demo>
-  //   )
-  // }
-
-  // function DisableScrollDemo() {
-  //   const disableBody = (target: Element | HTMLElement) =>
-  //     disableBodyScroll(target)
-  //   const enableBody = (target: Element | HTMLElement) => enableBodyScroll(target)
-
-  //   return (
-  //     <Demo
-  //       title="Disable Scroll"
-  //       demoId="scroll-lock"
-  //       providerProps={{
-  //         // @ts-ignore
-  //         afterOpen: disableBody,
-  //         // @ts-ignore
-  //         beforeClose: enableBody,
-  //       }}
-  //     >
-  //       <Placeholder demoId="scroll-lock" length={3} />
-  //     </Demo>
-  //   )
-  // }
-
-  // function ToggleNavPartsDemo() {
-  //   const [navParts, setNavparts] = useState<string[]>([
-  //     'badge',
-  //     'close',
-  //     'nav',
-  //     'prevNext',
-  //     'dots',
-  //   ])
-
-  //   return (
-  //     <Demo
-  //       title="Toggle navigation parts"
-  //       demoId="toggle-nav-parts"
-  //       providerProps={{
-  //         showBadge: navParts.includes('badge'),
-  //         showCloseButton: navParts.includes('close'),
-  //         showNavigation: navParts.includes('nav'),
-  //         showPrevNextButtons: navParts.includes('prevNext'),
-  //         showDots: navParts.includes('dots'),
-  //       }}
-  //     >
-  //       <Checkbox.Group
-  //         label="Select parts to toggle"
-  //         color="secondary"
-  //         value={navParts}
-  //         onChange={setNavparts}
-  //         orientation="horizontal"
-  //       >
-  //         <Checkbox value="badge">Badge</Checkbox>
-  //         <Checkbox value="close">Close button </Checkbox>
-  //         <Checkbox value="nav">Navigation</Checkbox>
-  //         <Checkbox value="prevNext">Prev Next Buttons</Checkbox>
-  //         <Checkbox value="dots">Dots</Checkbox>
-  //       </Checkbox.Group>
-  //       <Placeholder demoId="toggle-nav-parts" length={3} />
-  //     </Demo>
-  //   )
 }
 
 function ModalsDemo() {

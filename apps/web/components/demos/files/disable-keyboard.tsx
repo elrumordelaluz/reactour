@@ -22,7 +22,7 @@ export default function App () {
 
   return (
     <>
-      <pre>
+      <pre className="demo-selectors">
         <code>Disabled keys: 
           <label>
             <input 

@@ -52,6 +52,8 @@ export const defaultStepsjs = `export const steps = [
 
 const stylesCss = `
 body {
+  margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetical Neue', sans-serif;
@@ -78,6 +80,22 @@ body {
 }
 .scroll-demo p {
   margin-bottom: 100vh;
+}
+.demo-selectors {
+  margin: 0;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: white;
+  z-index: 100000;
+  padding: 1em;
+  box-shadow: 0 0 25px rgba(0,0,0,.1);
+}
+.demo-selectors code {
+  display: flex;
+}
+.demo-selectors.column code {
+  flex-direction: column
 }
 `
 

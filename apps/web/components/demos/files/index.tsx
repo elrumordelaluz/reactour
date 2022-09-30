@@ -7,6 +7,12 @@ import { paddingFiles } from './padding'
 import { customPrevNextFiles } from './custom-prev-next'
 import { rtlFiles } from './rtl'
 import { customStylesFiles } from './custom-styles'
+import { scrollLockFiles } from './scroll-lock'
+import { customBadgeFiles } from './custom-badge'
+import { disableDotsNavFiles } from './disable-dots-nav'
+import { disableInteractionFiles } from './disable-interaction'
+import { toggleNavPartsFiles } from './toggle-nav-parts'
+import { startAtFiles } from './start-at'
 
 const filesByDemo = {
   'mask-click': maskClickFiles,
@@ -17,6 +23,12 @@ const filesByDemo = {
   'custom-prev-next': customPrevNextFiles,
   rtl: rtlFiles,
   'custom-styles': customStylesFiles,
+  'scroll-lock': scrollLockFiles,
+  'custom-badge': customBadgeFiles,
+  'disable-dots-nav': disableDotsNavFiles,
+  'disable-interaction': disableInteractionFiles,
+  'toggle-nav-parts': toggleNavPartsFiles,
+  'start-at': startAtFiles,
 }
 
 export function configFiles(demoId: string) {

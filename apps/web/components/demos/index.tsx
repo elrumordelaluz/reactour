@@ -8,16 +8,17 @@ import {
 import { Sandpack } from '@codesandbox/sandpack-react'
 import { monokaiPro } from '@codesandbox/sandpack-themes'
 import { configFiles } from './files/index'
+import { ReactNode } from 'react'
 
 const Demo: React.FC<
   React.PropsWithChildren<{
     demoId: string
     title?: string
-    description?: string
-    docsLink?: string
-    prop?: string
+    description?: ReactNode
+    docsLinks?: Array<{ link: string; prop: string }>
+    dependencies?: {}
   }>
-> = ({ title, description, demoId, docsLink, prop }) => {
+> = ({ title, description, demoId, docsLinks = [], dependencies }) => {
   return (
     <>
       <Text
@@ -38,24 +39,33 @@ const Demo: React.FC<
         customSetup={{
           dependencies: {
             '@reactour/tour': '*',
+            ...dependencies,
           },
         }}
       />
       <Spacer y={1} />
-      {docsLink ? (
-        <Link
-          href={docsLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          isExternal
-          color="secondary"
-        >
-          {prop ? <code style={{ marginRight: '.5em' }}>{prop}</code> : null}
-          Docs
-        </Link>
-      ) : null}
+      {docsLinks?.map(({ link, prop }) => (
+        <DocLink link={link} prop={prop} key={link} />
+      ))}
+
       <Spacer y={3} />
     </>
+  )
+}
+
+function DocLink({ link, prop }) {
+  return (
+    <Link
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      isExternal
+      color="secondary"
+      style={{ marginBottom: '.5em' }}
+    >
+      {prop ? <code style={{ marginRight: '.5em' }}>{prop}</code> : null}
+      Docs
+    </Link>
   )
 }
 
