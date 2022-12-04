@@ -90,7 +90,7 @@ Array of elements to highlight with special info and props.
   
   #### `selector: string | Element`
 
-A string containing one [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) to match and highlight the at the time of this step.
+A string containing one [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) to match and highlight the element at the time of this step.
 
 #### `content: string | ({ setCurrentStep, transition, isHighlightingObserved, currentStep, setIsOpen }) => void`
 
