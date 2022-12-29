@@ -49,6 +49,7 @@ export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
           Try it
         </Button>
         <Link
+          as="span"
           color="dark"
           h="4"
           href="https://github.com/elrumordelaluz/reactour"
@@ -57,17 +58,17 @@ export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
         </Link>
 
         <NextLink href="/tour">
-          <Link color="dark" h="5">
+          <Link color="dark" h="5" as="span">
             /tour
           </Link>
         </NextLink>
         <NextLink href="/mask">
-          <Link color="dark" h="5">
+          <Link color="dark" h="5" as="span">
             /mask
           </Link>
         </NextLink>
         <NextLink href="/popover">
-          <Link color="dark" h="5">
+          <Link color="dark" h="5" as="span">
             /popover
           </Link>
         </NextLink>
