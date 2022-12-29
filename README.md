@@ -25,7 +25,7 @@ A customizable Component to attach to an element or position of the viewport to 
 
 A set of helper functions used by the other packages.
 
-### [@reactour/playground](https://github.com/elrumordelaluz/reactour/tree/main/packages/playground)
+### [apps/web](https://github.com/elrumordelaluz/reactour/tree/main/apps/web)
 
 The place where all the stuff is visible working, live [here](https://reactour.vercel.app/).
 
