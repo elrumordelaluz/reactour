@@ -157,4 +157,4 @@ export type NavButtonProps = {
   kind?: 'next' | 'prev'
   hideArrow?: boolean
 }
-export type { Position }
+export type { Position, StylesObj }
