@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.8
+
+### Patch Changes
+
+- Export missing type
+
 ## 3.1.7
 
 ### Patch Changes
