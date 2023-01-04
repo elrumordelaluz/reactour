@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.7
+
+### Patch Changes
+
+- Add missing type for StyleObj
+
 ## 3.1.6
 
 ### Patch Changes
