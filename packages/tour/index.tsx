@@ -12,6 +12,6 @@ export type {
   TourProps,
   PopoverContentProps,
   KeyboardParts,
-  StyleObj,
+  StylesObj,
 } from './types'
 export { components } from './components'
