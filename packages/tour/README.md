@@ -393,8 +393,11 @@ Action fired just before the _Tour_ is closed.
 type ClickProps = {
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
+  setSteps: Dispatch<React.SetStateAction<StepType[]>>
+  setMeta: Dispatch<React.SetStateAction<string>>
   currentStep: number
   steps: StepType[]
+  meta: string
 }
 ```
 
@@ -411,7 +414,11 @@ Function that overrides the default close behavior of the _Mask_ click handler. 
 type ClickProps = {
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
+  setSteps: Dispatch<React.SetStateAction<StepType[]>>
+  setMeta: Dispatch<React.SetStateAction<string>>
   currentStep: number
+  steps: StepType[]
+  meta: string
 }
 ```
 
@@ -666,6 +673,14 @@ The `Array` of steps set currently
 ### `setSteps: Dispatch<React.SetStateAction<StepType[]>>`
 
 `SetState` function to update the `Array` of steps.
+
+### `meta: string`
+
+Global meta information that could be useful in complex Tour/s situtations
+
+### `setMeta: Dispatch<React.SetStateAction<string>>`
+
+`SetState` function to update the global meta info.
 
 > **Warning**: Make sure you reset the `currentStep` value using the `setCurrentStep` function to ensure the tour will be opened to the correct step after update. Otherwise, in case where a person has already interacted with the tour steps and closed the tours on step 5 for example, they might open to the incorrect step, or similarly if the new set of steps only has 3 steps nothing will open.
 
