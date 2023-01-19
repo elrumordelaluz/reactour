@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.9
+
+### Patch Changes
+
+- Add meta and setMeta into ClickProps allowing to have global meta info
+
 ## 3.1.8
 
 ### Patch Changes
