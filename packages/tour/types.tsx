@@ -58,6 +58,7 @@ export type PopoverContentProps = {
   isHighlightingObserved?: boolean
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   steps: StepType[]
+  setSteps?: Dispatch<React.SetStateAction<StepType[]>>
   showNavigation?: boolean
   showPrevNextButtons?: boolean
   showCloseButton?: boolean
@@ -67,6 +68,8 @@ export type PopoverContentProps = {
   prevButton?: (props: BtnFnProps) => ReactNode | null
   disableDotsNavigation?: boolean
   rtl?: boolean
+  meta?: string
+  setMeta?: Dispatch<React.SetStateAction<string>>
 }
 
 type A11yOptions = {
@@ -91,12 +94,14 @@ type ClickProps = {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
   steps?: StepType[]
+  setSteps?: Dispatch<React.SetStateAction<StepType[]>>
+  meta?: string
+  setMeta?: Dispatch<React.SetStateAction<string>>
 }
 
 export type TourProps = SharedProps &
   ClickProps & {
     isOpen: Boolean
-    setSteps: Dispatch<React.SetStateAction<StepType[]>>
     disabledActions: boolean
     setDisabledActions: Dispatch<React.SetStateAction<boolean>>
     onTransition?: (
@@ -117,6 +122,8 @@ export type ProviderProps = SharedProps & {
   startAt?: number
   setCurrentStep?: Dispatch<React.SetStateAction<number>>
   currentStep?: number
+  meta?: string
+  setMeta?: Dispatch<React.SetStateAction<string>>
 }
 
 export type ContentProps = {

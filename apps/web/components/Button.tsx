@@ -19,10 +19,6 @@ const styles = `
     font-family: ${fontFamily};
     margin-left: .25em;
     margin-right: .25em;
-
-    &:hover {
-        opacity: .9;
-    }
 `
 const Button = styled.button<ButtonProps>`
   ${styles};
@@ -40,6 +36,8 @@ const StyledButton = styled(Button)`
       : 'inherit'};
   background-color: ${(props) =>
     props.color ? themeColors[props.color] : themeColors.dark};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  outline: ${(props) => (props.disabled ? '2px solid black' : 1)};
 `
 
 const StyledLink = styled(Link)`

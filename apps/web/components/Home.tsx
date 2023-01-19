@@ -15,14 +15,10 @@ import { Button, Link } from './Button'
 import Dropdown from './Dropdown'
 import ImagesRow from './ImagesRow'
 import Tabs from './Tabs'
+import { tourConfig, tourConfigAlt } from './config'
 
-type DemoProps = {
-  isShowingMore: boolean
-  toggleShowMore: () => void
-}
-
-export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
-  const { setIsOpen } = useTour()
+export default function Home() {
+  const { setIsOpen, setSteps, setMeta, meta, currentStep } = useTour()
   const { openModal } = useContext(ModalContext)
 
   useEffect(() => {
@@ -43,6 +39,36 @@ export default function Home({ isShowingMore, toggleShowMore }: DemoProps) {
         <Heading h="3" data-tut="reactour__copy">
           Tourist Guide into your React Components
         </Heading>
+      </Section>
+      <Section
+        classic
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          right: 0,
+          zIndex: 9999999,
+        }}
+      >
+        <Button
+          h="6"
+          onClick={() => {
+            setMeta('tour-1')
+            setSteps(tourConfig)
+          }}
+          disabled={meta === 'tour-1'}
+        >
+          Steps 1
+        </Button>
+        <Button
+          h="6"
+          onClick={() => {
+            setMeta('tour-2')
+            setSteps(tourConfigAlt)
+          }}
+          disabled={meta === 'tour-2' || currentStep > tourConfigAlt.length - 1}
+        >
+          Steps 2
+        </Button>
       </Section>
       <Section center classic sticky>
         <Button h="4" onClick={() => setIsOpen(true)}>

@@ -24,11 +24,13 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
   showNavigation = true,
   showBadge = true,
   showDots = true,
+  meta,
+  setMeta,
+  setSteps,
 }) => {
   const step = steps[currentStep]
-  const { Badge, Close, Content, Navigation, Arrow } = defaultComponents(
-    components
-  )
+  const { Badge, Close, Content, Navigation, Arrow } =
+    defaultComponents(components)
 
   const badge =
     badgeContent && typeof badgeContent === 'function'
@@ -42,7 +44,15 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
   function closeClickHandler() {
     if (!disabledActions) {
       if (onClickClose && typeof onClickClose === 'function') {
-        onClickClose({ setCurrentStep, setIsOpen, currentStep, steps })
+        onClickClose({
+          setCurrentStep,
+          setIsOpen,
+          currentStep,
+          steps,
+          meta,
+          setMeta,
+          setSteps,
+        })
       } else {
         setIsOpen(false)
       }

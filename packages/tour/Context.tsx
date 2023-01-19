@@ -1,6 +1,4 @@
-import React, { useState, useContext, useMemo } from 'react'
-// import { useControllableState } from '@chakra-ui/hooks'
-
+import React, { useState, useContext } from 'react'
 import Tour from './Tour'
 import { ProviderProps, TourProps } from './types'
 
@@ -11,6 +9,7 @@ const defaultState = {
   setCurrentStep: () => 0,
   steps: [],
   setSteps: () => [],
+  setMeta: () => '',
   disabledActions: false,
   setDisabledActions: () => false,
   components: {},
@@ -30,6 +29,7 @@ const TourProvider: React.FC<ProviderProps> = ({
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [currentStep, setCurrentStep] = useState(startAt)
   const [steps, setSteps] = useState(defaultSteps)
+  const [meta, setMeta] = useState('')
   const [disabledActions, setDisabledActions] = useState(false)
 
   const value = {
@@ -44,6 +44,8 @@ const TourProvider: React.FC<ProviderProps> = ({
     setSteps,
     disabledActions,
     setDisabledActions,
+    meta,
+    setMeta,
     ...props,
   }
 

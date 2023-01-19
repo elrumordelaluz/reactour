@@ -12,6 +12,7 @@ const Tour: React.FC<TourProps> = ({
   setCurrentStep,
   setIsOpen,
   steps = [],
+  setSteps,
   styles: globalStyles = {},
   scrollSmooth,
   afterOpen,
@@ -36,6 +37,8 @@ const Tour: React.FC<TourProps> = ({
   },
   ContentComponent,
   Wrapper,
+  meta,
+  setMeta,
   onTransition = () => {
     // const arr: [number, number] = [prev.x, prev.y]
     return 'center'
@@ -75,7 +78,15 @@ const Tour: React.FC<TourProps> = ({
   function maskClickHandler() {
     if (!disabledActions) {
       if (onClickMask && typeof onClickMask === 'function') {
-        onClickMask({ setCurrentStep, setIsOpen, currentStep, steps })
+        onClickMask({
+          setCurrentStep,
+          setIsOpen,
+          currentStep,
+          setSteps,
+          steps,
+          setMeta,
+          meta,
+        })
       } else {
         setIsOpen(false)
       }
@@ -175,11 +186,14 @@ const Tour: React.FC<TourProps> = ({
             currentStep={currentStep}
             setIsOpen={setIsOpen}
             steps={steps}
+            setSteps={setSteps}
             accessibilityOptions={accessibilityOptions}
             disabledActions={disabledActions}
             transition={transition}
             isHighlightingObserved={isHighlightingObserved}
             rtl={rtl}
+            meta={meta}
+            setMeta={setMeta}
             {...popoverProps}
           />
         )}
