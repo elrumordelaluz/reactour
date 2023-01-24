@@ -72,7 +72,7 @@ const Tour: React.FC<TourProps> = ({
   }, [])
 
   const { maskPadding, popoverPadding, wrapperPadding } = getPadding(
-    step?.padding || padding
+    step?.padding ?? padding
   )
 
   function maskClickHandler() {
