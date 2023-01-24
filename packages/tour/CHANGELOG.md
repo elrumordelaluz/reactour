@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.10
+
+### Patch Changes
+
+- Fix step padding to be compared with nullish coalescing instead of OR. Thanks @uig-julia
+
 ## 3.1.9
 
 ### Patch Changes
