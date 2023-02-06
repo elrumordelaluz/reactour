@@ -23,6 +23,7 @@ type SharedProps = {
   className?: string
   maskClassName?: string
   highlightedMaskClassName?: string
+  highlightedAreaRectProps?: React.SVGAttributes<SVGRectElement>
   nextButton?: (props: BtnFnProps) => ReactNode | null
   prevButton?: (props: BtnFnProps) => ReactNode | null
   afterOpen?: (target: Element | null) => void

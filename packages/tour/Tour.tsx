@@ -24,6 +24,7 @@ const Tour: React.FC<TourProps> = ({
   className = 'reactour__popover',
   maskClassName = 'reactour__mask',
   highlightedMaskClassName,
+  highlightedAreaRectProps,
   disableInteraction,
   // disableFocusLock,
   disableKeyboardNavigation,
@@ -154,6 +155,7 @@ const Tour: React.FC<TourProps> = ({
         className={maskClassName}
         onClickHighlighted={onClickHighlighted}
         wrapperPadding={wrapperPadding}
+        highlightedAreaRectProps={highlightedAreaRectProps}
       />
 
       <Popover

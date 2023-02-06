@@ -13,7 +13,9 @@ const Mask: React.FC<MaskProps> = ({
   highlightedAreaClassName,
   maskId,
   clipId,
+  highlightedAreaRectProps,
 }) => {
+  console.log(highlightedAreaRectProps)
   const maskID = maskId || uniqueId('mask__')
   const clipID = clipId || uniqueId('clip__')
   const getStyles = stylesMatcher(styles)
@@ -98,6 +100,7 @@ const Mask: React.FC<MaskProps> = ({
           })}
         />
         <rect
+          {...highlightedAreaRectProps}
           style={getStyles('highlightedArea', {
             x: left,
             y: top,
@@ -124,6 +127,7 @@ export type MaskProps = {
   onClickHighlighted?: MouseEventHandler<SVGRectElement>
   maskId?: string
   clipId?: string
+  highlightedAreaRectProps?: React.SVGAttributes<SVGRectElement>
 }
 
 export default Mask
