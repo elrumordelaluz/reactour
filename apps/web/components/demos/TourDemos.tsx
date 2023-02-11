@@ -61,7 +61,7 @@ export default function TourDemos() {
       <Demo
         title="Scroll Smooth"
         demoId="scroll-smooth"
-        description="Use smooth scroll between steps if there aren't visible in viewport"
+        description="Use smooth scroll between steps if they aren't visible in viewport"
         docsLinks={[
           {
             link: 'https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#scrollsmooth-boolean',
@@ -211,7 +211,7 @@ export default function TourDemos() {
       <Demo
         title="Starts at"
         demoId="start-at"
-        description="Start Tour at specific step. Keep in mind that the number is zero based, so 2 is the thirs step."
+        description="Start Tour at specific step. Keep in mind that the number is zero based, so 2 is the third step."
       />
     </Container>
   )
