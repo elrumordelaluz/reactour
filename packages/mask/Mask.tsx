@@ -34,6 +34,13 @@ const Mask: React.FC<MaskProps> = ({
     height,
   })
 
+  const highlightedAreaStyles = getStyles('highlightedArea', {
+    x: left,
+    y: top,
+    width,
+    height,
+  })
+
   return (
     <div
       style={getStyles('maskWrapper', {})}
@@ -98,14 +105,10 @@ const Mask: React.FC<MaskProps> = ({
           })}
         />
         <rect
-          style={getStyles('highlightedArea', {
-            x: left,
-            y: top,
-            width,
-            height,
-          })}
+          style={highlightedAreaStyles}
           className={highlightedAreaClassName}
           onClick={onClickHighlighted}
+          rx={highlightedAreaStyles.rx ? 1 : undefined}
         />
       </svg>
     </div>
