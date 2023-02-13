@@ -93,7 +93,7 @@ const Tour: React.FC<TourProps> = ({
     }
   }
 
-  const doDisableInteraction = step?.stepInteraction
+  const doDisableInteraction = typeof step?.stepInteraction === 'boolean'
     ? !step?.stepInteraction
     : disableInteraction
 
