@@ -1,5 +1,11 @@
 # @reactour/mask
 
+## 1.0.5
+
+### Patch Changes
+
+- Solve Mask issue with `rx` rect in Safari
+
 ## 1.0.4
 
 ### Patch Changes
