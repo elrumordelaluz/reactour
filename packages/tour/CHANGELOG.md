@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.1.11
+
+### Patch Changes
+
+- Fix disableInteraction boolean check. Thanks to @uig-julia
+
 ## 3.1.10
 
 ### Patch Changes
