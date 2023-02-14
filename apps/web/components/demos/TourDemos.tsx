@@ -99,6 +99,22 @@ export default function TourDemos() {
       />
 
       <Demo
+        title="Custom handlers"
+        demoId="custom-handlers"
+        description="Control currenStep externally. Useful when using global state."
+        docsLinks={[
+          {
+            link: 'https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#setcurrentstep-dispatchreactsetstateactionnumber',
+            prop: 'setCurrentStep',
+          },
+          {
+            link: 'https://github.com/elrumordelaluz/reactour/tree/main/packages/tour#currentstep-number',
+            prop: 'currentStep',
+          },
+        ]}
+      />
+
+      <Demo
         title="RTL"
         demoId="rtl"
         description="RTL mode"

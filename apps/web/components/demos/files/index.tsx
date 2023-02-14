@@ -5,6 +5,7 @@ import { disableKeyboardFiles } from './disable-keyboard'
 import { scrollSmoothFiles } from './scroll-smooth'
 import { paddingFiles } from './padding'
 import { customPrevNextFiles } from './custom-prev-next'
+import { customHandlersFiles } from './custom-handlers'
 import { rtlFiles } from './rtl'
 import { customStylesFiles } from './custom-styles'
 import { scrollLockFiles } from './scroll-lock'
@@ -21,6 +22,7 @@ const filesByDemo = {
   'scroll-smooth': scrollSmoothFiles,
   padding: paddingFiles,
   'custom-prev-next': customPrevNextFiles,
+  'custom-handlers': customHandlersFiles,
   rtl: rtlFiles,
   'custom-styles': customStylesFiles,
   'scroll-lock': scrollLockFiles,
