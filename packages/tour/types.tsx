@@ -23,6 +23,8 @@ type SharedProps = {
   className?: string
   maskClassName?: string
   highlightedMaskClassName?: string
+  maskId?: string
+  clipId?: string
   nextButton?: (props: BtnFnProps) => ReactNode | null
   prevButton?: (props: BtnFnProps) => ReactNode | null
   afterOpen?: (target: Element | null) => void

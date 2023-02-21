@@ -40,6 +40,7 @@ export default function Home() {
           Tourist Guide into your React Components
         </Heading>
       </Section>
+
       <Section
         classic
         style={{
@@ -82,22 +83,23 @@ export default function Home() {
         >
           Github
         </Link>
-
-        <NextLink href="/tour">
-          <Link color="dark" h="5" as="span">
-            /tour
-          </Link>
-        </NextLink>
-        <NextLink href="/mask">
-          <Link color="dark" h="5" as="span">
-            /mask
-          </Link>
-        </NextLink>
-        <NextLink href="/popover">
-          <Link color="dark" h="5" as="span">
-            /popover
-          </Link>
-        </NextLink>
+        <span id="demo-hlt-button">
+          <NextLink href="/tour">
+            <Link color="dark" h="5" as="span">
+              /tour
+            </Link>
+          </NextLink>
+          <NextLink href="/mask">
+            <Link color="dark" h="5" as="span">
+              /mask
+            </Link>
+          </NextLink>
+          <NextLink href="/popover">
+            <Link color="dark" h="5" as="span">
+              /popover
+            </Link>
+          </NextLink>
+        </span>
       </Section>
       <Section>
         <Row>

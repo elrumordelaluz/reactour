@@ -101,3 +101,17 @@ html {
   border-bottom: var(--rtp-arrow-border-bottom);
   border-left: var(--rtp-arrow-border-left);
 }
+
+@keyframes mask-ping {
+  0% {
+    stroke-width: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-width: 16px;
+    opacity: 0;
+  }
+}
