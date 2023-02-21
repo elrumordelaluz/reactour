@@ -24,6 +24,7 @@ const Tour: React.FC<TourProps> = ({
   className = 'reactour__popover',
   maskClassName = 'reactour__mask',
   highlightedMaskClassName,
+  maskClipId,
   disableInteraction,
   // disableFocusLock,
   disableKeyboardNavigation,
@@ -93,9 +94,10 @@ const Tour: React.FC<TourProps> = ({
     }
   }
 
-  const doDisableInteraction = typeof step?.stepInteraction === 'boolean'
-    ? !step?.stepInteraction
-    : disableInteraction
+  const doDisableInteraction =
+    typeof step?.stepInteraction === 'boolean'
+      ? !step?.stepInteraction
+      : disableInteraction
 
   useEffect(() => {
     if (step?.action && typeof step?.action === 'function') {
@@ -154,6 +156,7 @@ const Tour: React.FC<TourProps> = ({
         className={maskClassName}
         onClickHighlighted={onClickHighlighted}
         wrapperPadding={wrapperPadding}
+        clipId={maskClipId}
       />
 
       <Popover

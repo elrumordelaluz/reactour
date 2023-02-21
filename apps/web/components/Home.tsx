@@ -32,6 +32,8 @@ export default function Home() {
     return () => window.removeEventListener('keyup', keyHandling)
   }, [setIsOpen])
 
+  useEffect(() => setIsOpen(true))
+
   return (
     <>
       <Section center classic>
@@ -40,6 +42,10 @@ export default function Home() {
           Tourist Guide into your React Components
         </Heading>
       </Section>
+      <Section center classic>
+        <Button id="demo-hlt-button">Demo Highlighted Button</Button>
+      </Section>
+
       <Section
         classic
         style={{

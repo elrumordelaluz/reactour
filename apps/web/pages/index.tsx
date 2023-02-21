@@ -52,6 +52,7 @@ function App() {
         }}
         // inViewThreshold={40}
         scrollSmooth
+        maskClipId="demo-mask-clip"
       >
         <ModalProvider
           modals={modals}

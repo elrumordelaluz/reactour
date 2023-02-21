@@ -5,9 +5,28 @@ import { Link } from './Button'
 
 const tourConfig: StepType[] = [
   {
-    selector: '[data-tut="reactour__iso"]',
+    selector: '#demo-hlt-button',
     content:
       "Ok, let's start with the name of the Tour that is about to begin.",
+    padding: {
+      mask: [0.1, 0.1],
+    },
+    styles: {
+      maskArea: (base) => ({
+        ...base,
+        rx: 4,
+      }),
+      highlightedArea: (base) => ({
+        ...base,
+        display: 'block',
+        pointerEvents: 'none',
+        cursor: 'pointer',
+        stroke: 'red',
+        rx: 4,
+        animation: 'mask-ping 2s ease infinite',
+        clipPath: 'url("#demo-mask-clip")',
+      }),
+    },
   },
   {
     selector: '[data-tut="reactour__logo"]',
