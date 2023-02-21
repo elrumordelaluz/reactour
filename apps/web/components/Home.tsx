@@ -32,8 +32,6 @@ export default function Home() {
     return () => window.removeEventListener('keyup', keyHandling)
   }, [setIsOpen])
 
-  useEffect(() => setIsOpen(true))
-
   return (
     <>
       <Section center classic>
@@ -41,9 +39,6 @@ export default function Home() {
         <Heading h="3" data-tut="reactour__copy">
           Tourist Guide into your React Components
         </Heading>
-      </Section>
-      <Section center classic>
-        <Button id="demo-hlt-button">Demo Highlighted Button</Button>
       </Section>
 
       <Section
@@ -88,22 +83,23 @@ export default function Home() {
         >
           Github
         </Link>
-
-        <NextLink href="/tour">
-          <Link color="dark" h="5" as="span">
-            /tour
-          </Link>
-        </NextLink>
-        <NextLink href="/mask">
-          <Link color="dark" h="5" as="span">
-            /mask
-          </Link>
-        </NextLink>
-        <NextLink href="/popover">
-          <Link color="dark" h="5" as="span">
-            /popover
-          </Link>
-        </NextLink>
+        <span id="demo-hlt-button">
+          <NextLink href="/tour">
+            <Link color="dark" h="5" as="span">
+              /tour
+            </Link>
+          </NextLink>
+          <NextLink href="/mask">
+            <Link color="dark" h="5" as="span">
+              /mask
+            </Link>
+          </NextLink>
+          <NextLink href="/popover">
+            <Link color="dark" h="5" as="span">
+              /popover
+            </Link>
+          </NextLink>
+        </span>
       </Section>
       <Section>
         <Row>
