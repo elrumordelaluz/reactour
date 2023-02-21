@@ -516,6 +516,14 @@ Configure generic accessibility related attributes like [aria-labelledby](https:
 
 Option to navigate and show _Navigation_ in right-to-left mode
 
+### `maskId?: string`
+
+Mask ID to pass directly into the [Mask component](https://github.com/elrumordelaluz/reactour/tree/main/packages/mask#maskid-string)
+
+### `clipId?: string`
+
+Clip ID to pass directly into the [Mask component](https://github.com/elrumordelaluz/reactour/tree/main/packages/mask#clipid-string)
+
 ### `onTransition?: PositionType`
 
 Function to control the behavior of _Popover_ when is transitioning/scrolling from one step to another, calculating with _Popover_ next position and previous one
