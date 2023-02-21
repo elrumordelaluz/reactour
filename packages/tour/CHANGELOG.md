@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.2.0
+
+### Minor Changes
+
+- Add props `maskId` and `clipId` to pass into Mask. Thanks to @bachlv for the idea and demo implementation.
+
 ## 3.1.11
 
 ### Patch Changes
