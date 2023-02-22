@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { Observables } from '@reactour/utils'
 import { Mask } from '@reactour/mask'
 import { Popover } from '@reactour/popover'
-import { useSizes } from './hooks'
-import { TourProps, Padding } from './types'
-import Keyboard from './Keyboard'
+import { Observables } from '@reactour/utils'
+import React, { useEffect } from 'react'
 import PopoverContent from './components/PopoverContent'
+import { useSizes } from './hooks'
+import Keyboard from './Keyboard'
+import { Padding, TourProps } from './types'
 
 const Tour: React.FC<TourProps> = ({
   currentStep,
@@ -123,7 +123,6 @@ const Tour: React.FC<TourProps> = ({
     : position
 
   const TourWrapper = Wrapper ? Wrapper : React.Fragment
-  console.log(styles)
   return step ? (
     <TourWrapper>
       <Observables
