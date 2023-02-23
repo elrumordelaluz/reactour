@@ -123,7 +123,6 @@ const Tour: React.FC<TourProps> = ({
     : position
 
   const TourWrapper = Wrapper ? Wrapper : React.Fragment
-  console.log(styles)
   return step ? (
     <TourWrapper>
       <Observables
