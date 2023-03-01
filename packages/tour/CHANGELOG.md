@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.3.0
+
+### Minor Changes
+
+- Add keybordHandler prop
+
 ## 3.2.1
 
 ### Patch Changes
