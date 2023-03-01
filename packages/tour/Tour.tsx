@@ -21,6 +21,7 @@ const Tour: React.FC<TourProps> = ({
   position,
   onClickMask,
   onClickHighlighted,
+  keyboardHandler,
   className = 'reactour__popover',
   maskClassName = 'reactour__mask',
   highlightedMaskClassName,
@@ -77,18 +78,20 @@ const Tour: React.FC<TourProps> = ({
     step?.padding ?? padding
   )
 
+  const clickProps = {
+    setCurrentStep,
+    setIsOpen,
+    currentStep,
+    setSteps,
+    steps,
+    setMeta,
+    meta,
+  }
+
   function maskClickHandler() {
     if (!disabledActions) {
       if (onClickMask && typeof onClickMask === 'function') {
-        onClickMask({
-          setCurrentStep,
-          setIsOpen,
-          currentStep,
-          setSteps,
-          steps,
-          setMeta,
-          meta,
-        })
+        onClickMask(clickProps)
       } else {
         setIsOpen(false)
       }
@@ -140,6 +143,8 @@ const Tour: React.FC<TourProps> = ({
         disableKeyboardNavigation={disableKeyboardNavigation}
         disable={disabledActions}
         rtl={rtl}
+        clickProps={clickProps}
+        keyboardHandler={keyboardHandler}
       />
 
       <Mask

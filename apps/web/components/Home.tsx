@@ -18,7 +18,7 @@ import Tabs from './Tabs'
 import { tourConfig, tourConfigAlt } from './config'
 
 export default function Home() {
-  const { setIsOpen, setSteps, setMeta, meta, currentStep } = useTour()
+  const { setIsOpen, setSteps, setMeta, meta, setCurrentStep } = useTour()
   const { openModal } = useContext(ModalContext)
 
   useEffect(() => {
@@ -65,8 +65,9 @@ export default function Home() {
           onClick={() => {
             setMeta('tour-2')
             setSteps(tourConfigAlt)
+            setCurrentStep(0)
           }}
-          disabled={meta === 'tour-2' || currentStep > tourConfigAlt.length - 1}
+          disabled={meta === 'tour-2'}
         >
           Steps 2
         </Button>

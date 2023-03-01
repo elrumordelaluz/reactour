@@ -448,6 +448,57 @@ Click handler for highlighted area. Only works when `disableInteraction` is acti
 
 </details>
 
+### `keyboardHandler?: KeyboardHandler`
+
+Function to handle keyboard events in a custom way.
+
+<details>
+  <summary><small>Type details</small></summary>
+
+```ts
+type KeyboardHandler = {
+  keyboardHandler?: (
+    e: KeyboardEvent,
+    clickProps?: ClickProps,
+    status?: {
+      isEscDisabled?: boolean
+      isRightDisabled?: boolean
+      isLeftDisabled?: boolean
+    }
+  ) => void
+}
+```
+
+</details>
+
+<details>
+  <summary>Example</summary>
+
+```jsx
+<TourProvider
+  steps={steps}
+  disableInteraction
+  keyboardHandler={(e, clickProps) => {
+    if (e.key === 'ArrowRight') {
+      clickProps.setCurrentStep(
+        Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
+      )
+    }
+    if (e.key === 'ArrowLeft') {
+      clickProps.setCurrentStep(Math.max(clickProps.currentStep - 1, 0))
+    }
+    if (e.key === 'Escape') {
+      const nextStep = Math.floor(Math.random() * clickProps.steps.length)
+      clickProps.setCurrentStep(nextStep)
+    }
+  }}
+>
+  {/* ... */}
+</TourProvider>
+```
+
+</details>
+
 ### `badgeContent?: (badgeProps: BadgeProps) => any`
 
 <details>

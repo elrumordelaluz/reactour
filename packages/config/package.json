@@ -7,7 +7,7 @@
     "eslint-preset.js"
   ],
   "dependencies": {
-    "eslint-config-next": "^13.1.6",
+    "eslint-config-next": "^13.2.2",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "7.32.2"
   }

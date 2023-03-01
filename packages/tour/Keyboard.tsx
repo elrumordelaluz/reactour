@@ -1,5 +1,5 @@
 import React, { Dispatch, useEffect } from 'react'
-import { KeyboardParts } from './types'
+import { KeyboardParts, ClickProps, KeyboardHandler } from './types'
 
 const Keyboard: React.FC<KeyboardProps> = ({
   disableKeyboardNavigation,
@@ -9,6 +9,8 @@ const Keyboard: React.FC<KeyboardProps> = ({
   stepsLength,
   disable,
   rtl,
+  clickProps,
+  keyboardHandler,
 }) => {
   function keyDownHandler(e: any) {
     e.stopPropagation()
@@ -31,24 +33,32 @@ const Keyboard: React.FC<KeyboardProps> = ({
       setCurrentStep(Math.max(currentStep - 1, 0))
     }
 
-    if (e.keyCode === 27 && !isEscDisabled) {
-      e.preventDefault()
-      setIsOpen(false)
-    }
-    if (e.keyCode === 39 && !isRightDisabled) {
-      e.preventDefault()
-      if (rtl) {
-        prev()
-      } else {
-        next()
+    if (keyboardHandler && typeof keyboardHandler === 'function') {
+      keyboardHandler(e, clickProps, {
+        isEscDisabled,
+        isRightDisabled,
+        isLeftDisabled,
+      })
+    } else {
+      if (e.keyCode === 27 && !isEscDisabled) {
+        e.preventDefault()
+        setIsOpen(false)
       }
-    }
-    if (e.keyCode === 37 && !isLeftDisabled) {
-      e.preventDefault()
-      if (rtl) {
-        next()
-      } else {
-        prev()
+      if (e.keyCode === 39 && !isRightDisabled) {
+        e.preventDefault()
+        if (rtl) {
+          prev()
+        } else {
+          next()
+        }
+      }
+      if (e.keyCode === 37 && !isLeftDisabled) {
+        e.preventDefault()
+        if (rtl) {
+          next()
+        } else {
+          prev()
+        }
       }
     }
   }
@@ -63,7 +73,7 @@ const Keyboard: React.FC<KeyboardProps> = ({
   return null
 }
 
-export type KeyboardProps = {
+export type KeyboardProps = KeyboardHandler & {
   disableKeyboardNavigation?: boolean | KeyboardParts[]
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
@@ -71,6 +81,7 @@ export type KeyboardProps = {
   stepsLength: number
   disable?: boolean
   rtl?: boolean
+  clickProps?: ClickProps
 }
 
 export default Keyboard

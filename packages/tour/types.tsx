@@ -11,7 +11,7 @@ import { RectResult } from '@reactour/utils'
 import { PopoverComponentsType } from './components/index'
 import { StylesObj } from './styles'
 
-type SharedProps = {
+type SharedProps = KeyboardHandler & {
   steps: StepType[]
   styles?: StylesObj & PopoverStylesObj & MaskStylesObj
   padding?: Padding
@@ -91,7 +91,7 @@ export type Padding =
 
 export type KeyboardParts = 'esc' | 'left' | 'right'
 
-type ClickProps = {
+export type ClickProps = {
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
@@ -99,6 +99,18 @@ type ClickProps = {
   setSteps?: Dispatch<React.SetStateAction<StepType[]>>
   meta?: string
   setMeta?: Dispatch<React.SetStateAction<string>>
+}
+
+export type KeyboardHandler = {
+  keyboardHandler?: (
+    e: KeyboardEvent,
+    clickProps?: ClickProps,
+    status?: {
+      isEscDisabled?: boolean
+      isRightDisabled?: boolean
+      isLeftDisabled?: boolean
+    }
+  ) => void
 }
 
 export type TourProps = SharedProps &
