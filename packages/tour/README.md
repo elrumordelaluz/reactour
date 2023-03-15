@@ -140,6 +140,10 @@ Control padding spaces for this specific step.
 
 Excludes the main `selector` when calculating highlited area if present `highlightedSelectors`.
 
+#### `disableWhenSelectorFalsy?: boolean`
+
+If true, don't show tour when `selector` or `document.getElementById(step.selector)` is falsy.
+
 #### `styles?: StylesObj & PopoverStylesObj & MaskStylesObj`
 
 Customize styles fro this specific step.
@@ -317,6 +321,10 @@ The _Tour_ uses [FocusScope](https://react-spectrum.adobe.com/react-aria/FocusSc
 ### `disableDotsNavigation?: boolean`
 
 Disable interactivity with _Dot_ navigation inside _Popover_.
+
+### `disableWhenSelectorFalsy?: boolean`
+
+If true, don't show tours when `selector` or `document.getElementById(step.selector)` is falsy.
 
 ### `disableKeyboardNavigation?: boolean | KeyboardParts[]`
 
