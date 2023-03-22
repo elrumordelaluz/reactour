@@ -117,6 +117,7 @@ export type TourProps = SharedProps &
   ClickProps & {
     isOpen: Boolean
     disabledActions: boolean
+    disableWhenSelectorFalsy?: boolean
     setDisabledActions: Dispatch<React.SetStateAction<boolean>>
     onTransition?: (
       postionsProps: PositionProps,
