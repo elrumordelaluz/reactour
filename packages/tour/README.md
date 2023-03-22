@@ -140,10 +140,6 @@ Control padding spaces for this specific step.
 
 Excludes the main `selector` when calculating highlited area if present `highlightedSelectors`.
 
-#### `disableWhenSelectorFalsy?: boolean`
-
-If true, don't show tour when `selector` or `document.getElementById(step.selector)` is falsy.
-
 #### `styles?: StylesObj & PopoverStylesObj & MaskStylesObj`
 
 Customize styles fro this specific step.
