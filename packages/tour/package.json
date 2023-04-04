@@ -9,11 +9,11 @@
   "devDependencies": {
     "@reactour/config": "*",
     "@reactour/tsconfig": "*",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "react": "^18.2.0",
-    "tsup": "^6.6.3",
-    "typescript": "^4.9.5"
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.3"
   },
   "dependencies": {
     "@reactour/mask": "*",
@@ -48,5 +48,10 @@
     "tourist-guide",
     "product-intro",
     "presentation"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elrumordelaluz/reactour.git",
+    "directory": "packages/tour"
+  }
 }
