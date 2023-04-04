@@ -29,5 +29,10 @@
   "packageManager": "yarn@1.22.18",
   "dependencies": {
     "@changesets/cli": "^2.26.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elrumordelaluz/reactour.git"
+  },
+  "homepage": "https://github.com/elrumordelaluz/reactour#readme"
 }

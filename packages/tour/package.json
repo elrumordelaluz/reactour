@@ -53,5 +53,6 @@
     "type": "git",
     "url": "https://github.com/elrumordelaluz/reactour.git",
     "directory": "packages/tour"
-  }
+  },
+  "homepage": "https://github.com/elrumordelaluz/reactour/tree/main/packages/tour"
 }
