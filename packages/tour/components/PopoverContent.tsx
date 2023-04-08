@@ -17,6 +17,7 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
   setIsOpen,
   nextButton,
   prevButton,
+  lastStepNextButton,
   disableDotsNavigation,
   rtl,
   showPrevNextButtons = true,
@@ -88,6 +89,7 @@ const PopoverContent: React.FC<PopoverContentProps> = ({
           aria-hidden={!accessibilityOptions?.showNavigationScreenReaders}
           nextButton={nextButton}
           prevButton={prevButton}
+          lastStepNextButton={lastStepNextButton}
           disableDots={disableDotsNavigation}
           hideButtons={!showPrevNextButtons}
           hideDots={!showDots}

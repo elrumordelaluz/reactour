@@ -15,6 +15,7 @@ const Navigation: React.FC<NavigationProps> = ({
   setIsOpen,
   nextButton,
   prevButton,
+  lastStepNextButton,
   disableDots,
   hideDots,
   hideButtons,
@@ -24,6 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const stepsLength = steps.length
   const getStyles = stylesMatcher(styles)
+  const isLastStep = currentStep === steps.length - 1
 
   const Button: React.FC<PropsWithChildren<NavButtonProps>> = ({
     onClick,
@@ -114,7 +116,18 @@ const Navigation: React.FC<NavigationProps> = ({
         </div>
       ) : null}
       {!hideButtons ? (
-        nextButton && typeof nextButton === 'function' ? (
+        isLastStep &&
+        lastStepNextButton &&
+        typeof lastStepNextButton === 'function' ? (
+          lastStepNextButton({
+            Button,
+            setCurrentStep,
+            currentStep,
+            stepsLength,
+            setIsOpen,
+            steps,
+          })
+        ) : nextButton && typeof nextButton === 'function' ? (
           nextButton({
             Button,
             setCurrentStep,
@@ -142,6 +155,7 @@ export type NavigationProps = BaseProps & {
   disableDots?: boolean
   nextButton?: (props: BtnFnProps) => ReactNode | null
   prevButton?: (props: BtnFnProps) => ReactNode | null
+  lastStepNextButton?: (props: BtnFnProps) => ReactNode | null
   setIsOpen: Dispatch<React.SetStateAction<Boolean>>
   hideButtons?: boolean
   hideDots?: boolean

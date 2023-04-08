@@ -27,6 +27,7 @@ type SharedProps = KeyboardHandler & {
   clipId?: string
   nextButton?: (props: BtnFnProps) => ReactNode | null
   prevButton?: (props: BtnFnProps) => ReactNode | null
+  lastStepNextButton?: (props: BtnFnProps) => ReactNode | null
   afterOpen?: (target: Element | null) => void
   beforeClose?: (target: Element | null) => void
   onClickMask?: (clickProps: ClickProps) => void
@@ -68,6 +69,7 @@ export type PopoverContentProps = {
   showDots?: boolean
   nextButton?: (props: BtnFnProps) => ReactNode | null
   prevButton?: (props: BtnFnProps) => ReactNode | null
+  lastStepNextButton?: (props: BtnFnProps) => ReactNode | null
   disableDotsNavigation?: boolean
   rtl?: boolean
   meta?: string
