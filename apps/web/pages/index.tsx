@@ -5,11 +5,20 @@ import { isMobile } from 'react-device-detect'
 import Home from '../components/Home'
 import Portal from '../components/Portal'
 import { tourConfig, tourConfigAlt } from '../components/config'
+import { Button } from '../components/Button'
 
 function App() {
   const disableBody = (target: Element | HTMLElement) =>
     disableBodyScroll(target)
   const enableBody = (target: Element | HTMLElement) => enableBodyScroll(target)
+
+  const closeButton = (props) => {
+    const { setIsOpen } = props
+    const clickHandler = () => {
+      setIsOpen(false)
+    }
+    return <Button onClick={clickHandler}>Done</Button>
+  }
 
   return (
     <>
@@ -68,6 +77,7 @@ function App() {
           }
         }}
         disableKeyboardNavigation={['esc']}
+        lastStepNextButton={closeButton}
       >
         <ModalProvider
           modals={modals}

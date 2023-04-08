@@ -157,7 +157,7 @@ Prop to customize granurally each Component inside the _Popover_.
 | `Badge`      | `styles`                                                                                                                                                            |
 | `Close`      | `styles`, `onClick`, `disabled`                                                                                                                                     |
 | `Content`    | `content`,`setCurrentStep`,`transition`, `isHighlightingObserved`,`currentStep`,`setIsOpen`                                                                         |
-| `Navigation` | `styles`,`setCurrentStep`, `steps`, `currentStep`, `disableDots`, `nextButton`, `prevButton`, `setIsOpen`, `hideButtons`, `hideDots`, `disableAll`, `rtl`, `Arrow`, |
+| `Navigation` | `styles`,`setCurrentStep`, `steps`, `currentStep`, `disableDots`, `nextButton`, `prevButton`, `lastStepNextButton`, `setIsOpen`, `hideButtons`, `hideDots`, `disableAll`, `rtl`, `Arrow`, |
 | `Arrow`      | `styles`, `inverted`, `disabled`                                                                                                                                    |
 
 <details>
@@ -353,6 +353,8 @@ default: `reactour__mask`
 
 ### `prevButton?: (props: BtnFnProps) => void`
 
+### `lastStepNextButton?: (props: BtnFnProps) => void`
+
 <details>
   <summary><small>Type details</small></summary>
 
@@ -374,7 +376,11 @@ type NavButtonProps = {
 
 </details>
 
-Helper functions to customize the _Next_ and _Prev_ buttons inside _Popover_, with useful parameters. It is possible to use the base `Button` and customize the props.
+Helper functions to:
+- customize the _Next_ and _Prev_ buttons inside _Popover_ 
+- customize the _Next_ button of last step inside _Popover, with useful parameters
+
+It is possible to use the base `Button` and customize the props.
 
 ### `afterOpen?: (target: Element | null) => void`
 
@@ -618,6 +624,7 @@ type PopoverContentProps = {
   showBadge?: boolean
   nextButton?: (props: BtnFnProps) => void
   prevButton?: (props: BtnFnProps) => void
+  lastStepNextButton?: (props: BtnFnProps) => void
   disableDotsNavigation?: boolean
   rtl?: boolean
 }
