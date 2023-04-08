@@ -161,6 +161,11 @@ const tourConfig: StepType[] = [
     highlightedSelectors: ['.modaaals-modal'],
     mutationObservables: ['#portaaal'],
   },
+  {
+    selector: '[data-tour="open_modal"]',
+    content:
+      "You can also customize the next button in the last step and make it do what you want. Notice the Done button here, it'll close the tour.",
+  },
 ]
 
 const tourConfigAlt: StepType[] = [
