@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import Tour, { Navigation, Dot, Controls, Arrow } from '../index'
-import 'focus-outline-manager'
-import { GlobalStyle } from './../style'
+// import 'focus-outline-manager'
+//import { GlobalStyle } from './../style'
 import Demo from './Demo'
 import Text from './Text'
 import Glitch from './Glitch'
@@ -10,7 +10,7 @@ import { Link } from './Button'
 import PropTypes from 'prop-types'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
-import './styles.css'
+// import './styles.css'
 
 // const LazyTour = React.lazy(() =>
 //   import(/* webpackChunkName: "reactour" */ '../index')
