@@ -4,7 +4,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { isMobile } from 'react-device-detect'
 import Home from '../components/Home'
 import Portal from '../components/Portal'
-import { tourConfig, tourConfigAlt } from '../components/config'
+import { tourConfig } from '../components/config'
 
 function App() {
   const disableBody = (target: Element | HTMLElement) =>
