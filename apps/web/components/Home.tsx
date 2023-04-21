@@ -77,9 +77,10 @@ export default function Home() {
           Try it
         </Button>
         <Link
-          as="span"
           color="dark"
           h="4"
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://github.com/elrumordelaluz/reactour"
         >
           Github

@@ -10,7 +10,7 @@
     "export": "rm -rf ../../docs && next build && next export  -o ../../docs"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.2.9",
+    "@codesandbox/sandpack-react": "^2.6.1",
     "@codesandbox/sandpack-themes": "^2.0.21",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -19,11 +19,11 @@
     "@reactour/popover": "*",
     "@reactour/tour": "*",
     "@reactour/utils": "*",
-    "@vercel/analytics": "^0.1.11",
+    "@vercel/analytics": "^1.0.0",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "framer-motion": "^10.10.0",
+    "framer-motion": "^10.12.4",
     "modaaals": "^0.14.1",
-    "next": "13.2.4",
+    "next": "13.3.0",
     "react": "18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0"
@@ -31,12 +31,12 @@
   "devDependencies": {
     "@reactour/tsconfig": "*",
     "@types/body-scroll-lock": "^3.1.0",
-    "@types/node": "^18.15.11",
-    "@types/react": "18.0.33",
+    "@types/node": "^18.15.13",
+    "@types/react": "18.0.37",
     "config": "3.3.9",
-    "eslint": "8.37.0",
+    "eslint": "8.38.0",
     "eslint-plugin-prettier": "^4.2.1",
     "next-transpile-modules": "10.0.0",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   }
 }
