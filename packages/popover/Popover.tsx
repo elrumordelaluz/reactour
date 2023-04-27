@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import {
   useRect,
-  isHoriz,
   bestPositionOf,
   isOutsideX,
   isOutsideY,
@@ -65,20 +64,45 @@ const Popover: React.FC<PopoverProps> = ({
     bottom: windowHeight - targetBottom,
   }
 
-  const [px, py] = getPadding(padding)
+  const [pt, pr, pb, pl] = getPadding(padding)
+  console.log({ pt, pr, pb, pl })
+  const couldPositionAt = (
+    position: string,
+    isOutsideX: boolean,
+    isOutsideY: boolean
+  ) => {
+    switch (position) {
+      case 'top':
+        return available.top > helperHeight + pb
+      case 'right':
+        return isOutsideX ? false : available.right > helperWidth + pl
+      case 'bottom':
+        return isOutsideY ? false : available.bottom > helperHeight + pt
+      case 'left':
+        return available.left > helperWidth + pr
 
-  const couldPositionAt = (position: string) => {
-    return (
-      available[position] >
-      (isHoriz(position) ? helperWidth + px * 2 : helperHeight + py * 2)
-    )
+      default:
+        return false
+    }
   }
 
-  const autoPosition = (coords: CoordsObjectType): CoordType => {
-    const positionsOrder: string[] = bestPositionOf(available)
+  const autoPosition = (
+    coords: CoordsObjectType,
+    outX: boolean,
+    outY: boolean
+  ): CoordType => {
+    if (outY && outX) {
+      positionRef.current = 'center'
+      return coords.center
+    }
+    const positionsOrder: string[] = bestPositionOf(
+      available,
+      outY ? ['right', 'left'] : outX ? ['top', 'bottom'] : []
+    )
     for (let j = 0; j < positionsOrder.length; j++) {
-      if (couldPositionAt(positionsOrder[j])) {
+      if (couldPositionAt(positionsOrder[j], outX, outY)) {
         positionRef.current = positionsOrder[j]
+        console.log(positionsOrder[j])
         return coords[positionsOrder[j]]
       }
     }
@@ -91,8 +115,6 @@ const Popover: React.FC<PopoverProps> = ({
       const isOutX = isOutsideX(helperPosition[0], windowWidth)
       const isOutY = isOutsideY(helperPosition[1], windowHeight)
 
-      // if (isOutX) warn('x', helperPosition[0])
-      // if (isOutY) warn('y', helperPosition[1])
       positionRef.current = 'custom'
       return [
         isOutX ? windowWidth / 2 - helperWidth / 2 : helperPosition[0],
@@ -100,41 +122,47 @@ const Popover: React.FC<PopoverProps> = ({
       ]
     }
 
-    const hX = isOutsideX(targetLeft + helperWidth, windowWidth)
-      ? targetRight - helperWidth + px
-      : targetLeft - px
-    const x = hX > px ? hX : px
-    const hY = isOutsideY(targetTop + helperHeight, windowHeight)
-      ? targetBottom - helperHeight + py
-      : targetTop - py
-    const y = hY > py ? hY : py
+    const isHelperOutsideX = isOutsideX(targetLeft + helperWidth, windowWidth)
+    const isHelperOutsideY = isOutsideY(
+      targetBottom + helperHeight,
+      windowHeight
+    )
 
-    if (isOutsideY(targetTop + helperHeight, windowHeight)) {
+    const x = isHelperOutsideX ? targetLeft : targetLeft
+    const y = isHelperOutsideY ? targetBottom - helperHeight : targetTop
+
+    if (isHelperOutsideY) {
       verticalAlignRef.current = 'bottom'
     } else {
       verticalAlignRef.current = 'top'
     }
-    if (isOutsideX(targetLeft + helperWidth, windowWidth)) {
+    if (isHelperOutsideX) {
       horizontalAlignRef.current = 'left'
     } else {
       horizontalAlignRef.current = 'right'
     }
 
     const coords = {
-      top: [x, targetTop - helperHeight - py * 2],
-      right: [targetRight + px * 2, y],
-      bottom: [x, targetBottom + py * 2],
-      left: [targetLeft - helperWidth - px * 2, y],
+      top: [x - pl, targetTop - helperHeight - pb],
+      right: [targetRight + pl, y - pt],
+      bottom: [x - pl, targetBottom + pt],
+      left: [targetLeft - helperWidth - pr, y - pt],
       center: [
         windowWidth / 2 - helperWidth / 2,
         windowHeight / 2 - helperHeight / 2,
       ],
     }
-    if (helperPosition === 'center' || couldPositionAt(helperPosition)) {
+    if (
+      helperPosition === 'center' ||
+      (couldPositionAt(helperPosition, isHelperOutsideX, isHelperOutsideY) &&
+        !isHelperOutsideX &&
+        !isHelperOutsideY)
+    ) {
       positionRef.current = helperPosition
       return coords[helperPosition]
     }
-    return autoPosition(coords)
+
+    return autoPosition(coords, isHelperOutsideX, isHelperOutsideY)
   }
 
   const p = pos(position)
@@ -164,7 +192,7 @@ export type PopoverProps = {
   sizes: RectResult
   children?: React.ReactNode
   position?: PositionType
-  padding?: number | [number, number]
+  padding?: number | number[]
   styles?: StylesObj
   className?: string
   refresher?: any

@@ -65,17 +65,17 @@ Object containing size and position informations of where to position the _Mask_
 
 [Class](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) to apply to the _Highlighted_ area `rect`
 
-### `padding?: number | [number, number]`
+### `padding?: number | number[]`
 
 Extra space to add in _Mask_ calculations. Useful when calculating space from `Element` bounding rect and want to add more space.
 
-Single number sets sema space for `x` and `y`, otherwise, an Array sets `[x, y]`.
+Single number sets same space for all sides, otherwise an Array sets `[x, y]` or `[top, x, bottom]` or `[top, right, bottom, left]`.
 
-### `wrapperPadding?: number | [number, number]`
+### `wrapperPadding?: number | number[]`
 
 Extra space to add between viewport with and height.
 
-Single number sets sema space for `x` and `y`, otherwise, an Array sets `[x, y]`.
+Single number sets same space for all sides, otherwise an Array sets `[x, y]` or `[top, x, bottom]` or `[top, right, bottom, left]`.
 
 ### `onClick?: MouseEventHandler<HTMLDivElement>`
 

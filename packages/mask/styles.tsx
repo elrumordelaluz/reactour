@@ -33,11 +33,11 @@ export const defaultStyles: Styles = {
     pointerEvents: 'none',
     color: '#000',
   }),
-  svgWrapper: ({ windowWidth, windowHeight, wpx, wpy }) => ({
+  svgWrapper: ({ windowWidth, windowHeight, wpt, wpl }) => ({
     width: windowWidth,
     height: windowHeight,
-    left: Number(wpx) / 2,
-    top: Number(wpy) / 2,
+    left: Number(wpl),
+    top: Number(wpt),
     position: 'fixed',
   }),
   maskArea: ({ x, y, width, height }) => ({

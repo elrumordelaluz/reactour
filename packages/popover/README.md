@@ -86,9 +86,11 @@ type PositionProps = {
 
 The position for the _Popover_, fixed in case of `[number, number]`, calculated prefered position in case of `string`
 
-### `padding?: number | [number, number]`
+### `padding?: number | number[]`
 
 Extra space to add in _Popover_ position calculations. Useful when calculating space from `Element` bounding rect and want to add more space.
+
+Single number sets same space for all sides, otherwise an Array sets `[x, y]` or `[top, x, bottom]` or `[top, right, bottom, left]`.
 
 ### `styles?: StylesObj`
 

@@ -255,8 +255,8 @@ type Padding =
       wrapper?: ComponentPadding
     }
 
-// x and y same value or [x, y] handled separated
-type ComponentPadding = number | [number, number]
+// x and y same value or [x, y] or [top, x, bottom] or [top, right, bottom, left]
+type ComponentPadding = number | number[]
 ```
 
 </details>

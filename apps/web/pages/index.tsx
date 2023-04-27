@@ -33,6 +33,7 @@ function App() {
             borderRadius: 10,
           }),
         }}
+        position="bottom"
         Wrapper={Wrapper}
         onClickClose={({ setIsOpen, meta, setSteps, setMeta }) => {
           if (meta && meta === 'tour-2') {

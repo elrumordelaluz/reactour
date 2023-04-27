@@ -80,7 +80,7 @@ type A11yOptions = {
   showNavigationScreenReaders: boolean
 }
 
-type ComponentPadding = number | [number, number]
+type ComponentPadding = number | number[]
 export type Padding =
   | number
   | {

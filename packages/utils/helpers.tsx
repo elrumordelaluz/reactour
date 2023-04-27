@@ -55,27 +55,44 @@ export const isOutsideY = (val: number, windowHeight: number): boolean => {
   return val > windowHeight
 }
 
-export function bestPositionOf(positions: PositionsObjectType): string[] {
+export function bestPositionOf(
+  positions: PositionsObjectType,
+  filters: string[] = []
+): string[] {
+  const compareFn = (a: string, b: string) =>
+    filters.includes(a) ? 1 : filters.includes(b) ? -1 : 0
   return Object.keys(positions)
-    .map(p => {
+    .map((p) => {
       return {
         position: p,
         value: positions[p],
       }
     })
     .sort((a, b) => b.value - a.value)
-    .map(p => p.position)
+    .sort((a, b) => compareFn(a.position, b.position))
+    .filter((p) => p.value > 0)
+    .map((p) => p.position)
 }
 
 const defaultPadding = 10
 
 export function getPadding(
-  padding: number | [number, number] = defaultPadding
-) {
+  padding: number | number[] = defaultPadding
+): number[] {
   if (Array.isArray(padding)) {
-    return padding[0]
-      ? [padding[0], padding[1] ? padding[1] : padding[0]]
-      : [defaultPadding, defaultPadding]
+    if (padding.length === 1) {
+      return [padding[0], padding[0], padding[0], padding[0]]
+    }
+    if (padding.length === 2) {
+      return [padding[1], padding[0], padding[1], padding[0]]
+    }
+    if (padding.length === 3) {
+      return [padding[0], padding[1], padding[2], padding[1]]
+    }
+    if (padding.length > 3) {
+      return [padding[0], padding[1], padding[2], padding[3]]
+    }
+    return [defaultPadding, defaultPadding]
   }
-  return [padding, padding]
+  return [padding, padding, padding, padding]
 }

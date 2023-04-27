@@ -1,4 +1,3 @@
-import { useState, useEffect, Component } from 'react'
 import { Text, Container, Spacer } from '@nextui-org/react'
 import Demo from './index'
 

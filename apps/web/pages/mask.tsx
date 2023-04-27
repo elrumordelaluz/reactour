@@ -15,6 +15,8 @@ export default function Docs() {
     <div>
       <StaticMask />
       <hr />
+      <PaddingsMask />
+      <hr />
       <MoreMasks />
       <hr />
       <DynamicMask />
@@ -93,6 +95,50 @@ function StaticMask() {
             // }),
           }}
           onClick={() => setIsOpen(false)}
+        />
+      ) : null}
+    </>
+  )
+}
+
+function PaddingsMask() {
+  const [isOpen, setIsOpen] = useState(false)
+  const ref = useRef(null)
+  const refParagraph = useRef(null)
+  const [updater, setUpdater] = useState<number[]>([])
+  const sizes = useRect(ref, updater)
+
+  useEffect(() => {
+    const udt = () => setUpdater([])
+    window.addEventListener('scroll', udt)
+    return () => window.removeEventListener('scroll', udt)
+  }, [])
+
+  return (
+    <>
+      <button
+        onClick={() => setIsOpen((o) => !o)}
+        style={{ marginBottom: '1em' }}
+      >
+        {isOpen ? 'Close' : 'Open'} Mask Padding
+      </button>{' '}
+      <div
+        ref={ref}
+        style={{
+          position: 'fixed',
+          top: 100,
+          right: 100,
+          backgroundColor: 'red',
+          width: 100,
+          height: 100,
+        }}
+      />
+      {isOpen ? (
+        <Mask
+          sizes={sizes}
+          wrapperPadding={[10, 40, 1, 2]}
+          onClick={() => setIsOpen(false)}
+          padding={[2, 1, 40, 10]}
         />
       ) : null}
     </>

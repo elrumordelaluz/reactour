@@ -152,7 +152,7 @@ function AttachingDOMElem() {
         </button>
       </motion.div>
       {isOpen ? (
-        <Popover sizes={sizes} position="right">
+        <Popover sizes={sizes} padding={[100, 10, 50, 200]}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             volutpat quam eu mauris euismod imperdiet.
@@ -342,6 +342,36 @@ function CombinedWithMask() {
         amet sodales augue. Curabitur in nulla in magna luctus porta et sit amet
         dolor. Pellentesque a magna enim. Pellentesque malesuada egestas urna,
         et pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
+        ante nunc. Maecenas ut leo eu erat porta fermentum. Ut augue massa,
+        aliquam in bibendum sed, euismod vitae magna. Nulla sit amet sodales
+        augue. Curabitur in nulla in magna luctus porta et sit amet dolor.
+        Pellentesque a magna enim. Pellentesque malesuada egestas urna, et
+        pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
+        ante nunc. Maecenas ut leo eu erat porta fermentum. Ut augue massa,
+        aliquam in bibendum sed, euismod vitae magna. Nulla sit amet sodales
+        augue. Curabitur in nulla in magna luctus porta et sit amet dolor.
+        Pellentesque a magna enim. Pellentesque malesuada egestas urna, et
+        pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
+        ante nunc. Maecenas ut leo eu erat porta fermentum. Ut augue massa,
+        aliquam in bibendum sed, euismod vitae magna. Nulla sit amet sodales
+        augue. Curabitur in nulla in magna luctus porta et sit amet dolor.
+        Pellentesque a magna enim. Pellentesque malesuada egestas urna, et
+        pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
+        ante nunc. Maecenas ut leo eu erat porta fermentum. Ut augue massa,
+        aliquam in bibendum sed, euismod vitae magna. Nulla sit amet sodales
+        augue. Curabitur in nulla in magna luctus porta et sit amet dolor.
+        Pellentesque a magna enim. Pellentesque malesuada egestas urna, et
+        pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
+        ante nunc. Maecenas ut leo eu erat porta fermentum. Ut augue massa,
+        aliquam in bibendum sed, euismod vitae magna. Nulla sit amet sodales
+        augue. Curabitur in nulla in magna luctus porta et sit amet dolor.
+        Pellentesque a magna enim. Pellentesque malesuada egestas urna, et
+        pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
+        ante nunc. Maecenas ut leo eu erat porta fermentum. Ut augue massa,
+        aliquam in bibendum sed, euismod vitae magna. Nulla sit amet sodales
+        augue. Curabitur in nulla in magna luctus porta et sit amet dolor.
+        Pellentesque a magna enim. Pellentesque malesuada egestas urna, et
+        pulvinar lorem viverra suscipit. Duis sit amet mauris ante. Fusce at
         ante nunc. Maecenas ut leo eu erat porta fermentum.
       </p>
       <AnimatePresence>
@@ -359,7 +389,7 @@ function CombinedWithMask() {
                 setIsOpen(false)
               }}
             />
-            <Popover sizes={sizes}>
+            <Popover sizes={sizes} position="left">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                 volutpat quam eu mauris euismod imperdiet.

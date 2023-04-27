@@ -17,15 +17,15 @@ const Mask: React.FC<MaskProps> = ({
   const maskID = maskId || uniqueId('mask__')
   const clipID = clipId || uniqueId('clip__')
   const getStyles = stylesMatcher(styles)
-  const [px, py] = getPadding(padding)
-  const [wpx, wpy] = getPadding(wrapperPadding)
+  const [pt, pr, pb, pl] = getPadding(padding)
+  const [wpt, wpr, wpb, wpl] = getPadding(wrapperPadding)
   const { w, h } = getWindow()
-  const width = safe(sizes?.width + px * 2)
-  const height = safe(sizes?.height + py * 2)
-  const top = safe(sizes?.top - py - wpy / 2)
-  const left = safe(sizes?.left - px - wpx / 2)
-  const windowWidth = w - wpx
-  const windowHeight = h - wpy
+  const width = safe(sizes?.width + pl + pr)
+  const height = safe(sizes?.height + pt + pb)
+  const top = safe(sizes?.top - pt - wpt)
+  const left = safe(sizes?.left - pl - wpl)
+  const windowWidth = w - wpl - wpr
+  const windowHeight = h - wpt - wpb
 
   const maskAreaStyles = getStyles('maskArea', {
     x: left,
@@ -54,8 +54,8 @@ const Mask: React.FC<MaskProps> = ({
         style={getStyles('svgWrapper', {
           windowWidth,
           windowHeight,
-          wpx,
-          wpy,
+          wpt,
+          wpl,
         })}
       >
         <defs>
@@ -121,8 +121,8 @@ export type MaskProps = {
   styles?: StylesObj
   className?: string
   highlightedAreaClassName?: string
-  padding?: number | [number, number]
-  wrapperPadding?: number | [number, number]
+  padding?: number | number[]
+  wrapperPadding?: number | number[]
   onClick?: MouseEventHandler<HTMLDivElement>
   onClickHighlighted?: MouseEventHandler<SVGRectElement>
   maskId?: string
