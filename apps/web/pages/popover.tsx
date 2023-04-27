@@ -152,7 +152,7 @@ function AttachingDOMElem() {
         </button>
       </motion.div>
       {isOpen ? (
-        <Popover sizes={sizes} padding={[100, 10, 50, 200]}>
+        <Popover sizes={sizes}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
             volutpat quam eu mauris euismod imperdiet.
@@ -184,7 +184,10 @@ function MultiplePopovers() {
         {isOpen ? 'Hide' : 'Show'} Popovers
       </button>{' '}
       <br />
-      <div style={{ margin: '0 auto', width: 100 }} ref={ref}>
+      <div
+        style={{ margin: '0 auto', width: 100, border: '1px solid' }}
+        ref={ref}
+      >
         Lorem ipsum dolor sit amet.
       </div>
       {isOpen ? (
@@ -391,8 +394,9 @@ function CombinedWithMask() {
             />
             <Popover sizes={sizes} position="left">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                volutpat quam eu mauris euismod imperdiet.
+                Pellentesque a magna enim. Pellentesque malesuada egestas urna,
+                et pulvinar lorem viverra suscipit. Duis sit amet mauris ante.
+                Fusce at ante nunc.
               </p>
             </Popover>
           </motion.div>

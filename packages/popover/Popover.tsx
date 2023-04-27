@@ -65,7 +65,7 @@ const Popover: React.FC<PopoverProps> = ({
   }
 
   const [pt, pr, pb, pl] = getPadding(padding)
-  console.log({ pt, pr, pb, pl })
+
   const couldPositionAt = (
     position: string,
     isOutsideX: boolean,
@@ -91,10 +91,10 @@ const Popover: React.FC<PopoverProps> = ({
     outX: boolean,
     outY: boolean
   ): CoordType => {
-    if (outY && outX) {
-      positionRef.current = 'center'
-      return coords.center
-    }
+    // if (outY && outX) {
+    //   positionRef.current = 'center'
+    //   return coords.center
+    // }
     const positionsOrder: string[] = bestPositionOf(
       available,
       outY ? ['right', 'left'] : outX ? ['top', 'bottom'] : []
@@ -102,7 +102,6 @@ const Popover: React.FC<PopoverProps> = ({
     for (let j = 0; j < positionsOrder.length; j++) {
       if (couldPositionAt(positionsOrder[j], outX, outY)) {
         positionRef.current = positionsOrder[j]
-        console.log(positionsOrder[j])
         return coords[positionsOrder[j]]
       }
     }
@@ -128,11 +127,22 @@ const Popover: React.FC<PopoverProps> = ({
       windowHeight
     )
 
-    const x = isHelperOutsideX ? targetLeft : targetLeft
-    const y = isHelperOutsideY ? targetBottom - helperHeight : targetTop
+    const x = isHelperOutsideX
+      ? Math.min(targetLeft, windowWidth - helperWidth)
+      : Math.max(targetLeft, 0)
+
+    const y = isHelperOutsideY
+      ? helperHeight > available.bottom
+        ? Math.max(targetBottom - helperHeight, 0)
+        : Math.max(targetTop, 0)
+      : targetTop
 
     if (isHelperOutsideY) {
-      verticalAlignRef.current = 'bottom'
+      if (helperHeight > available.bottom) {
+        verticalAlignRef.current = 'bottom'
+      } else {
+        verticalAlignRef.current = 'top'
+      }
     } else {
       verticalAlignRef.current = 'top'
     }
