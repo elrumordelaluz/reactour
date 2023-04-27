@@ -1,5 +1,18 @@
 # @reactour/tour
 
+## 3.4.0
+
+### Minor Changes
+
+- Change padding calculations allowing to pass separated values for each side
+
+### Patch Changes
+
+- Updated dependencies
+  - @reactour/mask@1.1.0
+  - @reactour/popover@1.1.0
+  - @reactour/utils@0.5.0
+
 ## 3.3.0
 
 ### Minor Changes

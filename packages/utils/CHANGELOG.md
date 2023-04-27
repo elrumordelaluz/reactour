@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.5.0
+
+### Minor Changes
+
+- Change padding calculations allowing to pass separated values for each side
+
 ## 0.4.7
 
 ### Patch Changes

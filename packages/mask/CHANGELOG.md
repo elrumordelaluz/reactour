@@ -1,5 +1,16 @@
 # @reactour/mask
 
+## 1.1.0
+
+### Minor Changes
+
+- Change padding calculations allowing to pass separated values for each side
+
+### Patch Changes
+
+- Updated dependencies
+  - @reactour/utils@0.5.0
+
 ## 1.0.5
 
 ### Patch Changes
