@@ -1,5 +1,11 @@
 # @reactour/popover
 
+## 1.1.1
+
+### Patch Changes
+
+- Fix popover position calculations issues
+
 ## 1.1.0
 
 ### Minor Changes
