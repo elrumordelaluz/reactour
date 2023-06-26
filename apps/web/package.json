@@ -21,7 +21,7 @@
     "@reactour/utils": "*",
     "@vercel/analytics": "^1.0.0",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "framer-motion": "^4.0.0 || ^5.0.0",
+    "framer-motion": "^10.12.4",
     "modaaals": "^0.14.1",
     "next": "13.3.2-canary.6",
     "react": "18.2.0",
