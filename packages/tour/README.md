@@ -684,7 +684,7 @@ Later in any Component down in the tree of _TourProvider_ you can control the _T
 import { useTour } from '@reactour/tour'
 
 function MyComponent() {
-  const { isOpen, currentStep, steps, setIsOpen, setCurrentStep } = useTour()
+  const { isOpen, currentStep, steps, setIsOpen, setCurrentStep, setSteps } = useTour()
   return (
     <>
       <h1>{isOpen ? 'Welcome to the tour!' : 'Thank you for participate!'}</h1>
