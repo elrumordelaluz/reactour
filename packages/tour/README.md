@@ -318,6 +318,10 @@ The _Tour_ uses [FocusScope](https://react-spectrum.adobe.com/react-aria/FocusSc
 
 Disable interactivity with _Dot_ navigation inside _Popover_.
 
+### `disableWhenSelectorFalsy?: boolean`
+
+If true, don't show tours when `selector` or `document.getElementById(step.selector)` is falsy.
+
 ### `disableKeyboardNavigation?: boolean | KeyboardParts[]`
 
 <details>
