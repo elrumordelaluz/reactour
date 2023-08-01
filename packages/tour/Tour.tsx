@@ -33,6 +33,7 @@ const Tour: React.FC<TourProps> = ({
   inViewThreshold,
   disabledActions,
   setDisabledActions,
+  disableWhenSelectorFalsy,
   rtl,
   accessibilityOptions = {
     closeButtonAriaLabel: 'Close Tour',
@@ -122,8 +123,8 @@ const Tour: React.FC<TourProps> = ({
   const popoverPosition = transition
     ? onTransition
     : step?.position
-    ? step?.position
-    : position
+      ? step?.position
+      : position
 
   const TourWrapper = Wrapper ? Wrapper : React.Fragment
 
@@ -146,68 +147,70 @@ const Tour: React.FC<TourProps> = ({
         clickProps={clickProps}
         keyboardHandler={keyboardHandler}
       />
-
-      <Mask
-        sizes={transition ? initialState : sizes}
-        onClick={maskClickHandler}
-        styles={{
-          highlightedArea: (base: any) => ({
-            ...base,
-            display: doDisableInteraction ? 'block' : 'none',
-          }),
-          ...styles,
-        }}
-        padding={transition ? 0 : maskPadding}
-        highlightedAreaClassName={highlightedMaskClassName}
-        className={maskClassName}
-        onClickHighlighted={onClickHighlighted}
-        wrapperPadding={wrapperPadding}
-        clipId={clipId}
-        maskId={maskId}
-      />
-
-      <Popover
-        sizes={sizes}
-        styles={styles}
-        position={popoverPosition}
-        padding={popoverPadding}
-        aria-labelledby={accessibilityOptions?.ariaLabelledBy}
-        className={className}
-        refresher={currentStep}
-      >
-        {ContentComponent ? (
-          <ContentComponent
-            styles={styles}
-            setCurrentStep={setCurrentStep}
-            currentStep={currentStep}
-            setIsOpen={setIsOpen}
-            steps={steps}
-            accessibilityOptions={accessibilityOptions}
-            disabledActions={disabledActions}
-            transition={transition}
-            isHighlightingObserved={isHighlightingObserved}
-            rtl={rtl}
-            {...popoverProps}
-          />
-        ) : (
-          <PopoverContent
-            styles={styles}
-            setCurrentStep={setCurrentStep}
-            currentStep={currentStep}
-            setIsOpen={setIsOpen}
-            steps={steps}
-            setSteps={setSteps}
-            accessibilityOptions={accessibilityOptions}
-            disabledActions={disabledActions}
-            transition={transition}
-            isHighlightingObserved={isHighlightingObserved}
-            rtl={rtl}
-            meta={meta}
-            setMeta={setMeta}
-            {...popoverProps}
-          />
-        )}
-      </Popover>
+      {(!disableWhenSelectorFalsy || target) &&
+        <Mask
+          sizes={transition ? initialState : sizes}
+          onClick={maskClickHandler}
+          styles={{
+            highlightedArea: (base: any) => ({
+              ...base,
+              display: doDisableInteraction ? 'block' : 'none',
+            }),
+            ...styles,
+          }}
+          padding={transition ? 0 : maskPadding}
+          highlightedAreaClassName={highlightedMaskClassName}
+          className={maskClassName}
+          onClickHighlighted={onClickHighlighted}
+          wrapperPadding={wrapperPadding}
+          clipId={clipId}
+          maskId={maskId}
+        />
+      }
+      {(!disableWhenSelectorFalsy || target) &&
+        <Popover
+          sizes={sizes}
+          styles={styles}
+          position={popoverPosition}
+          padding={popoverPadding}
+          aria-labelledby={accessibilityOptions?.ariaLabelledBy}
+          className={className}
+          refresher={currentStep}
+        >
+          {ContentComponent ? (
+            <ContentComponent
+              styles={styles}
+              setCurrentStep={setCurrentStep}
+              currentStep={currentStep}
+              setIsOpen={setIsOpen}
+              steps={steps}
+              accessibilityOptions={accessibilityOptions}
+              disabledActions={disabledActions}
+              transition={transition}
+              isHighlightingObserved={isHighlightingObserved}
+              rtl={rtl}
+              {...popoverProps}
+            />
+          ) : (
+            <PopoverContent
+              styles={styles}
+              setCurrentStep={setCurrentStep}
+              currentStep={currentStep}
+              setIsOpen={setIsOpen}
+              steps={steps}
+              setSteps={setSteps}
+              accessibilityOptions={accessibilityOptions}
+              disabledActions={disabledActions}
+              transition={transition}
+              isHighlightingObserved={isHighlightingObserved}
+              rtl={rtl}
+              meta={meta}
+              setMeta={setMeta}
+              {...popoverProps}
+            />
+          )}
+        </Popover>
+      }
     </TourWrapper>
   ) : null
 }
