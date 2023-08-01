@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.5.0
+
+### Minor Changes
+
+- add option for disable tour when selector falsy
+
 ## 3.4.0
 
 ### Minor Changes
