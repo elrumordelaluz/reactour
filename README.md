@@ -29,6 +29,16 @@ A set of helper functions used by the other packages.
 
 The place where all the stuff is visible working, live [here](https://reactour.vercel.app/).
 
+---
+
+Sponsored by
+
+[![Frigade](/sponsor-frigade.png)](https://frigade.com/?source=reactour)
+
+Reactour is proud to be sponsored by [Frigade](https://frigade.com/?source=reactour), a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
+
+---
+
 ## License
 
 MIT © [Lionel Tzatzkin](https://lionel.tzatzk.in)
