@@ -29,6 +29,16 @@ npm i -S styled-components@^4.0.0
 yarn add styled-components@^4.0.0
 ```
 
+---
+
+Sponsored by
+
+[![Frigade](/sponsor-frigade.png)](https://frigade.com/?source=reactour)
+
+Reactour is proud to be sponsored by [Frigade](https://frigade.com/?source=reactour), a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
+
+---
+
 ## Usage
 
 Add the `Tour` Component in your Application, passing the `steps` with the elements to highlight during the _Tour_.

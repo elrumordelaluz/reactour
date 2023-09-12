@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elrumordelaluz/reactour.git"
+    "url": "git+https://github.com/elrumordelaluz/reactour/tree/v1"
   },
   "keywords": [
     "react",
@@ -40,7 +40,7 @@
   "bugs": {
     "url": "https://github.com/elrumordelaluz/reactour/issues"
   },
-  "homepage": "https://github.com/elrumordelaluz/reactour#readme",
+  "homepage": "https://github.com/elrumordelaluz/reactour/tree/v1",
   "devDependencies": {
     "@babel/cli": "7.14.5",
     "@babel/core": "7.14.6",
