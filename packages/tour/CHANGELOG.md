@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.6.0
+
+### Minor Changes
+
+- Pass clickProps into `onClickHighlighted` and improve `disableInteraction` with function
+
 ## 3.5.0
 
 ### Minor Changes
