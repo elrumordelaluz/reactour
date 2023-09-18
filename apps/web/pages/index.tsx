@@ -35,6 +35,16 @@ function App() {
         }}
         position="bottom"
         Wrapper={Wrapper}
+        disableInteraction={(clickProps) => clickProps.currentStep < 2}
+        onClickHighlighted={(event, clickProps) => {
+          if (clickProps.currentStep < 2) {
+            // @ts-ignore
+            event.preventDefault()
+            clickProps.setCurrentStep(
+              Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
+            )
+          }
+        }}
         onClickClose={({ setIsOpen, meta, setSteps, setMeta }) => {
           if (meta && meta === 'tour-2') {
             setMeta('tour-1')

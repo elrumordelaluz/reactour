@@ -304,7 +304,7 @@ Custom _Tour_ current `step` state.
 
 This option could be overrided on specific steps using [`stepInteraction`](#stepinteraction-boolean) prop.
 
-### `disableInteraction?: boolean`
+### `disableInteraction?: boolean | ((clickProps: Pick<ClickProps, 'currentStep' | 'steps' | 'meta'>) => boolean)`
 
 Disables the ability to click or interact in any way with the Highlighted element on every step.
 
@@ -430,7 +430,7 @@ type ClickProps = {
 
 Function that overrides the default close behavior of the _Close icon_ click handler. Comes with useful parameters to play with.
 
-### `onClickHighlighted?: MouseEventHandler<SVGRectElement>`
+### `onClickHighlighted?: (e: MouseEventHandler<SVGRectElement>, clickProps: ClickProps) => void`
 
 Click handler for highlighted area. Only works when `disableInteraction` is active. Useful in case is needed to avoid `onClickMask` when clicking the highlighted element.
 
@@ -441,13 +441,36 @@ Click handler for highlighted area. Only works when `disableInteraction` is acti
 <TourProvider
   steps={steps}
   disableInteraction
-  onClickHighlighted={(e) => {
-    e.stopPropagation()
+  onClickHighlighted={(e, clickProps) => {
     console.log('No interaction at all')
+    if (clickProps.currentStep < 2) {
+      e.stopPropagation()
+      event.preventDefault()
+      clickProps.setCurrentStep(
+        Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
+      )
+    }
   }}
 >
   {/* ... */}
 </TourProvider>
+```
+
+</details>
+
+<details>
+  <summary><small>Type details</small></summary>
+
+```ts
+type ClickProps = {
+  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setCurrentStep: Dispatch<React.SetStateAction<number>>
+  setSteps: Dispatch<React.SetStateAction<StepType[]>>
+  setMeta: Dispatch<React.SetStateAction<string>>
+  currentStep: number
+  steps: StepType[]
+  meta: string
+}
 ```
 
 </details>

@@ -16,7 +16,11 @@ type SharedProps = KeyboardHandler & {
   styles?: StylesObj & PopoverStylesObj & MaskStylesObj
   padding?: Padding
   position?: Position
-  disableInteraction?: boolean
+  disableInteraction?:
+    | boolean
+    | ((
+        clickProps: Pick<ClickProps, 'currentStep' | 'steps' | 'meta'>
+      ) => boolean)
   disableFocusLock?: boolean
   disableDotsNavigation?: boolean
   disableKeyboardNavigation?: boolean | KeyboardParts[]
@@ -31,7 +35,11 @@ type SharedProps = KeyboardHandler & {
   beforeClose?: (target: Element | null) => void
   onClickMask?: (clickProps: ClickProps) => void
   onClickClose?: (clickProps: ClickProps) => void
-  onClickHighlighted?: MouseEventHandler<SVGRectElement>
+  onClickHighlighted?: (
+    e: MouseEventHandler<SVGRectElement>,
+    clickProps: ClickProps
+  ) => void
+  //  MouseEventHandler<SVGRectElement>
   badgeContent?: (badgeProps: BadgeProps) => any
   showNavigation?: boolean
   showPrevNextButtons?: boolean

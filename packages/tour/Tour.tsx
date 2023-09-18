@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, MouseEventHandler } from 'react'
 import { Observables } from '@reactour/utils'
 import { Mask } from '@reactour/mask'
 import { Popover } from '@reactour/popover'
@@ -103,6 +103,10 @@ const Tour: React.FC<TourProps> = ({
     typeof step?.stepInteraction === 'boolean'
       ? !step?.stepInteraction
       : disableInteraction
+      ? typeof disableInteraction === 'boolean'
+        ? disableInteraction
+        : disableInteraction(clickProps)
+      : false
 
   useEffect(() => {
     if (step?.action && typeof step?.action === 'function') {
@@ -123,8 +127,8 @@ const Tour: React.FC<TourProps> = ({
   const popoverPosition = transition
     ? onTransition
     : step?.position
-      ? step?.position
-      : position
+    ? step?.position
+    : position
 
   const TourWrapper = Wrapper ? Wrapper : React.Fragment
 
@@ -147,7 +151,7 @@ const Tour: React.FC<TourProps> = ({
         clickProps={clickProps}
         keyboardHandler={keyboardHandler}
       />
-      {(!disableWhenSelectorFalsy || target) &&
+      {(!disableWhenSelectorFalsy || target) && (
         <Mask
           sizes={transition ? initialState : sizes}
           onClick={maskClickHandler}
@@ -161,13 +165,21 @@ const Tour: React.FC<TourProps> = ({
           padding={transition ? 0 : maskPadding}
           highlightedAreaClassName={highlightedMaskClassName}
           className={maskClassName}
-          onClickHighlighted={onClickHighlighted}
+          onClickHighlighted={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            if (onClickHighlighted)
+              onClickHighlighted(
+                e as unknown as MouseEventHandler<SVGRectElement>,
+                clickProps
+              )
+          }}
           wrapperPadding={wrapperPadding}
           clipId={clipId}
           maskId={maskId}
         />
-      }
-      {(!disableWhenSelectorFalsy || target) &&
+      )}
+      {(!disableWhenSelectorFalsy || target) && (
         <Popover
           sizes={sizes}
           styles={styles}
@@ -210,7 +222,7 @@ const Tour: React.FC<TourProps> = ({
             />
           )}
         </Popover>
-      }
+      )}
     </TourWrapper>
   ) : null
 }

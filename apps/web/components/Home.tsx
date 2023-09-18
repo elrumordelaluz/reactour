@@ -372,6 +372,33 @@ export default function Home() {
             Open Modal
           </Button>
         </Box>
+
+        <Row style={{ margin: '2em 0' }}>
+          <Box center width="25%" />
+          <Box center width="50%">
+            <Heading h="2">Sponsor</Heading>
+            <Text>
+              Reactour is proud to be sponsored by{' '}
+              <Link
+                href="https://frigade.com/?source=reactour-site"
+                color="dark"
+                nospaces
+              >
+                Frigade
+              </Link>
+              , a developer tool for building better product onboarding: guided
+              tours, getting started checklists, announcements, and more.
+            </Text>
+            <Link
+              href="https://frigade.com/?source=reactour-site"
+              style={{ marginTop: '2em' }}
+              nospaces
+            >
+              <Image alt="cockatoodr" src="/sponsor-frigade.png" />
+            </Link>
+          </Box>
+          <Box center width="25%" />
+        </Row>
       </Section>
 
       <Scrollable>
