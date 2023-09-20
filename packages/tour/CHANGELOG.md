@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.6.1
+
+### Patch Changes
+
+- Fix types for `onClickHighlighted`
+
 ## 3.6.0
 
 ### Minor Changes
