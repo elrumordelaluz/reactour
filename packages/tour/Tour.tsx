@@ -169,10 +169,7 @@ const Tour: React.FC<TourProps> = ({
             e.preventDefault()
             e.stopPropagation()
             if (onClickHighlighted)
-              onClickHighlighted(
-                e as unknown as MouseEventHandler<SVGRectElement>,
-                clickProps
-              )
+              onClickHighlighted(e as unknown as MouseEvent, clickProps)
           }}
           wrapperPadding={wrapperPadding}
           clipId={clipId}

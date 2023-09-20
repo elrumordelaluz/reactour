@@ -35,10 +35,7 @@ type SharedProps = KeyboardHandler & {
   beforeClose?: (target: Element | null) => void
   onClickMask?: (clickProps: ClickProps) => void
   onClickClose?: (clickProps: ClickProps) => void
-  onClickHighlighted?: (
-    e: MouseEventHandler<SVGRectElement>,
-    clickProps: ClickProps
-  ) => void
+  onClickHighlighted?: (e: MouseEvent, clickProps: ClickProps) => void
   //  MouseEventHandler<SVGRectElement>
   badgeContent?: (badgeProps: BadgeProps) => any
   showNavigation?: boolean
