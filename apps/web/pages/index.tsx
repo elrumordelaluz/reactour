@@ -63,21 +63,21 @@ function App() {
         // inViewThreshold={40}
         scrollSmooth
         clipId="demo-mask-clip"
-        keyboardHandler={(e, clickProps) => {
-          if (e.key === 'ArrowRight') {
-            clickProps.setCurrentStep(
-              Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
-            )
-          }
-          if (e.key === 'ArrowLeft') {
-            clickProps.setCurrentStep(Math.max(clickProps.currentStep - 1, 0))
-          }
-          if (e.key === 'Escape') {
-            const nextStep = Math.floor(Math.random() * clickProps.steps.length)
-            clickProps.setCurrentStep(nextStep)
-          }
-        }}
-        disableKeyboardNavigation={['esc']}
+        // keyboardHandler={(e, clickProps) => {
+        //   if (e.key === 'ArrowRight') {
+        //     clickProps.setCurrentStep(
+        //       Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
+        //     )
+        //   }
+        //   if (e.key === 'ArrowLeft') {
+        //     clickProps.setCurrentStep(Math.max(clickProps.currentStep - 1, 0))
+        //   }
+        //   if (e.key === 'Escape') {
+        //     const nextStep = Math.floor(Math.random() * clickProps.steps.length)
+        //     clickProps.setCurrentStep(nextStep)
+        //   }
+        // }}
+        // disableKeyboardNavigation={['esc']}
       >
         <ModalProvider
           modals={modals}
