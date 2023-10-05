@@ -23,7 +23,7 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "framer-motion": "^10.16.4",
     "modaaals": "^1.1.0",
-    "next": "13.5.3",
+    "next": "13.5.4",
     "react": "18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0"
@@ -31,8 +31,8 @@
   "devDependencies": {
     "@reactour/tsconfig": "*",
     "@types/body-scroll-lock": "^3.1.0",
-    "@types/node": "^20.7.1",
-    "@types/react": "18.2.23",
+    "@types/node": "^20.8.2",
+    "@types/react": "18.2.25",
     "config": "3.3.9",
     "eslint": "8.50.0",
     "eslint-plugin-prettier": "^5.0.0",
