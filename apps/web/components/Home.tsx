@@ -374,8 +374,8 @@ export default function Home() {
         </Box>
 
         <Row style={{ margin: '2em 0' }}>
-          <Box center width="25%" />
-          <Box center width="50%">
+          <Box center width="18%" />
+          <Box center width="64%">
             <Heading h="2">Sponsor</Heading>
             <Text>
               Reactour is proud to be sponsored by{' '}
@@ -394,10 +394,10 @@ export default function Home() {
               style={{ marginTop: '2em' }}
               nospaces
             >
-              <Image alt="cockatoodr" src="/sponsor-frigade.png" />
+              <Image alt="Frigade" src="/sponsor-frigade.png" />
             </Link>
           </Box>
-          <Box center width="25%" />
+          <Box center width="18%" />
         </Row>
       </Section>
 
