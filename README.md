@@ -33,25 +33,23 @@ The place where all the stuff is visible working, live [here](https://reactour.v
 
 #### Gold sponsors 🥇
 
-<p style="max-width:600px">
+<p>
   <a href="https://frigade.com/?source=reactour">
-    <img alt="Frigade sponsor" title="Frigade sponsor" src="./sponsor-frigade.png">
+    <img alt="Frigade sponsor" title="Frigade sponsor" src="./sponsor-frigade.png" width="600">
   </a>
 </p>
-<p  style="max-width:600px">
+<p>
   Reactour is proud to be sponsored by  <a href="https://frigade.com/?source=reactour">Frigade</a>, a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
 </p>
 
----
-
 #### Silver sponsors 🥈
 
-<p style="max-width:300px">
+<p>
   <a href="https://www.dopt.com/?source=reactour">
-    <img alt="Dopt sponsor" title="Dopt sponsor" src="./sponsor-dopt.png">
+    <img alt="Dopt sponsor" title="Dopt sponsor" src="./sponsor-dopt.png" width="300">
   </a>
 </p>
-<p  style="max-width:300px">
+<p>
   <a href="https://www.dopt.com/?source=reactour">Dopt</a> gives developers UI components and SDKs to build seamless onboarding and education experiences in minutes.
 </p>
 
