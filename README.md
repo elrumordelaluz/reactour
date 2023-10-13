@@ -29,15 +29,31 @@ A set of helper functions used by the other packages.
 
 The place where all the stuff is visible working, live [here](https://reactour.vercel.app/).
 
+## Sponsored by
+
+#### Gold sponsors 🥇
+
+<p style="max-width:600px">
+  <a href="https://frigade.com/?source=reactour">
+    <img alt="Frigade sponsor" title="Frigade sponsor" src="./sponsor-frigade.png">
+  </a>
+</p>
+<p  style="max-width:600px">
+  Reactour is proud to be sponsored by  <a href="https://frigade.com/?source=reactour">Frigade</a>, a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
+</p>
+
 ---
 
-Sponsored by
+#### Silver sponsors 🥈
 
-[![Frigade](/sponsor-frigade.png)](https://frigade.com/?source=reactour)
-
-Reactour is proud to be sponsored by [Frigade](https://frigade.com/?source=reactour), a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
-
----
+<p style="max-width:300px">
+  <a href="https://www.dopt.com/?source=reactour">
+    <img alt="Dopt sponsor" title="Dopt sponsor" src="./sponsor-dopt.png">
+  </a>
+</p>
+<p  style="max-width:300px">
+  <a href="https://www.dopt.com/?source=reactour">Dopt</a> gives developers UI components and SDKs to build seamless onboarding and education experiences in minutes.
+</p>
 
 ## License
 
