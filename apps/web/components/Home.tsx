@@ -376,7 +376,14 @@ export default function Home() {
         <Row style={{ margin: '2em 0' }}>
           <Box center width="18%" />
           <Box center width="64%">
-            <Heading h="2">Sponsor</Heading>
+            <Heading h="2">Gold Sponsors</Heading>
+            <Link
+              href="https://frigade.com/?source=reactour-site"
+              style={{ marginTop: '2em' }}
+              nospaces
+            >
+              <Image alt="Frigade" src="/sponsor-frigade.png" />
+            </Link>
             <Text>
               Reactour is proud to be sponsored by{' '}
               <Link
@@ -389,15 +396,33 @@ export default function Home() {
               , a developer tool for building better product onboarding: guided
               tours, getting started checklists, announcements, and more.
             </Text>
+          </Box>
+          <Box center width="18%" />
+        </Row>
+        <Row style={{ margin: '2em 0' }}>
+          <Box center width="35%" />
+          <Box center width="30%">
+            <Heading h="2">Silver Sponsors</Heading>
             <Link
-              href="https://frigade.com/?source=reactour-site"
+              href="https://www.dopt.com/?source=reactou"
               style={{ marginTop: '2em' }}
               nospaces
             >
-              <Image alt="Frigade" src="/sponsor-frigade.png" />
+              <Image alt="Frigade" src="/sponsor-dopt.png" />
             </Link>
+            <Text>
+              <Link
+                href="https://www.dopt.com/?source=reactou"
+                color="dark"
+                nospaces
+              >
+                Dopt
+              </Link>{' '}
+              gives developers UI components and SDKs to build seamless
+              onboarding and education experiences in minutes.
+            </Text>
           </Box>
-          <Box center width="18%" />
+          <Box center width="35%" />
         </Row>
       </Section>
 
