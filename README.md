@@ -29,15 +29,29 @@ npm i -S styled-components@^4.0.0
 yarn add styled-components@^4.0.0
 ```
 
----
+## Sponsored by
 
-Sponsored by
+#### Gold sponsors 🥇
 
-[![Frigade](/sponsor-frigade.png)](https://frigade.com/?source=reactour)
+<p>
+  <a href="https://frigade.com/?source=reactour">
+    <img alt="Frigade sponsor" title="Frigade sponsor" src="./sponsor-frigade.png" width="600">
+  </a>
+</p>
+<p>
+  Reactour is proud to be sponsored by  <a href="https://frigade.com/?source=reactour">Frigade</a>, a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
+</p>
 
-Reactour is proud to be sponsored by [Frigade](https://frigade.com/?source=reactour), a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
+#### Silver sponsors 🥈
 
----
+<p>
+  <a href="https://www.dopt.com/?source=reactour">
+    <img alt="Dopt sponsor" title="Dopt sponsor" src="./sponsor-dopt.png" width="300">
+  </a>
+</p>
+<p>
+  <a href="https://www.dopt.com/?source=reactour">Dopt</a> gives developers UI components and SDKs to build seamless onboarding and education experiences in minutes.
+</p>
 
 ## Usage
 
