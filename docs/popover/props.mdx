@@ -1,0 +1,127 @@
+---
+title: "Popover props"
+description: "Properties to customize Popover"
+icon: "window-restore"
+---
+
+<ResponseField name="sizes" type="RectResult" required>
+  Object containing size and position informations of where to position the Popover
+  <Expandable title="RectResult">
+    Based on [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) structure
+    <ResponseField name="width?" type="number">
+      Width of the `rect`
+    </ResponseField>
+    <ResponseField name="height?" type="number">
+      Height of the `rect`
+    </ResponseField>
+    <ResponseField name="top?" type="number">
+      Top of the `rect`
+    </ResponseField>
+    <ResponseField name="left?" type="number">
+      Left of the `rect`
+    </ResponseField>
+    <ResponseField name="bottom?" type="number">
+      Bottom of the `rect`
+    </ResponseField>
+    <ResponseField name="right?" type="number">
+      Right of the `rect`
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="position" type="Position">
+  The position for the Popover.
+
+  <Expandable title="Position">
+    
+    <ResponseField name="Position" type="'top' | 'right' | 'bottom' | 'left' | 'center' | [number, number] | ((postionsProps: PositionProps, prevRect: RectResult) => Position)">
+      Fixed in case of `[number, number]`, calculated prefered position in case of string.
+    </ResponseField>
+
+    <Expandable title="PositionProps">
+      <ResponseField name="bottom" type="number"/>
+      <ResponseField name="height" type="number"/>
+      <ResponseField name="left" type="number"/>
+      <ResponseField name="right" type="number"/>
+      <ResponseField name="top" type="number"/>
+      <ResponseField name="width" type="number"/>
+      <ResponseField name="windowWidth" type="number"/>
+      <ResponseField name="windowHeight" type="number"/>
+    </Expandable>
+
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="padding?" type="number | number[]">
+  Extra space to add in _Mask_ calculations. Useful when calculating space from
+  _Element_ bounding rect and want to add more space.
+
+  <Expandable title="space calculation">
+  Calculation is based on [padding shorthand syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/padding#syntax)
+    <ResponseField name="value" type="number">
+      Apply to all four sides
+
+      Example: `100`
+    </ResponseField>
+    <ResponseField name="[x, y]" type="number[]">
+      top and bottom | left and right
+
+      Example: `[10, 20]`
+    </ResponseField>
+    <ResponseField name="[top, x, bottom]" type="number[]">
+      top | left and right | bottom
+
+      Example: `[10, 20, 5]`
+    </ResponseField>
+    <ResponseField name="[top, right, bottom, left]" type="number[]">
+      top | right | bottom | left
+
+      Example: `[10, 20, 5, 10]`
+    </ResponseField>
+
+  </Expandable>
+
+</ResponseField>
+
+<ResponseField name="styles?" type="StylesObj">
+  Prop to customize styles for the different parts of the _Popover_ using a
+  function that allows to extend the base styles an take advantage of some state
+  props.
+
+    <Expandable title="StylesObj">
+
+Styles keys and its props available to customize
+
+<ResponseField name="popover" />
+
+  </Expandable>
+
+  <Expandable title="Example">
+
+```js
+const styles = {
+  popover: (base) => ({
+    ...base,
+    boxShadow: "0 0 3em rgba(0, 0, 0, 0.5)",
+    backgroundColor: "#dedede",
+  }),
+};
+
+function App() {
+  return <Mask styles={styles} />;
+}
+```
+
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="className?" type="string">
+  [CSS
+  classname](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class)
+  to apply to the _Popover_
+</ResponseField>
+
+<ResponseField name="refresher?" type="any">
+  Any value that if changed, updates rect calculations
+</ResponseField>

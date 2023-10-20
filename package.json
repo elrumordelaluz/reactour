@@ -15,7 +15,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build && changeset publish",
-    "docs": "yarn workspace web export"
+    "docs": "cd docs && mintlify dev"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^5.0.1",

@@ -1,0 +1,41 @@
+---
+title: Welcome
+description: "a Tourist Guide into your React Components"
+icon: "handshake"
+---
+
+<img
+  className="block dark:hidden"
+  src="/images/reactour-hero-light.svg"
+  alt="Reactour Hero Light"
+/>
+<img
+  className="hidden dark:block"
+  src="/images/reactour-hero-dark.svg"
+  alt="Reactour Hero Dark"
+/>
+
+## Introduction
+
+Before onboarding products became widespread, I found myself with the need to create a "tour" for new users of different projects, with a nice look and above all with the possibility to interact with existing elements of the page. Thus was born this project in 2017, trying to simplify the logic of [intro.js](https://introjs.com/) with React components, prioritising to use svg and css features.
+
+With the passage of time and especially with the valuable feedback from users, the package was divided into three main packages that can be used independently: the mask, the popover and the tour (which brings everything together). In addition, the repository has become a single-purpose repository rewritten in typescript.
+
+Let's start the Tour together!
+
+## Packages
+
+<CardGroup cols={2}>
+  <Card title="Mask" icon="mask" href="/mask">
+    An SVG intelligent mask that cover all the contents except the part
+    specified
+  </Card>
+  <Card title="Popover" icon="window-restore" href="/popover">
+    A popover positioned based on certain values
+  </Card>
+</CardGroup>
+<CardGroup cols={1}>
+  <Card title="Tour" icon="bus-simple" href="/tour">
+    The Tourist Guide which puts together the Mask, the Popover and more magic!
+  </Card>
+</CardGroup>

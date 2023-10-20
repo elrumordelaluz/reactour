@@ -1,0 +1,41 @@
+---
+title: "Installation & Usage"
+description: "An SVG mask that cover all the window contents except the one specified by certain position and sizes values"
+icon: "mask"
+---
+
+### Install [@reactour/mask](https://www.npmjs.com/package/@reactour/mask)
+
+<CodeGroup>
+
+```bash npm
+npm i -S @reactour/mask
+```
+
+```bash yarn
+yarn add @reactour/mask
+```
+
+</CodeGroup>
+
+### Usage
+
+```js
+import { Mask } from "@reactour/mask";
+
+function App() {
+  const sizes = {
+    width: 100,
+    height: 100,
+    top: 100,
+    left: 100,
+  };
+
+  return (
+    <>
+      {/* ... */}
+      <Mask sizes={sizes} />
+    </>
+  );
+}
+```

@@ -1,0 +1,102 @@
+---
+title: "Tour hooks & HOC"
+description: "Hooks to interact with Tour"
+icon: "bus-simple"
+---
+
+## `useTour`
+
+Later in any Component down in the tree of _TourProvider_ you can control the _Tour_ in many ways
+
+### Example
+
+```js
+import { useTour } from '@reactour/tour'
+
+function MyComponent() {
+  const { isOpen, currentStep, steps, setIsOpen, setCurrentStep, setSteps } = useTour()
+  return (
+    <>
+      <h1>{isOpen ? 'Welcome to the tour!' : 'Thank you for participate!'}</h1>
+      <p>
+        Now you are visiting the place {currentStep + 1} of {steps.length}
+      </p>
+      <nav>
+        <button onClick={() => setIsOpen(o => !o)}>Toggle Tour</button>
+        <button onClick={() => setCurrentStep(3)}>
+          Take a fast way to 4th place
+        </button>
+        <button
+          onClick={() =>
+            setSteps([
+              { selector: '.new-place-1', content: 'New place 1' },
+              { selector: '.new-place-2', content: 'New place 2' },
+            ])
+            setCurrentStep(1)
+          }
+        >
+          Switch to a new set of places, starting from the last one!
+        </button>
+      </nav>
+    </>
+  )
+}
+```
+
+### Values
+
+<ResponseField name="isOpen" type="boolean">
+  Is the Tour open or close
+</ResponseField>
+
+<ResponseField name="currentStep" type="number">
+  The current step (zero based)
+</ResponseField>
+
+<ResponseField name="steps" type="StepType[]">
+  The `array` of steps currently set
+</ResponseField>
+
+<ResponseField name="setIsOpen" type="Dispatch<React.SetStateAction<Boolean>>">
+  [useState](https://react.dev/reference/react/useState) function to open or
+  close Tour
+</ResponseField>
+
+<ResponseField
+  name="setSteps"
+  type="Dispatch<React.SetStateAction<StepType[]>>"
+>
+  [useState](https://react.dev/reference/react/useState) function to update the
+  `array` of steps
+</ResponseField>
+
+<ResponseField name="meta" type="string">
+  Global meta information that could be useful in complex Tour/s situtations
+</ResponseField>
+
+<ResponseField name="setSteps" type="Dispatch<React.SetStateAction<string>>">
+  [useState](https://react.dev/reference/react/useState) function to update the
+  global meta info
+</ResponseField>
+
+## `withTour`
+
+An enhancer that allows to have all `useTour` functionalities through a _Higher Order Component_.
+
+```js
+import { Component } from "react";
+import { withTour } from "@reactour/tour";
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <>
+        <button onClick={() => this.props.setIsOpen(true)}>Start Tour</button>
+        <div>{/* ... */}</div>
+      </>
+    );
+  }
+}
+
+export default withTour(MyCompnent);
+```

@@ -1,0 +1,39 @@
+---
+title: "Installation & Usage"
+description: "A popover positioned based on certain values"
+icon: "window-restore"
+---
+
+### Install [@reactour/popover](https://www.npmjs.com/package/@reactour/popover)
+
+<CodeGroup>
+
+```bash npm
+npm i -S @reactour/popover
+```
+
+```bash yarn
+yarn add @reactour/popover
+```
+
+</CodeGroup>
+
+### Usage
+
+```js
+import { Popover } from '@reactour/popover'
+
+function App() {
+  const sizes = {
+    bottom: 0,
+    left: 0,
+  }
+
+  return (
+    <>
+      {/* ... */}
+      <Popover sizes={sizes}>
+    </>
+  )
+}
+```

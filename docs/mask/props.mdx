@@ -1,0 +1,165 @@
+---
+title: "Mask props"
+description: "Properties to customize Mask"
+icon: "mask"
+---
+
+<ResponseField name="sizes" type="RectResult" required>
+  Object containing size and position informations of where to position the Mask
+  <Expandable title="RectResult">
+    Based on [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) structure
+    <ResponseField name="width" type="number">
+      Width of the `rect`
+    </ResponseField>
+    <ResponseField name="height" type="number">
+      Height of the `rect`
+    </ResponseField>
+    <ResponseField name="top" type="number">
+      Top of the `rect`
+    </ResponseField>
+    <ResponseField name="left" type="number">
+      Left of the `rect`
+    </ResponseField>
+    <ResponseField name="bottom?" type="number">
+      Bottom of the `rect`
+    </ResponseField>
+    <ResponseField name="right?" type="number">
+      Right of the `rect`
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="className?" type="string">
+  [CSS
+  classname](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class)
+  to apply to the _Mask_ wrapper
+</ResponseField>
+
+<ResponseField name="highlightedAreaClassName?" type="string">
+  [CSS
+  classname](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class)
+  to apply to the _Highlighted_ area `rect` element
+</ResponseField>
+
+<ResponseField name="padding?" type="number | number[]">
+  Extra space to add in _Mask_ calculations. Useful when calculating space from
+  _Element_ bounding rect and want to add more space.
+
+  <Expandable title="space calculation">
+  Calculation is based on [padding shorthand syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/padding#syntax)
+    <ResponseField name="value" type="number">
+      Apply to all four sides
+
+      Example: `100`
+    </ResponseField>
+    <ResponseField name="[x, y]" type="number[]">
+      top and bottom | left and right
+
+      Example: `[10, 20]`
+    </ResponseField>
+    <ResponseField name="[top, x, bottom]" type="number[]">
+      top | left and right | bottom
+
+      Example: `[10, 20, 5]`
+    </ResponseField>
+    <ResponseField name="[top, right, bottom, left]" type="number[]">
+      top | right | bottom | left
+
+      Example: `[10, 20, 5, 10]`
+    </ResponseField>
+
+  </Expandable>
+
+</ResponseField>
+
+<ResponseField name="wrapperPadding?" type="number | number[]">
+  Extra space to add between viewport with and height.
+
+  <Expandable title="space calculation">
+  Calculation is based on [padding shorthand syntax](https://developer.mozilla.org/en-US/docs/Web/CSS/padding#syntax)
+    <ResponseField name="value" type="number">
+      Apply to all four sides
+
+      Example: `100`
+    </ResponseField>
+    <ResponseField name="[x, y]" type="number[]">
+      top and bottom | left and right
+
+      Example: `[10, 20]`
+    </ResponseField>
+    <ResponseField name="[top, x, bottom]" type="number[]">
+      top | left and right | bottom
+
+      Example: `[10, 20, 5]`
+    </ResponseField>
+    <ResponseField name="[top, right, bottom, left]" type="number[]">
+      top | right | bottom | left
+
+      Example: `[10, 20, 5, 10]`
+    </ResponseField>
+
+  </Expandable>
+
+</ResponseField>
+
+<ResponseField name="onClick?" type="MouseEventHandler<HTMLDivElement>">
+  Click handler for the _Mask_ except the highlighted area.
+</ResponseField>
+
+<ResponseField
+  name="onClickHighlighted?"
+  type="MouseEventHandler<SVGRectElement>"
+>
+  Click handler for the _Highlighted_ area.
+</ResponseField>
+
+<ResponseField name="maskId?" type="string">
+  String to be assigned to the `<mask />` element, otherwise an automatic unique
+  id is assigned.
+</ResponseField>
+
+<ResponseField name="clipId?" type="string">
+  String to be assigned to the `<clipPath />` element, otherwise an automatic
+  unique id is assigned.
+</ResponseField>
+
+<ResponseField name="styles?" type="StylesObj">
+  Prop to customize styles for the different parts of the _Mask_ using a
+  function that allows to extend the base styles an take advantage of some state
+  props.
+
+    <Expandable title="StylesObj">
+
+Styles keys and its props available to customize
+
+<ResponseField name="maskWrapper" />
+<ResponseField name="maskArea" type="x, y, width, height" />
+<ResponseField name="maskRect" type="windowWidth, windowHeight, maskID" />
+<ResponseField name="clickArea" type="windowWidth, windowHeight, maskID" />
+<ResponseField name="highlightedArea" type="x, y, width, height" />
+
+  </Expandable>
+
+  <Expandable title="Example">
+
+```js
+const styles = {
+  maskWrapper: (base) => ({
+    ...base,
+    color: "red",
+  }),
+  highlightedArea: (base, { x, y }) => ({
+    ...base,
+    x: x + 10,
+    y: y + 10,
+  }),
+};
+
+function App() {
+  return <Mask styles={styles} />;
+}
+```
+
+  </Expandable>
+</ResponseField>
