@@ -18,9 +18,9 @@
     "docs": "yarn workspace web export"
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.0.3",
-    "turbo": "^1.10.14"
+    "turbo": "^1.10.16"
   },
   "engines": {
     "npm": ">=7.0.0",
