@@ -72,5 +72,10 @@
     "thumbsRating": true,
     "suggestEdit": true,
     "raiseIssue": true
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-ZQ9SP2F9PW"
+    }
   }
 }
