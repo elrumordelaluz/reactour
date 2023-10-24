@@ -57,4 +57,4 @@ The place where all the stuff is visible working, live [here](https://www.react.
 
 ## License
 
-MIT © [Lionel Tzatzkin](https://lionel.tzatzk.in)
+MIT © [Lionel Tzatzkin](https://elrumordelaluz.com)
