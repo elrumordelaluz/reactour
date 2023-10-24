@@ -34,4 +34,4 @@ export const defaultComponents = (
   ({
     ...components,
     ...comps,
-  } as PopoverComponentGeneric)
+  }) as PopoverComponentGeneric

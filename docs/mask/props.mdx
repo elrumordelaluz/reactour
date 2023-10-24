@@ -1,7 +1,7 @@
 ---
-title: "Mask props"
-description: "Properties to customize Mask"
-icon: "mask"
+title: 'Mask props'
+description: 'Properties to customize Mask'
+icon: 'mask'
 ---
 
 <ResponseField name="sizes" type="RectResult" required>
@@ -147,17 +147,17 @@ Styles keys and its props available to customize
 const styles = {
   maskWrapper: (base) => ({
     ...base,
-    color: "red",
+    color: 'red',
   }),
   highlightedArea: (base, { x, y }) => ({
     ...base,
     x: x + 10,
     y: y + 10,
   }),
-};
+}
 
 function App() {
-  return <Mask styles={styles} />;
+  return <Mask styles={styles} />
 }
 ```
 

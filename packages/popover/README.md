@@ -5,6 +5,10 @@
   A popover positioned based on certain values
 </p>
 
+## Documentation
+
+https://docs.react.tours/popover
+
 ## Install
 
 ```zsh

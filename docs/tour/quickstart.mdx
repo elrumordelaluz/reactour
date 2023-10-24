@@ -1,7 +1,7 @@
 ---
-title: "Installation & Usage"
-description: "Tourist Guide into your React Componentss"
-icon: "bus-simple"
+title: 'Installation & Usage'
+description: 'Tourist Guide into your React Componentss'
+icon: 'bus-simple'
 ---
 
 ### Install [@reactour/tour](https://www.npmjs.com/package/@reactour/tour)
@@ -23,31 +23,31 @@ yarn add @reactour/tour
 1. Add the `TourProvider` at the root of your Application, passing the steps of the elements to highlight during the Tour.
 
 ```js
-import { TourProvider } from "@reactour/tour";
+import { TourProvider } from '@reactour/tour'
 
 ReactDOM.render(
   <TourProvider steps={steps}>
     <App />
   </TourProvider>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
 
 const steps = [
   {
-    selector: ".first-step",
-    content: "This is my first Step",
+    selector: '.first-step',
+    content: 'This is my first Step',
   },
   // ...
-];
+]
 ```
 
 2. Then somewhere down the Application tree, control the Tour using `useTour` hook.
 
 ```js
-import { useTour } from "@reactour/tour";
+import { useTour } from '@reactour/tour'
 
 function App() {
-  const { setIsOpen } = useTour();
+  const { setIsOpen } = useTour()
   return (
     <>
       <p className="first-step">
@@ -57,6 +57,6 @@ function App() {
       </p>
       <button onClick={() => setIsOpen(true)}>Open Tour</button>
     </>
-  );
+  )
 }
 ```

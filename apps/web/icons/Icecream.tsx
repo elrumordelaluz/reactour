@@ -1,4 +1,4 @@
-const IcecreamIcon: React.FC<{}> = props => {
+const IcecreamIcon: React.FC<{}> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

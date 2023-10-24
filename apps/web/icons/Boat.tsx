@@ -1,4 +1,4 @@
-const BoatIcon: React.FC<{}> = props => {
+const BoatIcon: React.FC<{}> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

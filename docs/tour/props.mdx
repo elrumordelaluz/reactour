@@ -1,7 +1,7 @@
 ---
-title: "Tour props"
-description: "Properties to customize the Tour"
-icon: "bus-simple"
+title: 'Tour props'
+description: 'Properties to customize the Tour'
+icon: 'bus-simple'
 ---
 
 <ResponseField name="steps?" type="StepType[]">
@@ -76,39 +76,39 @@ icon: "bus-simple"
     <Expandable title="Example">
 
 ```js
-import { components } from "@reactour/tour";
+import { components } from '@reactour/tour'
 
 function Badge({ children }) {
   return (
     <components.Badge
-      styles={{ badge: (base) => ({ ...base, backgroundColor: "red" }) }}
+      styles={{ badge: (base) => ({ ...base, backgroundColor: 'red' }) }}
     >
       👉 {children} 👈
     </components.Badge>
-  );
+  )
 }
 
 function Close({ onClick }) {
   return (
     <button
       onClick={onClick}
-      style={{ position: "absolute", right: 0, top: 0 }}
+      style={{ position: 'absolute', right: 0, top: 0 }}
     >
       x
     </button>
-  );
+  )
 }
 
 const steps = [
   /* ... */
-];
+]
 
 export default function App() {
   return (
     <TourProvider steps={steps} components={{ Badge, Close }}>
       {/* ... */}
     </TourProvider>
-  );
+  )
 }
 ```
 
@@ -141,18 +141,18 @@ export default function App() {
 const styles = {
   maskWrapper: (base) => ({
     ...base,
-    color: "red",
+    color: 'red',
   }),
   highlightedArea: (base, { x, y }) => ({
     ...base,
     x: x + 10,
     y: y + 10,
   }),
-  badge: (base) => ({ ...base, color: "blue" }),
-};
+  badge: (base) => ({ ...base, color: 'blue' }),
+}
 
 function App() {
-  return <TourProvider styles={styles} />;
+  return <TourProvider styles={styles} />
 }
 ```
 
@@ -423,13 +423,13 @@ This option could be overrided on specific steps using `stepInteraction` prop.
   steps={steps}
   disableInteraction
   onClickHighlighted={(e, clickProps) => {
-    console.log("No interaction at all");
+    console.log('No interaction at all')
     if (clickProps.currentStep < 2) {
-      e.stopPropagation();
-      event.preventDefault();
+      e.stopPropagation()
+      event.preventDefault()
       clickProps.setCurrentStep(
         Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
-      );
+      )
     }
   }}
 >
@@ -457,17 +457,17 @@ This option could be overrided on specific steps using `stepInteraction` prop.
   steps={steps}
   disableInteraction
   keyboardHandler={(e, clickProps) => {
-    if (e.key === "ArrowRight") {
+    if (e.key === 'ArrowRight') {
       clickProps.setCurrentStep(
         Math.min(clickProps.currentStep + 1, clickProps.steps.length - 1)
-      );
+      )
     }
-    if (e.key === "ArrowLeft") {
-      clickProps.setCurrentStep(Math.max(clickProps.currentStep - 1, 0));
+    if (e.key === 'ArrowLeft') {
+      clickProps.setCurrentStep(Math.max(clickProps.currentStep - 1, 0))
     }
-    if (e.key === "Escape") {
-      const nextStep = Math.floor(Math.random() * clickProps.steps.length);
-      clickProps.setCurrentStep(nextStep);
+    if (e.key === 'Escape') {
+      const nextStep = Math.floor(Math.random() * clickProps.steps.length)
+      clickProps.setCurrentStep(nextStep)
     }
   }}
 >
@@ -605,32 +605,32 @@ This option could be overrided on specific steps using `stepInteraction` prop.
 
 ```js
 function ContentComponent(props) {
-  const isLastStep = props.currentStep === props.steps.length - 1;
-  const content = props.steps[props.currentStep].content;
+  const isLastStep = props.currentStep === props.steps.length - 1
+  const content = props.steps[props.currentStep].content
   return (
-    <div style={{ border: "5px solid red", padding: 10, background: "white" }}>
+    <div style={{ border: '5px solid red', padding: 10, background: 'white' }}>
       {/* Check if the step.content is a function or a string */}
-      {typeof content === "function"
-        ? content({ ...props, someOtherStuff: "Custom Text" })
+      {typeof content === 'function'
+        ? content({ ...props, someOtherStuff: 'Custom Text' })
         : content}
       <button
         onClick={() => {
           if (isLastStep) {
-            props.setIsOpen(false);
+            props.setIsOpen(false)
           } else {
-            props.setCurrentStep((s) => s + 1);
+            props.setCurrentStep((s) => s + 1)
           }
         }}
       >
-        {isLastStep ? "x" : ">"}
+        {isLastStep ? 'x' : '>'}
       </button>
     </div>
-  );
+  )
 }
 
 const steps = [
   /* ... */
-];
+]
 
 function App() {
   return (
@@ -641,7 +641,7 @@ function App() {
     >
       {/* ... */}
     </TourProvider>
-  );
+  )
 }
 ```
 

@@ -6,6 +6,10 @@
   <strong>Tourist Guide</strong> into your React Components
 </p>
 
+## Documentation
+
+https://docs.react.tours/tour
+
 > This documentation is for the latest release, which uses [npm scoped package](https://docs.npmjs.com/cli/v7/using-npm/scope) `@reactour`. The original `reactour` is now on branch `v1` and its documentation can be found [here](https://github.com/elrumordelaluz/reactour/tree/v1).
 
 ## Install

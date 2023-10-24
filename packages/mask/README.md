@@ -5,6 +5,10 @@
   An SVG mask that cover all the window contents except the one specified by certain position and sizes values
 </p>
 
+## Documentation
+
+https://docs.react.tours/mask
+
 ## Install
 
 ```zsh

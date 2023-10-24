@@ -1,7 +1,7 @@
 ---
-title: "Tour hooks & HOC"
-description: "Hooks to interact with Tour"
-icon: "bus-simple"
+title: 'Tour hooks & HOC'
+description: 'Hooks to interact with Tour'
+icon: 'bus-simple'
 ---
 
 ## `useTour`
@@ -84,8 +84,8 @@ function MyComponent() {
 An enhancer that allows to have all `useTour` functionalities through a _Higher Order Component_.
 
 ```js
-import { Component } from "react";
-import { withTour } from "@reactour/tour";
+import { Component } from 'react'
+import { withTour } from '@reactour/tour'
 
 class MyComponent extends Component {
   render() {
@@ -94,9 +94,9 @@ class MyComponent extends Component {
         <button onClick={() => this.props.setIsOpen(true)}>Start Tour</button>
         <div>{/* ... */}</div>
       </>
-    );
+    )
   }
 }
 
-export default withTour(MyCompnent);
+export default withTour(MyCompnent)
 ```
