@@ -77,7 +77,14 @@ export default function Home() {
           Try it
         </Button>
         <Link
-          color="dark"
+          h="4"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://docs.react.tours"
+        >
+          Docs
+        </Link>
+        <Link
           h="4"
           target="_blank"
           rel="noopener noreferrer"
@@ -457,13 +464,29 @@ export default function Home() {
           by{' '}
           <Link
             href="https://twitter.com/elrumordelaluz"
+            target="_blank"
+            rel="noopener noreferrer"
             color="white"
             nospaces
           >
             @elrumordelaluz
           </Link>{' '}
           ·{' '}
-          <Link href="https://github.com/elrumordelaluz/reactour" nospaces>
+          <Link
+            href="https://docs.react.tours"
+            target="_blank"
+            rel="noopener noreferrer"
+            nospaces
+          >
+            Documentation
+          </Link>{' '}
+          ·{' '}
+          <Link
+            href="https://github.com/elrumordelaluz/reactour"
+            target="_blank"
+            rel="noopener noreferrer"
+            nospaces
+          >
             Github
           </Link>
         </Text>
