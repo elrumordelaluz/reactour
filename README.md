@@ -29,7 +29,7 @@ A set of helper functions used by the other packages.
 
 ### [apps/web](https://github.com/elrumordelaluz/reactour/tree/main/apps/web)
 
-The place where all the stuff is visible working, live [here](https://reactour.vercel.app/).
+The place where all the stuff is visible working, live [here](https://www.react.tours).
 
 ## Sponsored by
 
