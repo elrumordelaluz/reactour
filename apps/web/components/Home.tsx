@@ -411,7 +411,7 @@ export default function Home() {
           <Box center width="30%">
             <Heading h="2">Silver Sponsors</Heading>
             <Link
-              href="https://www.dopt.com/?source=reactou"
+              href="https://www.dopt.com/?source=reactour-site"
               style={{ marginTop: '2em' }}
               nospaces
             >
@@ -419,7 +419,7 @@ export default function Home() {
             </Link>
             <Text>
               <Link
-                href="https://www.dopt.com/?source=reactou"
+                href="https://www.dopt.com/?source=reactour-site"
                 color="dark"
                 nospaces
               >
