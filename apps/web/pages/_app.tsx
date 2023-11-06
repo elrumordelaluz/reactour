@@ -7,6 +7,10 @@ import '../styles.css'
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Script
+        src="https://cdn.carbonads.com/carbon.js?serve=CWYI623E&placement=wwwreacttours"
+        id="_carbonads_js"
+      />
       <NextUIProvider>
         <Component {...pageProps} />
       </NextUIProvider>
