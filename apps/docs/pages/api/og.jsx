@@ -18,7 +18,7 @@ export default async function (req) {
   const hasTitle = searchParams.has('title')
   const title = hasTitle
     ? searchParams.get('title')?.slice(0, 100)
-    : 'Nextra Documentation'
+    : 'Reactour Documentation'
 
   return new ImageResponse(
     (
