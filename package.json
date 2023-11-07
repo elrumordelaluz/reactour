@@ -14,7 +14,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build && changeset publish",
+    "release": "turbo run build && changeset publish"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^5.0.1",
