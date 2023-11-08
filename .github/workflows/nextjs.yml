@@ -7,7 +7,7 @@ name: Deploy Next.js site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,12 +21,12 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 defaults:
   run:
-    working-directory: ./apps/docs
+    working-directory: ./apps/web
 
 jobs:
   # Build job
@@ -55,7 +55,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: '16'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -84,7 +84,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./out
+          path: ./apps/web/out
 
   # Deployment job
   deploy:
