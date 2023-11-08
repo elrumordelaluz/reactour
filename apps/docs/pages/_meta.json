@@ -1,12 +1,11 @@
 {
-   "-- Intro": {
+  "-- Intro": {
     "type": "separator",
     "title": "Get started"
   },
   "index": "Welcome",
   "quickstart": "Quick start",
   "examples": "Examples",
-  "guide": "",
   "-- Themes": {
     "type": "separator",
     "title": "Packages"
