@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  scroll-behavior: smooth;
   font-feature-settings:
     'rlig' 1,
     'calt' 1;

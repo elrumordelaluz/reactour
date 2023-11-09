@@ -1,6 +1,5 @@
 import { useEffect, useContext } from 'react'
 import { useTour } from '@reactour/tour'
-import NextLink from 'next/link'
 import { ModalContext } from 'modaaals'
 import Section from './Section'
 import Logo from './Logo'
@@ -92,23 +91,6 @@ export default function Home() {
         >
           Github
         </Link>
-        <span id="demo-hlt-button">
-          <NextLink href="/tour">
-            <Link color="dark" h="5" as="span">
-              /tour
-            </Link>
-          </NextLink>
-          <NextLink href="/mask">
-            <Link color="dark" h="5" as="span">
-              /mask
-            </Link>
-          </NextLink>
-          <NextLink href="/popover">
-            <Link color="dark" h="5" as="span">
-              /popover
-            </Link>
-          </NextLink>
-        </span>
       </Section>
       <Section>
         <Row>

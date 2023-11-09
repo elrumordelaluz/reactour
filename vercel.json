@@ -2,6 +2,7 @@
   "git": {
     "deploymentEnabled": {
       "v1": false
-    }
+    },
+    "silent": true
   }
 }

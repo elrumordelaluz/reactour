@@ -6,7 +6,7 @@
   "index": "Welcome",
   "quickstart": "Quick start",
   "examples": "Examples",
-  "-- Themes": {
+  "-- Packages": {
     "type": "separator",
     "title": "Packages"
   },
