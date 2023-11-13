@@ -55,6 +55,10 @@ The place where all the stuff is visible working, live [here](https://www.react.
   <a href="https://www.dopt.com/?source=reactour">Dopt</a> gives developers UI components and SDKs to build seamless onboarding and education experiences in minutes.
 </p>
 
+## Repo Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/3f2f3ea11677e9e844286258ca307eeb4327a04e.svg 'Repobeats analytics image')
+
 ## License
 
 MIT © [Lionel Tzatzkin](https://elrumordelaluz.com)
