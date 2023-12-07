@@ -15,29 +15,6 @@ const tourConfig: StepType[] = [
     position: [20, 20],
   },
   {
-    selector: '#demo-hlt-button',
-    content: 'Check the demos for each Component',
-    padding: {
-      mask: [10, 10],
-    },
-    styles: {
-      maskArea: (base) => ({
-        ...base,
-        rx: 4,
-      }),
-      highlightedArea: (base) => ({
-        ...base,
-        display: 'block',
-        pointerEvents: 'none',
-        cursor: 'pointer',
-        stroke: 'red',
-        rx: 4,
-        animation: 'mask-ping 2s ease infinite',
-        clipPath: 'url("#demo-mask-clip")',
-      }),
-    },
-  },
-  {
     selector: '[data-tut="reactour__copy"]',
     content: `Keep in mind that you could try and test everything during the Tour.
       For example, try selecting the highlighted text…`,

@@ -1,8 +1,6 @@
 import { AppProps } from 'next/app'
 import Script from 'next/script'
-import { NextUIProvider } from '@nextui-org/react'
 import '../styles.css'
-// import '@reactour/popover/dist/index.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,9 +9,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         src="https://cdn.carbonads.com/carbon.js?serve=CWYI623E&placement=wwwreacttours"
         id="_carbonads_js"
       />
-      <NextUIProvider>
-        <Component {...pageProps} />
-      </NextUIProvider>
+      <Component {...pageProps} />
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-RVNNN272SS" />
       <Script id="google-analytics">
         {`

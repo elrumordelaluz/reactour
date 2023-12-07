@@ -1,6 +1,27 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 40px;
+  box-sizing: border-box;
+}
+
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: sans-serif;
+  letter-spacing: -0.35px;
+  overflow-y: overlay;
+  font-size: 1rem;
+  line-height: 1.4285em;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-font-smoothing: antialiased;
 }
 
 .icon {
