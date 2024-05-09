@@ -370,7 +370,7 @@ type BtnFnProps = {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   stepsLength: number
   currentStep: number
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
 type NavButtonProps = {
@@ -399,7 +399,7 @@ Action fired just before the _Tour_ is closed.
 
 ```ts
 type ClickProps = {
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   setSteps: Dispatch<React.SetStateAction<StepType[]>>
   setMeta: Dispatch<React.SetStateAction<string>>
@@ -420,7 +420,7 @@ Function that overrides the default close behavior of the _Mask_ click handler. 
 
 ```ts
 type ClickProps = {
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   setSteps: Dispatch<React.SetStateAction<StepType[]>>
   setMeta: Dispatch<React.SetStateAction<string>>
@@ -467,7 +467,7 @@ Click handler for highlighted area. Only works when `disableInteraction` is acti
 
 ```ts
 type ClickProps = {
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   setSteps: Dispatch<React.SetStateAction<StepType[]>>
   setMeta: Dispatch<React.SetStateAction<string>>
@@ -641,7 +641,7 @@ type PopoverContentProps = {
   currentStep: number
   transition?: boolean
   isHighlightingObserved?: boolean
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   steps: StepType[]
   showNavigation?: boolean
   showPrevNextButtons?: boolean
@@ -744,7 +744,7 @@ function MyComponent() {
 }
 ```
 
-### `isOpen: Boolean`
+### `isOpen: boolean`
 
 Is the _Tour_ open or close
 
@@ -756,7 +756,7 @@ The current step. **zero based**
 
 The `Array` of steps set currently
 
-### `setIsOpen: Dispatch<React.SetStateAction<Boolean>>`
+### `setIsOpen: Dispatch<React.SetStateAction<boolean>>`
 
 `SetState` function open or close _Tour_
 

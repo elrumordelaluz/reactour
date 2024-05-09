@@ -142,7 +142,7 @@ export type NavigationProps = BaseProps & {
   disableDots?: boolean
   nextButton?: (props: BtnFnProps) => ReactNode | null
   prevButton?: (props: BtnFnProps) => ReactNode | null
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   hideButtons?: boolean
   hideDots?: boolean
   disableAll?: boolean
@@ -153,8 +153,8 @@ export type NavigationProps = BaseProps & {
 export default Navigation
 
 export type ArrowProps = BaseProps & {
-  inverted?: Boolean
-  disabled?: Boolean
+  inverted?: boolean
+  disabled?: boolean
 }
 
 export const DefaultArrow: React.FC<ArrowProps> = ({
