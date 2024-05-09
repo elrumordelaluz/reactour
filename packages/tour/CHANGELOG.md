@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.6.2
+
+### Patch Changes
+
+- Update Boolean type to boolean
+
 ## 3.6.1
 
 ### Patch Changes
