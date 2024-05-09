@@ -22,7 +22,7 @@ const Content: React.FC<ContentProps> = ({
 export type ContentProps = {
   content: any
   setCurrentStep: Dispatch<React.SetStateAction<number>>
-  setIsOpen?: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen?: Dispatch<React.SetStateAction<boolean>>
   currentStep: number
   transition?: boolean
   isHighlightingObserved?: boolean

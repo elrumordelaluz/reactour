@@ -63,7 +63,7 @@ export type PopoverContentProps = {
   currentStep: number
   transition?: boolean
   isHighlightingObserved?: boolean
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   steps: StepType[]
   setSteps?: Dispatch<React.SetStateAction<StepType[]>>
   showNavigation?: boolean
@@ -97,7 +97,7 @@ export type Padding =
 export type KeyboardParts = 'esc' | 'left' | 'right'
 
 export type ClickProps = {
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
   steps?: StepType[]
@@ -120,7 +120,7 @@ export type KeyboardHandler = {
 
 export type TourProps = SharedProps &
   ClickProps & {
-    isOpen: Boolean
+    isOpen: boolean
     disabledActions: boolean
     disableWhenSelectorFalsy?: boolean
     setDisabledActions: Dispatch<React.SetStateAction<boolean>>
@@ -138,7 +138,7 @@ type BadgeProps = {
 
 export type ProviderProps = SharedProps & {
   children: React.ReactNode
-  defaultOpen?: Boolean
+  defaultOpen?: boolean
   startAt?: number
   setCurrentStep?: Dispatch<React.SetStateAction<number>>
   currentStep?: number
@@ -150,7 +150,7 @@ export type ContentProps = {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   transition: boolean
   currentStep: number
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
 export type StepType = {
@@ -175,7 +175,7 @@ export type BtnFnProps = {
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   stepsLength: number
   currentStep: number
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   steps?: StepType[]
 }
 

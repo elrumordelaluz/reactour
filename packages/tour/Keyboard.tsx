@@ -77,7 +77,7 @@ export type KeyboardProps = KeyboardHandler & {
   disableKeyboardNavigation?: boolean | KeyboardParts[]
   setCurrentStep: Dispatch<React.SetStateAction<number>>
   currentStep: number
-  setIsOpen: Dispatch<React.SetStateAction<Boolean>>
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>
   stepsLength: number
   disable?: boolean
   rtl?: boolean
