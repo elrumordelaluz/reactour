@@ -44,17 +44,6 @@ The place where all the stuff is visible working, live [here](https://www.react.
   Reactour is proud to be sponsored by  <a href="https://frigade.com/?source=reactour">Frigade</a>, a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
 </p>
 
-#### Silver sponsors 🥈
-
-<p>
-  <a href="https://www.dopt.com/?source=reactour">
-    <img alt="Dopt sponsor" title="Dopt sponsor" src="./sponsor-dopt.png" width="300">
-  </a>
-</p>
-<p>
-  <a href="https://www.dopt.com/?source=reactour">Dopt</a> gives developers UI components and SDKs to build seamless onboarding and education experiences in minutes.
-</p>
-
 ## Repo Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/3f2f3ea11677e9e844286258ca307eeb4327a04e.svg 'Repobeats analytics image')
