@@ -33,10 +33,11 @@ const Popover: React.FC<PopoverProps> = ({
   const helperRect = useRect(helperRef, refresher)
   const { width: helperWidth, height: helperHeight } = helperRect
 
-  const targetLeft = sizes?.left
-  const targetTop = sizes?.top
-  const targetRight = sizes?.right
-  const targetBottom = sizes?.bottom
+  const [pt, pr, pb, pl] = getPadding(padding)
+  const targetLeft = sizes?.left - pl
+  const targetTop = sizes?.top - pt
+  const targetRight = sizes?.right + pr
+  const targetBottom = sizes?.bottom + pb
 
   const position =
     providedPosition && typeof providedPosition === 'function'
@@ -63,8 +64,6 @@ const Popover: React.FC<PopoverProps> = ({
     top: targetTop,
     bottom: windowHeight - targetBottom,
   }
-
-  const [pt, pr, pb, pl] = getPadding(padding)
 
   const couldPositionAt = (
     position: string,
@@ -126,7 +125,7 @@ const Popover: React.FC<PopoverProps> = ({
       targetBottom + helperHeight,
       windowHeight
     )
-
+    console.log({ isHelperOutsideX, isHelperOutsideY })
     const x = isHelperOutsideX
       ? Math.min(targetLeft, windowWidth - helperWidth)
       : Math.max(targetLeft, 0)
@@ -136,6 +135,7 @@ const Popover: React.FC<PopoverProps> = ({
         ? Math.max(targetBottom - helperHeight, 0)
         : Math.max(targetTop, 0)
       : targetTop
+    console.log(y)
 
     if (isHelperOutsideY) {
       if (helperHeight > available.bottom) {

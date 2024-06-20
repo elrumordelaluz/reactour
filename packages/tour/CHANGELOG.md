@@ -1,5 +1,13 @@
 # @reactour/tour
 
+## 3.6.3
+
+### Patch Changes
+
+- Fix issue with padding calculations
+- Updated dependencies
+  - @reactour/popover@1.1.2
+
 ## 3.6.2
 
 ### Patch Changes

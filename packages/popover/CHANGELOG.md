@@ -1,5 +1,11 @@
 # @reactour/popover
 
+## 1.1.2
+
+### Patch Changes
+
+- Fix issue with padding calculations
+
 ## 1.1.1
 
 ### Patch Changes

@@ -8,6 +8,7 @@ const tourConfig: StepType[] = [
     selector: '[data-tut="reactour__iso"]',
     content:
       "Ok, let's start with the name of the Tour that is about to begin.",
+    position: 'right',
   },
   {
     selector: '[data-tut="reactour__logo"]',

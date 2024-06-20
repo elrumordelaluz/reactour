@@ -103,10 +103,10 @@ const Tour: React.FC<TourProps> = ({
     typeof step?.stepInteraction === 'boolean'
       ? !step?.stepInteraction
       : disableInteraction
-      ? typeof disableInteraction === 'boolean'
-        ? disableInteraction
-        : disableInteraction(clickProps)
-      : false
+        ? typeof disableInteraction === 'boolean'
+          ? disableInteraction
+          : disableInteraction(clickProps)
+        : false
 
   useEffect(() => {
     if (step?.action && typeof step?.action === 'function') {
@@ -127,8 +127,8 @@ const Tour: React.FC<TourProps> = ({
   const popoverPosition = transition
     ? onTransition
     : step?.position
-    ? step?.position
-    : position
+      ? step?.position
+      : position
 
   const TourWrapper = Wrapper ? Wrapper : React.Fragment
 
