@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Popover } from '@reactour/popover'
 import { Mask } from '@reactour/mask'
-import { useRect, useIntersectionObserver } from '@reactour/utils'
+import { useRect, useIntersectionObserver, RectResult } from '@reactour/utils'
 import { CSSObject } from '@emotion/react'
 import { useMousePosition } from '../hooks'
 
@@ -217,34 +217,72 @@ const opositeSide = {
   left: 'right',
 }
 
-function doArrow(
-  position: 'top' | 'right' | 'bottom' | 'left' | 'custom',
-  verticalAlign: 'top' | 'bottom',
+type PopoverState = {
+  position: 'top' | 'right' | 'bottom' | 'left' | 'custom'
+  verticalAlign: 'top' | 'bottom'
   horizontalAlign: 'left' | 'right'
-): CSSObject {
+  helperWidth: number
+  helperHeight: number
+  targetRect: RectResult
+  helperRect: RectResult
+}
+
+function doArrow(popoverState: PopoverState): CSSObject {
+  const { position, verticalAlign, horizontalAlign, helperRect, targetRect } =
+    popoverState
   if (!position || position === 'custom') {
     return {}
   }
 
-  const width = 16
-  const height = 12
+  const arrowWidth = 16
+  const arrowHeight = 12
   const color = 'white'
   const isVertical = position === 'top' || position === 'bottom'
-  const spaceFromSide = 10
+  const spaceFromSide = isVertical
+    ? helperRect.width / 2
+    : helperRect.height / 2
+
+  const horizontalCompensation =
+    helperRect.width > targetRect.width
+      ? (helperRect.width - targetRect.width) / -2
+      : targetRect.width / 2 - helperRect.width / 2
+
+  const verticalCompensation =
+    helperRect.height > targetRect.height
+      ? (helperRect.height - targetRect.height) / -2
+      : targetRect.height / 2 - helperRect.height / 2
+
+  const coords = {
+    top: [
+      targetRect.x + horizontalCompensation,
+      targetRect.top - helperRect.height - arrowHeight * 1.5,
+    ],
+    right: [targetRect.right, targetRect.y + verticalCompensation],
+    bottom: [
+      targetRect.x + horizontalCompensation,
+      targetRect.bottom + arrowHeight * 1.5,
+    ],
+    left: [
+      targetRect.left - arrowWidth * 1.5 - helperRect.width,
+      targetRect.y + verticalCompensation,
+    ],
+  }
 
   const obj = {
     [`--rtp-arrow-${
       isVertical ? opositeSide[horizontalAlign] : verticalAlign
-    }`]: height + spaceFromSide + 'px',
-    [`--rtp-arrow-${opositeSide[position]}`]: -height + 2 + 'px',
+    }`]: spaceFromSide - arrowHeight / 2 + 'px',
+    [`--rtp-arrow-${opositeSide[position]}`]: -arrowHeight + 2 + 'px',
     [`--rtp-arrow-border-${isVertical ? 'left' : 'top'}`]: `${
-      width / 2
+      arrowWidth / 2
     }px solid transparent`,
     [`--rtp-arrow-border-${isVertical ? 'right' : 'bottom'}`]: `${
-      width / 2
+      arrowWidth / 2
     }px solid transparent`,
-    [`--rtp-arrow-border-${position}`]: `${height}px solid ${color}`,
+    [`--rtp-arrow-border-${position}`]: `${arrowHeight}px solid ${color}`,
+    transform: `translate(${Math.round(coords[position][0])}px, ${Math.round(coords[position][1])}px)`,
   }
+
   return obj
 }
 
@@ -265,7 +303,7 @@ function CustomPopoverStyles() {
       return {
         ...base,
         borderRadius: 10,
-        ...doArrow(state.position, state.verticalAlign, state.horizontalAlign),
+        ...doArrow(state),
       }
     },
   }

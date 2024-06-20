@@ -106,9 +106,9 @@ Prop to customize styles for the different parts of the _Mask_ using a function 
 
 #### Style keys and props available
 
-| key       | props |
-| --------- | ----- |
-| `popover` |       |
+| key       | props                                                                      |
+| --------- | -------------------------------------------------------------------------- |
+| `popover` | `position`, `verticalAlign`, `horizontalAlign`, `helperRect`, `targetRect` |
 
 ### `refresher?: any`
 

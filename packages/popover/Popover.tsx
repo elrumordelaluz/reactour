@@ -125,7 +125,7 @@ const Popover: React.FC<PopoverProps> = ({
       targetBottom + helperHeight,
       windowHeight
     )
-    console.log({ isHelperOutsideX, isHelperOutsideY })
+
     const x = isHelperOutsideX
       ? Math.min(targetLeft, windowWidth - helperWidth)
       : Math.max(targetLeft, 0)
@@ -135,7 +135,6 @@ const Popover: React.FC<PopoverProps> = ({
         ? Math.max(targetBottom - helperHeight, 0)
         : Math.max(targetTop, 0)
       : targetTop
-    console.log(y)
 
     if (isHelperOutsideY) {
       if (helperHeight > available.bottom) {
@@ -181,12 +180,14 @@ const Popover: React.FC<PopoverProps> = ({
     <div
       className="reactour__popover"
       style={{
+        transform: `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px)`,
         ...getStyles('popover', {
           position: positionRef.current,
           verticalAlign: verticalAlignRef.current,
           horizontalAlign: horizontalAlignRef.current,
+          helperRect,
+          targetRect: sizes,
         }),
-        transform: `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px)`,
       }}
       ref={helperRef}
       {...props}

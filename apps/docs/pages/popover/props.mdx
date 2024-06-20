@@ -105,7 +105,7 @@ Styles keys and its props available to customize
 
 <OptionTable
   options={[
-    ['popover'],
+    ['popover', 'position, verticalAlign, horizontalAlign, helperRect, targetRect'],
   ]}
 />
 </ToggleBox>
@@ -114,15 +114,15 @@ Styles keys and its props available to customize
 
 ```js
 const styles = {
-  popover: (base) => ({
+  popover: (base, { position }) => ({
     ...base,
     boxShadow: '0 0 3em rgba(0, 0, 0, 0.5)',
-    backgroundColor: '#dedede',
+    backgroundColor: position === 'top' ? 'red' : '#dedede',
   }),
 }
 
 function App() {
-  return <Mask styles={styles} />
+  return <Popover styles={styles} />
 }
 ```
 

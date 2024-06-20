@@ -1,5 +1,11 @@
 # @reactour/popover
 
+## 1.2.0
+
+### Minor Changes
+
+- Pass useful values to make complex calculations for Popover position
+
 ## 1.1.2
 
 ### Patch Changes
