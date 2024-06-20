@@ -1,5 +1,11 @@
 # @reactour/tour
 
+## 3.7.0
+
+### Minor Changes
+
+- Update popover to last version
+
 ## 3.6.3
 
 ### Patch Changes
