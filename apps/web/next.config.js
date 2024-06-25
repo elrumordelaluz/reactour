@@ -13,6 +13,7 @@ module.exports = withTM({
   typescript: {
     ignoreBuildErrors: true,
   },
+  output: 'export',
 })
 
 // module.exports = {
