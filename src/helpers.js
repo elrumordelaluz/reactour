@@ -28,6 +28,14 @@ export function getHighlightedRect(node, step) {
       continue
     }
 
+    const computedStyle = getComputedStyle(element)
+    if (
+      computedStyle.display === 'none' ||
+      computedStyle.visibility === 'hidden'
+    ) {
+      continue
+    }
+
     const rect = getNodeRect(element)
 
     if (rect.top < attrs.top) {
