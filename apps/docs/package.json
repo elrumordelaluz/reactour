@@ -10,13 +10,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.14.4",
+    "@codesandbox/sandpack-react": "^2.18.2",
     "@codesandbox/sandpack-themes": "^2.0.21",
     "@vercel/og": "^0.6.2",
     "body-scroll-lock": "^4.0.0-beta.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.2.11",
-    "next": "^14.2.4",
+    "framer-motion": "^11.3.21",
+    "next": "^14.2.5",
     "nextra": "2.13.4",
     "nextra-theme-docs": "2.13.4",
     "react": "^18.3.1",
@@ -26,11 +26,11 @@
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
     "@types/body-scroll-lock": "^3.1.2",
-    "@types/node": "^20.14.6",
+    "@types/node": "^22.1.0",
     "@types/react": "^18.3.3",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^9.5.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4"
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.8.0",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.7"
   }
 }
