@@ -40,19 +40,18 @@ code.text-\[\.9em\] {
   z-index: 1000;
   font-size: var(--carbon-font-size);
   font-family: var(--carbon-font-family);
-  position: fixed;
-  right: 2rem;
-  bottom: 2rem;
+  /* position: fixed; */
+  left: 2rem;
+  bottom: 4rem;
   padding: 2rem;
   background: #f1f1f1;
-  width: calc(130px + 4rem);
+  width: 100%;
 }
+
 
 #carbonads>span {
   display: flex;
-  flex-direction: column;
-  min-inline-size: 130px;
-  max-inline-size: calc(130px + var(--carbon-max-char) + 8ch);
+  align-items: center;
 }
 
 #carbonads a {
@@ -87,4 +86,17 @@ code.text-\[\.9em\] {
   text-align: center;
   text-transform: uppercase;
   margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  #carbonads {
+    position: fixed;
+    width: calc(130px + 4rem);
+  }
+
+  #carbonads>span {
+    flex-direction: column;
+    min-inline-size: 130px;
+    max-inline-size: calc(130px + var(--carbon-max-char) + 8ch);
+  }
 }

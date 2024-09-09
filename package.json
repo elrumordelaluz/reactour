@@ -19,7 +19,7 @@
   "devDependencies": {
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
-    "turbo": "^2.0.11"
+    "turbo": "^2.1.1"
   },
   "engines": {
     "npm": ">=7.0.0",
@@ -27,7 +27,7 @@
   },
   "packageManager": "yarn@1.22.18",
   "dependencies": {
-    "@changesets/cli": "^2.27.7"
+    "@changesets/cli": "^2.27.8"
   },
   "repository": {
     "type": "git",
