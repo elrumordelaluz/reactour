@@ -98,6 +98,8 @@ const Navigation: React.FC<NavigationProps> = ({
             return (
               <button
                 style={getStyles('dot', {
+                  index: i,
+                  currentIndex: currentStep,
                   current: index === currentStep,
                   disabled: disableDots || disableAll,
                 })}
