@@ -409,45 +409,7 @@ export default function Home() {
         </Link>
       </Scrollable>
 
-      <Footer>
-        <Logo size="20vw" iso={false} />
-        <Text size=".7em">
-          <span data-tut="reactour__scroll">
-            Made with{' '}
-            <span role="img" aria-label="heart">
-              ❤️
-            </span>
-          </span>{' '}
-          by{' '}
-          <Link
-            href="https://twitter.com/elrumordelaluz"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="white"
-            nospaces
-          >
-            @elrumordelaluz
-          </Link>{' '}
-          ·{' '}
-          <Link
-            href="https://docs.react.tours"
-            target="_blank"
-            rel="noopener noreferrer"
-            nospaces
-          >
-            Documentation
-          </Link>{' '}
-          ·{' '}
-          <Link
-            href="https://github.com/elrumordelaluz/reactour"
-            target="_blank"
-            rel="noopener noreferrer"
-            nospaces
-          >
-            Github
-          </Link>
-        </Text>
-      </Footer>
+<Footer />
     </>
   )
 }
