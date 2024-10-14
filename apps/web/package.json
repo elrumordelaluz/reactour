@@ -19,7 +19,7 @@
     "@reactour/tour": "*",
     "@reactour/utils": "*",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "framer-motion": "^11.11.4",
+    "framer-motion": "^11.11.8",
     "modaaals": "^1.1.2",
     "next": "14.2.15",
     "react": "18.3.1",

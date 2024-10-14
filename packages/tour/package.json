@@ -10,7 +10,7 @@
     "@reactour/config": "*",
     "@reactour/tsconfig": "*",
     "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "react": "^18.3.1",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3"
