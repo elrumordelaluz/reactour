@@ -135,7 +135,7 @@ const tourConfig: StepType[] = [
   {
     selector: '[data-tour="open_modal"]',
     content:
-      'Moreover you can highlight multiple elements and adjust highlighted region depending on DOM resizes and mutations. Try clicking the "?" tooltip and playing with tabs...',
+      'Moreover you can highlight multiple elements and adjust highlighted region depending on DOM resizes and mutations. Try clicking the "Open Modal" button and closing it...',
     highlightedSelectors: ['.modaaals-modal'],
     mutationObservables: ['#portaaal'],
   },
