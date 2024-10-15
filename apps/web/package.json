@@ -24,7 +24,8 @@
     "next": "14.2.15",
     "react": "18.3.1",
     "react-device-detect": "^2.2.3",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-icons": "^5.3.0"
   },
   "devDependencies": {
     "@reactour/tsconfig": "*",
