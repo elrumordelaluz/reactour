@@ -29,6 +29,7 @@ code.text-\[\.9em\] {
 @media (min-width: 768px) {
   #carbonads {
     top: 80px;
+    height: fit-content;
   }
 
   nav.nextra-toc .nextra-scrollbar {
