@@ -10,16 +10,16 @@
     "export": "rm -rf ../../docs && next build && next export  -o ../../docs"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^2.19.9",
+    "@codesandbox/sandpack-react": "^2.19.10",
     "@codesandbox/sandpack-themes": "^2.0.21",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@reactour/mask": "*",
     "@reactour/popover": "*",
     "@reactour/tour": "*",
     "@reactour/utils": "*",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "framer-motion": "^11.11.9",
+    "framer-motion": "^11.15.0",
     "modaaals": "^1.1.2",
     "next": "14.2.15",
     "react": "18.3.1",
@@ -29,12 +29,12 @@
   "devDependencies": {
     "@reactour/tsconfig": "*",
     "@types/body-scroll-lock": "^3.1.2",
-    "@types/node": "^22.7.5",
+    "@types/node": "^22.10.2",
     "@types/react": "18.3.11",
     "config": "3.3.12",
-    "eslint": "9.12.0",
+    "eslint": "9.17.0",
     "eslint-plugin-prettier": "^5.2.1",
     "next-transpile-modules": "10.0.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   }
 }
