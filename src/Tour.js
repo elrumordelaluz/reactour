@@ -52,29 +52,42 @@ class Tour extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { isOpen, update, updateDelay } = this.props
-
-    if (!isOpen && nextProps.isOpen) {
-      this.open(nextProps.startAt)
-    } else if (isOpen && !nextProps.isOpen) {
-      this.close()
-    }
-
-    if (isOpen && update !== nextProps.update) {
-      if (nextProps.steps[this.state.current]) {
-        setTimeout(this.showStep, updateDelay)
-      } else {
-        this.props.onRequestClose()
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!prevState.isOpen && nextProps.isOpen) {
+      return {
+        isOpen: true,
+        current: nextProps.startAt !== undefined ? nextProps.startAt : prevState.current
+      }
+    } else if (prevState.isOpen && !nextProps.isOpen) {
+      return {
+        isOpen: false
       }
     }
 
-    if (
-      isOpen &&
-      nextProps.isOpen &&
-      this.state.current !== nextProps.goToStep
-    ) {
-      this.gotoStep(nextProps.goToStep)
+    if (prevState.isOpen && nextProps.isOpen && prevState.current !== nextProps.goToStep) {
+      return {
+        current: nextProps.goToStep
+      }
+    }
+
+    return null;
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isOpen, update, updateDelay, steps, onRequestClose } = this.props;
+
+    if (!prevProps.isOpen && isOpen) {
+      this.open(this.props.startAt)
+    } else if (prevProps.isOpen && !isOpen) {
+      this.close()
+    }
+
+    if (prevProps.isOpen && isOpen && prevProps.update !== update) {
+      if (steps[this.state.current]) {
+        setTimeout(this.showStep, updateDelay)
+      } else {
+        onRequestClose()
+      }
     }
   }
 
@@ -209,8 +222,8 @@ class Tour extends Component {
       const offset = scrollOffset
         ? scrollOffset
         : attrs.height > h
-        ? -25
-        : -(h / 2) + attrs.height / 2
+          ? -25
+          : -(h / 2) + attrs.height / 2
       scrollSmooth.to(node, {
         context: hx.isBody(parentScroll) ? window : parentScroll,
         duration: scrollDuration,
@@ -466,11 +479,11 @@ class Tour extends Component {
                     steps[current] &&
                     (typeof steps[current].content === 'function'
                       ? steps[current].content({
-                          close: onRequestClose,
-                          goTo: this.gotoStep,
-                          inDOM,
-                          step: current + 1,
-                        })
+                        close: onRequestClose,
+                        goTo: this.gotoStep,
+                        inDOM,
+                        step: current + 1,
+                      })
                       : steps[current].content)
                   }
                 >
@@ -482,11 +495,11 @@ class Tour extends Component {
                   {steps[current] &&
                     (typeof steps[current].content === 'function'
                       ? steps[current].content({
-                          close: onRequestClose,
-                          goTo: this.gotoStep,
-                          inDOM,
-                          step: current + 1,
-                        })
+                        close: onRequestClose,
+                        goTo: this.gotoStep,
+                        inDOM,
+                        step: current + 1,
+                      })
                       : steps[current].content)}
                   {showNumber && (
                     <Badge data-tour-elem="badge" accentColor={accentColor}>
@@ -536,10 +549,10 @@ class Tour extends Component {
                             current === steps.length - 1
                               ? lastStepNextButton
                                 ? onRequestClose
-                                : () => {}
+                                : () => { }
                               : typeof nextStep === 'function'
-                              ? nextStep
-                              : this.nextStep
+                                ? nextStep
+                                : this.nextStep
                           }
                           disabled={
                             !lastStepNextButton && current === steps.length - 1
@@ -549,8 +562,8 @@ class Tour extends Component {
                             lastStepNextButton && current === steps.length - 1
                               ? lastStepNextButton
                               : nextButton
-                              ? nextButton
-                              : null
+                                ? nextButton
+                                : null
                           }
                         />
                       )}
