@@ -378,6 +378,8 @@ class Tour extends Component {
       CustomHelper,
       disableFocusLock,
       highlightedBorder,
+      container,
+      disablePortal,
     } = this.props
 
     const {
@@ -399,7 +401,7 @@ class Tour extends Component {
 
     if (isOpen) {
       return (
-        <Portal>
+        <Portal container={container} disablePortal={disablePortal}>
           <GlobalStyle />
           <ReactourResizeObserver
             step={steps[current]}

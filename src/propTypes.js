@@ -63,6 +63,7 @@ export const propTypes = {
     color: PropTypes.string.isRequired,
     width: PropTypes.number.isRequired,
   }),
+  disablePortal: PropTypes.boolean,
 }
 
 export const defaultProps = {
