@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { RefObject, useRef } from 'react'
 import {
   useRect,
   bestPositionOf,
@@ -23,7 +23,7 @@ const Popover: React.FC<PopoverProps> = ({
   refresher,
   ...props
 }) => {
-  const helperRef = useRef(null)
+  const helperRef = useRef<Element | null>(null)
   const positionRef = useRef('')
   const verticalAlignRef = useRef('')
   const horizontalAlignRef = useRef('')

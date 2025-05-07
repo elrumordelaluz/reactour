@@ -1,5 +1,18 @@
 # @reactour/tour
 
+## 3.8.0
+
+### Minor Changes
+
+- Support react@19
+
+### Patch Changes
+
+- Updated dependencies
+  - @reactour/popover@1.3.0
+  - @reactour/utils@0.6.0
+  - @reactour/mask@1.2.0
+
 ## 3.7.0
 
 ### Minor Changes

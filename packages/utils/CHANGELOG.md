@@ -1,5 +1,11 @@
 # @reactour/utils
 
+## 0.6.0
+
+### Minor Changes
+
+- Support react@19
+
 ## 0.5.0
 
 ### Minor Changes

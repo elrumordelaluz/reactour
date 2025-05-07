@@ -12,7 +12,7 @@ export function getRect<T extends Element>(
 }
 
 export function useRect<T extends Element>(
-  ref: React.RefObject<T> | undefined,
+  ref: React.RefObject<T | null> | undefined,
   refresher?: any
 ): RectResult {
   const [dimensions, setDimensions] = useState(initialState)
