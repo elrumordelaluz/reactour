@@ -27,7 +27,7 @@
   },
   "packageManager": "yarn@1.22.18",
   "dependencies": {
-    "@changesets/cli": "2.29.3"
+    "@changesets/cli": "2.29.4"
   },
   "repository": {
     "type": "git",
