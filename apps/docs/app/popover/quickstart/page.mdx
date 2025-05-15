@@ -1,0 +1,29 @@
+# Install and use the Mask
+
+A popover positioned based on certain values
+
+## Install [@reactour/popover](https://www.npmjs.com/package/@reactour/popover)
+
+```sh npm2yarn
+npm i @reactour/popover
+```
+
+## Usage
+
+```js
+import { Popover } from '@reactour/popover'
+
+function App() {
+  const sizes = {
+    bottom: 0,
+    left: 0,
+  }
+
+  return (
+    <>
+      {/* ... */}
+      <Popover sizes={sizes}>
+    </>
+  )
+}
+```

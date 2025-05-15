@@ -1,0 +1,96 @@
+import { OptionTable } from 'components/table'
+
+# Tour hooks & HOC
+
+Hooks to interact with Tour
+
+## `useTour`
+
+Later in any Component down in the tree of _TourProvider_ you can control the _Tour_ in many ways
+
+### Example
+
+```js
+import { useTour } from '@reactour/tour'
+
+function MyComponent() {
+  const { isOpen, currentStep, steps, setIsOpen, setCurrentStep, setSteps } = useTour()
+  return (
+    <>
+      <h1>{isOpen ? 'Welcome to the tour!' : 'Thank you for participate!'}</h1>
+      <p>
+        Now you are visiting the place {currentStep + 1} of {steps.length}
+      </p>
+      <nav>
+        <button onClick={() => setIsOpen(o => !o)}>Toggle Tour</button>
+        <button onClick={() => setCurrentStep(3)}>
+          Take a fast way to 4th place
+        </button>
+        <button
+          onClick={() =>
+            setSteps([
+              { selector: '.new-place-1', content: 'New place 1' },
+              { selector: '.new-place-2', content: 'New place 2' },
+            ])
+            setCurrentStep(1)
+          }
+        >
+          Switch to a new set of places, starting from the last one!
+        </button>
+      </nav>
+    </>
+  )
+}
+```
+
+### Values
+
+<OptionTable
+  options={[
+    ['isOpen', 'boolean', 'Is the Tour open or close'],
+    ['currentStep', 'number', 'The current step (zero based)'],
+    ['steps', 'StepType[]', 'The `array` of steps currently set'],
+    [
+      'setIsOpen',
+      'Dispatch<React.SetStateAction<boolean>>',
+      '`useState` function to open or close Tour',
+    ],
+    [
+      'setSteps',
+      'Dispatch<React.SetStateAction<StepType[]>>',
+      '`useState` function to update the `array` of steps',
+    ],
+    [
+      'meta',
+      'string',
+      'Global meta information that could be useful in complex Tour/s situtationss',
+    ],
+    [
+      'setMeta',
+      'Dispatch<React.SetStateAction<string>>',
+      '`useState` function to update the global meta info',
+    ],
+  ]}
+/>
+
+## `withTour`
+
+An enhancer that allows to have all `useTour` functionalities through a _Higher Order Component_.
+
+```js
+import { Component } from 'react'
+import { withTour } from '@reactour/tour'
+
+class MyComponent extends Component {
+  render() {
+    return (
+      <>
+        <button onClick={() => this.props.setIsOpen(true)}>Start Tour</button>
+        <div>{/* ... */}</div>
+      </>
+    )
+  }
+}
+
+export default withTour(MyCompnent)
+```

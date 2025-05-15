@@ -1,0 +1,75 @@
+# Install and use the Tour
+
+import { Callout } from 'nextra/components'
+
+<Callout type="warning">
+  This documentation is for the latest releases, which uses [npm scoped
+  package](https://docs.npmjs.com/cli/v7/using-npm/scope) `@reactour`. The
+  original `reactour` package is now on branch `v1` and its documentation can be
+  found [here](https://github.com/elrumordelaluz/reactour/tree/v1).
+</Callout>
+
+## Install [@reactour/tour](https://www.npmjs.com/package/@reactour/tour)
+
+```sh npm2yarn
+npm i @reactour/tour
+```
+
+## Usage
+
+import { Steps } from 'nextra/components'
+
+<Steps>
+
+### 1. Add the `TourProvider`
+
+This should be at the root of your Application, passing the steps of the elements to highlight during the Tour.
+
+```js
+import { TourProvider } from '@reactour/tour'
+
+ReactDOM.render(
+  <TourProvider steps={steps}>
+    <App />
+  </TourProvider>,
+  document.getElementById('root')
+)
+
+const steps = [
+  {
+    selector: '.first-step',
+    content: 'This is my first Step',
+  },
+  // ...
+]
+```
+
+### 2. Control the Tour
+
+Then somewhere down the Application tree, control the Tour using `useTour` hook.
+
+```js
+import { useTour } from '@reactour/tour'
+
+function App() {
+  const { setIsOpen } = useTour()
+  return (
+    <>
+      <p className="first-step">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at
+        finibus nulla, quis varius justo. Vestibulum lorem lorem, viverra porta
+        metus nec, porta luctus orci
+      </p>
+      <button onClick={() => setIsOpen(true)}>Open Tour</button>
+    </>
+  )
+}
+```
+
+</Steps>
+
+import { Cards } from 'nextra/components'
+
+<Cards num={3}>
+  <Cards.Card arrow title="Read the full Tour props" href="/tour/props" />
+</Cards>

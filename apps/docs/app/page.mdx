@@ -1,0 +1,51 @@
+import Image from 'next/image'
+
+# Reactour
+
+<Image
+  src="/reactour-hero-light.jpg"
+  alt="Reactour"
+  className="w-auto select-none bg-white"
+  width="1200"
+  height="600"
+/>
+
+The Tourist Guide into your React Components
+
+## Introduction
+
+import { Cards } from 'nextra/components'
+
+Before onboarding products became widespread, I found myself with the need to create a “tour” for new users of different projects, with a nice look and above all with the possibility to interact with existing elements of the page. Thus was born this project in 2017, trying to simplify the logic of [intro.js](https://introjs.com/) with React components, prioritising to use svg and css features.
+
+## Packages
+
+With the passage of time and especially with the valuable feedback from users, the package was divided into three main packages that can be used independently: the mask, the popover and the tour (which brings everything together). In addition, the repository has become a single-purpose repository rewritten in typescript.
+
+Let’s start the Tour together!
+
+<Cards num={3}>
+  <Cards.Card arrow title="Mask docs" href="/mask/quickstart" />
+  <Cards.Card arrow title="Popover docs" href="/popover/quickstart" />
+  <Cards.Card arrow title="Tour docs" href="/tour/quickstart" />
+</Cards>
+
+## FAQ
+
+Questions that usually Users asks for different implementations
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
+
+<FAQBox title="First question">First answer…</FAQBox>

@@ -1,0 +1,104 @@
+import Demo from 'components/demos'
+
+# `@reactour/tour` examples
+
+### Basic example
+
+This is the minimal example
+
+<Demo demoId="basic" />
+
+### Mask click
+
+Example to show the customizable behavior of the [Mask click event](/tour/props#onclickmask). Try clicking the Mask and the Tour will proceed to the next step.
+
+{' '}
+<Demo demoId="mask-click" />
+
+### Close click
+
+Example to show the customizable behavior of the [Close click event](/tour/props#onclickclose). Try clicking the 'x' and the Tour will proceed to the next step.
+
+{' '}
+<Demo demoId="close-click" />
+
+### Disable Keyboard
+
+Example to show how to [disable keyboard behavior](/tour/props#disablekeyboardnavigation).
+
+<Demo demoId="disable-keyboard" />
+
+### Scroll Smooth
+
+Use [smooth scroll](/tour/props#scrollsmooth) between steps if they aren't visible in viewport
+
+<Demo demoId="scroll-smooth" />
+
+### Padding
+
+Custom wrapper, mask and popover [paddings](/tour/props#padding)
+
+<Demo demoId="padding" />
+
+### Prev and Next buttons
+
+Custom [Prev](/tour/props#prevbutton) and [Next](/tour/props#nextbutton) button
+
+<Demo demoId="custom-prev-next" />
+
+### Custom handlers
+
+[Control](/tour/props#setcurrentstep) [currentStep](/tour/props#currentstep) externally. Useful when using global state.
+
+<Demo demoId="custom-handlers" />
+
+### RTL
+
+[RTL](/tour/props#rtl) mode
+
+<Demo demoId="rtl" />
+
+### Custom styles
+
+Custom Tour, Mask and Popover components and parts [styles](/tour/props#styles)
+
+<Demo demoId="custom-styles" />
+
+### Disable Scroll
+
+In this example, we are using [afterOpen](/tour/props#afteropen) prop to lock the Y scroll and re-enable it through [beforeClose](/tour/props#beforeclose) prop.
+
+<Demo
+  demoId="scroll-lock"
+  dependencies={{ 'body-scroll-lock': '^4.0.0-beta.0' }}
+/>
+
+### Custom Badge
+
+Create a custom [Badge content](/tour/props#badgecontent)
+
+<Demo demoId="custom-badge" />
+
+### Disable dots navigation
+
+Disable navigating through click in [dots buttons](/tour/props#disabledotsnavigation)
+
+<Demo demoId="disable-dots-nav" />
+
+### Disable interaction
+
+Disable highlighted area [interaction](/tour/props#disableinteraction). This example shows how to disable the default behavior and how to add an extra functionality when clicking this area. Try to select the highlighted text.
+
+<Demo demoId="disable-interaction" />
+
+### Toggle navigation parts
+
+Toggle Navigation parts as you want: [badge](/tour/props#showbadge), [close button](/tour/props#showclosebutton), [prev & next buttons](/tour/props#showprevnextbuttons), [dots](/tour/props#showdots) or whole [navigation](/tour/props#shownavigation) zone.
+
+<Demo demoId="toggle-nav-parts" />
+
+### Starts at
+
+Start Tour at specific step. Keep in mind that the number is zero based, so 2 is the third step.
+
+<Demo demoId="start-at" />
