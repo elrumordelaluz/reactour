@@ -31,19 +31,6 @@ A set of helper functions used by the other packages.
 
 The place where all the stuff is visible working, live [here](https://www.react.tours).
 
-## Sponsored by
-
-#### Gold sponsors 🥇
-
-<p>
-  <a href="https://frigade.com/?source=reactour">
-    <img alt="Frigade sponsor" title="Frigade sponsor" src="./sponsor-frigade.png" width="600">
-  </a>
-</p>
-<p>
-  Reactour is proud to be sponsored by  <a href="https://frigade.com/?source=reactour">Frigade</a>, a developer tool for building better product onboarding: guided tours, getting started checklists, announcements, and more.
-</p>
-
 ## Repo Activity
 
 ![Alt](https://repobeats.axiom.co/api/embed/3f2f3ea11677e9e844286258ca307eeb4327a04e.svg 'Repobeats analytics image')
