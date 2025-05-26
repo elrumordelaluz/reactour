@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "next --turbopack",
-    "build": "next build",
+    "build": "next build && pnpm postbuild",
     "start": "next start",
     "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
   },
