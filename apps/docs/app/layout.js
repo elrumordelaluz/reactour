@@ -1,7 +1,7 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { getPageMap } from 'nextra/page-map'
-import 'nextra-theme-docs/style.css'
 import Script from 'next/script'
+import './globals.css'
 
 export const metadata = {
   title: {
