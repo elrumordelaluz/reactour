@@ -254,11 +254,11 @@ export default function Home() {
               109 Baptist St
               <Dropdown>
                 <Tabs>
-                  <Tabs.Tab>
+                  <Tabs.Tab active={false}>
                     This is a div in absolute position which will be in the
                     highlighted region of the mask when tour is running.
                   </Tabs.Tab>
-                  <Tabs.Tab>
+                  <Tabs.Tab active>
                     This is a long text which demonstrates how resizeObservables
                     works. Lorem ipsum dolor sit amet, consectetur adipisicing
                     elit. Optio neque vero consequuntur recusandae, dolore. Aut
@@ -361,33 +361,6 @@ export default function Home() {
             Open Modal
           </Button>
         </Box>
-
-        <Row style={{ margin: '2em 0' }}>
-          <Box center width="18%" />
-          <Box center width="64%">
-            <Heading h="2">Gold Sponsors</Heading>
-            <Link
-              href="https://frigade.com/?source=reactour-site"
-              style={{ marginTop: '2em' }}
-              nospaces
-            >
-              <Image alt="Frigade" src="/sponsor-frigade.png" />
-            </Link>
-            <Text>
-              Reactour is proud to be sponsored by{' '}
-              <Link
-                href="https://frigade.com/?source=reactour-site"
-                color="dark"
-                nospaces
-              >
-                Frigade
-              </Link>
-              , a developer tool for building better product onboarding: guided
-              tours, getting started checklists, announcements, and more.
-            </Text>
-          </Box>
-          <Box center width="18%" />
-        </Row>
       </Section>
 
       <Scrollable>
