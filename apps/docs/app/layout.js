@@ -97,10 +97,6 @@ const footer = (
 export default async function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
-      <Script
-        src="//cdn.carbonads.com/carbon.js?serve=CWYI623E&placement=wwwreacttours&format=responsive"
-        id="_carbonads_js"
-      />
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-ZQ9SP2F9PW" />
       <Script id="google-analytics">
         {`
@@ -118,7 +114,17 @@ export default async function RootLayout({ children }) {
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/elrumordelaluz/reactour/tree/main/apps/docs"
           footer={footer}
-          toc={{ backToTop: true }}
+          toc={{
+            backToTop: true,
+            extraContent: (
+              <>
+                <Script
+                  src="//cdn.carbonads.com/carbon.js?serve=CWYI623E&placement=wwwreacttours&format=responsive"
+                  id="_carbonads_js"
+                />
+              </>
+            ),
+          }}
           sidebar={{ toggleButton: true, defaultMenuCollapseLevel: 1 }}
           feedback={{
             content: 'Question? Give us feedback →',

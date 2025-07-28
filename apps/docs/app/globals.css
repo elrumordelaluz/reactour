@@ -5,3 +5,27 @@
 /* or nextra-theme-blog/style.css */
 
 @variant dark (&:where(.dark *));
+
+#carbon-responsive {
+    position: fixed;
+    max-inline-size: 70px !important;
+    bottom: 0;
+    left: 2px;
+    font-size: 10px !important;
+}
+
+@media (width >=40rem) {
+    #carbon-responsive {
+        bottom: 70px;
+        left: 10px;
+        max-inline-size: 240px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (width >=80rem) {
+    #carbon-responsive {
+        right: 10px;
+        left: auto;
+    }
+}
