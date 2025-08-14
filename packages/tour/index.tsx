@@ -13,5 +13,6 @@ export type {
   PopoverContentProps,
   KeyboardParts,
   StylesObj,
+  ClickProps,
 } from './types'
 export { components } from './components'
