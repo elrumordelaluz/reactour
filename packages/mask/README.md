@@ -7,7 +7,7 @@
 
 ## Documentation
 
-https://docs.react.tours/mask
+https://docs.reactour.dev/mask
 
 ## Install
 

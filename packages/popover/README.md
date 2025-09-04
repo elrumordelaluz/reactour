@@ -7,7 +7,7 @@
 
 ## Documentation
 
-https://docs.react.tours/popover
+https://docs.reactour.dev/popover
 
 ## Install
 

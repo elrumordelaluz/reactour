@@ -79,7 +79,7 @@ export default function Home() {
           h="4"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://docs.react.tours"
+          href="https://docs.reactour.dev"
         >
           Docs
         </Link>
@@ -403,7 +403,7 @@ export default function Home() {
           </Link>{' '}
           ·{' '}
           <Link
-            href="https://docs.react.tours"
+            href="https://docs.reactour.dev"
             target="_blank"
             rel="noopener noreferrer"
             nospaces
