@@ -9,6 +9,8 @@
 
 https://docs.reactour.dev
 
+For additional help - https://chat.collectivai.com/elrumordelaluz/reactour
+
 ## Packages
 
 ### [@reactour/tour](https://github.com/elrumordelaluz/reactour/tree/main/packages/tour)
