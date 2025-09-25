@@ -75,7 +75,7 @@ export function useSizes(
       setTransition(true)
       smoothScroll(target, scrollOptions)
         .then(() => {
-          if (!observing) setRefresher(Date.now())
+          setRefresher(Date.now())
         })
         .finally(() => {
           setTransition(false)

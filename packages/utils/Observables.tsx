@@ -18,7 +18,7 @@ const Observables: React.FC<ObservablesProps> = ({
           continue
         }
         const found = mutationObservables.find((observable: string) =>
-          (node as Element).matches(observable)
+          (node as Element).matches(observable) || (node as Element).querySelector(observable)
         )
 
         if (found) {
@@ -36,7 +36,7 @@ const Observables: React.FC<ObservablesProps> = ({
           continue
         }
         const found = resizeObservables.find((observable: string) =>
-          (node as Element).matches(observable)
+          (node as Element).matches(observable) || (node as Element).querySelector(observable)
         )
 
         if (found) setMutationsCounter(mutationsCounter + 1)
