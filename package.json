@@ -17,9 +17,9 @@
     "release": "turbo run build --filter=!./apps/docs && changeset publish"
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^5.5.4",
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.6"
+    "eslint-plugin-prettier": "^5.5.5",
+    "prettier": "^3.8.1",
+    "turbo": "^2.8.7"
   },
   "engines": {
     "npm": ">=7.0.0",
@@ -27,7 +27,7 @@
   },
   "packageManager": "yarn@1.22.18",
   "dependencies": {
-    "@changesets/cli": "2.29.7"
+    "@changesets/cli": "2.29.8"
   },
   "repository": {
     "type": "git",

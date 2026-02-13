@@ -8,12 +8,12 @@
   "license": "MIT",
   "devDependencies": {
     "@reactour/tsconfig": "*",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
-    "config": "4.1.1",
-    "react": "^19.1.1",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "config": "4.3.0",
+    "react": "^19.2.4",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@reactour/utils": "*"

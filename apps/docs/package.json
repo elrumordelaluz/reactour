@@ -7,14 +7,14 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.13",
-    "next": "^15.5.3",
-    "nextra": "^4.4.0",
-    "nextra-theme-docs": "^4.4.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "next": "16.1.6",
+    "nextra": "^4.6.1",
+    "nextra-theme-docs": "^4.6.1",
     "postcss": "^8.5.6",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.13"
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tailwindcss": "^4.1.18"
   },
   "scripts": {
     "dev": "next --turbopack",

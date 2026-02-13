@@ -14,6 +14,7 @@ module.exports = withTM({
     ignoreBuildErrors: true,
   },
   output: 'export',
+  turbopack: {}
 })
 
 // module.exports = {

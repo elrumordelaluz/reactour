@@ -16,7 +16,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "esnext",
     "resolveJsonModule": true,
     "paths": {
@@ -35,7 +35,8 @@
     "**/*.tsx",
     "app/layout.js",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
