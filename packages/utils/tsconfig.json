@@ -3,6 +3,6 @@
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "lib": ["dom"]
+    "lib": ["DOM", "ES2020"]
   }
 }

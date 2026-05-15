@@ -7,6 +7,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "@tailwindcss/postcss": "^4.1.18",
     "next": "16.1.6",
     "nextra": "^4.6.1",

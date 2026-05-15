@@ -10,7 +10,7 @@
 ```zsh
 npm i -S @reactour/utils
 # or
-yarn add @reacmask/utils
+yarn add @reactour/utils
 ```
 
 ## `Portal`

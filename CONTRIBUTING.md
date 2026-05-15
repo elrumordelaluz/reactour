@@ -48,9 +48,18 @@ You can open a [new issue](https://github.com/elrumordelaluz/reactour/issues/new
 
 ### Local development
 
-- Each packages is bootstrapped using [tsdx](https://tsdx.io/).
-- To run each package in parallel we use [launchit](https://github.com/elrumordelaluz/launchit).
-- Prettier rules:
+This is a [pnpm](https://pnpm.io/) workspace orchestrated with
+[Turborepo](https://turborepo.com/). Each package is bundled with
+[tsup](https://tsup.egoist.dev/).
+
+```bash
+pnpm install              # install everything
+pnpm dev                  # watch-build every package + run the demo app
+pnpm test                 # run vitest across every package
+pnpm build                # build every package
+```
+
+Prettier rules:
 
 ```json
 {

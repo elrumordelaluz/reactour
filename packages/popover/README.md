@@ -14,7 +14,7 @@ https://docs.reactour.dev/popover
 ```zsh
 npm i -S @reactour/popover
 # or
-yarn add @reacmask/popover
+yarn add @reactour/popover
 ```
 
 ## Usage
