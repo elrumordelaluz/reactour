@@ -7,10 +7,9 @@
   "sideEffects": false,
   "license": "MIT",
   "devDependencies": {
-    "@reactour/tsconfig": "*",
+    "@reactour/tsconfig": "workspace:*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "config": "4.3.0",
     "react": "^19.2.4",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"

@@ -21,17 +21,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: yarn
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: yarn turbo run build --filter=!./apps/docs --filter=!./apps/web
+        run: pnpm turbo run build --filter=!./apps/docs --filter=!./apps/web
 
       - name: Test
-        run: yarn turbo run test
+        run: pnpm turbo run test
