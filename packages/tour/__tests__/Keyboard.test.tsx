@@ -97,4 +97,44 @@ describe('Keyboard', () => {
     fireEvent.keyDown(window, { keyCode: 39 })
     expect(setCurrentStep).toHaveBeenCalledWith(1)
   })
+
+  it('advances on ArrowLeft when rtl', () => {
+    const setCurrentStep = vi.fn()
+    render(
+      <Keyboard
+        {...baseProps}
+        rtl
+        setCurrentStep={setCurrentStep}
+        currentStep={0}
+      />
+    )
+    fireEvent.keyDown(window, { keyCode: 37 })
+    expect(setCurrentStep).toHaveBeenCalledWith(1)
+  })
+
+  it('delegates to a custom keyboardHandler with disabled-keys context', () => {
+    const handler = vi.fn()
+    const setCurrentStep = vi.fn()
+    const setIsOpen = vi.fn()
+    render(
+      <Keyboard
+        {...baseProps}
+        disableKeyboardNavigation={['esc']}
+        keyboardHandler={handler}
+        setCurrentStep={setCurrentStep}
+        setIsOpen={setIsOpen}
+      />
+    )
+    fireEvent.keyDown(window, { keyCode: 39 })
+    expect(handler).toHaveBeenCalledTimes(1)
+    const args = handler.mock.calls[0]
+    expect(args[2]).toEqual({
+      isEscDisabled: true,
+      isRightDisabled: false,
+      isLeftDisabled: false,
+    })
+    // When a custom handler is supplied, the built-in nav is skipped.
+    expect(setCurrentStep).not.toHaveBeenCalled()
+    expect(setIsOpen).not.toHaveBeenCalled()
+  })
 })

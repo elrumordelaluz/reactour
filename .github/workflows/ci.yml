@@ -36,5 +36,14 @@ jobs:
       - name: Build packages
         run: pnpm turbo run build --filter=!./apps/docs --filter=!./apps/web
 
-      - name: Test
-        run: pnpm turbo run test
+      - name: Test with coverage
+        run: pnpm turbo run test:coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: packages/*/coverage
+          if-no-files-found: ignore
+          retention-days: 14
