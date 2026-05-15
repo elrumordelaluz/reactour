@@ -135,6 +135,70 @@ describe('useSizes', () => {
     expect(result.current.isHighlightingObserved).toBe(true)
   })
 
+  it('merges highlighted rects into the target rect when bypassElem=false', () => {
+    const target = makeTarget('g', { top: 100, left: 100, right: 200, bottom: 200, width: 100, height: 100 })
+    void target
+    const highlight = document.createElement('div')
+    highlight.id = 'hl2'
+    document.body.appendChild(highlight)
+    highlight.getBoundingClientRect = () =>
+      ({
+        top: 50,
+        left: 80,
+        right: 300,
+        bottom: 250,
+        width: 220,
+        height: 200,
+        x: 80,
+        y: 50,
+        toJSON: () => ({}),
+      } as DOMRect)
+
+    const { result } = renderHook(() =>
+      useSizes(
+        {
+          selector: '#g',
+          content: 'x',
+          highlightedSelectors: ['#hl2'],
+          bypassElem: false,
+        },
+        baseOptions
+      )
+    )
+
+    act(() => {
+      result.current.observableRefresher()
+    })
+
+    // With bypassElem=false the function expands the target rect to enclose
+    // the highlight (top=50, left=80, right=300, bottom=250).
+    expect(result.current.sizes.top).toBe(50)
+    expect(result.current.sizes.left).toBe(80)
+    expect(result.current.sizes.right).toBe(300)
+    expect(result.current.sizes.bottom).toBe(250)
+    expect(result.current.sizes.width).toBe(220)
+    expect(result.current.sizes.height).toBe(200)
+  })
+
+  it('calls scrollIntoView when the target is outside the viewport', () => {
+    const el = makeTarget('off', {
+      top: 5000,
+      left: 5000,
+      right: 5100,
+      bottom: 5100,
+      width: 100,
+      height: 100,
+    })
+    const scrollSpy = vi.fn()
+    el.scrollIntoView = scrollSpy as any
+
+    renderHook(() =>
+      useSizes({ selector: '#off', content: 'x' }, baseOptions)
+    )
+
+    expect(scrollSpy).toHaveBeenCalled()
+  })
+
   it('skips highlighted elements that are hidden via display:none', () => {
     makeTarget('f')
     const hidden = makeTarget('hide', { top: 5, left: 5, right: 25, bottom: 25, width: 20, height: 20 })

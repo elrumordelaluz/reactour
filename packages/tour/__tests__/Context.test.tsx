@@ -152,6 +152,25 @@ describe('TourProvider + useTour', () => {
     expect(customSetCurrentStep).toHaveBeenCalledWith(2)
   })
 
+  it('useTour returns the default state when used outside a provider', () => {
+    let snapshot: ReturnType<typeof useTour> | undefined
+    function Probe() {
+      snapshot = useTour()
+      return null
+    }
+    render(<Probe />)
+    expect(snapshot?.isOpen).toBe(false)
+    expect(snapshot?.currentStep).toBe(0)
+    expect(snapshot?.steps).toEqual([])
+    // The default no-op setters return their initial values rather than
+    // throwing — exercise each so they aren't dead code.
+    expect(snapshot?.setIsOpen(true as any)).toBe(false)
+    expect(snapshot?.setCurrentStep(1 as any)).toBe(0)
+    expect(snapshot?.setSteps?.([] as any)).toEqual([])
+    expect(snapshot?.setMeta?.('hi')).toBe('')
+    expect(snapshot?.setDisabledActions?.(true)).toBe(false)
+  })
+
   it('mounts Tour only when isOpen is true', () => {
     const target = document.createElement('div')
     target.id = 'a'

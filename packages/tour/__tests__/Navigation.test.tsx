@@ -157,4 +157,31 @@ describe('Navigation', () => {
     expect(screen.queryByLabelText('Go to next step')).toBeNull()
     expect(nextButton).toHaveBeenCalled()
   })
+
+  it('lets a custom prevButton render prop replace the prev button', () => {
+    const prevButton = vi.fn(({ currentStep, stepsLength }) => (
+      <button aria-label="custom-prev">
+        back ({currentStep}/{stepsLength})
+      </button>
+    ))
+    render(<Navigation {...baseProps} prevButton={prevButton} />)
+    expect(screen.getByLabelText('custom-prev')).toBeInTheDocument()
+    expect(screen.queryByLabelText('Go to prev step')).toBeNull()
+    expect(prevButton).toHaveBeenCalled()
+  })
+
+  it('renders the Button render prop with a working onClick override', () => {
+    const handler = vi.fn()
+    const nextButton = vi.fn(({ Button }) => (
+      <Button onClick={handler} hideArrow>
+        custom!
+      </Button>
+    ))
+    render(<Navigation {...baseProps} nextButton={nextButton} />)
+    const btn = screen.getByText('custom!')
+    fireEvent.click(btn)
+    expect(handler).toHaveBeenCalled()
+    // hideArrow strips the svg arrow.
+    expect(btn.querySelector('svg')).toBeNull()
+  })
 })

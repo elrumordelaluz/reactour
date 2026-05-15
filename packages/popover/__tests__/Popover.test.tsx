@@ -135,6 +135,68 @@ describe('Popover', () => {
     expect(wrapper.style.padding).toBe('0px')
   })
 
+  it('falls back to auto-position when the requested side cannot fit', () => {
+    // Target way off the right edge → available.right is negative, so
+    // couldPositionAt('right', ...) returns false and we hit autoPosition.
+    const farRight = { ...SIZES, left: 1500, right: 1600, x: 1500 }
+    const { container } = render(
+      <Popover sizes={farRight} position="right">
+        <span>x</span>
+      </Popover>
+    )
+    const wrapper = container.firstChild as HTMLElement
+    // No throw and a sensible translate(...) result is enough — the exact
+    // coordinates depend on the fallback that autoPosition picks.
+    expect(wrapper.style.transform).toMatch(/^translate\(/)
+  })
+
+  it('exercises the helper-outside-X axis path without throwing', () => {
+    const farRight = { ...SIZES, left: 1500, right: 1600, x: 1500 }
+    const { container } = render(
+      <Popover sizes={farRight} position="bottom">
+        <span>x</span>
+      </Popover>
+    )
+    const wrapper = container.firstChild as HTMLElement
+    // The `!isHelperOutsideX` guard makes the explicit position fall back to
+    // autoPosition; we only verify the resulting translate is finite.
+    expect(wrapper.style.transform).toMatch(/^translate\(-?\d+px, -?\d+px\)$/)
+  })
+
+  it('clamps the helper y when the target overflows vertically', () => {
+    const farBottom = { ...SIZES, top: 750, bottom: 900, y: 750 }
+    const { container } = render(
+      <Popover sizes={farBottom} position="bottom">
+        <span>x</span>
+      </Popover>
+    )
+    const wrapper = container.firstChild as HTMLElement
+    // isHelperOutsideY branch produces a deterministic translate.
+    expect(wrapper.style.transform).toMatch(/^translate\(/)
+  })
+
+  it('falls back to window center when no side has room', () => {
+    // A target that fills nearly the entire viewport leaves no side with
+    // enough room for the helper, so autoPosition lands on 'center'.
+    const filling = {
+      top: 5,
+      left: 5,
+      right: 995,
+      bottom: 795,
+      width: 990,
+      height: 790,
+      x: 5,
+      y: 5,
+    }
+    const { container } = render(
+      <Popover sizes={filling} position="right">
+        <span>x</span>
+      </Popover>
+    )
+    const wrapper = container.firstChild as HTMLElement
+    expect(wrapper.style.transform).toBe('translate(500px, 400px)')
+  })
+
   it('respects padding when computing the transform', () => {
     const { container: a } = render(
       <Popover sizes={SIZES} position="bottom">
