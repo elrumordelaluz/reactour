@@ -27,6 +27,8 @@
     "build": "tsup index.tsx --format esm,cjs --dts --external react",
     "dev": "tsup index.tsx --format esm,cjs --watch --dts --external react",
     "lint": "TIMING=1 eslint **/*.ts* --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "publishConfig": {
