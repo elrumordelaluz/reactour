@@ -1,6 +1,6 @@
 import React from 'react'
 import { describe, it, expect, beforeAll, vi, beforeEach, afterEach } from 'vitest'
-import { fireEvent, render } from '@testing-library/react'
+import { act, fireEvent, render } from '@testing-library/react'
 import { TourProvider } from '../Context'
 
 beforeAll(() => {
@@ -205,6 +205,44 @@ describe('Tour orchestrator', () => {
     expect(
       container.ownerDocument.querySelector('.reactour__mask')
     ).not.toBeNull()
+  })
+
+  it('resets disableActions when the next step omits it (issue #683)', () => {
+    const b = document.createElement('div')
+    b.id = 'b'
+    document.body.appendChild(b)
+    const customSteps = [
+      { selector: '#a', content: 'A', disableActions: true },
+      { selector: '#b', content: 'B' },
+    ]
+    const onClickMask = vi.fn()
+    let externalSetStep: ((n: number) => void) | undefined
+    const Harness: React.FC = () => {
+      const [step, setStep] = React.useState(0)
+      externalSetStep = setStep
+      return (
+        <TourProvider
+          steps={customSteps}
+          defaultOpen
+          currentStep={step}
+          setCurrentStep={setStep as any}
+          onClickMask={onClickMask}
+        >
+          <div />
+        </TourProvider>
+      )
+    }
+    render(<Harness />)
+    // Step 0 disables actions: mask click is a no-op (handler not invoked).
+    fireEvent.click(document.querySelector('.reactour__mask')!)
+    expect(onClickMask).not.toHaveBeenCalled()
+
+    // Advance to step 1 (no disableActions): the handler should fire now.
+    act(() => {
+      externalSetStep!(1)
+    })
+    fireEvent.click(document.querySelector('.reactour__mask')!)
+    expect(onClickMask).toHaveBeenCalledTimes(1)
   })
 
   it('uses step.position when no global position is provided', () => {
